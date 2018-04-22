@@ -35,7 +35,9 @@ To run a test sample follow these steps:
 
 `pbmc.data <- load10x("filtered_gene_bc_matrices/hg19/")`
 
-To see the help page for each function use question mark as: `?load10x`
+To see the help page for each function use question mark as: 
+
+`?load10x`
 
 - Perform some QC: 
 
