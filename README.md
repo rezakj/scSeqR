@@ -12,7 +12,7 @@ scSeqR is an R package to analyze Single Cell RNA-Seq and large matrix files. It
 
 - Then install the package in R.
 
-`install.packages('~/scSeqR', repos = NULL, type="source")`
+`install.packages('directory/to/scSeqR', repos = NULL, type="source")`
 
 - Then load the package in R.
 
