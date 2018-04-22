@@ -28,3 +28,14 @@ To run a test sample follow these steps:
 `wget https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz`
 
 - Unzip the data.
+
+`tar xvzf pbmc3k_filtered_gene_bc_matrices.tar.gz`
+
+- Go to the R environment load the scSeqR package and load the PBMC data.
+
+`pbmc.data <- load10x("filtered_gene_bc_matrices/hg19/")`
+
+- Perform some QC: 
+
+
+
