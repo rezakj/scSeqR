@@ -35,7 +35,7 @@ To run a test sample follow these steps:
 
 `tar xvzf pbmc3k_filtered_gene_bc_matrices.tar.gz`
 
-- Go to the R environment load the scSeqR package and load the PBMC data.
+- Go to the R environment load the scSeqR package and the PBMC data.
 
 `pbmc.data <- load10x("filtered_gene_bc_matrices/hg19/")`
 
