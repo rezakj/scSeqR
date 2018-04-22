@@ -1,8 +1,8 @@
 # scSeqR
 
-### Single Cell RNA-Seq R package (scSeqR)
+### Single Cell RNA-seq R package (scSeqR)
 
-scSeqR is an R package to analyze Single Cell RNA-Seq and large matrix files. It inputs single cell data in 10X format or standard matrix and data frames and helps you to perform QC, filter, visualize, normalize, cluster, perform differential expression and find positive and negative markers for each cluster.
+scSeqR is an R package that can analyze single cell RNA-Seq and large matrix files. The program inputs single cell data in 10X format or standard matrix and data frames and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster.
 
 ### How to install scSeqR
 
