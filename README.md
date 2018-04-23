@@ -8,7 +8,7 @@ scSeqR is an R package that can analyze single cell RNA-Seq and large matrix fil
 
 - First clone the package.
 
-    `git clone https://github.com/rezakj/scSeqR.git`
+        `git clone https://github.com/rezakj/scSeqR.git`
 
 - Install the dependencies for scSeqR.
 
