@@ -37,6 +37,7 @@ To run a test sample follow these steps:
 
 - Go to the R environment load the scSeqR package and the PBMC data.
 
+        library("scSeqR")
         my.data <- load10x("filtered_gene_bc_matrices/hg19/",gene.name = "geneSymbol")
 
 To see the help page for each function use question mark as: 
