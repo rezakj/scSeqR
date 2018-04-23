@@ -5,8 +5,7 @@ Version: 0.1.0
 Author: Alireza Khodadadi Jamayran 
 Maintainer: Alireza Khodadadi Jamayran <alireza.khodadadi.j@gmail.com>
 Description: scSeqR is a toolkit to analyze scRNA-Seq and large matrix files. It performs QC, clustering, DE and visulizations.
-Depends: R (>= 3.2.0), ggplot2, Matrix
-Imports: Rtsne
+Depends: R (>= 3.2.0), ggplot2, Matrix, Rtsne
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
