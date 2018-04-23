@@ -2,21 +2,23 @@
 % Please edit documentation in R/load10x.R
 \name{load10x}
 \alias{load10x}
-\title{Load 10X data as dgTMatrix}
+\title{Load 10X data as data.frame}
 \usage{
-load10x(dir.10x = NULL)
+load10x(dir.10x = NULL, gene.name = "geneSymbol")
 }
 \arguments{
 \item{dir.10x}{A directory that includes the 10X barcodes.tsv, genes.tsv and matrix.mtx files.}
+
+\item{gene.name}{Should be either geneSymbol or ensembleID.}
 }
 \value{
-The dgTMatrix matrix.
+The data frame object.
 }
 \description{
 This function takes 10X data files barcodes.tsv, genes.tsv and matrix.mtx and converts them to proper matrix file for scSeqR.
 }
 \examples{
 \dontrun{
-load10x('/hg19')
+load10x("/hg19", gene.name = "geneSymbol")
 }
 }
