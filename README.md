@@ -87,6 +87,6 @@ You can load the sample data as:
         dev.off()
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_UMIs.pdf" width="350"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_UMIs.png" width="350"/>
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_genes.pdf" width="350"/>
 </p>
