@@ -12,7 +12,7 @@ load10x(dir.10x = NULL, gene.name = "geneSymbol")
 \item{gene.name}{Should be either geneSymbol or ensembleID.}
 }
 \value{
-The data frame object.
+The data frame object
 }
 \description{
 This function takes 10X data files barcodes.tsv, genes.tsv and matrix.mtx and converts them to proper matrix file for scSeqR.
