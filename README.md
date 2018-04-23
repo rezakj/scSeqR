@@ -88,5 +88,6 @@ You can load the sample data as:
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_UMIs.png" width="350"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_genes.pdf" width="350"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_genes.png" width="350"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_percent_mito.png" width="350"/>
 </p>
