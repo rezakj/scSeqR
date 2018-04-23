@@ -54,36 +54,27 @@ You can load the sample data as:
 
 - Perform some QC 
 
-
-                my.qc <- UMIs.genes.mito(my.data)
-                names(my.qc)
-                #[1] "mito.percent" "nGenes"       "UMIs"
-                
-                mito.percent.plot <- ggplot(as.data.frame(my.qc$mito.percent),aes(y=as.data.frame(my.qc$mito.percent),x="mydat", alpha = 0.5)) + 
+        my.qc <- UMIs.genes.mito(my.data)
+        names(my.qc)
+        #[1] "mito.percent" "nGenes"       "UMIs"
+        mito.percent.plot <- ggplot(as.data.frame(my.qc$mito.percent),aes(y=as.data.frame(my.qc$mito.percent),x="mydat", alpha = 0.5)) + 
         theme_bw() + 
         geom_jitter(color = "red") + 
         geom_boxplot() + xlab("my.data") + ylab("percent of mito genes per cell")
-
-                nGenes.plot <- ggplot(as.data.frame(my.qc$nGenes),aes(y=as.data.frame(my.qc$nGenes),x="mydat", alpha = 0.5)) + 
+        nGenes.plot <- ggplot(as.data.frame(my.qc$nGenes),aes(y=as.data.frame(my.qc$nGenes),x="mydat", alpha = 0.5)) + 
         theme_bw() + 
         geom_jitter(color = "red") + 
         geom_boxplot() + xlab("my.data") + ylab("number of genes per cell")
-
-                UMIsplot <- ggplot(as.data.frame(my.qc$UMIs),aes(y=as.data.frame(my.qc$UMIs),x="mydat", alpha = 0.5)) + 
+        UMIsplot <- ggplot(as.data.frame(my.qc$UMIs),aes(y=as.data.frame(my.qc$UMIs),x="mydat", alpha = 0.5)) + 
         theme_bw() + 
         geom_jitter(color = "red") + 
         geom_boxplot() + xlab("my.data") + ylab("number of UMIs per cell")
-
-                pdf("plot_number_of_UMIs.pdf",width = 4,height = 10)
-                UMIsplot
-                dev.off()
-
-                pdf("plot_number_of_genes.pdf",width = 4,height = 10)
-                nGenes.plot
-                dev.off()
-
-                pdf("plot_percent_mito.pdf",width = 4,height = 10)
-                mito.percent.plot
-                dev.off()`
-
-
+        pdf("plot_number_of_UMIs.pdf",width = 4,height = 10)
+        UMIsplot
+        dev.off()
+        pdf("plot_number_of_genes.pdf",width = 4,height = 10)
+        nGenes.plot
+        dev.off()
+        pdf("plot_percent_mito.pdf",width = 4,height = 10)
+        mito.percent.plot
+        dev.off()
