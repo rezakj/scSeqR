@@ -37,13 +37,13 @@ To run a test sample follow these steps:
 
 - Go to the R environment load the scSeqR package and the PBMC data.
 
-`my.data <- load10x("filtered_gene_bc_matrices/hg19/")`
+`my.data <- load10x("filtered_gene_bc_matrices/hg19/",gene.name = "geneSymbol")`
 
-To see the help page for each function use question mark as: 
+    To see the help page for each function use question mark as: 
 
 `?load10x`
 
-There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
+    There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
 
 `head(sample.10x.data)[1:5]`
 
