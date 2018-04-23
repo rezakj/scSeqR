@@ -55,6 +55,7 @@ You can load the sample data as:
 - Perform some QC 
 
         my.qc <- UMIs.genes.mito(my.data)
+        
         names(my.qc)
         #[1] "mito.percent" "nGenes"       "UMIs"
         
@@ -62,6 +63,7 @@ You can load the sample data as:
         theme_bw() + 
         geom_jitter(color = "red") + 
         geom_boxplot() + xlab("my.data") + ylab("percent of mito genes per cell")
+        
         nGenes.plot <- ggplot(as.data.frame(my.qc$nGenes),aes(y=as.data.frame(my.qc$nGenes),x="mydat", alpha = 0.5)) + 
         theme_bw() + 
         geom_jitter(color = "red") + 
