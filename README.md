@@ -12,15 +12,15 @@ scSeqR is an R package that can analyze single cell RNA-Seq and large matrix fil
 
 - Install the dependencies for scSeqR.
 
-`install.packages(c("ggplot2","Matrix"))`
+    `install.packages(c("ggplot2","Matrix"))`
 
 - Then install the package in R.
 
-`install.packages('directory/to/scSeqR', repos = NULL, type="source")`
+    `install.packages('directory/to/scSeqR', repos = NULL, type="source")`
 
 - Then load the package in R.
 
-`library("scSeqR")`
+    `library("scSeqR")`
 
 
 ### How to use scSeqR
@@ -29,27 +29,27 @@ To run a test sample follow these steps:
 
 - Download this data from here (using terminal).
 
-`wget https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz`
+    `wget https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz`
 
 - Unzip the data.
 
-`tar xvzf pbmc3k_filtered_gene_bc_matrices.tar.gz`
+    `tar xvzf pbmc3k_filtered_gene_bc_matrices.tar.gz`
 
 - Go to the R environment load the scSeqR package and the PBMC data.
 
-`my.data <- load10x("filtered_gene_bc_matrices/hg19/",gene.name = "geneSymbol")`
+    `my.data <- load10x("filtered_gene_bc_matrices/hg19/",gene.name = "geneSymbol")`
 
 To see the help page for each function use question mark as: 
 
-`?load10x`
+    `?load10x`
 
 There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
 
-`head(sample.10x.data)[1:5]`
+    `head(sample.10x.data)[1:5]`
 
 You can load the sample data as:
 
-`my.data <- sample.10x.data`
+    `my.data <- sample.10x.data`
 
 - Perform some QC 
 
