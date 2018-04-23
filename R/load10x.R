@@ -1,8 +1,8 @@
-#' Load 10X data as dgTMatrix
+#' Load 10X data as data.frame
 #'
 #' This function takes 10X data files barcodes.tsv, genes.tsv and matrix.mtx and converts them to proper matrix file for scSeqR.
 #' @param dir.10x A directory that includes the 10X barcodes.tsv, genes.tsv and matrix.mtx files.
-#' @return The dgTMatrix matrix.
+#' @return The data frame object.
 #' @examples
 #' \dontrun{
 #' load10x('/hg19')
@@ -27,10 +27,10 @@ load10x <- function (dir.10x = NULL) {
     gene.names.ids <- list.files(dir.10x,full.names=T,"genes.tsv")
     MTX10x <- readMM(MTX10x)
     cell.barcodes <- readLines(cell.barcodes)
-    gene.names.ids <- readLines(gene.names.ids)
+    gene.names.ids <- as.character(as.matrix(read.table(gene.names.ids,header=F)[2]))
   }
   colnames(x = MTX10x) <- cell.barcodes
   rownames(x = MTX10x) <- gene.names.ids
-  data.10x <- append(x = MTX10x, values = MTX10x)
+  data.10x <- as.data.frame(as.matrix(MTX10x))
   return(data.10x)
 }
