@@ -16,7 +16,7 @@ UMIs.genes.mito <- function (x = NULL) {
   mito.genes <- grep(pattern = "^mt\\-", x = rownames(x), value = TRUE, ignore.case = TRUE)
   mito <- subset(x,rownames(x) %in% mito.genes)
   mitoSiz <- colSums(mito)
-  mito.percent <- (mitoSiz/libSiz)
+  mito.percent <- (mitoSiz/UMIs)
   mito.percent.df <- as.data.frame(mito.percent)
   return(c(mito.percent.df,nGenes.df,UMIs.df))
 }
