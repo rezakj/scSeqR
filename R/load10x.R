@@ -35,11 +35,9 @@ load10x <- function (dir.10x = NULL, gene.name = "geneSymbol") {
   if (gene.name == "ensembleID") {
     gene.names.ids <- as.character(as.matrix(read.table(gene.names.ids,header=F)[1]))
   }
-  if (gene.name != "ensembleID" || gene.name != "geneSymbol") {
-    stop("parameter gene.name is missing. gene.name should be ensembleID or geneSymbol")
-  }
   colnames(x = MTX10x) <- cell.barcodes
   rownames(x = MTX10x) <- gene.names.ids
   data.10x <- as.data.frame(as.matrix(MTX10x))
   return(data.10x)
 }
+
