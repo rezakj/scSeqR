@@ -3,7 +3,7 @@
 #' This function takes 10X data files barcodes.tsv, genes.tsv and matrix.mtx and converts them to proper matrix file for scSeqR.
 #' @param dir.10x A directory that includes the 10X barcodes.tsv, genes.tsv and matrix.mtx files.
 #' @param gene.name Should be either geneSymbol or ensembleID.
-#' @return The data frame object.
+#' @return The data frame object
 #' @examples
 #' \dontrun{
 #' load10x("/hg19", gene.name = "geneSymbol")
