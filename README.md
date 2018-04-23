@@ -85,3 +85,8 @@ You can load the sample data as:
         pdf("plot_percent_mito.pdf",width = 4,height = 10)
         mito.percent.plot
         dev.off()
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_UMIs.pdf" width="350"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_genes.pdf" width="350"/>
+</p>
