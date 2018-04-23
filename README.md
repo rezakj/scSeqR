@@ -8,7 +8,7 @@ scSeqR is an R package that can analyze single cell RNA-Seq and large matrix fil
 
 - First clone the package.
 
-`git clone https://github.com/rezakj/scSeqR.git`
+    `git clone https://github.com/rezakj/scSeqR.git`
 
 - Install the dependencies for scSeqR.
 
@@ -39,11 +39,11 @@ To run a test sample follow these steps:
 
 `my.data <- load10x("filtered_gene_bc_matrices/hg19/",gene.name = "geneSymbol")`
 
-    To see the help page for each function use question mark as: 
+To see the help page for each function use question mark as: 
 
 `?load10x`
 
-    There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
+There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
 
 `head(sample.10x.data)[1:5]`
 
