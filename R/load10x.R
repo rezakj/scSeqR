@@ -38,6 +38,7 @@ load10x <- function (dir.10x = NULL, gene.name = "geneSymbol") {
   colnames(x = MTX10x) <- cell.barcodes
   rownames(x = MTX10x) <- gene.names.ids
   data.10x <- as.data.frame(as.matrix(MTX10x))
+  row.names(data.10x) <- make.names(row.names(data.10x), unique=TRUE)
   return(data.10x)
 }
 
