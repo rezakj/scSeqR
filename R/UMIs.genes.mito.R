@@ -16,6 +16,9 @@ UMIs.genes.mito <- function (x = NULL) {
   UMIs <- colSums(DATA)
   nGenes <- sapply(DATA, function(DATA) length(as.numeric(subset(DATA, DATA != 0))))
   mito.genes <- grep(pattern = "^mt\\-", x = rownames(DATA), value = TRUE, ignore.case = TRUE)
+  if ( length(mito.genes) == 0 ) {
+    mito.genes <- grep(pattern = "^mt\\.", x = rownames(DATA), value = TRUE, ignore.case = TRUE)
+  }
   mito <- subset(DATA,rownames(DATA) %in% mito.genes)
   mitoSiz <- colSums(mito)
   mito.percent <- (mitoSiz/UMIs)
