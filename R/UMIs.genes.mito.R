@@ -9,14 +9,19 @@
 #' }
 #' @export
 UMIs.genes.mito <- function (x = NULL) {
-  UMIs <- colSums(x)
-  UMIs.df <- as.data.frame(UMIs)
-  nGenes <- sapply(x, function(x) length(as.numeric(subset(x, x != 0))))
-  nGenes.df <- as.data.frame(nGenes)
-  mito.genes <- grep(pattern = "^mt\\-", x = rownames(x), value = TRUE, ignore.case = TRUE)
-  mito <- subset(x,rownames(x) %in% mito.genes)
+  if ("scSeqR" != class(x)[1]) {
+    stop("x should be an object of class scSeqR")
+  }
+  DATA <- x@raw.data
+  UMIs <- colSums(DATA)
+  nGenes <- sapply(DATA, function(DATA) length(as.numeric(subset(DATA, DATA != 0))))
+  mito.genes <- grep(pattern = "^mt\\-", x = rownames(DATA), value = TRUE, ignore.case = TRUE)
+  mito <- subset(DATA,rownames(DATA) %in% mito.genes)
   mitoSiz <- colSums(mito)
   mito.percent <- (mitoSiz/UMIs)
-  mito.percent.df <- as.data.frame(mito.percent)
-  return(c(mito.percent.df,nGenes.df,UMIs.df))
+  QC <- list(colnames(DATA),as.numeric(nGenes), as.numeric(UMIs),as.numeric(mito.percent))
+  names(QC) <- c("CellIds","nGenes","UMIs","mito.percent")
+  STATS <- as.data.frame(QC)
+  attributes(x)$stats <- STATS
+  return(x)
 }
