@@ -12,8 +12,13 @@ scSeqR is an R package that can analyze single cell RNA-Seq and large matrix fil
 
 - Install the dependencies for scSeqR.
 
-        install.packages(c("ggplot2","Matrix","Rtsne"))
-
+        install.packages(c("ggplot2",
+        "Matrix",
+        "Rtsne",
+        "gmp", 
+        "factoextra", 
+        "gridExtra"0))
+        
 - Then install the package in R.
 
         install.packages('directory/to/scSeqR', repos = NULL, type="source")
@@ -70,8 +75,17 @@ You can load the sample data as:
 </p>
 
 
-        plot(my.obj@stats$UMIs,my.obj@stats$mito.percent, main = "UMIs/Mito", ylab = "Percent Mito", xlab = "UMIs")
-        plot(my.obj@stats$UMIs,my.obj@stats$nGenes, main = "UMIs/genes", ylab = "genes", xlab = "UMIs")
+        plot(my.obj@stats$UMIs,
+        my.obj@stats$mito.percent, 
+        main = "UMIs/Mito", 
+        ylab = "Percent Mito", 
+        xlab = "UMIs")
+        
+        plot(my.obj@stats$UMIs,
+        my.obj@stats$nGenes, 
+        main = "UMIs/genes", 
+        ylab = "genes", 
+        xlab = "UMIs")
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_Mito.png" width="300"/>
@@ -81,7 +95,14 @@ You can load the sample data as:
 
 - Filter cells
 
-        my.obj <- filter.cells(my.obj,min.mito = 0, max.mito = 0.05, min.genes = 200, max.genes = 2500, min.umis = 0, max.umis = Inf)
+        my.obj <- filter.cells(my.obj,
+                min.mito = 0, 
+                max.mito = 0.05, 
+                min.genes = 200, 
+                max.genes = 2500, 
+                min.umis = 0, 
+                max.umis = Inf)
+                
         dim(my.obj@main.data)
 
 
@@ -95,7 +116,10 @@ You can load the sample data as:
 
 - Cluster data 
 
-        my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2)
+        my.obj <- cluster.data(my.obj, 
+                clust.method = "base.mean.rank", 
+                top.rank = 500, 
+                clust.dim = 2)
         
 - Find optimal number of clusters          
 
