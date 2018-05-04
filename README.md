@@ -68,3 +68,60 @@ You can load the sample data as:
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800"/>
 </p>
+
+
+        plot(my.obj@stats$UMIs,my.obj@stats$mito.percent, main = "UMIs/Mito", ylab = "Percent Mito", xlab = "UMIs")
+        plot(my.obj@stats$UMIs,my.obj@stats$nGenes, main = "UMIs/genes", ylab = "genes", xlab = "UMIs")
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_Mito.png" width="300"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_genes.png" width="300"/>      
+</p>
+
+
+- Filter cells
+
+        my.obj <- filter.cells(my.obj,min.mito = 0, max.mito = 0.05, min.genes = 200, max.genes = 2500, min.umis = 0, max.umis = Inf)
+        dim(my.obj@main.data)
+
+
+- Normalize data 
+
+        my.obj <- norm(my.obj, "ranked.glsf", top.rank = 500)
+
+- Scale data 
+
+        my.obj <- scale.data(my.obj)
+
+- Cluster data 
+
+        my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2)
+        
+- Find optimal number of clusters          
+
+        pot.clust.num(my.obj)
+        
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num.png" width="800"/>
+</p>
+              
+- Assign clusters and plot them
+
+        my.obj <- assign.clust(my.obj, clust.num = 7)
+        tsne.plot(my.obj)
+
+        
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="800"/>
+</p>
+        
+
+- Make intractive plot in html format
+
+        library(plotly)
+        htmlwidgets::saveWidget(ggplotly(tsne.plot(my.obj)), "tSNE_plot.html")
+
+
+
+        
+        
