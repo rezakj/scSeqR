@@ -25,6 +25,7 @@ cluster.data <- function (x = NULL, clust.method = "base.mean.rank", top.rank = 
     TransPosed <- t(TopNormLogScale)
     tsne <- Rtsne(TransPosed, check_duplicates = FALSE, dims = clust.dim)
     tsne.data = as.data.frame(tsne$Y)
+    tsne.data = cbind(cells = row.names(TransPosed),tsne.data)
   }
   attributes(x)$tsne.data <- tsne.data
   return(x)

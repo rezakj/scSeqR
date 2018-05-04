@@ -9,13 +9,13 @@
 #' }
 #' @export
 make.obj <- function (x = NULL) {
-  setClass("scSeqR", representation (raw.data = "data.frame",
-                                     row.names = "character",
-                                     stats = "data.frame",
-                                     main.data = "data.frame",
-                                     scaled.data = "data.frame",
-                                     tsne.data = "data.frame"))
-  myOBJ <- new("scSeqR", raw.data = x)
-  attributes(myOBJ)$row.names <- row.names(x)
-  return(myOBJ)
-}
+    setClass("scSeqR", representation (raw.data = "data.frame",
+                                       row.names = "character",
+                                       stats = "data.frame",
+                                       main.data = "data.frame",
+                                       scaled.data = "data.frame",
+                                       tsne.data = "data.frame"))
+    myOBJ <- new("scSeqR", raw.data = x)
+    attributes(myOBJ)$row.names <- row.names(x)
+    return(myOBJ)
+  }

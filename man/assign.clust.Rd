@@ -4,10 +4,12 @@
 \alias{assign.clust}
 \title{Find optimal number of clusters.}
 \usage{
-assign.clust(x = NULL)
+assign.clust(x = NULL, clust.num = 0)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
+
+\item{clust.num}{Number of clusters}
 }
 \value{
 An object of class scSeqR.
@@ -17,6 +19,6 @@ This function takes an object of class scSeqR and finds optimal number of cluste
 }
 \examples{
 \dontrun{
-pot.clust.num(my.obj)
+assign.clust(my.obj, clust.num = 7)
 }
 }

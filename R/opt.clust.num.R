@@ -15,6 +15,8 @@ pot.clust.num <- function (x = NULL) {
   require(factoextra)
   require(gridExtra)
   df <- x@tsne.data
+  row.names(df) <- df$clls
+  df <- df[,-1]
   # Elbow method
   Elbow = fviz_nbclust(df, kmeans, method = "wss") + geom_vline(xintercept = 4, linetype = 2) + labs(subtitle = "Elbow method")
   # Silhouette method
