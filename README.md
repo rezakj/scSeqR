@@ -51,43 +51,20 @@ There is also a sample data that comes with the package. To see the head and the
 You can load the sample data as:
 
         my.data <- sample.10x.data
+        
+        
+- Make an object of class scSeqR
+
+        my.obj <- make.obj(my.data)
 
 - Perform some QC 
 
-        my.qc <- UMIs.genes.mito(my.data)
-        
-        names(my.qc)
-        #[1] "mito.percent" "nGenes"       "UMIs"
-        
-        mito.percent.plot <- ggplot(as.data.frame(my.qc$mito.percent),aes(y=as.data.frame(my.qc$mito.percent),x="mydat", alpha = 0.5)) + 
-        theme_bw() + 
-        geom_jitter(color = "red") + 
-        geom_boxplot() + xlab("my.data") + ylab("percent of mito genes per cell")
-        
-        nGenes.plot <- ggplot(as.data.frame(my.qc$nGenes),aes(y=as.data.frame(my.qc$nGenes),x="mydat", alpha = 0.5)) + 
-        theme_bw() + 
-        geom_jitter(color = "red") + 
-        geom_boxplot() + xlab("my.data") + ylab("number of genes per cell")
-        
-        UMIsplot <- ggplot(as.data.frame(my.qc$UMIs),aes(y=as.data.frame(my.qc$UMIs),x="mydat", alpha = 0.5)) + 
-        theme_bw() + 
-        geom_jitter(color = "red") + 
-        geom_boxplot() + xlab("my.data") + ylab("number of UMIs per cell")
-        
-        pdf("plot_number_of_UMIs.pdf",width = 4,height = 10)
-        UMIsplot
-        dev.off()
-        
-        pdf("plot_number_of_genes.pdf",width = 4,height = 10)
-        nGenes.plot
-        dev.off()
-        
-        pdf("plot_percent_mito.pdf",width = 4,height = 10)
-        mito.percent.plot
-        dev.off()
+        dim(my.obj@raw.data)
+        my.obj <- UMIs.genes.mito(my.obj)
+        summary(my.obj@stats)
+        stats.plot(my.obj)
+
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_UMIs.png" width="250"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_number_of_genes.png" width="250"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_percent_mito.png" width="250"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800"/>
 </p>
