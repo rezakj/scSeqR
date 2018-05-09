@@ -4,7 +4,7 @@
 \alias{tsne.plot}
 \title{Plot nGenes, UMIs and perecent mito}
 \usage{
-tsne.plot(x = NULL)
+tsne.plot(x = NULL, cell.size = 1)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

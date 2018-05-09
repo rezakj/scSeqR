@@ -8,16 +8,16 @@
 #' tsne.plot(my.obj)
 #' }
 #' @export
-tsne.plot <- function (x = NULL) {
+tsne.plot <- function (x = NULL, cell.size = 1) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
   DATA <- x@tsne.data
+  clusters <- DATA$cl_hierarchical
   myPLOT <- ggplot(DATA, aes(x = V1, y = V2,
                              text = cells ,
-                             color = cl_hierarchical,
-                             alpha = 0.5)) +
-    geom_point(size=1) +
+                             color = clusters)) +
+    geom_point(size = cell.size, alpha = 0.5) +
     xlab("Dim1") +
     ylab("Dim2") +
     ggtitle("t-SNE plot") + theme_bw()
