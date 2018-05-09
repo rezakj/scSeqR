@@ -8,7 +8,10 @@
 #' plot.stats(my.obj)
 #' }
 #' @export
-stats.plot <- function (x = NULL, cell.color = "slategray3", box.color = "red", cell.size = 1) {
+stats.plot <- function (x = NULL,
+                        cell.color = "slategray3",
+                        box.color = "red",
+                        cell.size = 1) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
