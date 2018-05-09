@@ -149,3 +149,22 @@ You can load the sample data as:
 - Save your object
         save(my.obj, file = "my.obj.Robj")
         
+     
+
+- Plot genes
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD14.png" width="250"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD8A.png" width="250"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD3E.png" width="250"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_FCER1A.png" width="250"/>     
+</p>
+
+
+
+
+
+
+
+
+
