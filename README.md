@@ -147,6 +147,7 @@ You can load the sample data as:
 
 
 - Save your object
+
         save(my.obj, file = "my.obj.Robj")
         
      
