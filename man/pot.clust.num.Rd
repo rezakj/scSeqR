@@ -4,7 +4,8 @@
 \alias{pot.clust.num}
 \title{Find optimal number of clusters.}
 \usage{
-pot.clust.num(x = NULL)
+pot.clust.num(x = NULL, max.clust = 15, gap.stat.nboot = 100,
+  verbose = TRUE)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
