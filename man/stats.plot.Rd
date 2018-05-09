@@ -5,9 +5,11 @@
 \alias{stats.plot}
 \title{Plot nGenes, UMIs and perecent mito}
 \usage{
-stats.plot(x = NULL)
+stats.plot(x = NULL, cell.color = "slategray3", box.color = "red",
+  cell.size = 1)
 
-stats.plot(x = NULL)
+stats.plot(x = NULL, cell.color = "slategray3", box.color = "red",
+  cell.size = 1)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
