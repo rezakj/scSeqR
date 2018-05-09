@@ -146,6 +146,6 @@ You can load the sample data as:
         htmlwidgets::saveWidget(ggplotly(tsne.plot(my.obj)), "tSNE_plot.html")
 
 
-
-        
+- Save your object
+        save(my.obj, file = "my.obj.Robj")
         
