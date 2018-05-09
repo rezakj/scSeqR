@@ -126,7 +126,7 @@ You can load the sample data as:
         pot.clust.num(my.obj)
         
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num.png" width="800"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num1.png" width="800"/>
 </p>
               
 - Assign clusters and plot them
