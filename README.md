@@ -154,12 +154,12 @@ You can load the sample data as:
 - Plot genes
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD14.png" width="300"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD3E.png" width="300"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_FCGR3A.png" width="300"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_GNLY.png" width="300"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_LYZ.png" width="300"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_MS4A1.png" width="300"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD14.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD3E.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_FCGR3A.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_GNLY.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD8A.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_MS4A1.png" width="400"/>
 </p>
 
 
