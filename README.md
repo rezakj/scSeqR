@@ -88,8 +88,8 @@ You can load the sample data as:
         xlab = "UMIs")
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_Mito.png" width="300"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_genes.png" width="300"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_Mito.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_genes.png" width="400"/>      
 </p>
 
 
