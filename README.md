@@ -73,6 +73,11 @@ There is also a sample data that comes with the package. To see the head and the
 head(sample.10x.data)[1:5]
 ```
 
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
 You can load the sample data as:
 
 ```r
