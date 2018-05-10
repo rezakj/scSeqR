@@ -71,6 +71,13 @@ head(sample.10x.data)[1:5]
 | Content Cell  | Content Cell  |
   
         
+Conditions in scSeqR are set in the header of the data and are separated by an underscore (_) as below:
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
 - Make an object of class scSeqR
 
 ```r
