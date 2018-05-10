@@ -98,8 +98,14 @@ my.obj <- make.obj(my.data)
 
 ```r
 dim(my.obj@raw.data)
+```
+
+| # of genes/rows| # of cells/columns |
+| ------------- | ------------- |
+| 32738        |     2700        |
+
+```r
 my.obj <- UMIs.genes.mito(my.obj)
-summary(my.obj@stats)
 stats.plot(my.obj)
 ```
 
@@ -137,9 +143,13 @@ my.obj <- filter.cells(my.obj,
      max.genes = 2500, 
      min.umis = 0, 
      max.umis = Inf)
-                
+ 
 dim(my.obj@main.data)
 ```
+
+| # of genes/rows| # of cells/columns |
+| ------------- | ------------- |
+| 32738        |     2638        |
 
 - Normalize data 
 
