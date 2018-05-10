@@ -12,14 +12,14 @@ scSeqR is an R package that can analyze single sequencing data types (i.e scRNA-
 
 - Install the dependencies for scSeqR.
 
-        ```R
-        install.packages(c("ggplot2",
-        "Matrix",
-        "Rtsne",
-        "gmp", 
-        "factoextra", 
-        "gridExtra"0))
-        ```
+```R
+install.packages(c("ggplot2",
+"Matrix",
+"Rtsne",
+"gmp", 
+"factoextra", 
+"gridExtra"0))
+ ```
         
 - Then install the package in R.
 
