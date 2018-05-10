@@ -8,7 +8,7 @@ scSeqR is an R package that can analyze single sequencing data types (i.e scRNA-
 
 - First clone the package.
 
-```
+```r
 git clone https://github.com/rezakj/scSeqR.git
 ```
 - Install the dependencies for scSeqR.
@@ -29,7 +29,9 @@ install.packages('directory/to/scSeqR', repos = NULL, type="source")
 ```
 - Then load the package in R.
 
-        library("scSeqR")
+```r
+library("scSeqR")
+```
 
 ***
 
