@@ -77,12 +77,7 @@ head(sample.10x.data)[1:5]
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
-
-You can load the sample data as:
-
-```r
-my.data <- sample.10x.data
-```        
+  
         
 - Make an object of class scSeqR
 
