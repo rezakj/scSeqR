@@ -104,7 +104,7 @@ stats.plot(my.obj)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="500" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="700" />
 </p>
 
 ```r
@@ -179,7 +179,7 @@ tsne.plot(my.obj)
 ```
         
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="800" height="500" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="800" height="700" />
 </p>
         
 
@@ -200,8 +200,8 @@ save(my.obj, file = "my.obj.Robj")
 - Plot genes
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800" height="500" />
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1.png" width="800" height="500" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1.png" width="800" height="700" />
   
 </p>
 
