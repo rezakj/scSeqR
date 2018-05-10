@@ -24,8 +24,9 @@ install.packages(c("ggplot2",
         
 - Then install the package in R.
 
-        install.packages('directory/to/scSeqR', repos = NULL, type="source")
-
+```r
+install.packages('directory/to/scSeqR', repos = NULL, type="source")
+```
 - Then load the package in R.
 
         library("scSeqR")
