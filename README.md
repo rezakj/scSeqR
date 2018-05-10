@@ -64,16 +64,16 @@ There is also a sample data that comes with the package. To see the head and the
 ```r
 head(sample.10x.data)[1:4]
 ```
-
+<sub>
 |  | AAACATACAACCAC | AAACATTGAGCTAC | AAACATTGATCAGC | AAACCGTGCTTCCG |
-| ----------- | ----------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
 | MALAT1        |     49        |    142        |    171        |     11        |
 | TMSB4X        |     47        |     62        |    117        |    114        |
 | B2M           |     76        |     75        |     69        |     41        |
 | RPL10         |     34        |     92        |     49        |     22        |
 | RPL13         |     29        |     45        |     16        |     15        |
 | RPL13A        |     37        |     81        |     40        |     16        |
-
+</sub>
         
 Conditions in scSeqR are set in the header of the data and are separated by an underscore (_) as below:
 
