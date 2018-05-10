@@ -3,7 +3,7 @@
 ### Single Cell Sequencing R package (scSeqR)
 
 scSeqR is an R package that can analyze single sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq)) :+1:) and large [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) :+1:
-files, like count tables from TCGA. The program inputs single cell data in 10X format or standard matrix and data frames and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster.
+files, like count tables from TCGA. The program inputs single cell data in [10X format](https://www.10xgenomics.com/) :+1: or standard matrix and data frames and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster.
 
 ***
 ## How to install scSeqR
