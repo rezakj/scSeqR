@@ -27,8 +27,9 @@ scSeqR is an R package that can analyze single sequencing data types (i.e scRNA-
 
         library("scSeqR")
 
+***
 
-### How to use scSeqR
+# How to use scSeqR
 
 To run a test sample follow these steps:
 
