@@ -32,7 +32,7 @@ install.packages(c("ggplot2",
 install.packages('directory/to/scSeqR', repos = NULL, type="source")
 ```
 
-- download and unzip sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) data.
+- Download and unzip sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) data.
 
 ```console
 # shell (bash) 
