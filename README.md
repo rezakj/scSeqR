@@ -78,6 +78,8 @@ Conditions in scSeqR are set in the header of the data and are separated by an u
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
 
+Follow [this] tutorial to learn how to merge multiple datasets and run scSeqR in aggregated mode.
+
 - Make an object of class scSeqR
 
 ```r
