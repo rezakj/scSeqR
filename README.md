@@ -64,7 +64,7 @@ There is also a sample data that comes with the package. To see the head and the
 ```r
 head(sample.10x.data)[1:4]
 ```
-<sub>...</sub>
+
 |  | AAACATACAACCAC | AAACATTGAGCTAC | AAACATTGATCAGC | AAACCGTGCTTCCG |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | MALAT1        |     49        |    142        |    171        |     11        |
