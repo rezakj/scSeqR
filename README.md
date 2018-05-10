@@ -200,7 +200,7 @@ save(my.obj, file = "my.obj.Robj")
 - Plot genes
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800" hight="500"/>
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1.png" width="800"/>
   
 </p>
