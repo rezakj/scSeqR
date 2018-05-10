@@ -100,18 +100,19 @@ stats.plot(my.obj)
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800"/>
 </p>
 
-
-        plot(my.obj@stats$UMIs,
-        my.obj@stats$mito.percent, 
-        main = "UMIs/Mito", 
-        ylab = "Percent Mito", 
-        xlab = "UMIs")
+```r
+plot(my.obj@stats$UMIs,
+my.obj@stats$mito.percent, 
+main = "UMIs/Mito", 
+ylab = "Percent Mito", 
+xlab = "UMIs")
         
-        plot(my.obj@stats$UMIs,
-        my.obj@stats$nGenes, 
-        main = "UMIs/genes", 
-        ylab = "genes", 
-        xlab = "UMIs")
+plot(my.obj@stats$UMIs,
+my.obj@stats$nGenes, 
+main = "UMIs/genes", 
+ylab = "genes", 
+xlab = "UMIs")
+```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_Mito.png" width="400"/>
@@ -121,24 +122,29 @@ stats.plot(my.obj)
 
 - Filter cells
 
-        my.obj <- filter.cells(my.obj,
-                min.mito = 0, 
-                max.mito = 0.05, 
-                min.genes = 200, 
-                max.genes = 2500, 
-                min.umis = 0, 
-                max.umis = Inf)
+```r
+my.obj <- filter.cells(my.obj,
+min.mito = 0, 
+max.mito = 0.05, 
+min.genes = 200, 
+max.genes = 2500, 
+min.umis = 0, 
+max.umis = Inf)
                 
-        dim(my.obj@main.data)
-
+dim(my.obj@main.data)
+```
 
 - Normalize data 
 
-        my.obj <- norm(my.obj, "ranked.glsf", top.rank = 500)
+```r
+my.obj <- norm(my.obj, "ranked.glsf", top.rank = 500)
+```
 
 - Scale data 
 
-        my.obj <- scale.data(my.obj)
+```r
+my.obj <- scale.data(my.obj)
+```
 
 - Cluster data 
 
