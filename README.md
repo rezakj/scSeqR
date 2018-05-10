@@ -17,11 +17,11 @@ git clone https://github.com/rezakj/scSeqR.git
 
 ```r
 install.packages(c("ggplot2",
-"Matrix",
-"Rtsne",
-"gmp", 
-"factoextra", 
-"gridExtra"))
+     "Matrix",
+     "Rtsne",
+     "gmp", 
+     "factoextra", 
+     "gridExtra"))
  ```
         
 - Then install the package in R.
