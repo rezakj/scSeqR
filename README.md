@@ -42,7 +42,7 @@ tar xvzf pbmc3k_filtered_gene_bc_matrices.tar.gz
 ```
 
 ***
-# How to use scSeqR
+# How to use scSeqR for analyzing scRNA-seq data
 
 To run a test sample follow these steps:
 
