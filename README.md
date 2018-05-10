@@ -4,7 +4,8 @@
 
 scSeqR is an R package that can analyze single sequencing data types (i.e scRNA-Seq) and large matrix files. The program inputs single cell data in 10X format or standard matrix and data frames and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster.
 
-### How to install scSeqR
+***
+## How to install scSeqR
 
 - First clone the package.
 
@@ -35,7 +36,6 @@ library("scSeqR")
 ```
 
 ***
-
 # How to use scSeqR
 
 To run a test sample follow these steps:
