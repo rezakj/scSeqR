@@ -77,10 +77,14 @@ head(sample.10x.data)[1:4]
         
 Conditions in scSeqR are set in the header of the data and are separated by an underscore (_) as below:
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+|  | condition1_AAACATACAACCAC | condition1_AAACATTGAGCTAC | ... | condition2_AAACATTGATCTGC | condition2_AAACCGTGCTTGCG |
+| ------------- | ------------- | ------------- | ------------- | ------------- |------------- |
+| MALAT1        |     49        |    142        |    ...        |     112       |     100      |
+| TMSB4X        |     47        |     62        |    ...        |    11         |     81       |
+| B2M           |     76        |     75        |    ...        |     45        |     51       |
+| RPL10         |     34        |     92        |    ...        |     26        |     18       |
+| RPL13         |     29        |     45        |    ...        |     75        |     110      |
+| RPL13A        |     37        |     81        |    ...        |     66        |     12       |
 
 Follow [this] tutorial to learn how to merge multiple datasets and run scSeqR in aggregated mode.
 
