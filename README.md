@@ -15,7 +15,7 @@ files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.
 # shell (bash)
 git clone https://github.com/rezakj/scSeqR.git
 ```
-- Install the dependencies for scSeqR.
+- Install the dependencies for scSeqR in R.
 
 ```r
 install.packages(c("ggplot2",
@@ -31,18 +31,8 @@ install.packages(c("ggplot2",
 ```r
 install.packages('directory/to/scSeqR', repos = NULL, type="source")
 ```
-- Then load the package in R.
 
-```r
-library("scSeqR")
-```
-
-***
-# How to use scSeqR
-
-To run a test sample follow these steps:
-
-- Download sample data and unzip.
+- download and unzip sample PBMC data.
 
 ```console
 # shell (bash) 
@@ -51,7 +41,12 @@ wget https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_fil
 tar xvzf pbmc3k_filtered_gene_bc_matrices.tar.gz
 ```
 
-- Go to the R environment load the scSeqR package and the PBMC data.
+***
+# How to use scSeqR
+
+To run a test sample follow these steps:
+
+- Go to the R environment load the scSeqR package and the PBMC sample data that you downloaded.
 
 ```r
 library("scSeqR")
