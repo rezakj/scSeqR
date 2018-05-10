@@ -154,7 +154,7 @@ dim(my.obj@main.data)
 - Normalize data 
 
 ```r
-my.obj <- norm(my.obj, "ranked.glsf", top.rank = 500)
+my.obj <- norm(my.obj, norm.method = "ranked.glsf", top.rank = 500)
 ```
 
 - Scale data 
