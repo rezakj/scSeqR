@@ -122,12 +122,12 @@ plot(my.obj@stats$UMIs,
 
 ```r
 my.obj <- filter.cells(my.obj,
-min.mito = 0, 
-max.mito = 0.05, 
-min.genes = 200, 
-max.genes = 2500, 
-min.umis = 0, 
-max.umis = Inf)
+     min.mito = 0, 
+     max.mito = 0.05, 
+     min.genes = 200, 
+     max.genes = 2500, 
+     min.umis = 0, 
+     max.umis = Inf)
                 
 dim(my.obj@main.data)
 ```
@@ -144,26 +144,30 @@ my.obj <- norm(my.obj, "ranked.glsf", top.rank = 500)
 my.obj <- scale.data(my.obj)
 ```
 
-- Cluster data 
+- Cluster data
 
-        my.obj <- cluster.data(my.obj, 
-                clust.method = "base.mean.rank", 
-                top.rank = 500, 
-                clust.dim = 2)
-        
+```r
+my.obj <- cluster.data(my.obj, 
+       clust.method = "base.mean.rank", 
+       top.rank = 500, 
+       clust.dim = 2)
+```        
 - Find optimal number of clusters          
 
-        pot.clust.num(my.obj)
-        
+```r
+pot.clust.num(my.obj)
+```
+
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num1.png" width="800"/>
 </p>
               
 - Assign clusters and plot them
 
-        my.obj <- assign.clust(my.obj, clust.num = 7)
-        tsne.plot(my.obj)
-
+```r
+my.obj <- assign.clust(my.obj, clust.num = 7)
+tsne.plot(my.obj)
+```
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="800"/>
@@ -172,14 +176,16 @@ my.obj <- scale.data(my.obj)
 
 - Make intractive plot in html format
 
-        library(plotly)
-        htmlwidgets::saveWidget(ggplotly(tsne.plot(my.obj)), "tSNE_plot.html")
-
+```r
+library(plotly)
+htmlwidgets::saveWidget(ggplotly(tsne.plot(my.obj)), "tSNE_plot.html")
+```
 
 - Save your object
 
-        save(my.obj, file = "my.obj.Robj")
-        
+```r
+save(my.obj, file = "my.obj.Robj")
+```        
      
 
 - Plot genes
