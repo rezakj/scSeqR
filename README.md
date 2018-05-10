@@ -102,16 +102,16 @@ stats.plot(my.obj)
 
 ```r
 plot(my.obj@stats$UMIs,
-my.obj@stats$mito.percent, 
-main = "UMIs/Mito", 
-ylab = "Percent Mito", 
-xlab = "UMIs")
+     my.obj@stats$mito.percent, 
+     main = "UMIs/Mito", 
+     ylab = "Percent Mito", 
+     xlab = "UMIs")
         
 plot(my.obj@stats$UMIs,
-my.obj@stats$nGenes, 
-main = "UMIs/genes", 
-ylab = "genes", 
-xlab = "UMIs")
+     my.obj@stats$nGenes, 
+     main = "UMIs/genes", 
+     ylab = "genes", 
+     xlab = "UMIs")
 ```
 
 <p align="center">
