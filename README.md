@@ -200,16 +200,8 @@ save(my.obj, file = "my.obj.Robj")
 - Plot genes
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD14.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/boxplot_CD14.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_CD3E.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/boxplot_CD3E.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_FCGR3A.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/boxplot_FCGR3A.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_GNLY.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/boxplot_GNLY.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_MS4A1.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/boxplot_MS4A1.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1.png" width="800"/>
   
 </p>
 
