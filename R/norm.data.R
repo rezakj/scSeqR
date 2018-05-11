@@ -11,7 +11,7 @@
 #' norm(my.obj, "ranked.glsf", top.rank = 500)
 #' }
 #' @export
-norm <- function (x = NULL, norm.method = "ranked.glsf", top.rank = 500) {
+norm.data <- function (x = NULL, norm.method = "ranked.glsf", top.rank = 500) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }

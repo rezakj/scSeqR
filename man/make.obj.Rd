@@ -19,4 +19,5 @@ This function takes data frame and makes an object of class scSeqR.
 \dontrun{
 make.obj(my.data)
 }
+
 }

@@ -7,15 +7,10 @@
 #' \dontrun{
 #' make.obj(my.data)
 #' }
-#' @export
 #'
+#' @export
 make.obj <- function (x = NULL) {
   object <- new(Class = "scSeqR",
-                raw.data = x,
-                row.names = "character",
-                stats = "data.frame",
-                main.data = "data.frame",
-                scaled.data = "data.frame",
-                tsne.data = "data.frame")
+                raw.data = x)
   return(object)
 }
