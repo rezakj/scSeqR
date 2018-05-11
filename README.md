@@ -213,7 +213,7 @@ gene.plot(my.obj, gene = "MS4A1", box.to.test = 2, box.pval = "sig.signs")
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800" height="700" />
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1_Pvals.png" width="800" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1_Pval_signs.png" width="800" height="700" />
   
 </p>
 
