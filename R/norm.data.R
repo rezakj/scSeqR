@@ -10,12 +10,12 @@
 #' \dontrun{
 #' norm(my.obj, "ranked.glsf", top.rank = 500)
 #' }
+#' @import gmp
 #' @export
 norm.data <- function (x = NULL, norm.method = "ranked.glsf", top.rank = 500) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  require(gmp)
   if (norm.method == "global.glsf") {
     DATA <- x@main.data
     libSiz <- colSums(DATA)

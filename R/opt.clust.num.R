@@ -7,13 +7,13 @@
 #' \dontrun{
 #' pot.clust.num(my.obj)
 #' }
+#' @import factoextra
+#' @import gridExtra
 #' @export
-pot.clust.num <- function (x = NULL, max.clust = 15, gap.stat.nboot = 100, verbose = TRUE) {
+opt.clust.num <- function (x = NULL, max.clust = 15, gap.stat.nboot = 100, verbose = TRUE) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  require(factoextra)
-  require(gridExtra)
   df <- x@tsne.data
   row.names(df) <- df$cells
   df <- df[,-1]

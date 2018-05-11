@@ -7,6 +7,8 @@
 #' \dontrun{
 #' plot.stats(my.obj)
 #' }
+#' @import ggplot2
+#' @import gridExtra
 #' @export
 stats.plot <- function (x = NULL) {
   if ("scSeqR" != class(x)[1]) {

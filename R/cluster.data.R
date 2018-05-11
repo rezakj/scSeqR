@@ -10,12 +10,12 @@
 #' \dontrun{
 #' cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3)
 #' }
+#' @import Rtsne
 #' @export
 cluster.data <- function (x = NULL, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  require(Rtsne)
   if (clust.method == "base.mean.rank") {
     DATA <- x@main.data
     raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
