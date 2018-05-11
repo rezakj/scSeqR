@@ -31,12 +31,11 @@ install_github("rezakj/scSeqR")
 - Download and unzip a publicly available sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) scRNA-Seq data.
 
 ```r
+setwd("/your/download/directory")
 sample.file = "https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz"
-
 download.file(url = sample.file, 
      destfile = "pbmc3k_filtered_gene_bc_matrices.tar.gz", 
-     method = "auto")
-     
+     method = "auto")     
 untar("pbmc3k_filtered_gene_bc_matrices.tar.gz")    
 ```
 
