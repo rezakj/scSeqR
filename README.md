@@ -22,7 +22,7 @@ install.packages(c("ggplot2",
         
 - Then install the package in R.
 
-```r
+```console
 install.packages("devtools")
 library(devtools)
 install_github("rezakj/scSeqR")
