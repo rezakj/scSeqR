@@ -207,6 +207,10 @@ save(my.obj, file = "my.obj.Robj")
 
 - Plot genes
 
+```r
+gene.plot(my.obj, gene = "MS4A1", box.to.test = 2, box.pval = "sig.signs")
+```
+
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_CD14.png" width="800" height="700" />
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1.png" width="800" height="700" />
