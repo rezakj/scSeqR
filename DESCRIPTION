@@ -11,7 +11,8 @@ Imports: ggplot2,
   Rtsne, 
   gmp, 
   factoextra, 
-  gridExtra
+  gridExtra,
+  ggpubr
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
