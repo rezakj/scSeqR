@@ -30,6 +30,10 @@ install.packages(c("ggplot2",
 
 ```r
 install.packages('directory/to/scSeqR', repos = NULL, type="source")
+# or
+install.packages("devtools")
+library(devtools)
+install_github("rezakj/scSeqR")
 ```
 
 - Download and unzip a publicly available sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) scRNA-Seq data.
