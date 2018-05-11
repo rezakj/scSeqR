@@ -153,7 +153,7 @@ dim(my.obj@main.data)
 - Normalize data 
 
 ```r
-my.obj <- norm(my.obj, norm.method = "ranked.glsf", top.rank = 500)
+my.obj <- norm.data(my.obj, norm.method = "ranked.glsf", top.rank = 500)
 ```
 
 - Scale data 
@@ -173,7 +173,7 @@ my.obj <- cluster.data(my.obj,
 - Find optimal number of clusters          
 
 ```r
-pot.clust.num(my.obj)
+opt.clust.num(my.obj, max.clust = 10, gap.stat.nboot = 50)
 ```
 
 <p align="center">
