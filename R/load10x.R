@@ -8,7 +8,6 @@
 #' \dontrun{
 #' load10x("/hg19", gene.name = "geneSymbol")
 #' }
-#' @import Matrix
 #' @export
 load10x <- function (dir.10x = NULL, gene.name = "geneSymbol") {
   if (!dir.exists(dir.10x)) {
