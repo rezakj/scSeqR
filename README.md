@@ -9,12 +9,6 @@ files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.
 ***
 ## How to install scSeqR
 
-- First clone the package.
-
-```console
-# shell (bash)
-git clone https://github.com/rezakj/scSeqR.git
-```
 - Install the dependencies for scSeqR in R.
 
 ```r
@@ -29,8 +23,6 @@ install.packages(c("ggplot2",
 - Then install the package in R.
 
 ```r
-install.packages('directory/to/scSeqR', repos = NULL, type="source")
-# or
 install.packages("devtools")
 library(devtools)
 install_github("rezakj/scSeqR")
