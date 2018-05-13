@@ -10,7 +10,6 @@
 #' \dontrun{
 #' norm(my.obj, "ranked.glsf", top.rank = 500)
 #' }
-#' @import gmp
 #' @export
 norm.data <- function (x = NULL, norm.method = "ranked.glsf", top.rank = 500) {
   if ("scSeqR" != class(x)[1]) {
@@ -19,10 +18,11 @@ norm.data <- function (x = NULL, norm.method = "ranked.glsf", top.rank = 500) {
   if (norm.method == "global.glsf") {
     DATA <- x@main.data
     libSiz <- colSums(DATA)
-    factr <- max(factorize(libSiz))
-    GLSF <- as.numeric(libSiz) / as.numeric(factr)
-    decim <- nchar(as.character(round(max(GLSF))))-1
-    FGLSF <- as.numeric(GLSF) / 10^decim
+ #   factr <- max(factorize(libSiz))
+    GLSF <- as.numeric(libSiz) / mean(as.numeric(libSiz))
+ #   decim <- nchar(as.character(round(max(GLSF))))-1
+ #   FGLSF <- as.numeric(GLSF) / 10^decim
+     FGLSF <- GLSF
     dataMat <- as.matrix(DATA)
     normalized <- as.data.frame(sweep(dataMat, 2, FGLSF, `/`))
   }
