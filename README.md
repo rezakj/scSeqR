@@ -272,6 +272,26 @@ To see the above made interactive plots click on these links: [2Dplot](https://g
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_3d_clustered.png" width="1000" height="900" />
 </p>
         
+- Gene stats
+
+```r
+my.obj <- gene.stats(my.obj)
+head(my.obj@gene.data)
+```
+
+| genes | numberOfCells | meanExp | SDs |
+| ------------- | ------------- | ------------- | ------------- |
+|FAM87B	|2	|0.0004716666	|0.017411663|
+|LINC00115	|18	|0.0067705847	|0.0846634781|
+|FAM41C	|2	|0.0005690309	|0.0210581747|
+
+
+- Avrage expression per cluster
+
+```r
+my.obj <- clust.avg.exp(my.obj, clust.type = "tsne", clust.dim = 2)
+head(my.obj@clust.avg)
+```
 
 - Save your object
 
