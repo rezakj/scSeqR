@@ -7,5 +7,7 @@ setClass("scSeqR", representation (raw.data = "data.frame",
                                    dist.data = "data.frame",
                                    tsne.data.3d = "data.frame",
                                    pca.data.3d = "data.frame",
+                                   clust.avg = "data.frame",
+                                   gene.data = "data.frame",
                                    data.conditions = "character",
                                    norm.factors = "data.frame"))

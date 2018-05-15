@@ -5,12 +5,13 @@
 \title{Cluster based on tSNE}
 \usage{
 cluster.data(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
-  clust.dim = 2, clust.type = "tsne", dist.method = "euclidean")
+  gene.list = NULL, clust.dim = 2, clust.type = "tsne",
+  dist.method = "euclidean")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{clust.method}{A method to choose your genes for clustering. There are three options "base.mean.rank","dispersed.genes","both" defults is "base.mean.rank".}
+\item{clust.method}{A method to choose your genes for clustering. There are three options "base.mean.rank","dispersed.genes","both" or "my.genes",defults is "base.mean.rank".}
 
 \item{top.rank}{Number of ranked genes you want to use for clustering, defult = 500.}
 
