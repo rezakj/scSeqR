@@ -13,9 +13,10 @@ scale.data <- function (x = NULL) {
     stop("x should be an object of class scSeqR")
   }
   DATA <- x@main.data
-  NormLog <- log(DATA+0.1)
-  NormLogScale <- as.data.frame(scale(NormLog))
-  attributes(x)$scaled.data <- NormLogScale
+  DATA1 = DATA + 1
+  NormLog = log2(DATA1)
+  NormLog[mapply(is.infinite, NormLog)] <- 0
+  attributes(x)$scaled.data <- NormLog
   return(x)
 }
 

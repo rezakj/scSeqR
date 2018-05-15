@@ -4,15 +4,18 @@
 \alias{norm.data}
 \title{Normalize data}
 \usage{
-norm.data(x = NULL, norm.method = "ranked.glsf", top.rank = 500)
+norm.data(x = NULL, norm.method = "ranked.glsf", top.rank = 500,
+  spike.in.factors = NULL, rpm.factor = 1000)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
 \item{norm.method}{Choose a normalization method, there are three option currently.
-Choose from "global.glsf", "ranked.glsf" or "spike.in", defult = "ranked.glsf".}
+Choose from "global.glsf", "ranked.glsf", "rpm","spike.in" or no.norm, defult = "ranked.glsf".}
 
 \item{top.rank}{If the method is set to "ranked.glsf", you need to set top number of genes sorted based on global base mean, defult = 500.}
+
+\item{rpm.factor}{If the norm.method is set to "rpm" the library sizes would be diveded by this number, defults = 1000 (higher numbers recomanded for bulk RNA-Seq).}
 }
 \value{
 An object of class scSeqR.

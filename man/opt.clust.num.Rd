@@ -4,11 +4,21 @@
 \alias{opt.clust.num}
 \title{Find optimal number of clusters.}
 \usage{
-opt.clust.num(x = NULL, max.clust = 15, gap.stat.nboot = 100,
-  verbose = TRUE)
+opt.clust.num(x = NULL, max.clust = 20, gap.stat.nboot = 100,
+  verbose = TRUE, clust.type = "tsne", opt.method = "silhouette")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
+
+\item{max.clust}{Maximum number of clusters allowed to optimize, defult = 20.}
+
+\item{gap.stat.nboot}{Number of boots, defult = 100 (500 is desired but slower).}
+
+\item{verbose}{If TRUE will show the processing.}
+
+\item{clust.type}{Choose from "tsne","pca" or "distance", defult = "tsne".}
+
+\item{opt.method}{Choose from "elbow.wss", "silhouette", "gap.stat" or "", defult = "all".}
 }
 \value{
 An object of class scSeqR.

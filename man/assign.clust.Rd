@@ -2,14 +2,16 @@
 % Please edit documentation in R/assign.clust.R
 \name{assign.clust}
 \alias{assign.clust}
-\title{Find optimal number of clusters.}
+\title{Assign the optimal number of clusters to hierarchical clustering.}
 \usage{
-assign.clust(x = NULL, clust.num = 0)
+assign.clust(x = NULL, clust.num = 0, clust.type = "tsne")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
 \item{clust.num}{Number of clusters}
+
+\item{clust.type}{Choose from "tsne","pca" or "distance", defult = "tsne".}
 }
 \value{
 An object of class scSeqR.
