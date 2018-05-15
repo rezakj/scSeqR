@@ -4,8 +4,8 @@
 \alias{filter.cells}
 \title{Filter cells}
 \usage{
-filter.cells(x = NULL, min.mito = 0, max.mito = 1, min.genes = 0,
-  max.genes = Inf, min.umis = 0, max.umis = Inf)
+\method{filter}{cells}(x = NULL, min.mito = 0, max.mito = 1,
+  min.genes = 0, max.genes = Inf, min.umis = 0, max.umis = Inf)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

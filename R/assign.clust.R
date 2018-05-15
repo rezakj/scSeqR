@@ -12,7 +12,8 @@
 #' @export
 assign.clust <- function (x = NULL,
                           clust.num = 0,
-                          clust.type = "tsne") {
+                          clust.type = "tsne",
+                          clust.dim = 2) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -20,21 +21,37 @@ assign.clust <- function (x = NULL,
     stop("please provite the optimal number of clusters")
   }
   ClustNum = clust.num
+  if (clust.dim == 2) {
   if (clust.type == "tsne") {
-    DATA <- x@tsne.data
-#    fit_cluster_kmeans=kmeans(scale(DATA), ClustNum)
-#    DATA$kmeans = factor(fit_cluster_kmeans$cluster)
+    DATA <- (x@tsne.data)[1:2]
     fit_cluster_hierarchical = hclust(dist(scale(DATA)))
     DATA$clusters = factor(cutree(fit_cluster_hierarchical, k=ClustNum))
     tsne.data <- DATA
     attributes(x)$tsne.data <- tsne.data
   }
   if (clust.type == "pca") {
-    DATA <- x@pca.data
+    DATA <- (x@pca.data)[1:2]
     fit_cluster_hierarchical = hclust(dist(scale(DATA)))
     DATA$clusters = factor(cutree(fit_cluster_hierarchical, k=ClustNum))
     PCAdata <- DATA
     attributes(x)$pca.data <- PCAdata
+  }
+    }
+  if (clust.dim == 3) {
+    if (clust.type == "tsne") {
+      DATA <- (x@tsne.data.3d)[1:3]
+      fit_cluster_hierarchical = hclust(dist(scale(DATA)))
+      DATA$clusters = factor(cutree(fit_cluster_hierarchical, k=ClustNum))
+      tsne.data <- DATA
+      attributes(x)$tsne.data.3d <- tsne.data
+    }
+    if (clust.type == "pca") {
+      DATA <- (x@pca.data.3d)[1:3]
+      fit_cluster_hierarchical = hclust(dist(scale(DATA)))
+      DATA$clusters = factor(cutree(fit_cluster_hierarchical, k=ClustNum))
+      PCAdata <- DATA
+      attributes(x)$pca.data.3d <- PCAdata
+    }
   }
   if (clust.type == "distance") {
     DATA <- x@dist.data

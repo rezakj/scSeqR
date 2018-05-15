@@ -36,21 +36,39 @@ cluster.data <- function (x = NULL,
     NormLog <- log(topGenes+0.1)
     TopNormLogScale <- as.data.frame(scale(NormLog))
   }
-  if (clust.type == "tsne") {
-    TransPosed <- t(TopNormLogScale)
-    tsne <- Rtsne(TransPosed, check_duplicates = FALSE, dims = clust.dim)
-    tsne.data = as.data.frame(tsne$Y)
-    tsne.data = cbind(cells = row.names(TransPosed),tsne.data)
-    rownames(tsne.data) <- tsne.data$cells
-    tsne.data <- tsne.data[,-1]
-    attributes(x)$tsne.data <- tsne.data
+  if (clust.dim == 2) {
+    if (clust.type == "tsne") {
+      TransPosed <- t(TopNormLogScale)
+      tsne <- Rtsne(TransPosed, check_duplicates = FALSE, dims = clust.dim)
+      tsne.data = as.data.frame(tsne$Y)
+      tsne.data = cbind(cells = row.names(TransPosed),tsne.data)
+      rownames(tsne.data) <- tsne.data$cells
+      tsne.data <- tsne.data[,-1]
+      attributes(x)$tsne.data <- tsne.data
+    }
+    if (clust.type == "pca") {
+      counts.pca <- prcomp(TopNormLogScale,center = T,scale. = T)
+      dataPCA = data.frame(counts.pca$rotation)[1:2]
+      attributes(x)$pca.data <- dataPCA
+    }
   }
-  if (clust.type == "pca") {
-    counts.pca <- prcomp(TopNormLogScale,center = T,scale. = T)
-    dataPCA = data.frame(counts.pca$rotation)[1:clust.dim]
-    attributes(x)$pca.data <- dataPCA
+  if (clust.dim == 3) {
+    if (clust.type == "tsne") {
+      TransPosed <- t(TopNormLogScale)
+      tsne <- Rtsne(TransPosed, check_duplicates = FALSE, dims = clust.dim)
+      tsne.data = as.data.frame(tsne$Y)
+      tsne.data = cbind(cells = row.names(TransPosed),tsne.data)
+      rownames(tsne.data) <- tsne.data$cells
+      tsne.data <- tsne.data[,-1]
+      attributes(x)$tsne.data.3d <- tsne.data
+    }
+    if (clust.type == "pca") {
+      counts.pca <- prcomp(TopNormLogScale,center = T,scale. = T)
+      dataPCA = data.frame(counts.pca$rotation)[1:3]
+      attributes(x)$pca.data.3d <- dataPCA
+    }
   }
-  if (clust.type == "distance") {
+    if (clust.type == "distance") {
   dists = dist(t(TopNormLogScale), method = dist.method)
   dists.data = as.data.frame(as.matrix(dists))
   attributes(x)$dist.data <- dists.data

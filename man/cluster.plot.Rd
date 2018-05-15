@@ -5,7 +5,7 @@
 \title{Plot nGenes, UMIs and perecent mito}
 \usage{
 cluster.plot(x = NULL, cell.size = 1, plot.type = "tsne",
-  cell.color = "black", clustered = TRUE)
+  cell.color = "black", clust.assigned = TRUE, clust.dim = 2)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

@@ -15,11 +15,16 @@ cluster.plot <- function (x = NULL,
                           cell.size = 1,
                           plot.type = "tsne",
                           cell.color = "black",
-                          clustered = TRUE) {
+                          clust.assigned = TRUE,
+                          clust.dim = 2) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  if (clustered == FALSE) {
+  if (clust.dim != 2 && clust.dim != 3) {
+    stop("clust.dim should be either 2 or 3")
+  }
+if (clust.dim == 2) {
+  if (clust.assigned == FALSE) {
   if (plot.type == "tsne") {
     DATA <- x@tsne.data
     myPLOT <- ggplot(DATA, aes(x = V1, y = V2,
@@ -44,9 +49,9 @@ cluster.plot <- function (x = NULL,
     DATA <- as.matrix(x@dist.data)
     colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
     return(pheatmap(DATA,col=colors))
+    }
   }
-  }
-  if (clustered == TRUE) {
+  if (clust.assigned == TRUE) {
     if (plot.type == "tsne") {
       DATA <- x@tsne.data
       myPLOT <- ggplot(DATA, aes(x = V1, y = V2,
@@ -73,4 +78,31 @@ cluster.plot <- function (x = NULL,
       return(pheatmap(DATA,col=colors))
     }
   }
+}
+  if (clust.dim == 3) {
+    if (clust.assigned == FALSE) {
+      if (plot.type == "tsne") {
+        DATA <- x@tsne.data.3d
+        myPLOT <- plot_ly(DATA, x = ~V1, y = ~V2, z = ~V3)
+        return(myPLOT)
+      }
+      if (plot.type == "pca") {
+        DATA <- x@pca.data.3d
+        myPLOT <- plot_ly(DATA, x = ~PC1, y = ~PC2, z = ~PC3)
+        return(myPLOT)
+        }
+    }
+    if (clust.assigned == TRUE) {
+      if (plot.type == "tsne") {
+        DATA <- x@tsne.data.3d
+        myPLOT <- plot_ly(DATA, x = ~V1, y = ~V2, z = ~V3, color = ~clusters)
+        return(myPLOT)
+      }
+      if (plot.type == "pca") {
+        DATA <- x@pca.data.3d
+        myPLOT <- plot_ly(DATA, x = ~PC1, y = ~PC2, z = ~PC3, color = ~clusters)
+        return(myPLOT)
+      }
+    }
+    }
 }
