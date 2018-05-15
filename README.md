@@ -152,7 +152,11 @@ dim(my.obj@main.data)
 - Normalize data 
 
 ```r
-my.obj <- norm.data(my.obj, "ranked.glsf", top.rank = 500) # best for scRNA-Seq
+my.obj <- norm.data(my.obj, 
+     "ranked.glsf",
+     top.rank = 500) # best for scRNA-Seq
+
+# more examples
 #my.obj <- norm.data(my.obj, "global.glsf") # best for bulk RNA-Seq 
 #my.obj <- norm.data(my.obj, "rpm", top.rank = 500, rpm.factor = 1000) # best for bulk RNA-Seq
 #my.obj <- norm.data(my.obj, "spike.in", top.rank = 500, spike.in.factors = NULL)
@@ -168,23 +172,38 @@ my.obj <- scale.data(my.obj)
 - Cluster data
 
 ```r
-my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2, clust.type = "tsne")
-my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "tsne")
-my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2, clust.type = "pca")
-my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "pca")
-my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
+my.obj <- cluster.data(my.obj, 
+     clust.method = "base.mean.rank", 
+     top.rank = 500, 
+     clust.dim = 2, 
+     clust.type = "tsne")
+
+# more examples
+#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "tsne")
+#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2, clust.type = "pca")
+#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "pca")
+#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
 ```        
-_ plot data before cluster assignment.
+- plot data before cluster assignment.
 
 ```r
-cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 2, cell.color = "blue")
-cluster.plot(my.obj, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 3)
-cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca", clust.assigned = FALSE, clust.dim = 2, cell.color = "blue")
-cluster.plot(my.obj, plot.type = "pca", clust.assigned = FALSE, clust.dim = 3)
-# for interactive plots
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 3)), "tSNE_plot3d.html")
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj, plot.type = "pca", clust.assigned = FALSE, clust.dim = 3)), "PCA_plot3d.html")
+cluster.plot(my.obj,
+     cell.size = 1.75, 
+     plot.type = "tsne", 
+     clust.assigned = FALSE, 
+     clust.dim = 2, 
+     cell.color = "blue")
 
+# more examples 
+#cluster.plot(my.obj, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 3)
+#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca", clust.assigned = FALSE, clust.dim = 2, cell.color = "blue")
+#cluster.plot(my.obj, plot.type = "pca", clust.assigned = FALSE, clust.dim = 3)
+
+# for interactive plots
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj, 
+     plot.type = "tsne", 
+     clust.assigned = FALSE, 
+     clust.dim = 3)), "tSNE_plot3d.html")
 ```
 
 - Find optimal number of clusters          
@@ -200,22 +219,37 @@ opt.clust.num(my.obj, max.clust = 10, gap.stat.nboot = 50, clust.type = "tsne", 
 - Assign clusters
 
 ```r
-my.obj <- assign.clust(my.obj, clust.num = 7,clust.type = "tsne",clust.dim = 2)
-my.obj <- assign.clust(my.obj, clust.num = 7,clust.type = "tsne",clust.dim = 3)
-my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 2)
-my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 3)
+my.obj <- assign.clust(my.obj, 
+     clust.num = 7,
+     clust.type = "tsne",
+     clust.dim = 2)
+
+# more examples
+#my.obj <- assign.clust(my.obj, clust.num = 7,clust.type = "tsne",clust.dim = 3)
+#my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 2)
+#my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 3)
 ```
 
 - Plot clusters
 
 ```r
-cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 2)
-cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)
-cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 2)
-cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)
+cluster.plot(my.obj,
+     cell.size = 1.75, 
+     plot.type = "tsne",
+     clust.assigned = TRUE, 
+     clust.dim = 2)
+
+# more examples
+#cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)
+#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 2)
+#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)
+
 # for interactive plots 
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)), "tSNE_plot3d_clustered.html")
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)), "PCA_plot3d_clustered.html")
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
+     cell.size = 1.75, 
+     plot.type = "tsne",
+     clust.assigned = TRUE, 
+     clust.dim = 3)), "tSNE_plot3d_clustered.html")
 ```
         
 <p align="center">
