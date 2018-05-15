@@ -153,7 +153,7 @@ dim(my.obj@main.data)
 
 ```r
 my.obj <- gene.stats(my.obj)
-head(my.obj@gene.data)
+head(my.obj@gene.data,3)
 ```
 
 | genes | numberOfCells | meanExp | SDs |
