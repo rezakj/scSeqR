@@ -152,7 +152,11 @@ dim(my.obj@main.data)
 - Normalize data 
 
 ```r
-my.obj <- norm.data(my.obj, norm.method = "ranked.glsf", top.rank = 500)
+my.obj <- norm.data(my.obj, "ranked.glsf", top.rank = 500) # best for scRNA-Seq
+#my.obj <- norm.data(my.obj, "global.glsf") # best for bulk RNA-Seq 
+#my.obj <- norm.data(my.obj, "rpm", top.rank = 500, rpm.factor = 1000) # best for bulk RNA-Seq
+#my.obj <- norm.data(my.obj, "spike.in", top.rank = 500, spike.in.factors = NULL)
+#my.obj <- norm.data(my.obj, "no.norm", top.rank = 500) # if the data is already normalized
 ```
 
 - Scale data 
@@ -164,39 +168,60 @@ my.obj <- scale.data(my.obj)
 - Cluster data
 
 ```r
-my.obj <- cluster.data(my.obj, 
-       clust.method = "base.mean.rank", 
-       top.rank = 500, 
-       clust.dim = 2)
+my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2, clust.type = "tsne")
+my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "tsne")
+my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2, clust.type = "pca")
+my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "pca")
+my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
 ```        
+_ plot data before cluster assignment.
+
+```r
+cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 2, cell.color = "blue")
+cluster.plot(my.obj, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 3)
+cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca", clust.assigned = FALSE, clust.dim = 2, cell.color = "blue")
+cluster.plot(my.obj, plot.type = "pca", clust.assigned = FALSE, clust.dim = 3)
+# for interactive plots
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 3)), "tSNE_plot3d.html")
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj, plot.type = "pca", clust.assigned = FALSE, clust.dim = 3)), "PCA_plot3d.html")
+
+```
+
 - Find optimal number of clusters          
 
 ```r
-opt.clust.num(my.obj, max.clust = 10, gap.stat.nboot = 50)
+opt.clust.num(my.obj, max.clust = 10, gap.stat.nboot = 50, clust.type = "tsne", clust.dim = 2, opt.method = "silhouette")
 ```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num1.png" width="800" />
 </p>
               
-- Assign clusters and plot them
+- Assign clusters
 
 ```r
-my.obj <- assign.clust(my.obj, clust.num = 7)
-tsne.plot(my.obj)
+my.obj <- assign.clust(my.obj, clust.num = 7,clust.type = "tsne",clust.dim = 2)
+my.obj <- assign.clust(my.obj, clust.num = 7,clust.type = "tsne",clust.dim = 3)
+my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 2)
+my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 3)
+```
+
+- Plot clusters
+
+```r
+cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 2)
+cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)
+cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 2)
+cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)
+# for interactive plots 
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)), "tSNE_plot3d_clustered.html")
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)), "PCA_plot3d_clustered.html")
 ```
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="800" height="700" />
 </p>
         
-
-- Make intractive plot in html format
-
-```r
-library(plotly)
-htmlwidgets::saveWidget(ggplotly(tsne.plot(my.obj)), "tSNE_plot.html")
-```
 
 - Save your object
 
