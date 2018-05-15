@@ -158,7 +158,7 @@ my.obj <- norm.data(my.obj,
 
 # more examples
 #my.obj <- norm.data(my.obj, "global.glsf") # best for bulk RNA-Seq 
-#my.obj <- norm.data(my.obj, "rpm", rpm.factor = 1000) # best for bulk RNA-Seq
+#my.obj <- norm.data(my.obj, "rpm", rpm.factor = 100000) # best for bulk RNA-Seq
 #my.obj <- norm.data(my.obj, "spike.in", spike.in.factors = NULL)
 #my.obj <- norm.data(my.obj, "no.norm") # if the data is already normalized
 ```
