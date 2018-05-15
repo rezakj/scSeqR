@@ -250,6 +250,14 @@ htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
      plot.type = "tsne",
      clust.assigned = TRUE, 
      clust.dim = 3)), "tSNE_plot3d_clustered.html")
+     
+     # or
+     
+htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
+     cell.size = 1.75, 
+     plot.type = "tsne",
+     clust.assigned = TRUE, 
+     clust.dim = 2)), "tSNE_plot2d_clustered.html")     
 ```
         
 <p align="center">
