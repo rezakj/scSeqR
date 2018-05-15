@@ -264,7 +264,7 @@ To see the above made interactive plots click on these links: [2Dplot](https://g
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="700" height="700" />
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_3d_clustered.png" width="800" height="800" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_3d_clustered.png" width="1000" height="1000" />
 </p>
         
 
