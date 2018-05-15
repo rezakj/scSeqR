@@ -206,6 +206,11 @@ htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
      clust.dim = 3)), "tSNE_plot3d.html")
 ```
 
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_2d.png" width="400" height="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/PCA_2d.png" width="400" height="400" />
+</p>
+
 - Find optimal number of clusters          
 
 ```r
