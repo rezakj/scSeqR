@@ -278,7 +278,7 @@ htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
      clust.dim = 2)), "tSNE_plot2d_clustered.html")     
 ```
 
-To see the above made interactive plots click on these links: [2Dplot](https://genome.med.nyu.edu/results/external/scSeqR/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://genome.med.nyu.edu/results/external/scSeqR/doc/tSNE_plot3d_clustered.html)
+To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot3d_clustered.html)
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="700" height="700" />
