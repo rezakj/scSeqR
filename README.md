@@ -182,6 +182,25 @@ my.obj <- norm.data(my.obj,
 my.obj <- scale.data(my.obj)
 ```
 
+- Make gene model for clustering
+
+```r
+make.gene.model(my.obj, dispersion.limit = 1.5, base.mean.rank = 500, no.mito.model = T)
+
+# to make intractive plot use the following
+htmlwidgets::saveWidget(ggplotly(make.gene.model(my.obj, 
+     dispersion.limit = 1.5, 
+     base.mean.rank = 500, 
+     no.mito.model = T)), "gene.model.html")
+```
+To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/master/doc/gene.model.html)
+
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gene.model.png" width="800" height="800" />
+</p>
+
+
 - Cluster data
 
 ```r
