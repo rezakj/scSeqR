@@ -1,6 +1,6 @@
 Package: scSeqR
 Type: Package
-Title: scSeqR; a toolkit to analyze single sequencing data types (i.e scRNA-seq) and large numeric matrix files.
+Title: scSeqR; a toolkit to analyze single cell sequencing data types (i.e scRNA-seq) and large numeric matrix files.
 Version: 0.99.0
 Author: Alireza Khodadadi Jamayran 
 Maintainer: Alireza Khodadadi Jamayran <alireza.khodadadi.j@gmail.com>
