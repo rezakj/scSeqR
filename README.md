@@ -14,6 +14,7 @@ files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.
 ```r
 install.packages(c("ggplot2",
      "Matrix",
+     "plotly",
      "Rtsne",
      "gmp", 
      "factoextra", 
