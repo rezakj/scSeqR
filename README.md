@@ -14,6 +14,7 @@ files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.
 ```r
 install.packages(c("ggplot2",
      "Matrix",
+     "plotly",
      "Rtsne",
      "gmp", 
      "factoextra", 
@@ -136,7 +137,7 @@ To see an example interactive plot click on this links: [mito-UMIs plot](https:/
 </p>
 
 
-- Filter cells
+- Filter cells.
 
 ```r
 my.obj <- filter.cells(my.obj,
