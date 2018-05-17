@@ -51,12 +51,14 @@ stats.plot <- function (x = NULL,
     xlab("UMIs") + ylab("number of UMIs per cell")
   #
 
-  Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs,text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
+  Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs,
+                               text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
     theme_bw() +
     geom_point(color = cell.color, size = cell.size, alpha = cell.transparency) +
     scale_x_continuous(trans = "log1p")
   #
-  Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs,text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
+  Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs,
+                                text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
     theme_bw() +
     geom_point(color = cell.color, size = cell.size, alpha = cell.transparency) +
     scale_x_continuous(trans = "log1p") +
@@ -70,6 +72,7 @@ stats.plot <- function (x = NULL,
     else
     return(Mito.UMIs)
   }
+  #
   if (plot.type == "point.gene.umi") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
@@ -78,6 +81,7 @@ stats.plot <- function (x = NULL,
     else
     return(Genes.UMIs)
   }
+  #
   if (plot.type == "box.umi") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
@@ -86,6 +90,7 @@ stats.plot <- function (x = NULL,
     else
     return(UMIsplot)
   }
+  #
   if (plot.type == "box.mito") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
@@ -94,6 +99,7 @@ stats.plot <- function (x = NULL,
     else
     return(mito.percent.plot)
   }
+  #
   if (plot.type == "box.gene") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
@@ -102,6 +108,7 @@ stats.plot <- function (x = NULL,
     else
     return(nGenes.plot)
   }
+  #
   if (plot.type == "box.gene.umi.mito") {
     return(grid.arrange(nGenes.plot, UMIsplot,mito.percent.plot, ncol = 3))
   }
