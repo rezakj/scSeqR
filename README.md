@@ -148,24 +148,8 @@ my.obj <- filter.cells(my.obj,
      max.umis = Inf)
  
 dim(my.obj@main.data)
+# [1] 32738  2638
 ```
-
-| # of genes/rows| # of cells/columns |
-| ------------- | ------------- |
-| 32738        |     2638        |
-
-- Gene stats
-
-```r
-my.obj <- gene.stats(my.obj)
-head(my.obj@gene.data,3)
-```
-
-| genes | numberOfCells | meanExp | SDs |
-| ------------- | ------------- | ------------- | ------------- |
-|FAM87B	|2	|0.0004716666	|0.017411663|
-|LINC00115	|18	|0.0067705847	|0.0846634781|
-|FAM41C	|2	|0.0005690309	|0.0210581747|
 
 - Normalize data 
 
@@ -186,6 +170,19 @@ my.obj <- norm.data(my.obj,
 ```r
 my.obj <- scale.data(my.obj)
 ```
+- Gene stats
+
+```r
+my.obj <- gene.stats(my.obj)
+head(my.obj@gene.data,3)
+```
+
+| genes | numberOfCells | meanExp | SDs |
+| ------------- | ------------- | ------------- | ------------- |
+|FAM87B	|2	|0.0004716666	|0.017411663|
+|LINC00115	|18	|0.0067705847	|0.0846634781|
+|FAM41C	|2	|0.0005690309	|0.0210581747|
+
 
 - Make gene model for clustering
 
