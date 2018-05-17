@@ -227,17 +227,6 @@ cluster.plot(my.obj,
      clust.assigned = FALSE, 
      clust.dim = 2, 
      cell.color = "blue")
-
-# more examples 
-#cluster.plot(my.obj, plot.type = "tsne", clust.assigned = FALSE, clust.dim = 3)
-#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca", clust.assigned = FALSE, clust.dim = 2, cell.color = "blue")
-#cluster.plot(my.obj, plot.type = "pca", clust.assigned = FALSE, clust.dim = 3)
-
-# for interactive plots
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj, 
-     plot.type = "tsne", 
-     clust.assigned = FALSE, 
-     clust.dim = 3)), "tSNE_plot3d.html")
 ```
 
 <p align="center">
@@ -262,11 +251,6 @@ my.obj <- assign.clust(my.obj,
      clust.num = 7,
      clust.type = "tsne",
      clust.dim = 2)
-
-# more examples
-#my.obj <- assign.clust(my.obj, clust.num = 7,clust.type = "tsne",clust.dim = 3)
-#my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 2)
-#my.obj <- assign.clust(my.obj, clust.num = 2,clust.type = "pca",clust.dim = 3)
 ```
 
 - Plot clusters
@@ -281,22 +265,7 @@ cluster.plot(my.obj,
 # more examples
 #cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)
 #cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 2)
-#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)
-
-# for interactive plots 
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
-     cell.size = 1.75, 
-     plot.type = "tsne",
-     clust.assigned = TRUE, 
-     clust.dim = 3)), "tSNE_plot3d_clustered.html")
-     
-     # or
-     
-htmlwidgets::saveWidget(ggplotly(cluster.plot(my.obj,
-     cell.size = 1.75, 
-     plot.type = "tsne",
-     clust.assigned = TRUE, 
-     clust.dim = 2)), "tSNE_plot2d_clustered.html")     
+#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)   
 ```
 
 To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot3d_clustered.html)
