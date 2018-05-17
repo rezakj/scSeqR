@@ -124,7 +124,8 @@ stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 
 ```
 
-To see example interactive plots click on thses links: [UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/UMI-plot.html),[mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/mito-umi-plot.html)
+
+To see example interactive plots click on thses links: [UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/UMI-plot.html), [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/mito-umi-plot.html)
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="700" />
