@@ -137,7 +137,7 @@ To see an example interactive plot click on this links: [mito-UMIs plot](https:/
 </p>
 
 
-- Filter cells
+- Filter cells.
 
 ```r
 my.obj <- filter.cells(my.obj,
