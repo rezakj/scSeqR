@@ -23,8 +23,8 @@ make.gene.model <- function (x = NULL,
     stop("x should be an object of class scSeqR")
   }
   data <- x@gene.data
-  x = c(1:100)
-  y = log1p(1:100)
+#  x = c(1:100)
+#  y = log1p(1:100)
 # variables
   cellCountLimit = as.numeric(tail(head(data[order(data$meanExp, decreasing = T),],base.mean.rank)[2],1))
   top.rank.line = as.numeric(log2(cellCountLimit))

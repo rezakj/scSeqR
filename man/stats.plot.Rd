@@ -4,11 +4,28 @@
 \alias{stats.plot}
 \title{Plot nGenes, UMIs and perecent mito}
 \usage{
-stats.plot(x = NULL, cell.color = "slategray3", box.color = "red",
-  cell.size = 1)
+stats.plot(x = NULL, plot.type = "box.umi", cell.color = "slategray3",
+  cell.size = 1, cell.transparency = 0.5, box.color = "red",
+  box.line.col = "green", interactive = TRUE, out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
+
+\item{plot.type}{Choose from "box.umi", "box.mito", "box.gene", "box.gene.umi.mito", "point.mito.umi", "point.gene.umi".}
+
+\item{cell.color}{Choose a color for dots.}
+
+\item{cell.size}{Choose a size for dots.}
+
+\item{cell.transparency}{Transparency of colors.}
+
+\item{box.color}{Choose color for box.}
+
+\item{box.line.col}{Choose a color for line around box plot.}
+
+\item{interactive}{Make html intractive plot.}
+
+\item{out.name}{Name for intractive plot html file.}
 }
 \value{
 An object of class scSeqR.
