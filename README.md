@@ -95,39 +95,44 @@ my.obj <- make.obj(my.data)
 - Perform some QC 
 
 ```r
+my.obj <- UMIs.genes.mito(my.obj)
 dim(my.obj@raw.data)
-```
+# [1] 32738  2700
+``` 
 
-| # of genes/rows| # of cells/columns |
-| ------------- | ------------- |
-| 32738        |     2700        |
+- Plot QC
+
+By defult the "stats.plot" function would creat an interactive html file, but you can set this option to false and out put your plots in other file formats. Here are some examples:
 
 ```r
-my.obj <- UMIs.genes.mito(my.obj)
-stats.plot(my.obj)
+stats.plot(my.obj,
+	plot.type = "box.umi",
+	out.name = "UMI-plot",
+	interactive = TRUE,
+	cell.color = "slategray3", 
+	cell.size = 1, 
+	cell.transparency = 0.5,
+	box.color = "red",
+	box.line.col = "green")
+     
+# more examples
+
+stats.plot(my.obj, plot.type = "box.mito", interactive = F)
+stats.plot(my.obj, plot.type = "box.gene", interactive = F)
+stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
+stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
+
 ```
+
+To see example interactive plots click on thses links: [UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/UMI-plot.html),[mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/mito-umi-plot.html)
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="700" />
 </p>
 
-```r
-plot(my.obj@stats$UMIs,
-     my.obj@stats$mito.percent, 
-     main = "UMIs/Mito", 
-     ylab = "Percent Mito", 
-     xlab = "UMIs")
-        
-plot(my.obj@stats$UMIs,
-     my.obj@stats$nGenes, 
-     main = "UMIs/genes", 
-     ylab = "genes", 
-     xlab = "UMIs")
-```
-
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_Mito.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/UMIs_genes.png" width="400"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/mito-umi-plot.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gene-umi-plot.png" width="400"/>      
 </p>
 
 
