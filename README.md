@@ -1,4 +1,5 @@
 # scSeqR
+## We hope to have official release of version 1 by the end of July.
 
 ### Single Cell Sequencing R package (scSeqR)
 
