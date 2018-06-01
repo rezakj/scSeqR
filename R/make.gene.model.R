@@ -7,6 +7,9 @@
 #' \dontrun{
 #' gene.stats.plot(my.obj)
 #' }
+#'
+#' @import ggrepel
+#'
 #' @export
 make.gene.model <- function (x = NULL,
                              dispersion.limit = 1.5,
@@ -18,7 +21,9 @@ make.gene.model <- function (x = NULL,
                              rank.line.col = "red",
                              cell.size = 1.75,
                              cell.transparency = 0.5,
-                             no.mito.model = T) {
+                             no.mito.model = T,
+                             interactive = TRUE,
+                             out.name = "plot") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -33,9 +38,10 @@ make.gene.model <- function (x = NULL,
   data <- data %>%
     mutate(color = ifelse(data$SDs > SDlimit & data$numberOfCells < cellCountLimit,
                           yes = "righLimit",
-                          no = ifelse(data$SDs > SDlimit & data$numberOfCells > cellCountLimit,
+                          no = ifelse(data$numberOfCells > cellCountLimit,
                                       yes = "leftLimit",
                                       no = "none")))
+# get mito genes
   mito.genes <- grep(pattern = "^mt\\-", x = data$genes, value = TRUE, ignore.case = TRUE)
   if ( length(mito.genes) == 0 ) {
     mito.genes <- grep(pattern = "^mt\\.", x = data$genes, value = TRUE, ignore.case = TRUE)
@@ -46,7 +52,7 @@ make.gene.model <- function (x = NULL,
     geom_point(aes(color = factor(color)),size = cell.size, alpha = cell.transparency) +
     theme_bw(base_size = 16) +
     theme(legend.position = "none") +
-    ggtitle(label = "Dispersion Plot", subtitle = "Modeled by basemean, number of cells and dispersion") +  # add title
+    ggtitle(label = "Dispersion Plot", subtitle = "modeled by basemean, number of cells and dispersion") +  # add title
     xlab("log2(number of cells per gene)") +
     ylab("dispersion") +
     geom_vline(xintercept = top.rank.line, colour = rank.line.col) +
@@ -63,11 +69,22 @@ make.gene.model <- function (x = NULL,
                                        color = 'black',
                                        box.padding = unit(0.5, "lines"),
                                        point.padding = unit(0.5, "lines"))
+# get model genes
   my.clust.genes = subset(data, color != "none")[1]
+# exclude mito genes from model genes
   if (no.mito.model == T) {
     my.clust.genes <- subset(my.clust.genes, !(genes %in% mito.genes))
   }
-  write.table((my.clust.genes),file="my_model_genes.txt", row.names =F, quote = F, col.names = F)
-  print("my_model_genes.txt file is generated, which can be use for clustering")
+if (interactive == T) {
+  OUT.PUT <- paste(out.name, ".html", sep="")
+  htmlwidgets::saveWidget(ggplotly(myPlot),OUT.PUT)
+}
+if (interactive == F) {
   return(myPlot)
+}
+  # retrun
+  # write out gene model
+   write.table((my.clust.genes),file="my_model_genes.txt", row.names =F, quote = F, col.names = F)
+   print("my_model_genes.txt file is generated, which can be use for clustering")
+#  attributes(x)$gene.model <- my.clust.genes
 }

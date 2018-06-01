@@ -11,7 +11,7 @@
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' filter.cells(my.obj,
+#' cell.filter(my.obj,
 #'    min.mito = 0,
 #'    max.mito = 1,
 #'    min.genes = 0,
@@ -19,8 +19,9 @@
 #'    min.umis = 0,
 #'    max.umis = Inf)
 #' }
+#'
 #' @export
-filter.cells <- function (x = NULL, min.mito = 0, max.mito = 1, min.genes = 0, max.genes = Inf, min.umis = 0, max.umis = Inf) {
+cell.filter <- function (x = NULL, min.mito = 0, max.mito = 1, min.genes = 0, max.genes = Inf, min.umis = 0, max.umis = Inf) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
