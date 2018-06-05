@@ -5,7 +5,8 @@
 \title{Filter cells}
 \usage{
 cell.filter(x = NULL, min.mito = 0, max.mito = 1, min.genes = 0,
-  max.genes = Inf, min.umis = 0, max.umis = Inf)
+  max.genes = Inf, min.umis = 0, max.umis = Inf,
+  filter.by.gene = "character", filter.by.gene.min = 1)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

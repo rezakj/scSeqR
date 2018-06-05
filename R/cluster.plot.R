@@ -23,8 +23,11 @@ cluster.plot <- function (x = NULL,
   if (clust.dim != 2 && clust.dim != 3) {
     stop("clust.dim should be either 2 or 3")
   }
+# 2 dimentions
 if (clust.dim == 2) {
+# cluster is not assigned
   if (clust.assigned == FALSE) {
+# tSNE
   if (plot.type == "tsne") {
     DATA <- x@tsne.data
     myPLOT <- ggplot(DATA, aes(x = V1, y = V2,
@@ -35,6 +38,7 @@ if (clust.dim == 2) {
       ggtitle("t-SNE plot") + theme_bw()
     return(myPLOT)
   }
+# PCA
   if (plot.type == "pca") {
     DATA <- x@pca.data
     myPLOT <- ggplot(DATA, aes(x = PC1, y = PC2,
@@ -45,12 +49,14 @@ if (clust.dim == 2) {
       ggtitle("PCA plot") + theme_bw()
     return(myPLOT)
   }
+# distance
   if (plot.type == "distance") {
     DATA <- as.matrix(x@dist.data)
     colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
     return(pheatmap(DATA,col=colors))
     }
   }
+# if cluster assined
   if (clust.assigned == TRUE) {
     if (plot.type == "tsne") {
       DATA <- x@tsne.data
@@ -79,7 +85,9 @@ if (clust.dim == 2) {
     }
   }
 }
+# 3 dimentions
   if (clust.dim == 3) {
+# cluster is not assigned
     if (clust.assigned == FALSE) {
       if (plot.type == "tsne") {
         DATA <- x@tsne.data.3d
@@ -92,6 +100,7 @@ if (clust.dim == 2) {
         return(myPLOT)
         }
     }
+# cluster assigned
     if (clust.assigned == TRUE) {
       if (plot.type == "tsne") {
         DATA <- x@tsne.data.3d
@@ -104,5 +113,5 @@ if (clust.dim == 2) {
         return(myPLOT)
       }
     }
-    }
+  }
 }

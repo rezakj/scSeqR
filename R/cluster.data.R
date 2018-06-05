@@ -2,7 +2,7 @@
 #'
 #' This function takes an object of class scSeqR and clusters the normalized data.
 #' @param x An object of class scSeqR.
-#' @param clust.method A method to choose your genes for clustering. There are three options "base.mean.rank","dispersed.genes","both" or "my.genes",defults is "base.mean.rank".
+#' @param clust.method A method to choose your genes for clustering. Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".
 #' @param top.rank Number of ranked genes you want to use for clustering, defult = 500.
 #' @param clust.dim Number of dimentions you want to consider for clustering, defult =2.
 #' @param clust.type Choose from "tsne", "pca" or "distance".
@@ -17,7 +17,7 @@
 cluster.data <- function (x = NULL,
                           clust.method = "base.mean.rank",
                           top.rank = 500,
-                          gene.list = NULL,
+                          gene.list = "my_model_genes.txt",
                           clust.dim = 2,
                           clust.type = "tsne",
                           dist.method = "euclidean") {
@@ -30,13 +30,27 @@ cluster.data <- function (x = NULL,
   if (clust.method == "dispersed.genes" && clust.method == "both") {
     stop("dispersed.genes and both are not implemented yet")
   }
+  # geth the genes and scale them based on model
   DATA <- x@main.data
+  # model base mean rank
   if (clust.method == "base.mean.rank") {
     raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
-    topGenes = head(raw.data.order,top.rank)
+    topGenes <- head(raw.data.order,top.rank)
     NormLog <- log(topGenes+0.1)
     TopNormLogScale <- as.data.frame(scale(NormLog))
   }
+  # gene model
+  if (clust.method == "gene.model") {
+    if (!file.exists(gene.list)) {
+      stop("please provide a file with gene names for clustering")
+    } else {
+      genesForClustering <- readLines(gene.list)
+      topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
+      NormLog <- log(topGenes+0.1)
+      TopNormLogScale <- as.data.frame(scale(NormLog))
+    }
+  }
+# choose 2 dimention
   if (clust.dim == 2) {
     if (clust.type == "tsne") {
       TransPosed <- t(TopNormLogScale)
@@ -53,6 +67,7 @@ cluster.data <- function (x = NULL,
       attributes(x)$pca.data <- dataPCA
     }
   }
+# choose 3 demention
   if (clust.dim == 3) {
     if (clust.type == "tsne") {
       TransPosed <- t(TopNormLogScale)
@@ -76,4 +91,3 @@ cluster.data <- function (x = NULL,
   }
   return(x)
 }
-

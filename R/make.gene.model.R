@@ -22,6 +22,7 @@ make.gene.model <- function (x = NULL,
                              cell.size = 1.75,
                              cell.transparency = 0.5,
                              no.mito.model = T,
+                             mark.mito = T,
                              interactive = TRUE,
                              out.name = "plot") {
   if ("scSeqR" != class(x)[1]) {
@@ -62,19 +63,28 @@ make.gene.model <- function (x = NULL,
                                   "none" = non.sig.col)) +
     scale_y_continuous(trans = "log1p")
   # geom_text(aes(label=ifelse(genes  %in% mito.genes ,as.character(mito.genes),'')))
-  myPlot <- myPlot + geom_text_repel(data = top_labelled,
+  if (mark.mito == T) {
+    myPlot <- myPlot + geom_text_repel(data = top_labelled,
                                        mapping = aes(label = genes),
                                        size = 3,
                                        fontface = 'bold',
                                        color = 'black',
                                        box.padding = unit(0.5, "lines"),
                                        point.padding = unit(0.5, "lines"))
+
+  }
 # get model genes
   my.clust.genes = subset(data, color != "none")[1]
 # exclude mito genes from model genes
   if (no.mito.model == T) {
     my.clust.genes <- subset(my.clust.genes, !(genes %in% mito.genes))
   }
+  # retrun
+  # write out gene model
+  write.table((my.clust.genes),file="my_model_genes.txt", row.names =F, quote = F, col.names = F)
+  gene.counts <- dim(my.clust.genes)[1]
+  print("my_model_genes.txt file is generated, which can be used for clustering.")
+  #attributes(x)$gene.model <- my.clust.genes
 if (interactive == T) {
   OUT.PUT <- paste(out.name, ".html", sep="")
   htmlwidgets::saveWidget(ggplotly(myPlot),OUT.PUT)
@@ -82,9 +92,4 @@ if (interactive == T) {
 if (interactive == F) {
   return(myPlot)
 }
-  # retrun
-  # write out gene model
-   write.table((my.clust.genes),file="my_model_genes.txt", row.names =F, quote = F, col.names = F)
-   print("my_model_genes.txt file is generated, which can be use for clustering")
-#  attributes(x)$gene.model <- my.clust.genes
 }

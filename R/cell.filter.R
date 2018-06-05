@@ -21,20 +21,49 @@
 #' }
 #'
 #' @export
-cell.filter <- function (x = NULL, min.mito = 0, max.mito = 1, min.genes = 0, max.genes = Inf, min.umis = 0, max.umis = Inf) {
+cell.filter <- function (x = NULL,
+                         min.mito = 0,
+                         max.mito = 1,
+                         min.genes = 0,
+                         max.genes = Inf,
+                         min.umis = 0,
+                         max.umis = Inf,
+                         filter.by.gene = "character",
+                         filter.by.gene.min = 1) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
+# take input from
   DATA <- x@raw.data
+# filter by gene
+  if (filter.by.gene[1] != "character"){
+    genExist <- dim(subset(DATA, row.names(DATA) %in% filter.by.gene))[1]
+    numberOfgenes <- length(filter.by.gene)
+    if (genExist != numberOfgenes) {
+      stop("your data lacks the gene/genes in filter.by.gene.")
+    }
+  gene.filt <- t(subset(DATA, row.names(DATA) %in% filter.by.gene) >= filter.by.gene.min)
+#  gene.filted <- as.data.frame(rowSums(gene.filt) > 0L)
+  gene.filted <- as.data.frame(apply(gene.filt, 1, any))
+  colnames(gene.filted) <- "gene.filter"
+  gene.filt.cells <- row.names(subset(gene.filted, gene.filter == F))
+  goneCells <- length(gene.filt.cells)
+  allCells <- length(colnames(DATA))
+  }
+# filter by mito
   MAXmito <- as.character(subset(x@stats, x@stats$mito.percent > max.mito)$CellIds)
   MINmito <- as.character(subset(x@stats, x@stats$mito.percent < min.mito)$CellIds)
+# filter by nGene
   MAXbad <- as.character(subset(x@stats, x@stats$nGenes > max.genes)$CellIds)
   MINbad <- as.character(subset(x@stats, x@stats$nGenes < min.genes)$CellIds)
+# filter by UMI
   MAXbadUMI <- as.character(subset(x@stats, x@stats$UMIs > max.umis)$CellIds)
   MINbadUMI <- as.character(subset(x@stats, x@stats$UMIs < min.umis)$CellIds)
+# take all bad genes
   BadMito <- c(MAXmito,MINmito)
   BadGenes <- c(MAXbad,MINbad)
   BadUMIs <- c(MAXbadUMI,MINbadUMI)
+# filter
   if (length(BadMito) == 0) {
     print("No mito filter")
   } else {
@@ -53,6 +82,15 @@ cell.filter <- function (x = NULL, min.mito = 0, max.mito = 1, min.genes = 0, ma
     DATA <- DATA[ , -which(names(DATA) %in% BadUMIs)]
     print(paste("cells with min UMIs of",min.umis,"and max UMIs of",max.umis,"were filtered."))
   }
+  if (!exists("gene.filt.cells")) {
+    print("No cell filter by provided gene/genes")
+  } else {
+    DATA <- DATA[ , -which(names(DATA) %in% gene.filt.cells)]
+    print(paste(goneCells,"cells out of original",allCells,
+                " cells were filtered out as their expression was less than",
+                filter.by.gene.min,"for gene/genes in filter.by.gene."))
+  }
+# return data
   attributes(x)$main.data <- DATA
   return(x)
 }
