@@ -24,7 +24,6 @@ install.packages(c("ggplot2",
 - Then install the package in R.
 
 ```r
-install.packages("devtools")
 library(devtools)
 install_github("rezakj/scSeqR")
 ```
@@ -119,23 +118,22 @@ dim(my.obj@raw.data)
 
 - Plot QC
 
-By defult the "stats.plot" function would creat an interactive html file, but you can set this option to false and out put your plots in other file formats. Here are some examples:
+By defult all the plotting functions would creat interactive html files unless interactive = FALSE.
 
 ```r
+# plot UMIs, genes and percent mito all at once and in one plot. 
+# you can make them individually as well, see the arguments ?stats.plot.
 stats.plot(my.obj,
-	plot.type = "box.umi",
+	plot.type = "box.gene.umi.mito",
 	out.name = "UMI-plot",
-	interactive = TRUE,
+	interactive = FALSE,
 	cell.color = "slategray3", 
 	cell.size = 1, 
 	cell.transparency = 0.5,
 	box.color = "red",
 	box.line.col = "green")
      
-# more examples
-
-stats.plot(my.obj, plot.type = "box.mito", interactive = F)
-stats.plot(my.obj, plot.type = "box.gene", interactive = F)
+# Scatter plots
 stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
 stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 
