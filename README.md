@@ -61,17 +61,7 @@ To see the help page for each function use question mark as:
 ?load10x
 ```
      
-Conditions in scSeqR are set in the header of the data and are separated by an underscore (_) as below:
-
-|  | condition1_AAACATACAACCAC | condition1_AAACATTGAGCTAC | ... | condition2_AAACATTGATCTGC | condition2_AAACCGTGCTTGCG |
-| ------------- | ------------- | ------------- | ------------- | ------------- |------------- |
-| MALAT1        |     49        |    142        |    ...        |     112       |     100      |
-| TMSB4X        |     47        |     62        |    ...        |    11         |     81       |
-| B2M           |     76        |     75        |    ...        |     45        |     51       |
-| RPL10         |     34        |     92        |    ...        |     26        |     18       |
-| RPL13         |     29        |     45        |    ...        |     75        |     110      |
-| RPL13A        |     37        |     81        |    ...        |     66        |     12       |
-
+Conditions in scSeqR, are set in the header of the data and are separated by an underscore (_).
 Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. 
 
 ```r
@@ -95,7 +85,8 @@ dim(my.data)
   sample3 <- my.data[1801:2700]
   
 # merge all of your samples to make a single aggregated file.    
-my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), condition.names = c("WT","KO","Ctrl"))
+my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), 
+	condition.names = c("WT","KO","Ctrl"))
 head(my.data)[1:2]
 #         WT_AAACATACAACCAC-1 WT_AAACATTGAGCTAC-1
 #A1BG                       0                   0
