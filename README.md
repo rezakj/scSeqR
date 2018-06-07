@@ -233,7 +233,7 @@ head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
 
 - Make a gene model for clustering
 
-It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros.  
+It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros. You can also use your set of genes as a model rather than making one. 
 
 ```r
 make.gene.model(my.obj, 
@@ -241,7 +241,8 @@ make.gene.model(my.obj,
 	base.mean.rank = 500, 
 	no.mito.model = T, 
 	mark.mito = T, 
-	interactive = T)
+	interactive = T,
+	out.name = "gene.model")
 ```
 To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/master/doc/gene.model.html)
 
@@ -253,12 +254,16 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 
 - Cluster data
 
+scSeqR let's you perform 2 dimentional and 3 dementional PCA and tSNE clustering and you also have the option of distance based clustering using "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski" methods. 
+
+It's best to use tSNE for singel cell data and large matrices.  
+
 ```r
 my.obj <- cluster.data(my.obj, 
-     clust.method = "base.mean.rank", 
-     top.rank = 500, 
-     clust.dim = 2, 
-     clust.type = "tsne")
+	clust.method = "gene.model", 
+	gene.list = "my_model_genes.txt", 
+	clust.dim = 2, 
+	clust.type = "tsne")
 
 # more examples
 #my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "tsne")
@@ -266,32 +271,26 @@ my.obj <- cluster.data(my.obj,
 #my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "pca")
 #my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
 ```        
-- plot data before cluster assignment.
+
+- Find optimal number of clusters
+
+scSeqR allows to choose from 3 different algorisms ("elbow.wss", "silhouette", "gap.stat") to find the optimal number of clusters. 
 
 ```r
-cluster.plot(my.obj,
-     cell.size = 1.75, 
-     plot.type = "tsne", 
-     clust.assigned = FALSE, 
-     clust.dim = 2, 
-     cell.color = "blue")
-```
+opt.clust.num(my.obj, max.clust = 20, 
+	clust.type = "tsne", 
+	clust.dim = 2, 
+	opt.method = "elbow.wss")
 
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_2d.png" width="400" height="400" />
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/PCA_2d.png" width="400" height="400" />
-</p>
-
-- Find optimal number of clusters          
-
-```r
-opt.clust.num(my.obj, max.clust = 10, gap.stat.nboot = 50, clust.type = "tsne", clust.dim = 2, opt.method = "silhouette")
+# more examples 
+#opt.clust.num(my.obj, max.clust = 20, gap.stat.nboot = 200, clust.type = "tsne", clust.dim = 2, opt.method = "gap.stat")
+#opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", clust.dim = 2, opt.method = "silhouette")
 ```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num1.png" width="800" />
 </p>
-              
+   
 - Assign clusters
 
 ```r
@@ -301,14 +300,19 @@ my.obj <- assign.clust(my.obj,
      clust.dim = 2)
 ```
 
-- Plot clusters
+- Plot clustered data 
 
 ```r
 cluster.plot(my.obj,
-     cell.size = 1.75, 
-     plot.type = "tsne",
-     clust.assigned = TRUE, 
-     clust.dim = 2)
+	cell.size = 1,
+	plot.type = "tsne",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = T,
+	out.name = "tSNE")
 
 # more examples
 #cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)
