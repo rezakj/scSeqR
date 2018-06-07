@@ -24,7 +24,6 @@ install.packages(c("ggplot2",
 - Then install the package in R.
 
 ```r
-install.packages("devtools")
 library(devtools)
 install_github("rezakj/scSeqR")
 ```
@@ -32,11 +31,18 @@ install_github("rezakj/scSeqR")
 - Download and unzip a publicly available sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) scRNA-Seq data.
 
 ```r
+# set your working directory 
 setwd("/your/download/directory")
+
+# save the URL as an object
 sample.file.url = "https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz"
+
+# download the file
 download.file(url = sample.file.url, 
      destfile = "pbmc3k_filtered_gene_bc_matrices.tar.gz", 
-     method = "auto")     
+     method = "auto")  
+
+# unzip the file. 
 untar("pbmc3k_filtered_gene_bc_matrices.tar.gz")    
 ```
 
@@ -58,36 +64,47 @@ To see the help page for each function use question mark as:
 ?load10x
 ```
 
-There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
+- Aggregating data
+     
+Conditions in scSeqR, are set in the header of the data and are separated by an underscore (_).
+Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. 
 
 ```r
-head(sample.10x.data)[1:4]
+# see the head of the first 2 columns in your data.
+head(my.data)[1:2]
+#         AAACATACAACCAC-1 AAACATTGAGCTAC-1
+#A1BG                       0                   0
+#A1BG.AS1                   0                   0
+#A1CF                       0                   0
+#A2M                        0                   0
+#A2M.AS1                    0                   0
+#A2ML1                      0                   0
+
+# see how many rows and columns there are.
+dim(my.data)
+# [1] 32738  2700
+
+# divide your sample into three samples for this example 
+  sample1 <- my.data[1:900]
+  sample2 <- my.data[901:1800]
+  sample3 <- my.data[1801:2700]
+  
+# merge all of your samples to make a single aggregated file.    
+my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), 
+	condition.names = c("WT","KO","Ctrl"))
+head(my.data)[1:2]
+#         WT_AAACATACAACCAC-1 WT_AAACATTGAGCTAC-1
+#A1BG                       0                   0
+#A1BG.AS1                   0                   0
+#A1CF                       0                   0
+#A2M                        0                   0
+#A2M.AS1                    0                   0
+
+# as you see the header has the conditions now
 ```
 
-|  | AAACATACAACCAC | AAACATTGAGCTAC | AAACATTGATCAGC | AAACCGTGCTTCCG |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| MALAT1        |     49        |    142        |    171        |     11        |
-| TMSB4X        |     47        |     62        |    117        |    114        |
-| B2M           |     76        |     75        |     69        |     41        |
-| RPL10         |     34        |     92        |     49        |     22        |
-| RPL13         |     29        |     45        |     16        |     15        |
-| RPL13A        |     37        |     81        |     40        |     16        |
 
-        
-Conditions in scSeqR are set in the header of the data and are separated by an underscore (_) as below:
-
-|  | condition1_AAACATACAACCAC | condition1_AAACATTGAGCTAC | ... | condition2_AAACATTGATCTGC | condition2_AAACCGTGCTTGCG |
-| ------------- | ------------- | ------------- | ------------- | ------------- |------------- |
-| MALAT1        |     49        |    142        |    ...        |     112       |     100      |
-| TMSB4X        |     47        |     62        |    ...        |    11         |     81       |
-| B2M           |     76        |     75        |    ...        |     45        |     51       |
-| RPL10         |     34        |     92        |    ...        |     26        |     18       |
-| RPL13         |     29        |     45        |    ...        |     75        |     110      |
-| RPL13A        |     37        |     81        |    ...        |     66        |     12       |
-
-Follow [this] tutorial to learn how to merge multiple datasets and run scSeqR in aggregated mode.
-
-- Make an object of class scSeqR
+- Make an object of class scSeqR.
 
 ```r
 my.obj <- make.obj(my.data)
@@ -103,56 +120,80 @@ dim(my.obj@raw.data)
 
 - Plot QC
 
-By defult the "stats.plot" function would creat an interactive html file, but you can set this option to false and out put your plots in other file formats. Here are some examples:
+By defult all the plotting functions would creat interactive html files unless interactive = FALSE.
 
 ```r
+# plot UMIs, genes and percent mito all at once and in one plot. 
+# you can make them individually as well, see the arguments ?stats.plot.
 stats.plot(my.obj,
-	plot.type = "box.umi",
+	plot.type = "box.gene.umi.mito",
 	out.name = "UMI-plot",
-	interactive = TRUE,
+	interactive = FALSE,
 	cell.color = "slategray3", 
 	cell.size = 1, 
 	cell.transparency = 0.5,
 	box.color = "red",
 	box.line.col = "green")
-     
-# more examples
-
-stats.plot(my.obj, plot.type = "box.mito", interactive = F)
-stats.plot(my.obj, plot.type = "box.gene", interactive = F)
-stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
-stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
-
 ```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="700" />
 </p>
 
-To see an example interactive plot click on this links: [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/mito-umi-plot.html)
+```r  
+# Scatter plots
+stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
+stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
+```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/mito-umi-plot.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gene-umi-plot.png" width="400"/>      
 </p>
 
+To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
 
-- Filter cells.
+- Filter cells. 
+
+scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondial content and even based on one or more genes. 
+
+Befor filtering let's do a quick test and see how the data looks like. This might be very helpful to check the gene or genes of your interest and see in howmany cells they expressed. This could also be helful to choose the genes for cell sorting or filteering that are needed in some studies. 
 
 ```r
-my.obj <- filter.cells(my.obj,
-     min.mito = 0, 
-     max.mito = 0.05, 
-     min.genes = 200, 
-     max.genes = 2500, 
-     min.umis = 0, 
-     max.umis = Inf)
- 
-dim(my.obj@main.data)
-# [1] 32738  2638
+# run gene stats 
+my.obj <- gene.stats(my.obj, which.data = "raw.data")
+
+# sort and see the head of the gene stats
+head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
+#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
+#30303 TMSB4X          2700               2700      100.00000 46.00370 30.86793
+#3633     B2M          2699               2700       99.96296 44.94926 25.89472
+#14403 MALAT1          2699               2700       99.96296 59.88333 32.56044
+#27191 RPL13A          2698               2700       99.92593 28.46037 16.70928
+#27185  RPL10          2695               2700       99.81481 32.78407 17.90696
+#27190  RPL13          2693               2700       99.74074 28.55963 17.00709
 ```
 
-- Normalize data 
+Let's say that you are only interested in the cells in which RPL13 "OR" RPL10 are expressed, while have a maximum mito percent of 0.05 and a minimum number of 250 genes expressed and a maximum of 2400 genes. 
+
+```r
+my.obj <- cell.filter(my.obj,
+	filter.by.gene = c("RPL13","RPL10"),
+	min.mito = 0,
+	max.mito = 0.05,
+	min.genes = 200,
+	max.genes = 2400,
+	min.umis = 0,
+	max.umis = Inf)
+
+# chack to see how many cells are left.  
+dim(my.obj@main.data)
+# [1] 32738  2634
+```
+
+- Normalize data
+
+You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, this is Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
 
 ```r
 my.obj <- norm.data(my.obj, 
@@ -168,33 +209,39 @@ my.obj <- norm.data(my.obj,
 
 - Scale data 
 
+This would greatly help in clustring and plotting, but because all of the functions sacle the required data on the fly this function is optional so that your final object would be of smaller size. 
+
 ```r
 my.obj <- scale.data(my.obj)
 ```
 - Gene stats
 
+It's better to run gene.stats on your main data and update the gene.data of your object. 
+
 ```r
-my.obj <- gene.stats(my.obj)
-head(my.obj@gene.data,3)
+my.obj <- gene.stats(my.obj, which.data = "main.data")
+
+head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
+#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
+#30303 TMSB4X          2634               2634      100.00000 46.74179 24.85859
+#3633     B2M          2633               2634       99.96203 46.98768 25.58558
+#14403 MALAT1          2633               2634       99.96203 65.53506 39.68695
+#27191 RPL13A          2633               2634       99.96203 28.96777 12.96873
+#27185  RPL10          2632               2634       99.92407 32.74179 11.13561
+#27190  RPL13          2630               2634       99.84814 29.12121 13.73905
 ```
 
-| genes | numberOfCells | meanExp | SDs |
-| ------------- | ------------- | ------------- | ------------- |
-|FAM87B	|2	|0.0004716666	|0.017411663|
-|LINC00115	|18	|0.0067705847	|0.0846634781|
-|FAM41C	|2	|0.0005690309	|0.0210581747|
+- Make a gene model for clustering
 
-
-- Make gene model for clustering
+It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros.  
 
 ```r
-make.gene.model(my.obj, dispersion.limit = 1.5, base.mean.rank = 500, no.mito.model = T)
-
-# to make intractive plot use the following
-htmlwidgets::saveWidget(ggplotly(make.gene.model(my.obj, 
-     dispersion.limit = 1.5, 
-     base.mean.rank = 500, 
-     no.mito.model = T)), "gene.model.html")
+make.gene.model(my.obj, 
+	dispersion.limit = 1.5, 
+	base.mean.rank = 500, 
+	no.mito.model = T, 
+	mark.mito = T, 
+	interactive = T)
 ```
 To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/master/doc/gene.model.html)
 
