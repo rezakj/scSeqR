@@ -32,14 +32,18 @@ install_github("rezakj/scSeqR")
 - Download and unzip a publicly available sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) scRNA-Seq data.
 
 ```r
+# set your working directory 
 setwd("/your/download/directory")
 
+# save the URL as an object
 sample.file.url = "https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz"
 
+# download the file
 download.file(url = sample.file.url, 
      destfile = "pbmc3k_filtered_gene_bc_matrices.tar.gz", 
      method = "auto")  
-     
+
+# unzip the file. 
 untar("pbmc3k_filtered_gene_bc_matrices.tar.gz")    
 ```
 
@@ -99,7 +103,7 @@ head(my.data)[1:2]
 ```
 
 
-- Make an object of class scSeqR
+- Make an object of class scSeqR.
 
 ```r
 my.obj <- make.obj(my.data)
