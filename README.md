@@ -132,41 +132,65 @@ stats.plot(my.obj,
 	cell.transparency = 0.5,
 	box.color = "red",
 	box.line.col = "green")
-     
-# Scatter plots
-stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
-stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
-
 ```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="700" />
 </p>
 
-To see an example interactive plot click on this links: [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/master/doc/mito-umi-plot.html)
+```r  
+# Scatter plots
+stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
+stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
+```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/mito-umi-plot.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gene-umi-plot.png" width="400"/>      
 </p>
 
+To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
 
-- Filter cells.
+- Filter cells. 
+scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondial content and even based on one or more genes. 
+
+Befor filtering let's do a quick test and see how the data looks like. This might be very helpful to check the gene or genes of your interest and see in howmany cells they expressed. This could also be helful to choose the genes for cell sorting or filteering that are needed in some studies. 
 
 ```r
-my.obj <- filter.cells(my.obj,
-     min.mito = 0, 
-     max.mito = 0.05, 
-     min.genes = 200, 
-     max.genes = 2500, 
-     min.umis = 0, 
-     max.umis = Inf)
- 
-dim(my.obj@main.data)
-# [1] 32738  2638
+# run gene stats 
+my.obj <- gene.stats(my.obj, which.data = "raw.data")
+
+# sort and see the head of the gene stats
+head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
+#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
+#30303 TMSB4X          2700               2700      100.00000 46.00370 30.86793
+#3633     B2M          2699               2700       99.96296 44.94926 25.89472
+#14403 MALAT1          2699               2700       99.96296 59.88333 32.56044
+#27191 RPL13A          2698               2700       99.92593 28.46037 16.70928
+#27185  RPL10          2695               2700       99.81481 32.78407 17.90696
+#27190  RPL13          2693               2700       99.74074 28.55963 17.00709
 ```
 
-- Normalize data 
+Let's say that you are only interested in the cells in which RPL13 "OR" RPL10 are expressed, while have a maximum mito percent of 0.05 and a minimum number of 250 genes expressed and a maximum of 2400 genes. 
+
+```r
+my.obj <- cell.filter(my.obj,
+	filter.by.gene = c("RPL13","RPL10"),
+	min.mito = 0,
+	max.mito = 0.05,
+	min.genes = 200,
+	max.genes = 2400,
+	min.umis = 0,
+	max.umis = Inf)
+
+# chack to see how many cells are left.  
+dim(my.obj@main.data)
+# [1] 32738  2634
+```
+
+- Normalize data
+
+
 
 ```r
 my.obj <- norm.data(my.obj, 
