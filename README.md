@@ -236,7 +236,12 @@ head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
 It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros.  
 
 ```r
-make.gene.model(my.obj, dispersion.limit = 1.5, base.mean.rank = 500, no.mito.model = T, interactive = T)
+make.gene.model(my.obj, 
+	dispersion.limit = 1.5, 
+	base.mean.rank = 500, 
+	no.mito.model = T, 
+	mark.mito = T, 
+	interactive = T)
 ```
 To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/master/doc/gene.model.html)
 
