@@ -63,6 +63,8 @@ To see the help page for each function use question mark as:
 ```r
 ?load10x
 ```
+
+- Aggregating data
      
 Conditions in scSeqR, are set in the header of the data and are separated by an underscore (_).
 Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. 
@@ -152,6 +154,7 @@ stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
 
 - Filter cells. 
+
 scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondial content and even based on one or more genes. 
 
 Befor filtering let's do a quick test and see how the data looks like. This might be very helpful to check the gene or genes of your interest and see in howmany cells they expressed. This could also be helful to choose the genes for cell sorting or filteering that are needed in some studies. 
@@ -190,7 +193,7 @@ dim(my.obj@main.data)
 
 - Normalize data
 
-
+You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, this is Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
 
 ```r
 my.obj <- norm.data(my.obj, 
@@ -206,33 +209,34 @@ my.obj <- norm.data(my.obj,
 
 - Scale data 
 
+This would greatly help in clustring and plotting, but because all of the functions sacle the required data on the fly this function is optional so that your final object would be of smaller size. 
+
 ```r
 my.obj <- scale.data(my.obj)
 ```
 - Gene stats
 
+It's better to run gene.stats on your main data and update the gene.data of your object. 
+
 ```r
-my.obj <- gene.stats(my.obj)
-head(my.obj@gene.data,3)
+my.obj <- gene.stats(my.obj, which.data = "main.data")
+
+head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
+#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
+#30303 TMSB4X          2634               2634      100.00000 46.74179 24.85859
+#3633     B2M          2633               2634       99.96203 46.98768 25.58558
+#14403 MALAT1          2633               2634       99.96203 65.53506 39.68695
+#27191 RPL13A          2633               2634       99.96203 28.96777 12.96873
+#27185  RPL10          2632               2634       99.92407 32.74179 11.13561
+#27190  RPL13          2630               2634       99.84814 29.12121 13.73905
 ```
 
-| genes | numberOfCells | meanExp | SDs |
-| ------------- | ------------- | ------------- | ------------- |
-|FAM87B	|2	|0.0004716666	|0.017411663|
-|LINC00115	|18	|0.0067705847	|0.0846634781|
-|FAM41C	|2	|0.0005690309	|0.0210581747|
+- Make a gene model for clustering
 
-
-- Make gene model for clustering
+It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros.  
 
 ```r
-make.gene.model(my.obj, dispersion.limit = 1.5, base.mean.rank = 500, no.mito.model = T)
-
-# to make intractive plot use the following
-htmlwidgets::saveWidget(ggplotly(make.gene.model(my.obj, 
-     dispersion.limit = 1.5, 
-     base.mean.rank = 500, 
-     no.mito.model = T)), "gene.model.html")
+make.gene.model(my.obj, dispersion.limit = 1.5, base.mean.rank = 500, no.mito.model = T, interactive = T)
 ```
 To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/master/doc/gene.model.html)
 
