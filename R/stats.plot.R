@@ -69,7 +69,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col))
+            legend.key = element_rect(fill = back.col)) + theme_bw
     #
     Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs,
                                   text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
@@ -79,7 +79,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col))
+            legend.key = element_rect(fill = back.col)) + theme_bw
   } else {
     Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs, col = col.legend,
                                  text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
@@ -88,7 +88,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col))
+            legend.key = element_rect(fill = back.col)) + theme_bw
     #
     Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs, col = col.legend,
                                   text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
@@ -98,7 +98,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col))
+            legend.key = element_rect(fill = back.col)) + theme_bw
   }
   # out puts
   if (plot.type == "point.mito.umi") {
@@ -147,6 +147,9 @@ if (do == 2) {
   }
   #
   if (plot.type == "box.gene.umi.mito") {
+    if (interactive == T) {
+      print("for interactive mode use single plots (i.e. box.mito, box.gene, etc.) in plot.type")
+    }
     return(grid.arrange(nGenes.plot, UMIsplot,mito.percent.plot, ncol = 3))
   }
 }
