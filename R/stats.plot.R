@@ -23,6 +23,7 @@ stats.plot <- function (x = NULL,
                         cell.transparency = 0.5,
                         box.color = "red",
                         box.line.col = "green",
+                        back.col = "white",
                         interactive = TRUE,
                         out.name = "plot")
 {
@@ -31,39 +32,75 @@ stats.plot <- function (x = NULL,
   }
   DATA <- x@stats
   w = log1p(1:100)
-  # plots
-  mito.percent.plot <- ggplot(DATA,aes(y=mito.percent,x=".")) +
+  # get conditions
+  do <- data.frame(do.call('rbind', strsplit(as.character(head(DATA$CellIds,1)),'_',fixed=TRUE)))
+  do <- dim(do)[2]
+if (do == 2) {
+  col.legend <- data.frame(do.call('rbind', strsplit(as.character(DATA$CellIds),'_',fixed=TRUE)))[1]
+  col.legend <- factor(as.matrix(col.legend))
+} else {
+  col.legend = "."
+}
+  # Box plots
+  # mito
+  mito.percent.plot <- ggplot(DATA,aes(y=mito.percent,x=col.legend)) +
     theme_bw() +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = "green", notch = T, outlier.shape = NA, alpha = cell.transparency) +
     xlab("mito.percent") + ylab("percent of mito genes per cell")
-    #
-  nGenes.plot <- ggplot(DATA,aes(y=nGenes,x=".")) +
+    # nGenes
+  nGenes.plot <- ggplot(DATA,aes(y=nGenes,x=col.legend)) +
     theme_bw() +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
     xlab("nGenes") + ylab("number of genes per cell")
-    #
-  UMIsplot <- ggplot(DATA,aes(y=UMIs,x=".")) +
+    # UMIs
+  UMIsplot <- ggplot(DATA,aes(y=UMIs,x=col.legend)) +
     theme_bw() +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
     xlab("UMIs") + ylab("number of UMIs per cell")
-  #
-
-  Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs,
-                               text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
-    theme_bw() +
-    geom_point(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    scale_x_continuous(trans = "log1p")
-  #
-  Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs,
-                                text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
-    theme_bw() +
-    geom_point(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    scale_x_continuous(trans = "log1p") +
-    scale_y_continuous(trans = "log1p")
-  # out put
+# scatter plots
+  if (col.legend[1] == ".") {
+    Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs,
+                                 text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
+      geom_point(color = cell.color, size = cell.size, alpha = cell.transparency) +
+      scale_x_continuous(trans = "log1p") +
+      scale_color_discrete(name="") +
+      theme(panel.background = element_rect(fill = back.col, colour = "black"),
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+            legend.key = element_rect(fill = back.col))
+    #
+    Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs,
+                                  text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
+      geom_point(color = cell.color, size = cell.size, alpha = cell.transparency) +
+      scale_x_continuous(trans = "log1p") +
+      scale_y_continuous(trans = "log1p") +
+      scale_color_discrete(name="") +
+      theme(panel.background = element_rect(fill = back.col, colour = "black"),
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+            legend.key = element_rect(fill = back.col))
+  } else {
+    Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs, col = col.legend,
+                                 text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
+      geom_point( size = cell.size, alpha = cell.transparency) +
+      scale_x_continuous(trans = "log1p") +
+      scale_color_discrete(name="") +
+      theme(panel.background = element_rect(fill = back.col, colour = "black"),
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+            legend.key = element_rect(fill = back.col))
+    #
+    Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs, col = col.legend,
+                                  text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
+      geom_point(size = cell.size, alpha = cell.transparency) +
+      scale_x_continuous(trans = "log1p") +
+      scale_y_continuous(trans = "log1p") +
+      scale_color_discrete(name="") +
+      theme(panel.background = element_rect(fill = back.col, colour = "black"),
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+            legend.key = element_rect(fill = back.col))
+  }
+  # out puts
   if (plot.type == "point.mito.umi") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")

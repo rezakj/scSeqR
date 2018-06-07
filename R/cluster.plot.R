@@ -60,7 +60,7 @@ cluster.plot <- function (x = NULL,
   # conditions
   if (col.by == "conditions") {
     col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
-    col.legend <- factor(as.matrix(MY.Col))
+    col.legend <- factor(as.matrix(col.legend))
     }
   # clusters
   if (col.by == "clusters") {
