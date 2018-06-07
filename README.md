@@ -33,10 +33,13 @@ install_github("rezakj/scSeqR")
 
 ```r
 setwd("/your/download/directory")
+
 sample.file.url = "https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz"
+
 download.file(url = sample.file.url, 
      destfile = "pbmc3k_filtered_gene_bc_matrices.tar.gz", 
-     method = "auto")     
+     method = "auto")  
+     
 untar("pbmc3k_filtered_gene_bc_matrices.tar.gz")    
 ```
 
@@ -57,23 +60,7 @@ To see the help page for each function use question mark as:
 ```r
 ?load10x
 ```
-
-There is also a sample data that comes with the package. To see the head and the structure of the sample data issue this command:
-
-```r
-head(sample.10x.data)[1:4]
-```
-
-|  | AAACATACAACCAC | AAACATTGAGCTAC | AAACATTGATCAGC | AAACCGTGCTTCCG |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| MALAT1        |     49        |    142        |    171        |     11        |
-| TMSB4X        |     47        |     62        |    117        |    114        |
-| B2M           |     76        |     75        |     69        |     41        |
-| RPL10         |     34        |     92        |     49        |     22        |
-| RPL13         |     29        |     45        |     16        |     15        |
-| RPL13A        |     37        |     81        |     40        |     16        |
-
-        
+     
 Conditions in scSeqR are set in the header of the data and are separated by an underscore (_) as below:
 
 |  | condition1_AAACATACAACCAC | condition1_AAACATTGAGCTAC | ... | condition2_AAACATTGATCTGC | condition2_AAACCGTGCTTGCG |
@@ -85,7 +72,41 @@ Conditions in scSeqR are set in the header of the data and are separated by an u
 | RPL13         |     29        |     45        |    ...        |     75        |     110      |
 | RPL13A        |     37        |     81        |    ...        |     66        |     12       |
 
-Follow [this] tutorial to learn how to merge multiple datasets and run scSeqR in aggregated mode.
+Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. 
+
+```r
+# see the head of the first 2 columns in your data.
+head(my.data)[1:2]
+#         AAACATACAACCAC-1 AAACATTGAGCTAC-1
+#A1BG                       0                   0
+#A1BG.AS1                   0                   0
+#A1CF                       0                   0
+#A2M                        0                   0
+#A2M.AS1                    0                   0
+#A2ML1                      0                   0
+
+# see how many rows and columns there are.
+dim(my.data)
+# [1] 32738  2700
+
+# divide your sample into three samples for this example 
+  sample1 <- my.data[1:900]
+  sample2 <- my.data[901:1800]
+  sample3 <- my.data[1801:2700]
+  
+# merge all of your samples to make a single aggregated file.    
+my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), condition.names = c("WT","KO","Ctrl"))
+head(my.data)[1:2]
+#         WT_AAACATACAACCAC-1 WT_AAACATTGAGCTAC-1
+#A1BG                       0                   0
+#A1BG.AS1                   0                   0
+#A1CF                       0                   0
+#A2M                        0                   0
+#A2M.AS1                    0                   0
+
+# as you see the header has the conditions now
+```
+
 
 - Make an object of class scSeqR
 
