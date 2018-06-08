@@ -44,22 +44,22 @@ if (do == 2) {
   # Box plots
   # mito
   mito.percent.plot <- ggplot(DATA,aes(y=mito.percent,x=col.legend)) +
-    theme_bw() +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = "green", notch = T, outlier.shape = NA, alpha = cell.transparency) +
-    xlab("mito.percent") + ylab("percent of mito genes per cell")
+    xlab("mito.percent") + ylab("percent of mito genes per cell") +
+    theme_bw()
     # nGenes
   nGenes.plot <- ggplot(DATA,aes(y=nGenes,x=col.legend)) +
-    theme_bw() +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
-    xlab("nGenes") + ylab("number of genes per cell")
+    xlab("nGenes") + ylab("number of genes per cell") +
+    theme_bw()
     # UMIs
   UMIsplot <- ggplot(DATA,aes(y=UMIs,x=col.legend)) +
-    theme_bw() +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
-    xlab("UMIs") + ylab("number of UMIs per cell")
+    xlab("UMIs") + ylab("number of UMIs per cell") +
+    theme_bw()
 # scatter plots
   if (col.legend[1] == ".") {
     Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs,
@@ -69,7 +69,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col)) + theme_bw
+            legend.key = element_rect(fill = back.col)) + theme_bw()
     #
     Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs,
                                   text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
@@ -79,7 +79,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col)) + theme_bw
+            legend.key = element_rect(fill = back.col)) + theme_bw()
   } else {
     Mito.UMIs <- ggplot(DATA,aes(y=mito.percent,x=UMIs, col = col.legend,
                                  text = paste("UMIs =",DATA$UMIs,",",DATA$CellIds,sep=" "))) +
@@ -88,7 +88,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col)) + theme_bw
+            legend.key = element_rect(fill = back.col)) + theme_bw()
     #
     Genes.UMIs <- ggplot(DATA,aes(y=nGenes,x=UMIs, col = col.legend,
                                   text = paste("nGenes =",DATA$nGenes,",",DATA$CellIds,sep=" "))) +
@@ -98,7 +98,7 @@ if (do == 2) {
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col)) + theme_bw
+            legend.key = element_rect(fill = back.col)) + theme_bw()
   }
   # out puts
   if (plot.type == "point.mito.umi") {

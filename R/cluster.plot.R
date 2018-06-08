@@ -82,7 +82,7 @@ cluster.plot <- function (x = NULL,
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col))
+            legend.key = element_rect(fill = back.col)) + theme_bw()
     }
     if (clust.dim == 3) {
       myPLOT <- plot_ly(DATA, x = DATA[,1], y = DATA[,2], z = DATA[,3], text = row.names(DATA),
@@ -107,7 +107,7 @@ cluster.plot <- function (x = NULL,
       scale_color_discrete(name="") +
       theme(panel.background = element_rect(fill = back.col, colour = "black"),
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col))
+            legend.key = element_rect(fill = back.col)) + theme_bw()
   }
 # plot 3d
   if (clust.dim == 3) {
