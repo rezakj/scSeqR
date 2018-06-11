@@ -259,11 +259,18 @@ scSeqR let's you perform 2 dimentional and 3 dementional PCA and tSNE clustering
 It's best to use tSNE for singel cell data and large matrices.  
 
 ```r
+# for 2D tSNE
 my.obj <- cluster.data(my.obj, 
 	clust.method = "gene.model", 
 	gene.list = "my_model_genes.txt", 
 	clust.dim = 2, 
 	clust.type = "tsne")
+# for 2D PCA	
+my.obj <- cluster.data(my.obj, 
+	clust.method = "gene.model", 
+	gene.list = "my_model_genes.txt", 
+	clust.dim = 2, 
+	clust.type = "pca")	
 
 # more examples
 #my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "tsne")
