@@ -279,6 +279,28 @@ my.obj <- cluster.data(my.obj,
 #my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
 ```        
 
+- Visualize conditions
+
+```r
+# tSNE
+cluster.plot(my.obj,
+	plot.type = "tsne",
+	col.by = "conditions",
+	clust.dim = 2,
+	interactive = F)
+# pca 
+cluster.plot(my.obj,
+	plot.type = "tsne",
+	col.by = "conditions",
+	clust.dim = 2,
+	interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conditions.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_conditions.png" width="400"/>      
+</p>
+
 - Find optimal number of clusters
 
 scSeqR allows to choose from 3 different algorisms ("elbow.wss", "silhouette", "gap.stat") to find the optimal number of clusters. 
@@ -331,7 +353,6 @@ To see the above made interactive plots click on these links: [2Dplot](https://r
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="700" height="700" />
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_3d_clustered.png" width="1000" height="900" />
 </p>
         
 - Avrage expression per cluster
@@ -367,12 +388,4 @@ gene.plot(my.obj, gene = "MS4A1", box.to.test = 2, box.pval = "sig.signs")
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1_Pval_signs.png" width="700" height="700" />
   
 </p>
-
-
-
-
-
-
-
-
 
