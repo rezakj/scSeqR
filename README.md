@@ -328,7 +328,7 @@ opt.clust.num(my.obj, max.clust = 20,
 
 ```r
 my.obj <- assign.clust(my.obj, 
-     clust.num = 7,
+     clust.num = 4,
      clust.type = "tsne",
      clust.dim = 2)
 ```
