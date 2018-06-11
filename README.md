@@ -71,20 +71,9 @@ To see the help page for each function use question mark as:
 - Aggregating data
      
 Conditions in scSeqR, are set in the header of the data and are separated by an underscore (_).
-Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. 
+Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. To do this let's divide your sample into 3,  assuming that there are 3 samples and aggregate them into one matrix. 
 
 ```r
-# see the head of the first 2 columns in your data.
-head(my.data)[1:2]
-#         AAACATACAACCAC-1 AAACATTGAGCTAC-1
-#A1BG                       0                   0
-#A1BG.AS1                   0                   0
-#A1CF                       0                   0
-#A2M                        0                   0
-#A2M.AS1                    0                   0
-#A2ML1                      0                   0
-
-# see how many rows and columns there are.
 dim(my.data)
 # [1] 32738  2700
 
