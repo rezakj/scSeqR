@@ -137,7 +137,7 @@ stats.plot(my.obj,
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats.png" width="800" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" width="800" height="700" />
 </p>
 
 ```r  
@@ -147,8 +147,8 @@ stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/mito-umi-plot.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gene-umi-plot.png" width="400"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/mito.umi.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gene.umi.png" width="400"/>      
 </p>
 
 To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
