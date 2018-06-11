@@ -113,8 +113,6 @@ my.obj <- make.obj(my.data)
 
 ```r
 my.obj <- UMIs.genes.mito(my.obj)
-dim(my.obj@raw.data)
-# [1] 32738  2700
 ``` 
 
 - Plot QC
