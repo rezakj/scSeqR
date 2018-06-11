@@ -11,7 +11,10 @@
 #' @import ggpubr
 #' @import gridExtra
 #' @export
-gene.plot <- function (x = NULL, gene = "NULL", box.to.test = 0, box.pval = "sig.signs") {
+gene.plot <- function (x = NULL,
+                       gene = "NULL",
+                       box.to.test = 0,
+                       box.pval = "sig.signs") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }

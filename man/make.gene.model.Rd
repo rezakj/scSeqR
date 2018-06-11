@@ -8,7 +8,8 @@ make.gene.model(x = NULL, dispersion.limit = 1.5, base.mean.rank = 500,
   non.sig.col = "darkgray", right.sig.col = "chartreuse3",
   left.sig.col = "cadetblue3", disp.line.col = "black",
   rank.line.col = "red", cell.size = 1.75, cell.transparency = 0.5,
-  no.mito.model = T)
+  no.mito.model = T, mark.mito = T, interactive = TRUE,
+  out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
@@ -23,4 +24,5 @@ This function takes an object of class scSeqR and scales the normalized data.
 \dontrun{
 gene.stats.plot(my.obj)
 }
+
 }

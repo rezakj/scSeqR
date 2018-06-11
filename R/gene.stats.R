@@ -8,18 +8,28 @@
 #' gene.stats(my.obj)
 #' }
 #' @export
-gene.stats <- function (x = NULL) {
+gene.stats <- function (x = NULL,
+                        which.data = "raw.data") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  DATA <- x@main.data
+# get data
+  if (which.data == "raw.data") {
+    DATA <- x@raw.data
+  }
+  if (which.data == "main.data") {
+    DATA <- x@main.data
+  }
+# calculate
   mymat = as.matrix(DATA)
   SDs <- apply(mymat, 1, function(mymat) {sd(mymat)})
   Table <- list(row.names(DATA),
              as.numeric(rowSums(DATA > 0)),
+             rep(dim(DATA)[2], dim(DATA)[1]),
+             (as.numeric(rowSums(DATA > 0)) / dim(DATA)[2])*100,
              as.numeric(rowMeans(DATA)),
              as.numeric(SDs))
-  names(Table) <- c("genes","numberOfCells","meanExp","SDs")
+  names(Table) <- c("genes","numberOfCells","totalNumberOfCells","percentOfCells","meanExp","SDs")
   Table <- as.data.frame(Table)
   attributes(x)$gene.data <- Table
   return(x)

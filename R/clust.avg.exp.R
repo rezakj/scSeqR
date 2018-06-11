@@ -42,16 +42,22 @@ clust.avg.exp <- function (x = NULL,
     NameCol=paste("cluster",i,sep="_")
     colnames(DATA) <- NameCol
     DATA <- cbind(gene = rownames(DATA), DATA)
-    head(DATA)
-    write.table((DATA),file=Name,sep="\t", row.names =F)
+    rownames(DATA) <- NULL
+    eval(call("<-", as.name(NameCol), DATA))
+#    head(DATA)
+#    write.table((DATA),file=Name,sep="\t", row.names =F)
   }
-  multmerge = function(mypath){
-    filenames=list.files(pattern="meanExp")
-    datalist = lapply(filenames, function(x){read.table(file=x,header=T)})
-    Reduce(function(x,y) {merge(x,y)}, datalist)
-  }
-  MeanExpForClusters <- multmerge()
-  file.remove(list.files(pattern="meanExp"))
+#  multmerge = function(mypath){
+#    filenames=list.files(pattern="meanExp")
+#    datalist = lapply(filenames, function(x){read.table(file=x,header=T)})
+#    Reduce(function(x,y) {merge(x,y)}, datalist)
+#  }
+   filenames <- ls(pattern="cluster_")
+   datalist <- mget(filenames)
+   MeanExpForClusters <- Reduce(function(x,y) {merge(x,y)}, datalist)
+#
+#  MeanExpForClusters <- multmerge()
+#  file.remove(list.files(pattern="meanExp"))
   attributes(x)$clust.avg <- MeanExpForClusters
   return(x)
 }

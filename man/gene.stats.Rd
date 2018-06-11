@@ -4,7 +4,7 @@
 \alias{gene.stats}
 \title{Scale data}
 \usage{
-gene.stats(x = NULL)
+gene.stats(x = NULL, which.data = "raw.data")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

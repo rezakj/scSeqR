@@ -6,7 +6,8 @@
 \usage{
 stats.plot(x = NULL, plot.type = "box.umi", cell.color = "slategray3",
   cell.size = 1, cell.transparency = 0.5, box.color = "red",
-  box.line.col = "green", interactive = TRUE, out.name = "plot")
+  box.line.col = "green", back.col = "white", interactive = TRUE,
+  out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
