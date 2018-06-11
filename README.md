@@ -317,7 +317,7 @@ opt.clust.num(my.obj, max.clust = 20,
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/optim_clust_num1.png" width="800" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
 </p>
    
 - Assign clusters
@@ -352,7 +352,7 @@ cluster.plot(my.obj,
 To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot3d_clustered.html)
         
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/tSNE_plot.png" width="700" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE.png" width="700" height="700" />
 </p>
         
 - Avrage expression per cluster
@@ -385,7 +385,7 @@ gene.plot(my.obj, gene = "MS4A1", box.to.test = 2, box.pval = "sig.signs")
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/plot_MS4A1_Pval_signs.png" width="700" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/plot_MS4A1_Pval_signs.png" width="700" height="700" />
   
 </p>
 
