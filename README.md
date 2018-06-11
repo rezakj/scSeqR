@@ -1,5 +1,7 @@
 # scSeqR
 
+### official release in July (under construction)
+
 ### Single Cell Sequencing R package (scSeqR)
 
 scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
