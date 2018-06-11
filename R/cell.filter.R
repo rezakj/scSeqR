@@ -86,10 +86,22 @@ cell.filter <- function (x = NULL,
     print("No cell filter by provided gene/genes")
   } else {
     DATA <- DATA[ , -which(names(DATA) %in% gene.filt.cells)]
+    GenesForFilter = paste(filter.by.gene, collapse=",")
     print(paste(goneCells,"cells out of original",allCells,
                 " cells were filtered out as their expression was less than",
-                filter.by.gene.min,"for gene/genes in filter.by.gene."))
+                filter.by.gene.min,"for",GenesForFilter))
   }
+# make a filter parameters file
+  GenesForFilter = paste(filter.by.gene, collapse=",")
+  FilterFile <- paste("Filters are:
+  - min mito",min.mito,"max mito",max.mito,"
+  - min # of genes",min.genes,"max # of genes",max.genes,"
+  - min UMIs",min.umis,"max UMIs",max.umis,"
+  - genes filtered by
+  ",GenesForFilter)
+# write filter parameters
+  write.table((FilterFile),file="filters_set.txt", row.names =F, quote = F, col.names = F)
+  print("filters_set.txt file has beed generated and includes the filters set for this experiment.")
 # return data
   attributes(x)$main.data <- DATA
   return(x)
