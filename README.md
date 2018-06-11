@@ -209,7 +209,7 @@ my.obj <- norm.data(my.obj,
 
 - Scale data 
 
-This would greatly help in clustring and plotting, but because all of the functions sacle the required data on the fly this function is optional so that your final object would be of smaller size. 
+This would greatly help in clustring and plotting. 
 
 ```r
 my.obj <- scale.data(my.obj)
