@@ -248,7 +248,7 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gene.model.png" width="800" height="800" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gene.model.png" width="800" height="800" />
 </p>
 
 
