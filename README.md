@@ -85,6 +85,8 @@ dim(my.data)
 # merge all of your samples to make a single aggregated file.    
 my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), 
 	condition.names = c("WT","KO","Ctrl"))
+	
+# here is how the head of the first 2 cells in the aggregated file looks like.	
 head(my.data)[1:2]
 #         WT_AAACATACAACCAC-1 WT_AAACATTGAGCTAC-1
 #A1BG                       0                   0
