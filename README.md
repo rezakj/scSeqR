@@ -279,6 +279,28 @@ my.obj <- cluster.data(my.obj,
 #my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
 ```        
 
+- Visualize conditions
+
+```r
+# tSNE
+cluster.plot(my.obj,
+	plot.type = "tsne",
+	col.by = "conditions",
+	clust.dim = 2,
+	interactive = F)
+# pca 
+cluster.plot(my.obj,
+	plot.type = "tsne",
+	col.by = "conditions",
+	clust.dim = 2,
+	interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conditions.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_conditions.png" width="400"/>      
+</p>
+
 - Find optimal number of clusters
 
 scSeqR allows to choose from 3 different algorisms ("elbow.wss", "silhouette", "gap.stat") to find the optimal number of clusters. 
