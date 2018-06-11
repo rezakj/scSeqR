@@ -244,7 +244,7 @@ make.gene.model(my.obj,
 	interactive = T,
 	out.name = "gene.model")
 ```
-To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/master/doc/gene.model.html)
+To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene.model.html)
 
 
 <p align="center">
