@@ -1,5 +1,7 @@
 # scSeqR
 
+### official release in July (under construction)
+
 ### Single Cell Sequencing R package (scSeqR)
 
 scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
@@ -27,6 +29,8 @@ install.packages(c("ggplot2",
 library(devtools)
 install_github("rezakj/scSeqR")
 ```
+
+## Download a sample data
 
 - Download and unzip a publicly available sample [PBMC](https://en.wikipedia.org/wiki/Peripheral_blood_mononuclear_cell) scRNA-Seq data.
 
@@ -67,20 +71,9 @@ To see the help page for each function use question mark as:
 - Aggregating data
      
 Conditions in scSeqR, are set in the header of the data and are separated by an underscore (_).
-Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. 
+Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. To do this let's divide your sample into 3,  assuming that there are 3 samples and aggregate them into one matrix. 
 
 ```r
-# see the head of the first 2 columns in your data.
-head(my.data)[1:2]
-#         AAACATACAACCAC-1 AAACATTGAGCTAC-1
-#A1BG                       0                   0
-#A1BG.AS1                   0                   0
-#A1CF                       0                   0
-#A2M                        0                   0
-#A2M.AS1                    0                   0
-#A2ML1                      0                   0
-
-# see how many rows and columns there are.
 dim(my.data)
 # [1] 32738  2700
 
@@ -92,6 +85,12 @@ dim(my.data)
 # merge all of your samples to make a single aggregated file.    
 my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), 
 	condition.names = c("WT","KO","Ctrl"))
+```
+
+- Check the head of your file.
+
+```r
+# here is how the head of the first 2 cells in the aggregated file looks like.	
 head(my.data)[1:2]
 #         WT_AAACATACAACCAC-1 WT_AAACATTGAGCTAC-1
 #A1BG                       0                   0
@@ -114,8 +113,6 @@ my.obj <- make.obj(my.data)
 
 ```r
 my.obj <- UMIs.genes.mito(my.obj)
-dim(my.obj@raw.data)
-# [1] 32738  2700
 ``` 
 
 - Plot QC
@@ -388,12 +385,4 @@ gene.plot(my.obj, gene = "MS4A1", box.to.test = 2, box.pval = "sig.signs")
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/plot_MS4A1_Pval_signs.png" width="700" height="700" />
   
 </p>
-
-
-
-
-
-
-
-
 
