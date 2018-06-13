@@ -6,8 +6,8 @@
 \usage{
 cluster.plot(x = NULL, cell.size = 1, plot.type = "tsne",
   cell.color = "black", back.col = "white", col.by = "clusters",
-  cell.transparency = 0.5, clust.dim = 2, interactive = TRUE,
-  out.name = "plot")
+  cell.transparency = 0.5, clust.dim = 2, density = F,
+  interactive = TRUE, out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

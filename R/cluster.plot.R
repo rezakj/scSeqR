@@ -26,6 +26,7 @@ cluster.plot <- function (x = NULL,
                           col.by = "clusters",
                           cell.transparency = 0.5,
                           clust.dim = 2,
+                          density = F,
                           interactive = TRUE,
                           out.name = "plot") {
   if ("scSeqR" != class(x)[1]) {
@@ -98,16 +99,27 @@ cluster.plot <- function (x = NULL,
     }
 # plot 2d
   if (clust.dim == 2) {
-    myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
-                               text = row.names(DATA), color = col.legend)) +
-      geom_point(size = cell.size, alpha = cell.transparency) +
-      xlab("Dim1") +
-      ylab("Dim2") +
-      ggtitle(MyTitle) +
-      scale_color_discrete(name="") +
-      theme(panel.background = element_rect(fill = back.col, colour = "black"),
-            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-            legend.key = element_rect(fill = back.col)) + theme_bw()
+    if (interactive == F) {
+      myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
+                                 text = row.names(DATA), color = col.legend)) +
+        geom_point(size = cell.size, alpha = cell.transparency) +
+        xlab("Dim1") +
+        ylab("Dim2") +
+        ggtitle(MyTitle) +
+        scale_color_discrete(name="") +
+        theme(panel.background = element_rect(fill = back.col, colour = "black"),
+              panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              legend.key = element_rect(fill = back.col))
+    } else {
+      myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
+                                 text = row.names(DATA), color = col.legend)) +
+        geom_point(size = cell.size, alpha = cell.transparency) +
+        xlab("Dim1") +
+        ylab("Dim2") +
+        ggtitle(MyTitle) +
+        scale_color_discrete(name="") +
+        theme_bw()
+    }
   }
 # plot 3d
   if (clust.dim == 3) {
@@ -120,6 +132,13 @@ cluster.plot <- function (x = NULL,
            scene = list(xaxis = list(title = "Dim1"),
                         yaxis = list(title = "Dim2"),
                         zaxis = list(title = "Dim3")))
+  }
+  # density plot
+  if (density == T) {
+    myPLOT <- ggplot(DATA, aes(DATA[,2], fill= col.legend)) +
+      geom_density(alpha=cell.transparency) +
+      xlab("Dim2") +
+      scale_color_discrete(name="") + theme_bw()
   }
 # return
   if (interactive == T) {
