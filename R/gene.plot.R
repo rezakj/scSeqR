@@ -33,6 +33,9 @@ gene.plot <- function (x = NULL,
   if (gene == "NULL") {
     stop("There is no gene name provided. Please provide a gene name")
   }
+  if (length(gene) != 1) {
+    stop("currently you can only plot one gene at a time")
+  }
   ## get main data
   DATAmain <- x@main.data
   AllGenes = row.names(DATAmain)
