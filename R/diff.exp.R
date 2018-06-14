@@ -55,9 +55,9 @@ diff.exp <- function (x = NULL,
     col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
     conditions <- as.character(as.matrix(col.legend))
     IDs = as.character(rownames(DATA))
-    myconds <- cbind(IDs = IDs, conditions = conditions)
+    myconds <- as.data.frame(cbind(IDs = IDs, conditions = conditions))
     rownames(myconds) <- myconds$IDs
-    Table <- myconds[,-1]
+    Table <- myconds[2]
     Cluster0 <- row.names(subset(Table, Table$conditions %in% CondA))
     Cluster1 <- row.names(subset(Table, Table$conditions %in% CondB))
   }
