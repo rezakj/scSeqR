@@ -272,8 +272,8 @@ cluster.plot(my.obj,
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conditions.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_conditions.png" width="400"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conds.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_conds.png" width="400"/>      
 </p>
 
 - Find optimal number of clusters
@@ -315,7 +315,8 @@ cluster.plot(my.obj,
 	density = F)  
 	
 # more examples 
-cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 3,interactive = F,density = F)
+cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 3,interactive = F)
+cluster.plot(my.obj,plot.type = "pca",col.by = "clusters",clust.dim = 2,interactive = F) 
 cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",clust.dim = 2,interactive = F,density = T)	
 cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 2,interactive = F,density = T)	
 ```
@@ -323,8 +324,12 @@ cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 2,interac
 To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot3d_clustered.html)
         
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE.png" width="700" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_2D_clusters.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conds_density.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_density.png" width="400"/> 	
 </p>
+
         
 - Avrage expression per cluster
 
@@ -386,6 +391,13 @@ gene.plot(my.obj, gene = "MS4A1",
 	plot.type = "scatterplot",
 	interactive = F,
 	out.name = "Cebpb_scatter_plot")
+# PCA 2D	
+gene.plot(my.obj, gene = "MS4A1", 
+	plot.type = "scatterplot",
+	interactive = F,
+	out.name = "Cebpb_scatter_plot",
+	plot.data.type = "pca")
+	
 # tSNE 3D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
@@ -411,8 +423,10 @@ gene.plot(my.obj, gene = "MS4A1",
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/plot_MS4A1_Pval_signs.png" width="700" height="700" />
-  
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_tSNE.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_PCA.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_box.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_bar.png" width="400"/>
 </p>
 
 - Heatmap
@@ -428,6 +442,11 @@ heatmap.plot (my.obj,
 	cluster.rows = T,
 	heat.colors = c("yellow" ,"black", "green"))
 ```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" width="800" height="800" />
+</p>
+
 
 - Differential Expression Analysis 
 
@@ -455,5 +474,24 @@ diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("KO"), cond.2 = c(
 
 - Volcano and MA plots 
 
+```r
+# Volcano Plot 
+volcano.ma.plot(diff.res,
+	sig.value = "pval",
+	sig.line = 0.05,
+	plot.type = "volcano",
+	interactive = F)
 
+# MA Plot
+volcano.ma.plot(diff.res,
+	sig.value = "pval",
+	sig.line = 0.05,
+	plot.type = "ma",
+	interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/volc_plot.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
+</p>
 
