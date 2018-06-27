@@ -4,7 +4,7 @@
 \alias{clust.avg.exp}
 \title{Scale data}
 \usage{
-clust.avg.exp(x = NULL, clust.type = "tsne", clust.dim = 2)
+clust.avg.exp(x = NULL, clust.type = "tsne")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

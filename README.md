@@ -194,23 +194,16 @@ You have a few options to normalize your data based on your study. You can also 
 
 ```r
 my.obj <- norm.data(my.obj, 
-     "ranked.glsf",
+     norm.method = "ranked.glsf",
      top.rank = 500) # best for scRNA-Seq
 
 # more examples
-#my.obj <- norm.data(my.obj, "global.glsf") # best for bulk RNA-Seq 
-#my.obj <- norm.data(my.obj, "rpm", rpm.factor = 100000) # best for bulk RNA-Seq
-#my.obj <- norm.data(my.obj, "spike.in", spike.in.factors = NULL)
-#my.obj <- norm.data(my.obj, "no.norm") # if the data is already normalized
+#my.obj <- norm.data(my.obj, norm.method = "global.glsf") # best for bulk RNA-Seq 
+#my.obj <- norm.data(my.obj, norm.method = "rpm", rpm.factor = 100000) # best for bulk RNA-Seq
+#my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
+#my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
 
-- Scale data 
-
-This would greatly help in clustring and plotting. 
-
-```r
-my.obj <- scale.data(my.obj)
-```
 - Gene stats
 
 It's better to run gene.stats on your main data and update the gene.data of your object. 
@@ -251,29 +244,14 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 
 - Cluster data
 
-scSeqR let's you perform 2 dimentional and 3 dementional PCA and tSNE clustering and you also have the option of distance based clustering using "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski" methods. 
-
-It's best to use tSNE for singel cell data and large matrices.  
+scSeqR let's you perform 2 dimentional and 3 dementional PCA and tSNE clustering (recomanded). You also have the option of distance based clustering using "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski" methods.
 
 ```r
-# for 2D tSNE
-my.obj <- cluster.data(my.obj, 
-	clust.method = "gene.model", 
-	gene.list = "my_model_genes.txt", 
-	clust.dim = 2, 
-	clust.type = "tsne")
-# for 2D PCA	
-my.obj <- cluster.data(my.obj, 
-	clust.method = "gene.model", 
-	gene.list = "my_model_genes.txt", 
-	clust.dim = 2, 
-	clust.type = "pca")	
+# tSNE
+my.obj <- cluster.data(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", clust.type = "tsne")
 
-# more examples
-#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "tsne")
-#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 2, clust.type = "pca")
-#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3, clust.type = "pca")
-#my.obj <- cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.type = "distance") # nor recomanded for scRNA-Seq
+# PCA
+my.obj <- cluster.data(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", clust.type = "pca")
 ```        
 
 - Visualize conditions
@@ -287,15 +265,15 @@ cluster.plot(my.obj,
 	interactive = F)
 # pca 
 cluster.plot(my.obj,
-	plot.type = "tsne",
+	plot.type = "pca",
 	col.by = "conditions",
 	clust.dim = 2,
 	interactive = F)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conditions.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_conditions.png" width="400"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conds.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_conds.png" width="400"/>      
 </p>
 
 - Find optimal number of clusters
@@ -303,14 +281,9 @@ cluster.plot(my.obj,
 scSeqR allows to choose from 3 different algorisms ("elbow.wss", "silhouette", "gap.stat") to find the optimal number of clusters. 
 
 ```r
-opt.clust.num(my.obj, max.clust = 20, 
-	clust.type = "tsne", 
-	clust.dim = 2, 
-	opt.method = "elbow.wss")
-
-# more examples 
-#opt.clust.num(my.obj, max.clust = 20, gap.stat.nboot = 200, clust.type = "tsne", clust.dim = 2, opt.method = "gap.stat")
-#opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", clust.dim = 2, opt.method = "silhouette")
+opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "elbow.wss")
+opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
+# opt.clust.num(my.obj, max.clust = 10, gap.stat.nboot = 200, clust.type = "tsne",opt.method = "gap.stat")
 ```
 
 <p align="center">
@@ -320,10 +293,11 @@ opt.clust.num(my.obj, max.clust = 20,
 - Assign clusters
 
 ```r
-my.obj <- assign.clust(my.obj, 
-     clust.num = 4,
-     clust.type = "tsne",
-     clust.dim = 2)
+# tSNE
+my.obj <- assign.clust(my.obj, clust.num = 4,clust.type = "tsne")
+
+# PCA
+my.obj <- assign.clust(my.obj, clust.num = 4,clust.type = "pca")
 ```
 
 - Plot clustered data 
@@ -337,52 +311,187 @@ cluster.plot(my.obj,
 	col.by = "clusters",
 	cell.transparency = 0.5,
 	clust.dim = 2,
-	interactive = T,
-	out.name = "tSNE")
-
-# more examples
-#cluster.plot(my.obj,cell.size = 1.75, plot.type = "tsne",clust.assigned = TRUE, clust.dim = 3)
-#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 2)
-#cluster.plot(my.obj,cell.size = 1.75, plot.type = "pca",clust.assigned = TRUE, clust.dim = 3)   
+	interactive = F,
+	density = F)  
+	
+# more examples 
+cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 3,interactive = F)
+cluster.plot(my.obj,plot.type = "pca",col.by = "clusters",clust.dim = 2,interactive = F) 
+cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",clust.dim = 2,interactive = F,density = T)	
+cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 2,interactive = F,density = T)	
 ```
 
-To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot3d_clustered.html)
+To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
         
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE.png" width="700" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_2D_clusters.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conds_density.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_density.png" width="400"/> 	
 </p>
+
         
 - Avrage expression per cluster
 
 ```r
 my.obj <- clust.avg.exp(my.obj, clust.type = "tsne", clust.dim = 2)
 head(my.obj@clust.avg)
+#      gene  cluster_1  cluster_2    cluster_3   cluster_4
+#1     A1BG 0.07139890 0.04338571 0.0676852530 0.076330913
+#2 A1BG.AS1 0.01291263 0.01490700 0.0107435934 0.003482156
+#3     A1CF 0.00000000 0.00000000 0.0000000000 0.000000000
+#4      A2M 0.00247426 0.00000000 0.0009037397 0.001937402
+#5  A2M.AS1 0.01037358 0.00000000 0.0044210665 0.041431989
+#6    A2ML1 0.00000000 0.00000000 0.0000000000 0.000000000
 ```
-
-|gene	|cluster_1	|cluster_2	|cluster_3	|cluster_4	|cluster_5	|cluster_6	|cluster_7|
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-|A1BG	|0.0916392944	|0.0436354813	|0.0343642627	|0.0667622253	|0.0613617813	|0.0746466649	|0.0840048157|
-|A1BG.AS1	|0.0110216269	|0.0149905995	|0.0121888084	|0.0023281341	|0.0076570435	|0.0151865099	|0.0099459357|
-|A1CF	|0	|0	|0	|0	|0	|0	|0|
-|A2M	|0	|0	|0.0027540305	|0.0023446032	|0.0068563104	|0.0013456149	|0|
-|A2M.AS1	|0.0204136324	|0	|0.0022296427	|0.04610626	|0.0128255855	|0.0064323158	|0.0054419049|
-
 
 - Save your object
 
 ```r
 save(my.obj, file = "my.obj.Robj")
 ```        
-     
+
+- Find marker genes
+
+```r
+marker.genes <- find.markers(my.obj,
+	data.type = "tsne",
+	fold.change = 2,
+	padjval = 0.1)
+
+head(marker.genes)
+#            baseMean    baseSD AvExpInCluster AvExpInOtherClusters foldChange
+#LINC00176 0.06768702 0.2952005     0.15649818          0.010201374  15.340892
+#ADTRP     0.04528819 0.2545610     0.10278008          0.008074863  12.728400
+#TSHZ2     0.04839484 0.2631226     0.10975496          0.008677692  12.647944
+#WNT7A     0.01022659 0.1024340     0.02252658          0.002265051   9.945287
+#EPHX2     0.05590041 0.2518293     0.12250585          0.012788071   9.579697
+#MAL       0.19356697 1.0878996     0.42139913          0.046095870   9.141798
+#          log2FoldChange         pval         padj clusters      gene  cluster_1
+#LINC00176       3.939311 8.339096e-25 1.870459e-21        1 LINC00176 0.15649818
+#ADTRP           3.669979 8.418255e-15 1.867169e-11        1     ADTRP 0.10278008
+#TSHZ2           3.660831 1.220141e-15 2.712374e-12        1     TSHZ2 0.10975496
+#WNT7A           3.314013 3.441443e-05 7.344040e-02        1     WNT7A 0.02252658
+#EPHX2           3.259980 2.914413e-20 6.522456e-17        1     EPHX2 0.12250585
+#MAL             3.192478 1.672668e-12 3.698268e-09        1       MAL 0.42139913
+#            cluster_2   cluster_3   cluster_4
+#LINC00176 0.003401901 0.003570966 0.022241469
+#ADTRP     0.007460135 0.010882054 0.005106448
+#TSHZ2     0.002285751 0.008833551 0.012387695
+#WNT7A     0.000000000 0.000000000 0.006342935
+#EPHX2     0.000000000 0.005966443 0.028705683
+#MAL       0.026124748 0.018165270 0.091529773
+```
 
 - Plot genes
 
 ```r
-gene.plot(my.obj, gene = "MS4A1", box.to.test = 2, box.pval = "sig.signs")
+# tSNE 2D
+gene.plot(my.obj, gene = "MS4A1", 
+	plot.type = "scatterplot",
+	interactive = F,
+	out.name = "Cebpb_scatter_plot")
+# PCA 2D	
+gene.plot(my.obj, gene = "MS4A1", 
+	plot.type = "scatterplot",
+	interactive = F,
+	out.name = "Cebpb_scatter_plot",
+	plot.data.type = "pca")
+	
+# tSNE 3D	
+gene.plot(my.obj, gene = "MS4A1", 
+	plot.type = "scatterplot",
+	interactive = F,
+	out.name = "Cebpb_scatter_plot",
+	clust.dim = 3)
+	
+# Box Plot
+gene.plot(my.obj, gene = "MS4A1", 
+	box.to.test = 0, 
+	box.pval = "sig.values",
+	col.by = "clusters",
+	plot.type = "boxplot",
+	interactive = F,
+	out.name = "box_plot")
+	
+# Bar plot (to visualize fold changes)	
+gene.plot(my.obj, gene = "MS4A1", 
+	col.by = "clusters",
+	plot.type = "barplot",
+	interactive = F,
+	out.name = "bar_plot")
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/plot_MS4A1_Pval_signs.png" width="700" height="700" />
-  
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_tSNE.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_PCA.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_box.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_bar.png" width="400"/>
+</p>
+
+- Heatmap
+
+```r
+MyGenes <- top.markers(marker.genes, topde = 20, SDmin = 5)
+
+heatmap.plot (my.obj,
+	gene = MyGenes,
+	plot.data.type = "tsne",
+	clust.dim = 2,
+	cluster.by = "clusters",
+	cluster.rows = T,
+	heat.colors = c("yellow" ,"black", "green"))
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" width="800" height="800" />
+</p>
+
+
+- Differential Expression Analysis 
+
+```r
+diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+head(diff.res)
+#            baseMean         1_4          2 foldChange log2FoldChange         pval
+#A1BG     0.067851093 0.073152434 0.04338571  0.5930863     -0.7536861 4.899112e-02
+#A1BG.AS1 0.010512038 0.009559705 0.01490700  1.5593579      0.6409521 4.978422e-01
+#A1CF     0.000000000 0.000000000 0.00000000        NaN            NaN          NaN
+#A2M      0.001876722 0.002283384 0.00000000  0.0000000           -Inf 4.845531e-02
+#A2M.AS1  0.017602004 0.021416137 0.00000000  0.0000000           -Inf 3.324006e-06
+#A2ML1    0.000000000 0.000000000 0.00000000        NaN            NaN          NaN
+#               padj
+#A1BG     1.00000000
+#A1BG.AS1 1.00000000
+#A1CF            NaN
+#A2M      1.00000000
+#A2M.AS1  0.04989001
+#A2ML1           NaN
+
+# more examples 
+diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("KO"), cond.2 = c("WT"))
+```
+
+- Volcano and MA plots 
+
+```r
+# Volcano Plot 
+volcano.ma.plot(diff.res,
+	sig.value = "pval",
+	sig.line = 0.05,
+	plot.type = "volcano",
+	interactive = F)
+
+# MA Plot
+volcano.ma.plot(diff.res,
+	sig.value = "pval",
+	sig.line = 0.05,
+	plot.type = "ma",
+	interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/volc_plot.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
 </p>
 
