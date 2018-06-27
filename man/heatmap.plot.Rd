@@ -5,8 +5,8 @@
 \title{Create an object of class scSeqR.}
 \usage{
 heatmap.plot(x = NULL, gene = "NULL", plot.data.type = "tsne",
-  clust.dim = 2, cluster.by = "clusters", heat.colors = c("blue", "white",
-  "red"))
+  clust.dim = 2, cluster.by = "clusters", cluster.rows = F,
+  heat.colors = c("blue", "white", "red"))
 }
 \arguments{
 \item{x}{A data frame containing gene counts for cells.}

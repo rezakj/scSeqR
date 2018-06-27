@@ -14,6 +14,7 @@ heatmap.plot <- function (x = NULL,
                           plot.data.type = "tsne",
                           clust.dim = 2,
                           cluster.by = "clusters",
+                          cluster.rows = F,
                           heat.colors = c("blue" ,"white", "red")) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
@@ -94,7 +95,7 @@ To see the gene names issue this command: row.names(YOURobject@main.data)", sep=
   return(pheatmap(t(data),
                   col = mycol,
                   show_colnames = F,
-                  cluster_rows=T,
+                  cluster_rows=cluster.rows,
                   cluster_cols=F,
                   annotation_col = SideCol,
                   scale="row"))

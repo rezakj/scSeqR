@@ -4,8 +4,7 @@
 \alias{assign.clust}
 \title{Assign the optimal number of clusters to hierarchical clustering.}
 \usage{
-assign.clust(x = NULL, clust.num = 0, clust.type = "tsne",
-  clust.dim = 2)
+assign.clust(x = NULL, clust.num = 0, clust.type = "tsne")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

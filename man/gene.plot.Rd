@@ -4,7 +4,7 @@
 \alias{gene.plot}
 \title{Find optimal number of clusters.}
 \usage{
-gene.plot(x = NULL, gene = "NULL", box.to.test = 1,
+gene.plot(x = NULL, gene = "NULL", box.to.test = 0,
   box.pval = "sig.signs", plot.data.type = "tsne", clust.dim = 2,
   col.by = "clusters", plot.type = "scatterplot", cell.size = 1,
   cell.colors = c("gray", "red"), box.cell.col = "black",

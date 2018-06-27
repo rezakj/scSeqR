@@ -1,0 +1,6 @@
+Filters are:
+  - min mito 0 max mito 0.05 
+  - min # of genes 200 max # of genes 2400 
+  - min UMIs 0 max UMIs Inf 
+  - genes filtered by
+   RPL13,RPL10

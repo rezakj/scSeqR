@@ -5,8 +5,7 @@
 \title{Find optimal number of clusters.}
 \usage{
 opt.clust.num(x = NULL, max.clust = 20, gap.stat.nboot = 100,
-  verbose = TRUE, clust.type = "tsne", clust.dim = 2,
-  opt.method = "silhouette")
+  verbose = TRUE, clust.type = "tsne", opt.method = "silhouette")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

@@ -76,9 +76,10 @@ diff.exp <- function (x = NULL,
   cond1 <- dat[,Cluster0]
   cond2 <- dat[,Cluster1]
   ### merge both for pval length not matching error
-  mrgd <- merge(cond1, cond2, by="row.names")
-  row.names(mrgd) <- mrgd$Row.names
-  mrgd <- mrgd[,-1]
+  mrgd <- cbind(cond1,cond2)
+  #    mrgd <- merge(cond1, cond2, by="row.names")
+  #    row.names(mrgd) <- mrgd$Row.names
+  #    mrgd <- mrgd[,-1]
   mrgd <- data.matrix(mrgd)
   # mean
   meansCond1 <- apply(cond1, 1, function(cond1) {mean(cond1)})

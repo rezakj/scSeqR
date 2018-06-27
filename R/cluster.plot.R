@@ -64,11 +64,12 @@ cluster.plot <- function (x = NULL,
     col.legend <- factor(as.matrix(col.legend))
     }
   # clusters
+  # always use hierarchical (k means changes everytime you run)
   if (col.by == "clusters") {
     if (is.null(DATA$clusters)) {
       stop("Clusters are not assigend yet, please run assign.clust fisrt.")
     } else {
-      col.legend <- DATA$clusters
+      col.legend <- factor(DATA$clusters)
     }
   }
   # monochrome
@@ -135,7 +136,7 @@ cluster.plot <- function (x = NULL,
   }
   # density plot
   if (density == T) {
-    myPLOT <- ggplot(DATA, aes(DATA[,2], fill= col.legend)) +
+    myPLOT <- ggplot(DATA, aes(DATA[,2], fill = col.legend)) +
       geom_density(alpha=cell.transparency) +
       xlab("Dim2") +
       scale_color_discrete(name="") + theme_bw()

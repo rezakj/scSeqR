@@ -9,27 +9,19 @@
 #' }
 #' @export
 clust.avg.exp <- function (x = NULL,
-                           clust.type = "tsne",
-                           clust.dim = 2) {
+                           clust.type = "tsne") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
+  # tSNE
   if (clust.type == "tsne") {
-    if (clust.dim == 2) {
       DATA <- x@tsne.data
     }
-    if (clust.dim == 3) {
-      DATA <- x@tsne.data.3d
-    }
-  }
+  # PCA
   if (clust.type == "pca") {
-    if (clust.dim == 2) {
       DATA <- x@pca.data
-    }
-    if (clust.dim == 3) {
-      DATA <- x@pca.data.3d
-    }
   }
+  # get data
   sampleCondition <- DATA$clusters
   conditions <- unique(sampleCondition)
   DATA1 <- DATA

@@ -12,7 +12,7 @@
 #' @export
 gene.plot <- function (x = NULL,
                        gene = "NULL",
-                       box.to.test = 1,
+                       box.to.test = 0,
                        box.pval = "sig.signs",
                        plot.data.type = "tsne",
                        clust.dim = 2,
@@ -143,12 +143,19 @@ gene.plot <- function (x = NULL,
     ggtitle(gene) +
     geom_boxplot(fill = box.color,
                  col = "green",
-                 notch = T,
+                 notch = F,
                  outlier.shape = NA,
                  alpha = cell.transparency) +
     ylab("scaled normalized expression") +
     xlab(".")
   # add p-val
+  if (box.to.test == 0) {
+    AvData <- x@clust.avg
+    row.names(AvData) <- AvData$gene
+    AvData <- AvData[,-1]
+    AvData <- subset(AvData,row.names(AvData) == gene)
+    box.to.test <- as.numeric(which.max(AvData))
+  }
   if (box.pval == "sig.signs") {
     myPLOT <- myPLOT + stat_compare_means(label = "p.signif", ref.group = box.to.test)
   }
