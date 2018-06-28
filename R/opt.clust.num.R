@@ -37,10 +37,10 @@ opt.clust.num <- function (x = NULL,
 #    }
 #  if (clust.dim == 3) {
     if (clust.type == "tsne") {
-      df <- (x@tsne.data)[1:3]
+      df <- (x@tsne.data.3d)[1:3]
     }
     if (clust.type == "pca") {
-      df <- (x@pca.data)[1:3]
+      df <- (x@pca.data.3d)[1:3]
     }
 #  }
   if (clust.type == "distance") {
