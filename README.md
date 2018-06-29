@@ -1,6 +1,6 @@
-# scSeqR (Version: 0.99.0)
+# scSeqR v0.99.0
 
-Maintainers: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
+Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 
 ### Single Cell Sequencing R package (scSeqR)
 
