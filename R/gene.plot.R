@@ -102,7 +102,7 @@ gene.plot <- function (x = NULL,
         scale_colour_gradient(low = cell.colors[1], high = cell.colors[2], name="") +
         xlab("Dim1") +
         ylab("Dim2") +
-        ggtitle(MyTitle) +
+        ggtitle(paste(MyTitle,"for (",gene,")")) +
         theme(panel.background = element_rect(fill = back.col, colour = "black"),
               panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               legend.key = element_rect(fill = back.col))
@@ -113,7 +113,7 @@ gene.plot <- function (x = NULL,
         scale_colour_gradient(low = cell.colors[1], high = cell.colors[2], name="") +
         xlab("Dim1") +
         ylab("Dim2") +
-        ggtitle(MyTitle) +
+        ggtitle(paste(MyTitle,"for (",gene,")")) +
         theme_bw()
     }
   }

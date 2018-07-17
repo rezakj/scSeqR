@@ -24,25 +24,14 @@ opt.clust.num <- function (x = NULL,
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-#  if (clust.dim != 2 && clust.dim != 3) {
-#    stop("clust.dim should be either 2 or 3")
-#  }
-#  if (clust.dim == 2) {
-#  if (clust.type == "tsne") {
-#    df <- (x@tsne.data)[1:2]
-#  }
-#  if (clust.type == "pca") {
-#    df <- (x@pca.data)[1:2]
-#  }
-#    }
-#  if (clust.dim == 3) {
+# get data
     if (clust.type == "tsne") {
-      df <- (x@tsne.data)[1:3]
+      df <- (x@tsne.data)[1:2]
     }
     if (clust.type == "pca") {
-      df <- (x@pca.data)[1:3]
+      df <- (x@pca.data)[1:2]
     }
-#  }
+  #
   if (clust.type == "distance") {
     df <- x@dist.data
   }

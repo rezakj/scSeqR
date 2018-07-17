@@ -28,8 +28,9 @@ cell.filter <- function (x = NULL,
                          max.genes = Inf,
                          min.umis = 0,
                          max.umis = Inf,
+                         filter.by.cell.id = "character",
                          filter.by.gene = "character",
-                         filter.by.gene.min = 1) {
+                         filter.by.gene.exp.min = 1) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -42,13 +43,26 @@ cell.filter <- function (x = NULL,
     if (genExist != numberOfgenes) {
       stop("your data lacks the gene/genes in filter.by.gene.")
     }
-  gene.filt <- t(subset(DATA, row.names(DATA) %in% filter.by.gene) >= filter.by.gene.min)
+  gene.filt <- t(subset(DATA, row.names(DATA) %in% filter.by.gene) >= filter.by.gene.exp.min)
 #  gene.filted <- as.data.frame(rowSums(gene.filt) > 0L)
   gene.filted <- as.data.frame(apply(gene.filt, 1, any))
   colnames(gene.filted) <- "gene.filter"
   gene.filt.cells <- row.names(subset(gene.filted, gene.filter == F))
   goneCells <- length(gene.filt.cells)
   allCells <- length(colnames(DATA))
+  }
+# filter by cell id
+#  filter.by.cell.id = c("WT_AAACATACAACCAC.1","WT_AAACATTGATCAGC.1")
+  if (filter.by.cell.id[1] != "character"){
+    z = filter.by.cell.id %in% colnames(DATA)
+    Missing.cell.ids <- filter.by.cell.id[-which(z, arr.ind = T, useNames = T)]
+    Missing.cell.ids <- paste(Missing.cell.ids, collapse=",")
+    if (length(filter.by.cell.id) != length(z[z==TRUE])) {
+      stop(paste("Your dataset lacks the following ids:   ",Missing.cell.ids))
+    }
+    DATA <- DATA[ , -which(names(DATA) %in% filter.by.cell.id)]
+    FiltCellIds <- paste(filter.by.cell.id , collapse=",")
+    print(paste("The following cells were filtered out:   ", FiltCellIds))
   }
 # filter by mito
   MAXmito <- as.character(subset(x@stats, x@stats$mito.percent > max.mito)$CellIds)
@@ -89,7 +103,7 @@ cell.filter <- function (x = NULL,
     GenesForFilter = paste(filter.by.gene, collapse=",")
     print(paste(goneCells,"cells out of original",allCells,
                 " cells were filtered out as their expression was less than",
-                filter.by.gene.min,"for",GenesForFilter))
+                filter.by.gene.exp.min,"for",GenesForFilter))
   }
 # make a filter parameters file
   GenesForFilter = paste(filter.by.gene, collapse=",")
@@ -97,8 +111,10 @@ cell.filter <- function (x = NULL,
   - min mito",min.mito,"max mito",max.mito,"
   - min # of genes",min.genes,"max # of genes",max.genes,"
   - min UMIs",min.umis,"max UMIs",max.umis,"
-  - genes filtered by
-  ",GenesForFilter)
+  - Cells were also filtered by the expression of the following genes (user input):
+  ",GenesForFilter,"
+  - In addition the following cell ids were also filtered out (user input):
+  ",FiltCellIds)
 # write filter parameters
   write.table((FilterFile),file="filters_set.txt", row.names =F, quote = F, col.names = F)
   print("filters_set.txt file has beed generated and includes the filters set for this experiment.")
