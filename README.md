@@ -321,7 +321,7 @@ cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",clust.dim = 2,inter
 cluster.plot(my.obj,plot.type = "tsne",col.by = "clusters",clust.dim = 2,interactive = F,density = T)	
 ```
 
-To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
+To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
