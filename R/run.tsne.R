@@ -13,12 +13,10 @@
 #' }
 #' @import Rtsne
 #' @export
-cluster.data <- function (x = NULL,
+run.tsne <- function (x = NULL,
                           clust.method = "base.mean.rank",
                           top.rank = 500,
-                          gene.list = "my_model_genes.txt",
-                          clust.type = "tsne",
-                          dist.method = "euclidean") {
+                          gene.list = "my_model_genes.txt") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -50,7 +48,6 @@ cluster.data <- function (x = NULL,
   }
 #  2 dimention
 #  if (clust.dim == 2) {
-    if (clust.type == "tsne") {
       TransPosed <- t(TopNormLogScale)
       tsne <- Rtsne(TransPosed, check_duplicates = FALSE, dims = 2)
       tsne.data = as.data.frame(tsne$Y)
@@ -58,16 +55,9 @@ cluster.data <- function (x = NULL,
       rownames(tsne.data) <- tsne.data$cells
       tsne.data <- tsne.data[,-1]
       attributes(x)$tsne.data <- tsne.data
-    }
-    if (clust.type == "pca") {
-      counts.pca <- prcomp(TopNormLogScale,center = T,scale. = T)
-      dataPCA = data.frame(counts.pca$rotation)[1:2]
-      attributes(x)$pca.data <- dataPCA
-    }
 #  }
 # choose 3 demention
   # tSNE
-    if (clust.type == "tsne") {
       TransPosed <- t(TopNormLogScale)
       tsne <- Rtsne(TransPosed, check_duplicates = FALSE, dims = 3)
       tsne.data = as.data.frame(tsne$Y)
@@ -75,18 +65,5 @@ cluster.data <- function (x = NULL,
       rownames(tsne.data) <- tsne.data$cells
       tsne.data <- tsne.data[,-1]
       attributes(x)$tsne.data.3d <- tsne.data
-    }
-  # PCA
-    if (clust.type == "pca") {
-      counts.pca <- prcomp(TopNormLogScale,center = T,scale. = T)
-      dataPCA = data.frame(counts.pca$rotation)[1:3]
-      attributes(x)$pca.data.3d <- dataPCA
-    }
-  # distance
-    if (clust.type == "distance") {
-  dists = dist(t(TopNormLogScale), method = dist.method)
-  dists.data = as.data.frame(as.matrix(dists))
-  attributes(x)$dist.data <- dists.data
-  }
   return(x)
 }

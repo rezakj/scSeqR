@@ -10,32 +10,16 @@
 #' assign.clust(my.obj, clust.num = 7)
 #' }
 #' @export
-reassign.clust <- function (x = NULL,
+change.clust <- function (x = NULL,
                           change.clust = 0,
-                          to.clust = 0,
-                          clust.type = "tsne") {
+                          to.clust = 0) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
 ###################
-  if (clust.type == "tsne") {
-    DATA <- (x@tsne.data)
+    DATA <- (x@best.clust)
     DATA$clusters <- gsub(change.clust,to.clust,DATA$clusters)
-    attributes(x)$tsne.data <- DATA
-    # 3d
-    DATA <- (x@tsne.data.3d)
-    DATA$clusters <- gsub(change.clust,to.clust,DATA$clusters)
-    attributes(x)$tsne.data.3d <- DATA
-  }
-  if (clust.type == "pca") {
-    DATA <- (x@pca.data)
-    DATA$clusters <- gsub(change.clust,to.clust,DATA$clusters)
-    attributes(x)$pca.data <- DATA
-    # merge with 2 d
-    DATA <- (x@pca.data.3d)
-    DATA$clusters <- gsub(change.clust,to.clust,DATA$clusters)
-    attributes(x)$pca.data.3d <- DATA
-  }
+    attributes(x)$best.clust <- DATA
 ##############
   return(x)
 }

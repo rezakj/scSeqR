@@ -11,8 +11,6 @@
 #' @export
 heatmap.plot <- function (x = NULL,
                           gene = "NULL",
-                          plot.data.type = "tsne",
-                          clust.dim = 2,
                           cluster.by = "clusters",
                           cluster.rows = F,
                           heat.colors = c("blue" ,"white", "red")) {
@@ -32,41 +30,21 @@ To see the gene names issue this command: row.names(YOURobject@main.data)", sep=
     stop(print(ToPrint))
   }
   ##### get cluster data
-  # 2 dimentions
-  if (clust.dim == 2) {
-    if (plot.data.type == "tsne") {
-      MyTitle = "tSNE Plot"
-      DATA <- x@tsne.data
-    }
-    if (plot.data.type == "pca") {
-      MyTitle = "PCA Plot"
-      DATA <- x@pca.data
-    }
-  }
-  # 3 dimentions
-  if (clust.dim == 3) {
-    if (plot.data.type == "tsne") {
-      MyTitle = "3D tSNE Plot"
-      DATA <- x@tsne.data.3d
-    }
-    if (plot.data.type == "pca") {
-      MyTitle = "3D PCA Plot"
-      DATA <- x@pca.data.3d
-    }
-  }
+      DATA <- x@best.clust
 ### get main data
   sub.data <- subset(DATAmain,rownames(DATAmain) %in% gene)
   data.t <- t(sub.data)
   data.expr <- as.data.frame(data.t)
 ## clusters
   if (cluster.by == "clusters") {
-  clusters = DATA[3]
+  clusters = DATA
 # merge
   mrgd <- merge(clusters, data.expr, by="row.names")
   row.names(mrgd) <- mrgd$Row.names
   mrgd <- mrgd[,-1]
   mrgd <- (mrgd[order(mrgd$clusters, decreasing = F),])
   SideCol <- mrgd[1]
+  SideCol$clusters <- sub("^", "cl.",SideCol$clusters)
   data <- mrgd[,-1]
   data <- data.matrix(data)
   data <- log2(data + 1)

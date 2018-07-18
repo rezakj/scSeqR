@@ -10,7 +10,6 @@
 #'
 #' @export
 find.markers <- function (x = NULL,
-          data.type = "tsne",
           fold.change = 2,
           padjval = 0.1,
           Inf.FCs = FALSE,
@@ -20,15 +19,8 @@ find.markers <- function (x = NULL,
   }
   ###########
   dat <- x@main.data
-  # get data
-    if (data.type == "tsne") {
-      MyTitle = "tSNE Plot"
-      DATA <- x@tsne.data
-    }
-    if (data.type == "pca") {
-      MyTitle = "PCA Plot"
-      DATA <- x@pca.data
-    }
+  # get cluster data
+      DATA <- x@best.clust
   ############## set wich clusters you want as condition 1 and 2
   MyClusts <- as.numeric(unique(DATA$clusters))
   for (i in MyClusts) {

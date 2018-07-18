@@ -10,41 +10,16 @@
 #'
 #' @export
 diff.exp <- function (x = NULL,
-                      plot.type = "tsne",
-                      clust.dim = 2,
                       de.by = "clusters",
                       cond.1 = "array",
                       cond.2 = "array") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  if (clust.dim != 2 && clust.dim != 3) {
-    stop("clust.dim should be either 2 or 3")
-  }
   ###########
   dat <- x@main.data
   # 2 dimentions
-  if (clust.dim == 2) {
-    if (plot.type == "tsne") {
-      MyTitle = "tSNE Plot"
-      DATA <- x@tsne.data
-    }
-    if (plot.type == "pca") {
-      MyTitle = "PCA Plot"
-      DATA <- x@pca.data
-    }
-  }
-  # 3 dimentions
-  if (clust.dim == 3) {
-    if (plot.type == "tsne") {
-      MyTitle = "3D tSNE Plot"
-      DATA <- x@tsne.data.3d
-    }
-    if (plot.type == "pca") {
-      MyTitle = "3D PCA Plot"
-      DATA <- x@pca.data.3d
-    }
-  }
+      DATA <- x@best.clust
   ############## set wich clusters you want as condition 1 and 2
   CondA = cond.1
   CondB = cond.2

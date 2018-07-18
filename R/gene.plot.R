@@ -65,7 +65,7 @@ gene.plot <- function (x = NULL,
     }
     if (plot.data.type == "pca") {
       MyTitle = "3D PCA Plot"
-      DATA <- x@pca.data.3d
+      DATA <- x@pca.data
     }
   }
   # conditions
@@ -75,10 +75,12 @@ gene.plot <- function (x = NULL,
   }
   # clusters
   if (col.by == "clusters") {
-    if (is.null(DATA$clusters)) {
-      stop("Clusters are not assigend yet, please run assign.clust fisrt.")
+    if (is.null(x@best.clust)) {
+      stop("Clusters are not assigend yet")
     } else {
-      col.legend.box <- DATA$clusters
+      col.legend.box <- x@best.clust
+      col.legend.box$clusters <- sub("^", "cl.",col.legend.box$clusters)
+      col.legend.box <- factor(col.legend.box$clusters)
     }
   }
 ###### make binary
