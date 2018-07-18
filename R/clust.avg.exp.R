@@ -8,19 +8,11 @@
 #' scale.data(my.obj)
 #' }
 #' @export
-clust.avg.exp <- function (x = NULL,
-                           clust.type = "tsne") {
+clust.avg.exp <- function (x = NULL) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  # tSNE
-  if (clust.type == "tsne") {
-      DATA <- x@tsne.data
-    }
-  # PCA
-  if (clust.type == "pca") {
-      DATA <- x@pca.data
-  }
+      DATA <- x@best.clust
   # get data
   sampleCondition <- DATA$clusters
   conditions <- unique(sampleCondition)

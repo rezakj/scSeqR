@@ -4,8 +4,8 @@
 \alias{diff.exp}
 \title{Create an object of class scSeqR.}
 \usage{
-diff.exp(x = NULL, plot.type = "tsne", clust.dim = 2,
-  de.by = "clusters", cond.1 = "array", cond.2 = "array")
+diff.exp(x = NULL, de.by = "clusters", cond.1 = "array",
+  cond.2 = "array")
 }
 \arguments{
 \item{x}{A data frame containing gene counts for cells.}

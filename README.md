@@ -1,6 +1,7 @@
-# scSeqR
+# scSeqR v0.99.0
+## We hope to have the official release of version 1 with final and stable functions in August. 
 
-### official release in July (under construction)
+Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 
 ### Single Cell Sequencing R package (scSeqR)
 

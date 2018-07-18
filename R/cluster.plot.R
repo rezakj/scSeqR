@@ -55,7 +55,7 @@ cluster.plot <- function (x = NULL,
     }
     if (plot.type == "pca") {
       MyTitle = "3D PCA Plot"
-      DATA <- x@pca.data.3d
+      DATA <- x@pca.data
     }
   }
   # conditions
@@ -66,10 +66,10 @@ cluster.plot <- function (x = NULL,
   # clusters
   # always use hierarchical (k means changes everytime you run)
   if (col.by == "clusters") {
-    if (is.null(DATA$clusters)) {
+    if (is.null(x@cluster.data$Best.partition)) {
       stop("Clusters are not assigend yet, please run assign.clust fisrt.")
     } else {
-      col.legend <- factor(DATA$clusters)
+      col.legend <- factor(x@best.clust$clusters)
     }
   }
   # monochrome

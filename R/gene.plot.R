@@ -65,7 +65,7 @@ gene.plot <- function (x = NULL,
     }
     if (plot.data.type == "pca") {
       MyTitle = "3D PCA Plot"
-      DATA <- x@pca.data.3d
+      DATA <- x@pca.data
     }
   }
   # conditions
@@ -75,10 +75,12 @@ gene.plot <- function (x = NULL,
   }
   # clusters
   if (col.by == "clusters") {
-    if (is.null(DATA$clusters)) {
-      stop("Clusters are not assigend yet, please run assign.clust fisrt.")
+    if (is.null(x@best.clust)) {
+      stop("Clusters are not assigend yet")
     } else {
-      col.legend.box <- DATA$clusters
+      col.legend.box <- x@best.clust
+      col.legend.box$clusters <- sub("^", "cl.",col.legend.box$clusters)
+      col.legend.box <- factor(col.legend.box$clusters)
     }
   }
 ###### make binary
@@ -102,7 +104,7 @@ gene.plot <- function (x = NULL,
         scale_colour_gradient(low = cell.colors[1], high = cell.colors[2], name="") +
         xlab("Dim1") +
         ylab("Dim2") +
-        ggtitle(MyTitle) +
+        ggtitle(paste(MyTitle,"for (",gene,")")) +
         theme(panel.background = element_rect(fill = back.col, colour = "black"),
               panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               legend.key = element_rect(fill = back.col))
@@ -113,7 +115,7 @@ gene.plot <- function (x = NULL,
         scale_colour_gradient(low = cell.colors[1], high = cell.colors[2], name="") +
         xlab("Dim1") +
         ylab("Dim2") +
-        ggtitle(MyTitle) +
+        ggtitle(paste(MyTitle,"for (",gene,")")) +
         theme_bw()
     }
   }
