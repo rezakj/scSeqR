@@ -51,6 +51,11 @@ cell.filter <- function (x = NULL,
   goneCells <- length(gene.filt.cells)
   allCells <- length(colnames(DATA))
   }
+  #
+  GenesForFilter = paste(filter.by.gene, collapse=",")
+  if (filter.by.gene[1] == "character") {
+    GenesForFilter = "no cells were filtered based on expression."
+  }
 # filter by cell id
 #  filter.by.cell.id = c("WT_AAACATACAACCAC.1","WT_AAACATTGATCAGC.1")
   if (filter.by.cell.id[1] != "character"){
@@ -63,6 +68,9 @@ cell.filter <- function (x = NULL,
     DATA <- DATA[ , -which(names(DATA) %in% filter.by.cell.id)]
     FiltCellIds <- paste(filter.by.cell.id , collapse=",")
     print(paste("The following cells were filtered out:   ", FiltCellIds))
+  }
+  if (filter.by.cell.id[1] == "character") {
+    FiltCellIds = "no cell ids were filtered."
   }
 # filter by mito
   MAXmito <- as.character(subset(x@stats, x@stats$mito.percent > max.mito)$CellIds)
@@ -105,8 +113,10 @@ cell.filter <- function (x = NULL,
                 " cells were filtered out as their expression was less than",
                 filter.by.gene.exp.min,"for",GenesForFilter))
   }
+  if (filter.by.cell.id[1] == "character") {
+    print("No cell id filter")
+  }
 # make a filter parameters file
-  GenesForFilter = paste(filter.by.gene, collapse=",")
   FilterFile <- paste("Filters are:
   - min mito",min.mito,"max mito",max.mito,"
   - min # of genes",min.genes,"max # of genes",max.genes,"

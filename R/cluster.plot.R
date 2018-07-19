@@ -78,6 +78,7 @@ cluster.plot <- function (x = NULL,
     myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
                                text = row.names(DATA))) +
       geom_point(size = cell.size, col = cell.color, alpha = cell.transparency) +
+      guides(colour = guide_legend(override.aes = list(size=5))) +
       xlab("Dim1") +
       ylab("Dim2") +
       ggtitle(MyTitle) +
@@ -104,6 +105,7 @@ cluster.plot <- function (x = NULL,
       myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
                                  text = row.names(DATA), color = col.legend)) +
         geom_point(size = cell.size, alpha = cell.transparency) +
+        guides(colour = guide_legend(override.aes = list(size=5))) +
         xlab("Dim1") +
         ylab("Dim2") +
         ggtitle(MyTitle) +
@@ -115,6 +117,7 @@ cluster.plot <- function (x = NULL,
       myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
                                  text = row.names(DATA), color = col.legend)) +
         geom_point(size = cell.size, alpha = cell.transparency) +
+        guides(colour = guide_legend(override.aes = list(size=5))) +
         xlab("Dim1") +
         ylab("Dim2") +
         ggtitle(MyTitle) +

@@ -113,7 +113,7 @@ if (do == 2) {
   if (plot.type == "point.gene.umi") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
-      htmlwidgets::saveWidget(ggplotly(Mito.UMIs),OUT.PUT)
+      htmlwidgets::saveWidget(ggplotly(Genes.UMIs),OUT.PUT)
     }
     else
     return(Genes.UMIs)
