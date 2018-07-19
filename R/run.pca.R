@@ -21,19 +21,13 @@ run.pca <- function (x = NULL,
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  #  if (clust.dim != 2 && clust.dim != 3) {
-  #    stop("clust.dim should be either 2 or 3")
-  #  }
-  if (clust.method == "dispersed.genes" && clust.method == "both") {
-    stop("dispersed.genes and both are not implemented yet")
-  }
   # geth the genes and scale them based on model
   DATA <- x@main.data
   # model base mean rank
   if (clust.method == "base.mean.rank") {
     raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
     topGenes <- head(raw.data.order,top.rank)
-    NormLog <- log(topGenes+0.1)
+    NormLog <- log(topGenes + 0.1)
     TopNormLogScale <- as.data.frame(scale(NormLog))
   }
   # gene model
@@ -43,12 +37,12 @@ run.pca <- function (x = NULL,
     } else {
       genesForClustering <- readLines(gene.list)
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
-      NormLog <- log(topGenes+0.1)
+      NormLog <- log(topGenes + 0.1)
       TopNormLogScale <- as.data.frame(scale(NormLog))
     }
   }
 # PCA
-    counts.pca <- prcomp(TopNormLogScale,center = T,scale. = T)
+    counts.pca <- prcomp(TopNormLogScale, center = T, scale. = T)
     dataPCA = data.frame(counts.pca$rotation)[1:max.dim]
     attributes(x)$pca.data <- dataPCA
   return(x)
