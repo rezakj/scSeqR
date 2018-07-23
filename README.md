@@ -247,17 +247,41 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 </p>
 
 
-- Cluster data
-
-scSeqR let's you perform 2 dimentional and 3 dementional PCA and tSNE clustering (recomanded). You also have the option of distance based clustering using "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski" methods.
+- Perform PCA and tSNE
 
 ```r
-# tSNE
-my.obj <- cluster.data(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", clust.type = "tsne")
-
 # PCA
-my.obj <- cluster.data(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", clust.type = "pca")
+my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt",max.dim = 10)
+
+# tSNE
+my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 ```        
+
+- Cluster the data
+
+Here you have the option of clustering your data based on the following methods:
+
+"ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
+
+For the distance calculation used for clustering, you have the following options:
+
+"euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski" or "NULL"
+
+With the following indexing methods:
+
+"kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew", "friedman", "rubin", "cindex", "db", "silhouette", "duda", "pseudot2", "beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain", "gamma", "gplus", "tau", "dunn", "hubert", "sdindex", "dindex", "sdbw"
+
+We recomand to use the defult options as below:
+
+```r
+my.obj <- run.clustering(my.obj, 
+	clust.method = "kmeans", 
+	dist.method = "euclidean",
+	index.method = "silhouette",
+	max.clust = 20)
+
+my.obj@cluster.data$Best.nc
+```
 
 - Visualize conditions
 
