@@ -13,6 +13,7 @@ Imports: Matrix,
   factoextra, 
   gridExtra,
   ggpubr,
+  scatterplot3d,
   RColorBrewer,
   knitr,
   pheatmap
