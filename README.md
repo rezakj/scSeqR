@@ -261,15 +261,16 @@ my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_ge
 
 Here you have the option of clustering your data based on the following methods:
 
-"ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
+   "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
 
 For the distance calculation used for clustering, you have the following options:
 
-"euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski" or "NULL"
+   "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski" or "NULL"
 
 With the following indexing methods:
 
-"kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew", "friedman", "rubin", "cindex", "db", "silhouette", "duda", "pseudot2", "beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain", "gamma", "gplus", "tau", "dunn", "hubert", "sdindex", "dindex", "sdbw"
+   "kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew", "friedman", "rubin", "cindex", "db", "silhouette",    "duda", "pseudot2", "beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain", "gamma", "gplus", "tau",
+   "dunn", "hubert", "sdindex", "dindex", "sdbw"
 
 We recomand to use the defult options as below:
 
