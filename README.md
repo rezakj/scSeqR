@@ -493,15 +493,10 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 - Heatmap
 
 ```r
-MyGenes <- top.markers(marker.genes, topde = 20, SDmin = 5)
-
-heatmap.plot (my.obj,
-	gene = MyGenes,
-	plot.data.type = "tsne",
-	clust.dim = 2,
-	cluster.by = "clusters",
-	cluster.rows = T,
-	heat.colors = c("yellow" ,"black", "green"))
+# find top genes
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
+# plot
+heatmap.plot (my.obj, gene = MyGenes)
 ```
 
 <p align="center">
@@ -514,20 +509,13 @@ heatmap.plot (my.obj,
 ```r
 diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
 head(diff.res)
-#            baseMean         1_4          2 foldChange log2FoldChange         pval
-#A1BG     0.067851093 0.073152434 0.04338571  0.5930863     -0.7536861 4.899112e-02
-#A1BG.AS1 0.010512038 0.009559705 0.01490700  1.5593579      0.6409521 4.978422e-01
-#A1CF     0.000000000 0.000000000 0.00000000        NaN            NaN          NaN
-#A2M      0.001876722 0.002283384 0.00000000  0.0000000           -Inf 4.845531e-02
-#A2M.AS1  0.017602004 0.021416137 0.00000000  0.0000000           -Inf 3.324006e-06
-#A2ML1    0.000000000 0.000000000 0.00000000        NaN            NaN          NaN
-#               padj
-#A1BG     1.00000000
-#A1BG.AS1 1.00000000
-#A1CF            NaN
-#A2M      1.00000000
-#A2M.AS1  0.04989001
-#A2ML1           NaN
+#            baseMean         1_4           2 foldChange log2FoldChange       pval padj
+#A1BG     0.077190139 0.074259871 0.083831677  1.1288961     0.17491269 0.57280382    1
+#A1BG.AS1 0.012955469 0.012987451 0.012882983  0.9919563    -0.01165159 0.98544380    1
+#A1CF     0.000000000 0.000000000 0.000000000        NaN            NaN        NaN  NaN
+#A2M      0.001619038 0.002333362 0.000000000  0.0000000           -Inf 0.08640707    1
+#A2M.AS1  0.008605967 0.009663693 0.006208601  0.6424667    -0.63830651 0.43764549    1
+#A2ML1    0.000000000 0.000000000 0.000000000        NaN            NaN        NaN  NaN
 
 # more examples 
 diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("KO"), cond.2 = c("WT"))
