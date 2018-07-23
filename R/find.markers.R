@@ -13,6 +13,7 @@ find.markers <- function (x = NULL,
           fold.change = 2,
           padjval = 0.1,
           Inf.FCs = FALSE,
+          uniq = T,
           positive = TRUE) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
@@ -103,6 +104,9 @@ find.markers <- function (x = NULL,
   df <- do.call("rbind", datalist)
   row.names(df) <- make.names(df$gene, unique=TRUE)
   df <- subset(df, gene != "NA")
+  if (uniq == T) {
+    df <- df[!duplicated(df$gene), ]
+  }
   if (Inf.FCs == FALSE) {
     df <- subset(df, log2FoldChange != Inf)
     df <- subset(df, log2FoldChange != Inf & log2FoldChange != -Inf)

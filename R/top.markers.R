@@ -10,11 +10,12 @@
 #' }
 #' @import Matrix
 #' @export
-top.markers <- function (x = NULL, topde = 5, SDmin = 1) {
+top.markers <- function (x = NULL, topde = 5, min.base.mean = 0.5) {
   MyClusts <- (unique(x$clusters))
+#  x <- x[order(x$baseMean,decreasing = T),]
   for (i in MyClusts) {
     DATA <- subset(x, x$clusters == i)
-    DATA <- subset(DATA, DATA$baseSD > SDmin)
+    DATA <- subset(DATA, DATA$baseMean >= min.base.mean)
     DATA <- as.character(head(DATA,topde)$gene)
     DatNmaes=paste("topgenes",i,sep="_")
     eval(call("<-", as.name(DatNmaes), DATA))

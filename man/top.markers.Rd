@@ -4,7 +4,7 @@
 \alias{top.markers}
 \title{Load 10X data as data.frame}
 \usage{
-top.markers(x = NULL, topde = 5, SDmin = 1)
+top.markers(x = NULL, topde = 5, min.base.mean = 0.5)
 }
 \arguments{
 \item{dir.10x}{A directory that includes the 10X barcodes.tsv, genes.tsv and matrix.mtx files.}

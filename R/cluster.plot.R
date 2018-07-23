@@ -17,6 +17,8 @@
 #' tsne.plot(my.obj)
 #' }
 #' @import ggplot2
+#' @import RColorBrewer
+#' @import scatterplot3d
 #' @export
 cluster.plot <- function (x = NULL,
                           cell.size = 1,
@@ -26,6 +28,7 @@ cluster.plot <- function (x = NULL,
                           col.by = "clusters",
                           cell.transparency = 0.5,
                           clust.dim = 2,
+                          angle = 20,
                           density = F,
                           interactive = TRUE,
                           out.name = "plot") {
@@ -127,6 +130,7 @@ cluster.plot <- function (x = NULL,
   }
 # plot 3d
   if (clust.dim == 3) {
+    if (interactive == T) {
     myPLOT <- plot_ly(DATA, x = DATA[,1], y = DATA[,2], z = DATA[,3], text = row.names(DATA),
                       color = col.legend, opacity = cell.transparency, marker = list(size = cell.size + 2)) %>%
       layout(DATA, x = DATA[,1], y = DATA[,2], z = DATA[,3]) %>%
@@ -136,7 +140,49 @@ cluster.plot <- function (x = NULL,
            scene = list(xaxis = list(title = "Dim1"),
                         yaxis = list(title = "Dim2"),
                         zaxis = list(title = "Dim3")))
+  } else {
+    # colors
+    col.legend <- factor(x@best.clust$clusters)
+    qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+    colors = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+    col.legend <- colors[as.numeric(x@best.clust$clusters)]
+    #
+    scatterplot3d (x = DATA[,2], y = DATA[,3], z = DATA[,1],
+                color = col.legend,
+                pch = 19,
+                xlab = "Dim2", ylab = "Dim3",zlab = "Dim1",
+                main = MyTitle,
+                grid = T,
+                box = T,
+                scale.y = 1,
+                angle = angle,
+                mar = c(3,3,3,6)+0.1,
+                cex.axis = 0.6,
+                cex.symbols = cell.size,
+                highlight.3d = FALSE)
+    # legend
+    legend("topright", legend = levels(as.factor(x@best.clust$clusters)),
+           col =  colors,
+           pch = 19,
+           inset = -0.1,
+           xpd = T,
+           horiz = F)
+#    scatter3D(x = DATA[,2], y = DATA[,3], z = DATA[,1],
+#              colvar = NULL,
+#              col = col.legend,
+#              pch = 19,
+#              cex = 1,
+#              colkey = T,
+#              col.panel ="steelblue",
+#              col.grid = "darkblue",
+#              ticktype = "detailed",
+#              bty ="g",
+#              d = 2,
+#             phi = 10,
+#              theta = 15)
+    myPLOT = "plot made"
   }
+}
   # density plot
   if (density == T) {
     myPLOT <- ggplot(DATA, aes(DATA[,2], fill = col.legend)) +
