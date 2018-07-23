@@ -7,7 +7,7 @@ Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 
 scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
 files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.gov/)). The program inputs single cell data in [10X format](https://www.10xgenomics.com/), large numeric **matrix files** and **data frames** and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster. scSeqR, allows you to choose from **multiple normalization** methods and **spike-in normalization** depending on your data type. Alternatively, you can also use 
-**already normalized** data.
+**already normalized** data. You also have the option of choosing from a variaty of clustering algorithms. 
 
 ***
 ## How to install scSeqR
@@ -21,7 +21,10 @@ install.packages(c("ggplot2",
      "Rtsne",
      "gmp", 
      "factoextra", 
-     "gridExtra"))
+     "gridExtra",
+     "scatterplot3d",
+     "RColorBrewer",
+     "pheatmap"))
  ```
         
 - Then install the package in R.
@@ -153,9 +156,9 @@ To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
 
 - Filter cells. 
 
-scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondial content and even based on one or more genes. 
+scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondial content and even based on one or more genes, or cell ids. 
 
-Befor filtering let's do a quick test and see how the data looks like. This might be very helpful to check the gene or genes of your interest and see in howmany cells they expressed. This could also be helful to choose the genes for cell sorting or filteering that are needed in some studies. 
+Befor filtering let's do a quick test and see how the data looks like. This might be very helpful to check the gene or genes of your interest and see in howmany cells they are expressed in. This could also be helful to choose the genes for cell sorting or filteering that are needed in some studies. 
 
 ```r
 # run gene stats 
@@ -172,11 +175,12 @@ head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
 #27190  RPL13          2693               2700       99.74074 28.55963 17.00709
 ```
 
-Let's say that you are only interested in the cells in which RPL13 "OR" RPL10 are expressed, while have a maximum mito percent of 0.05 and a minimum number of 250 genes expressed and a maximum of 2400 genes. 
+Let's say that you are only interested in the cells in which RPL13 "OR" RPL10 are expressed, while have a maximum mito percent of 0.05 and a minimum number of 250 genes expressed and a maximum of 2400 genes. Maybe you also want to filter a cell with this id: WT_AAACATACAACCAC.1 
 
 ```r
 my.obj <- cell.filter(my.obj,
 	filter.by.gene = c("RPL13","RPL10"),
+	filter.by.cell.id = c("WT_AAACATACAACCAC.1"),
 	min.mito = 0,
 	max.mito = 0.05,
 	min.genes = 200,
