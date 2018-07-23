@@ -9,7 +9,7 @@ Description: scSeqR is an R package that can analyze single sequencing data type
   The program inputs single cell data in 10X format, large numeric matrix files and data frames and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster.
 Depends: R (>= 3.3.0), ggplot2, plotly
 Imports: Matrix, Rtsne, gmp, factoextra, gridExtra, ggpubr,
-        RColorBrewer, knitr, pheatmap
+        scatterplot3d, RColorBrewer, knitr, pheatmap
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -17,4 +17,4 @@ RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 URL: https://github.com/rezakj/scSeqR
 NeedsCompilation: no
-Packaged: 2018-07-19 17:16:25 UTC; khodaa01
+Packaged: 2018-07-23 20:28:15 UTC; khodaa01

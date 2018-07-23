@@ -5,7 +5,7 @@
 \title{Create an object of class scSeqR.}
 \usage{
 find.markers(x = NULL, fold.change = 2, padjval = 0.1, Inf.FCs = FALSE,
-  positive = TRUE)
+  uniq = T, positive = TRUE)
 }
 \arguments{
 \item{x}{A data frame containing gene counts for cells.}

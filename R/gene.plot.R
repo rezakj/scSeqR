@@ -93,6 +93,7 @@ gene.plot <- function (x = NULL,
   col.legend.bin = data.binary[[gene]]
 #### make heamap
   col.legend = log2(data.expr+1)
+  col.legend <- as.numeric(as.matrix(col.legend))
 ###
   if (plot.type == "scatterplot") {
   # plot 2d
