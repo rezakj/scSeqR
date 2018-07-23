@@ -472,6 +472,24 @@ gene.plot(my.obj, gene = "MS4A1",
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MS4A1_bar.png" width="400"/>
 </p>
 
+
+- Multiple plots
+
+```r
+genelist = c("PPBP","LYZ","MS4A1","GNLY","LTB","NKG7","IFITM2","CD14","S100A9")
+###
+library(gridExtra)
+for(i in genelist){
+	MyPlot <- gene.plot(my.obj, gene = i, 
+		plot.type = "scatterplot",
+		interactive = F,
+		out.name = "Cebpb_scatter_plot")
+	eval(call("<-", as.name(i), MyPlot))
+}
+### plot 
+grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
+```
+
 - Heatmap
 
 ```r
