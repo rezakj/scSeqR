@@ -301,6 +301,8 @@ To do this you might need to see what is the optimal number of clusters.
 
 - Visualize conditions
 
+As we artificially made 3 conditions by randomly dividing the sample into 3. All the conditions should be looking similar.
+
 ```r
 # tSNE
 cluster.plot(my.obj,
