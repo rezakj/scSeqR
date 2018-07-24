@@ -152,7 +152,7 @@ stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gene.umi.png" width="400"/>      
 </p>
 
-To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
+To see an example interactive plot click on this links: [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/mito-umi-plot.html) and [gene-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene-umi-plot.html)
 
 - Filter cells. 
 
