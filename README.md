@@ -360,14 +360,13 @@ cluster.plot(my.obj,
 	interactive = T,
 	out.name = "tSNE_3D_clusters")
 ```
-
-To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/master/doc/tSNE_plot2d_clustered.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conds_density.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_density.png" width="400"/> 	
+	To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_conditions.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
 </p>
 
         
