@@ -365,7 +365,7 @@ To see the above made interactive plots click on these links: [2Dplot](https://r
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/PCA_2D_clusters.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_conds_density.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_density.png" width="400"/> 	
 </p>
@@ -489,6 +489,11 @@ for(i in genelist){
 ### plot 
 grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 ```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list1.png" width="800" height="800" />
+</p>
+
 
 - Heatmap
 
