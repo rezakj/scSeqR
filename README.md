@@ -359,8 +359,22 @@ cluster.plot(my.obj,
 	clust.dim = 3,
 	interactive = T,
 	out.name = "tSNE_3D_clusters")
+
+# Density plot for clusters 
+cluster.plot(my.obj,
+	plot.type = "pca",
+	col.by = "clusters",
+	interactive = F,
+	density=T)
+
+# Density plot for conditions 
+cluster.plot(my.obj,
+	plot.type = "pca",
+	col.by = "conditions",
+	interactive = F,
+	density=T)
 ```
-To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
+## To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
         
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
