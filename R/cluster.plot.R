@@ -142,13 +142,19 @@ cluster.plot <- function (x = NULL,
                         zaxis = list(title = "Dim3")))
   } else {
     # colors
-    col.legend <- factor(x@best.clust$clusters)
+#    col.legend <- factor(x@best.clust$clusters)
     qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
     colors = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
-    col.legend <- colors[as.numeric(x@best.clust$clusters)]
+    if (col.by == "clusters") {
+      cols <- colors[as.numeric(x@best.clust$clusters)]
+    }
+    if (col.by == "conditions") {
+      col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
+      cols <- colors[as.numeric(as.matrix(col.legend))]
+    }
     #
     scatterplot3d (x = DATA[,2], y = DATA[,3], z = DATA[,1],
-                color = col.legend,
+                color = cols,
                 pch = 19,
                 xlab = "Dim2", ylab = "Dim3",zlab = "Dim1",
                 main = MyTitle,
@@ -184,6 +190,7 @@ cluster.plot <- function (x = NULL,
   }
 }
   # density plot
+#  col.legend <- factor(x@best.clust$clusters)
   if (density == T) {
     myPLOT <- ggplot(DATA, aes(DATA[,2], fill = col.legend)) +
       geom_density(alpha=cell.transparency) +
