@@ -9,7 +9,12 @@
 #' }
 #'
 #' @export
-make.obj <- function (x = NULL) {
-    object <- new(Class = "scSeqR",raw.data = x)
-  return(object)
+norm.adt <- function (x = NULL) {
+  if ("scSeqR" != class(x)[1]) {
+    stop("x should be an object of class scSeqR")
+  }
+  DATA <- x@adt.raw
+  DATA <- log2(DATA + 1)
+  attributes(x)$adt.main <- DATA
+  return(x)
 }
