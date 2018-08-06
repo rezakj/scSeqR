@@ -9,7 +9,10 @@
 #' }
 #'
 #' @export
-make.obj <- function (x = NULL) {
-    object <- new(Class = "scSeqR",raw.data = x)
-  return(object)
+add.adt <- function (x = NULL, adt.data = "data.frame") {
+  if (class(adt.data) != "data.frame") {
+    stop("ADT data should be a data frame object")
+  }
+  attributes(x)$adt.raw <- adt.data
+  return(x)
 }

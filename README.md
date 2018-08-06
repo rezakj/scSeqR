@@ -1,5 +1,4 @@
 # scSeqR v0.99.0
-## We hope to have the official release of version 1 with final and stable functions in August. 
 
 Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 
@@ -152,7 +151,7 @@ stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gene.umi.png" width="400"/>      
 </p>
 
-To see an example interactive plot click on this links: [mito-UMIs plot](lllll)
+## To see interactive version of the plots click on these links: [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/mito-umi-plot.html) and [gene-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene-umi-plot.html)
 
 - Filter cells. 
 
