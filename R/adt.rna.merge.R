@@ -9,7 +9,7 @@
 #' }
 #'
 #' @export
-merge.adt <- function (x = NULL, adt.data = "raw") {
+adt.rna.merge <- function (x = NULL, adt.data = "raw") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -24,6 +24,9 @@ merge.adt <- function (x = NULL, adt.data = "raw") {
   DATArna <- as.data.frame(t(x@main.data))
   ### merge
   merged.data <- merge(DATA, DATArna, by="row.names", all.x=F, all.y=T)
+  rownames(merged.data) <- merged.data$Row.names
+  merged.data <- merged.data[,-1]
+  merged.data <- as.data.frame(t(merged.data))
   attributes(x)$main.data <- merged.data
   return(x)
 }
