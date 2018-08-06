@@ -24,6 +24,7 @@ find.markers <- function (x = NULL,
       DATA <- x@best.clust
   ############## set wich clusters you want as condition 1 and 2
   MyClusts <- as.numeric(unique(DATA$clusters))
+############################### loop start
   for (i in MyClusts) {
     Noi <- MyClusts[-which((MyClusts) %in% i)]
     Table=DATA
@@ -98,12 +99,14 @@ find.markers <- function (x = NULL,
     DatNmaes=paste("DATAcluster",i,sep="_")
     eval(call("<-", as.name(DatNmaes), mrgdall))
   }
+############################### loop end
 # merge all
   filenames <- ls(pattern="DATAcluster_")
   datalist <- mget(filenames)
   df <- do.call("rbind", datalist)
   row.names(df) <- make.names(df$gene, unique=TRUE)
   df <- subset(df, gene != "NA")
+####
   if (uniq == T) {
     df <- df[!duplicated(df$gene), ]
   }

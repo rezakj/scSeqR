@@ -42,8 +42,9 @@ run.tsne <- function (x = NULL,
     } else {
       genesForClustering <- readLines(gene.list)
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
-      NormLog <- log(topGenes+0.1)
-      TopNormLogScale <- as.data.frame(scale(NormLog))
+      NormLog <- log2(topGenes + 1)
+#      TopNormLogScale <- as.data.frame(scale(NormLog))
+      TopNormLogScale <- NormLog
     }
   }
 #  2 dimention
