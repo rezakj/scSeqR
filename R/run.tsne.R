@@ -32,8 +32,8 @@ run.tsne <- function (x = NULL,
   if (clust.method == "base.mean.rank") {
     raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
     topGenes <- head(raw.data.order,top.rank)
-    NormLog <- log(topGenes+0.1)
-    TopNormLogScale <- as.data.frame(scale(NormLog))
+    NormLog <- log(topGenes + 0.1)
+#    TopNormLogScale <- as.data.frame(scale(NormLog))
   }
   # gene model
   if (clust.method == "gene.model") {
@@ -42,7 +42,7 @@ run.tsne <- function (x = NULL,
     } else {
       genesForClustering <- readLines(gene.list)
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
-      NormLog <- log2(topGenes + 1)
+      NormLog <- log2(topGenes + 0.1)
 #      TopNormLogScale <- as.data.frame(scale(NormLog))
       TopNormLogScale <- NormLog
     }

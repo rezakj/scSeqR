@@ -18,7 +18,11 @@ change.clust <- function (x = NULL,
   }
 ###################
     DATA <- (x@best.clust)
-    DATA$clusters <- gsub(change.clust,to.clust,DATA$clusters)
+#    DATA$clusters <- gsub(change.clust,
+#                          to.clust,
+#                          DATA$clusters,
+#                          fixed = T)
+    DATA[DATA == change.clust] <- to.clust
     attributes(x)$best.clust <- DATA
 ##############
   return(x)

@@ -5,7 +5,7 @@
 \title{Cluster based on tSNE}
 \usage{
 run.pca(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
-  gene.list = "my_model_genes.txt", max.dim = 10)
+  gene.list = "my_model_genes.txt")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

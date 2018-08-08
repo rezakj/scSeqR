@@ -17,12 +17,13 @@ run.clustering <- function (x = NULL,
                           clust.method = "kmeans",
                           dist.method = "euclidean",
                           index.method = "silhouette",
-                          max.clust = 20) {
+                          max.clust = 20,
+                          dims = 1:10) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
   #  cluster
-    DATA <- (x@pca.data)
+    DATA <- (x@pca.data)[dims]
     nb <- NbClust(DATA,
                   distance = dist.method,
                   min.nc = 2,
