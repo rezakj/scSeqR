@@ -250,7 +250,7 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 
 ```r
 # PCA
-my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt",max.dim = 10)
+my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
 # tSNE
 my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
@@ -271,7 +271,8 @@ my.obj <- run.clustering(my.obj,
 	clust.method = "kmeans", 
 	dist.method = "euclidean",
 	index.method = "silhouette",
-	max.clust = 20)
+	max.clust = 20
+	dims = 1:10)
 
 # number of clusters found and assigned
 
