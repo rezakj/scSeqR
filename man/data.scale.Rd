@@ -17,7 +17,7 @@ This function takes an object of class scSeqR and scales the normalized data.
 }
 \examples{
 \dontrun{
-data.scale(my.obj)
+my.obj <- data.scale(my.obj)
 }
 
 }

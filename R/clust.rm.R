@@ -1,11 +1,12 @@
-#' Create an object of class scSeqR.
+#' Remove the cells that are in a cluster
 #'
-#' This function takes data frame and makes an object of class scSeqR.
+#' This function removes the cells from a designated cluster. Notice the cells will be removed from the main data (raw data would still have the original data).
 #' @param x A data frame containing gene counts for cells.
+#' p@param clust.to.rm The name of the cluster to be removed.
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' my.obj <- clust.rm(my.obj, clust.to.rm = 5)
 #' }
 #'
 #' @export

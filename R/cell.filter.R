@@ -1,6 +1,6 @@
 #' Filter cells
 #'
-#' This function takes an object of class scSeqR and filters the raw data based on the number of UMIs, genes per cell and percentage of mitochondrial genes per cell.
+#' This function takes an object of class scSeqR and filters the raw data based on the number of UMIs, genes per cell, percentage of mitochondrial genes per cell, genes, gene expression and cell ids.
 #' @param x An object of class scSeqR.
 #' @param min.mito Min ratio of mit genes, defult = 0.
 #' @param max.mito Max ratio of mit genes, defult = 1.
@@ -8,6 +8,10 @@
 #' @param max.genes Max number genes per cell, defult = Inf.
 #' @param min.umis Min number UMIs per cell, defult = 0.
 #' @param max.umis Max number UMIs per cell, defult = Inf.
+#' @param filter.by.cell.id A character vector of cell ids to be filtered out.
+#' @param filter.by.gene A character vector of gene names to be filtered by thier expression. If more then one gene is defined it would be OR not AND.
+#' @param filter.by.gene.exp.min Minimum gene expression to be filtered by the genes set in filter.by.gene, defult = 1.
+#'
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{

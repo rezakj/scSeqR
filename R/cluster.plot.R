@@ -11,6 +11,8 @@
 #' @param clust.dim A numeric value for plot dimentions. Choose either 2 or 3, defult = 2.
 #' @param interactive If TRUE an html intractive file will be made, defult = TRUE.
 #' @param out.name Output name for html file if interactive = TRUE defult = "plot".
+#' @param angle A number to rotate the non-interactive 3D plot.
+#' @param density If TRUE the density plots for PCA/tSNE second dimention will be created, defult = FALSE.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{

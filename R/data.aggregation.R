@@ -1,11 +1,13 @@
-#' Create an object of class scSeqR.
+#' Merge multiple data frames and add the condition names to their cell ids
 #'
-#' This function takes data frame and makes an object of class scSeqR.
-#' @param x A data frame containing gene counts for cells.
+#' This function takes data frame and merges them while also adding condition names to cell ids..
+#' @param samples A character vector of data.frame object names.
+#' @param condition.names A character vector of data.frame condition names.
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' my.data <- data.aggregation(samples = c("sample1","sample2","sample3"),
+#'                             condition.names = c("WT","KO","Ctrl"))
 #' }
 #'
 #' @export

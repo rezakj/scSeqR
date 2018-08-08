@@ -1,13 +1,14 @@
-#' Assign the optimal number of clusters to hierarchical clustering.
+#' Change the cluster number or re-name them
 #'
-#' This function takes an object of class scSeqR and finds optimal number of clusters based on three methods.
+#' This function re-names the clusters in the best.clust slot of the scSeqR object.
 #' @param x An object of class scSeqR.
-#' @param clust.num Number of clusters
-#' @param  clust.type Choose from "tsne","pca" or "distance", defult = "tsne".
+#' @param change.clust The name of the cluster to be changed.
+#' @param  to.clust The new name for the cluster.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' assign.clust(my.obj, clust.num = 7)
+#' my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 1)
+#' my.obj <- change.clust(my.obj, change.clust = 2, to.clust = "B Cell")
 #' }
 #' @export
 change.clust <- function (x = NULL,

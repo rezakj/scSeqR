@@ -2,22 +2,24 @@
 % Please edit documentation in R/add.adt.R
 \name{add.adt}
 \alias{add.adt}
-\title{Create an object of class scSeqR.}
+\title{Add CITE-seq antibody-derived tags (ADT)}
 \usage{
 add.adt(x = NULL, adt.data = "data.frame")
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{An object of class scSeqR.}
+
+\item{adt.data}{A data frame containing ADT counts for cells.}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function takes a data frame of ADT values per cell and adds it to the scSeqR object.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+my.obj <- add.adt(my.obj, adt.data = adt.data)
 }
 
 }

@@ -2,22 +2,23 @@
 % Please edit documentation in R/clust.rm.R
 \name{clust.rm}
 \alias{clust.rm}
-\title{Create an object of class scSeqR.}
+\title{Remove the cells that are in a cluster}
 \usage{
 clust.rm(x = NULL, clust.to.rm = "numeric")
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{A data frame containing gene counts for cells.
+p@param clust.to.rm The name of the cluster to be removed.}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function removes the cells from a designated cluster. Notice the cells will be removed from the main data (raw data would still have the original data).
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+my.obj <- clust.rm(my.obj, clust.to.rm = 5)
 }
 
 }

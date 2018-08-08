@@ -2,25 +2,26 @@
 % Please edit documentation in R/change.clust.R
 \name{change.clust}
 \alias{change.clust}
-\title{Assign the optimal number of clusters to hierarchical clustering.}
+\title{Change the cluster number or re-name them}
 \usage{
 change.clust(x = NULL, change.clust = 0, to.clust = 0)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{clust.num}{Number of clusters}
+\item{change.clust}{The name of the cluster to be changed.}
 
-\item{clust.type}{Choose from "tsne","pca" or "distance", defult = "tsne".}
+\item{to.clust}{The new name for the cluster.}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and finds optimal number of clusters based on three methods.
+This function re-names the clusters in the best.clust slot of the scSeqR object.
 }
 \examples{
 \dontrun{
-assign.clust(my.obj, clust.num = 7)
+my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 1)
+my.obj <- change.clust(my.obj, change.clust = 2, to.clust = "B Cell")
 }
 }

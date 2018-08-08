@@ -26,6 +26,10 @@ cluster.plot(x = NULL, cell.size = 1, plot.type = "tsne",
 
 \item{clust.dim}{A numeric value for plot dimentions. Choose either 2 or 3, defult = 2.}
 
+\item{angle}{A number to rotate the non-interactive 3D plot.}
+
+\item{density}{If TRUE the density plots for PCA/tSNE second dimention will be created, defult = FALSE.}
+
 \item{interactive}{If TRUE an html intractive file will be made, defult = TRUE.}
 
 \item{out.name}{Output name for html file if interactive = TRUE defult = "plot".}

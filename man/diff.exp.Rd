@@ -2,23 +2,30 @@
 % Please edit documentation in R/diff.exp.R
 \name{diff.exp}
 \alias{diff.exp}
-\title{Create an object of class scSeqR.}
+\title{Differential expression (DE) analysis}
 \usage{
 diff.exp(x = NULL, de.by = "clusters", cond.1 = "array",
-  cond.2 = "array")
+  cond.2 = "array", base.cond = 0)
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{An object of class scSeqR.}
+
+\item{de.by}{Choose from "clusters", "conditions", "clustBase.condComp" or "condBase.clustComp".}
+
+\item{base.cond}{A base condition or cluster if de.by is either cond.clust or clust.cond}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function takes an object of class scSeqR and performs differential expression (DE) analysis for clusters and conditions.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
+diff.res <- diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
+diff.res <- diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
 }
 
 }
