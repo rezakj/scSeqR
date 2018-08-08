@@ -527,18 +527,45 @@ heatmap.plot (my.obj, gene = MyGenes)
 - Differential Expression Analysis 
 
 ```r
-diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
 head(diff.res)
-#            baseMean         1_4           2 foldChange log2FoldChange       pval padj
-#A1BG     0.077190139 0.074259871 0.083831677  1.1288961     0.17491269 0.57280382    1
-#A1BG.AS1 0.012955469 0.012987451 0.012882983  0.9919563    -0.01165159 0.98544380    1
+#            baseMean          WT          KO foldChange log2FoldChange       pval padj
+#A1BG     0.068250244 0.073606778 0.062875387  0.8542065     -0.2273433 0.46284942    1
+#A1BG.AS1 0.009902209 0.012277809 0.007518483  0.6123636     -0.7075395 0.31076602    1
 #A1CF     0.000000000 0.000000000 0.000000000        NaN            NaN        NaN  NaN
-#A2M      0.001619038 0.002333362 0.000000000  0.0000000           -Inf 0.08640707    1
-#A2M.AS1  0.008605967 0.009663693 0.006208601  0.6424667    -0.63830651 0.43764549    1
+#A2M      0.001555311 0.003105320 0.000000000  0.0000000           -Inf 0.09170874    1
+#A2M.AS1  0.010411651 0.005819828 0.015019181  2.5806916      1.3677577 0.13272473    1
 #A2ML1    0.000000000 0.000000000 0.000000000        NaN            NaN        NaN  NaN
 
-# more examples 
-diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("KO"), cond.2 = c("WT"))
+diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+head(diff.res)
+#            baseMean         1_4          2 foldChange log2FoldChange       pval padj
+#A1BG     0.073234544 0.094378843 0.02684924  0.2844837     -1.8135823 0.01472597    1
+#A1BG.AS1 0.002151004 0.003131519 0.00000000  0.0000000           -Inf 0.31800136    1
+#A1CF     0.000000000 0.000000000 0.00000000        NaN            NaN        NaN  NaN
+#A2M      0.002164828 0.000000000 0.00691392        Inf            Inf 0.31882994    1
+#A2M.AS1  0.042598420 0.036532388 0.05590578  1.5303072      0.6138213 0.52322284    1
+#A2ML1    0.000000000 0.000000000 0.00000000        NaN            NaN        NaN  NaN
+
+diff.res <- diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
+head(diff.res)
+#            baseMean WT.inClust.1 KO.inClust.1 foldChange log2FoldChange      pval padj
+#A1BG     0.085041487  0.041275761   0.12841293   3.111098       1.637424 0.1363094    1
+#A1BG.AS1 0.004973589  0.009992392   0.00000000   0.000000           -Inf 0.3195253    1
+#A1CF     0.000000000  0.000000000   0.00000000        NaN            NaN       NaN  NaN
+#A2M      0.000000000  0.000000000   0.00000000        NaN            NaN       NaN  NaN
+#A2M.AS1  0.028292066  0.011177204   0.04525274   4.048664       2.017446 0.2468776    1
+#A2ML1    0.000000000  0.000000000   0.00000000        NaN            NaN       NaN  NaN
+
+diff.res <- diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
+head(diff.res)
+#            baseMean 1.inCond.WT 2.inCond.WT foldChange log2FoldChange      pval padj
+#A1BG     0.042345533 0.041275761  0.04452470   1.078713      0.1093111 0.9314472    1
+#A1BG.AS1 0.006702214 0.009992392  0.00000000   0.000000           -Inf 0.3195253    1
+#A1CF     0.000000000 0.000000000  0.00000000        NaN            NaN       NaN  NaN
+#A2M      0.006745287 0.000000000  0.02048569        Inf            Inf 0.3218544    1
+#A2M.AS1  0.007496905 0.011177204  0.00000000   0.000000           -Inf 0.3195253    1
+#A2ML1    0.000000000 0.000000000  0.00000000        NaN            NaN       NaN  NaN
 ```
 
 - Volcano and MA plots 
