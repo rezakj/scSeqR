@@ -5,7 +5,8 @@
 \title{Assign the optimal number of clusters to hierarchical clustering.}
 \usage{
 run.clustering(x = NULL, clust.method = "kmeans",
-  dist.method = "euclidean", index.method = "silhouette", max.clust = 20)
+  dist.method = "euclidean", index.method = "silhouette", max.clust = 20,
+  dims = 1:10)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
