@@ -1,11 +1,17 @@
-#' Create an object of class scSeqR.
+#' Find marker genes for each cluster
 #'
-#' This function takes data frame and makes an object of class scSeqR.
-#' @param x A data frame containing gene counts for cells.
+#' This function takes an object of class scSeqR and performs differential expression (DE) analysis to find marker genes for each cluster.
+#' @param x An object of class scSeqR.
+#' @param fold.change A number that designates the minimum fold change for out put, defult = 2.
+#' @param padjval Minimum adjusted p value for out put, defult = 0.1.
+#' @param Inf.FCs If set to FALSE the infinate fold changes would be filtered from out put, defult = FALSE.
+#' @param uniq If set to TRUE only genes that are a marker for only one cluster would be in the out put, defult = TRUE.
+#' @param positive If set to FALSE both the up regulated (positive) and down regulated (negetive) markers would be in the out put, defult = FALSE.
+#'
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' marker.genes <- find.markers(my.obj,fold.change = 2,padjval = 0.1,uniq = T)
 #' }
 #'
 #' @export

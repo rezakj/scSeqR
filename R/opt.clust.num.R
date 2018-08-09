@@ -10,7 +10,7 @@
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' pot.clust.num(my.obj)
+#' opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
 #' }
 #' @import factoextra
 #' @import gridExtra

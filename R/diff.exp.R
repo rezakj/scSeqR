@@ -3,8 +3,8 @@
 #' This function takes an object of class scSeqR and performs differential expression (DE) analysis for clusters and conditions.
 #' @param x An object of class scSeqR.
 #' @param de.by Choose from "clusters", "conditions", "clustBase.condComp" or "condBase.clustComp".
-#' @param cond.1
-#' @param cond.1
+#' @param cond.1 First condition to do DE analysis on.
+#' @param cond.2 Second condition to do DE analysis on.
 #' @param base.cond A base condition or cluster if de.by is either cond.clust or clust.cond
 #' @return An object of class scSeqR
 #' @examples

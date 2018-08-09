@@ -2,10 +2,10 @@
 % Please edit documentation in R/run.clustering.R
 \name{run.clustering}
 \alias{run.clustering}
-\title{Assign the optimal number of clusters to hierarchical clustering.}
+\title{Clustering the data}
 \usage{
 run.clustering(x = NULL, clust.method = "kmeans",
-  dist.method = "euclidean", index.method = "silhouette", max.clust = 20,
+  dist.method = "euclidean", index.method = "silhouette", max.clust = 25,
   dims = 1:10)
 }
 \arguments{
@@ -18,15 +18,22 @@ run.clustering(x = NULL, clust.method = "kmeans",
 \item{index.method}{the index to be calculated. This should be one of : "kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew", "friedman", "rubin", "cindex", "db", "silhouette", "duda", "pseudot2", "beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain", "gamma", "gplus", "tau", "dunn", "hubert", "sdindex", "dindex", "sdbw", "all" (all indices except GAP, Gamma, Gplus and Tau), "alllong" (all indices with Gap, Gamma, Gplus and Tau included).}
 
 \item{max.clust}{maximal number of clusters, between 2 and (number of objects - 1), greater or equal to min.nc.}
+
+\item{dims}{PCA dimentions to be use for clustering, defult = 1:10.}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and finds optimal number of clusters based on three methods.
+This function takes an object of class scSeqR and finds optimal number of clusters and clusters the data.
 }
 \examples{
 \dontrun{
-assign.clust(my.obj, clust.num = 7)
+my.obj <- run.clustering(my.obj,
+                        clust.method = "kmeans",
+                        dist.method = "euclidean",
+                        index.method = "silhouette",
+                        max.clust = 25,
+                        dims = 1:10)
 }
 }

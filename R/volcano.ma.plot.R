@@ -1,11 +1,36 @@
-#' Create an object of class scSeqR.
+#' Create MA and Volcano plots.
 #'
-#' This function takes data frame and makes an object of class scSeqR.
-#' @param x A data frame containing gene counts for cells.
-#' @return An object of class scSeqR
+#' This function takes the result of differential expression (DE) analysis and provides MA and volcano plots.
+#' @param x A data frame containing differential expression (DE) analysis results.
+#' @param sig.value Choose from "pval" or "padj", defult = "padj".
+#' @param sig.line A number to draw the line for the significant genes based on sig.value type, defult 0.1.
+#' @param plot.type Choose from "ma" or "volcano", defult = "volcano".
+#' @param x.limit A number to set a limit for the x axis.
+#' @param y.limit A number to set a limit for the y axis.
+#' @param limit.force If set to TRUE the x.limit and y.limit will be forced, defult = FALSE.
+#' @param scale.ax If set to TRUE the y axis will be scaled to include all the points, defult = TRUE.
+#' @param dot.size A number for the size of the points in the plot, defult = 1.75.
+#' @param dot.transparency Color transparency for points in "scatterplot" and "boxplot", defult = 0.5.
+#' @param dot.col A set of three colors for the points in the volcano plot, defult = c("#E64B35","#3182bd","#636363").
+#' @param interactive If set to TRUE an intractive HTML file will be created, defult = TRUE.
+#' @param out.name If "interactive" is set to TRUE, the out put name for HTML, defult = "plot".
+#' @return Plots
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' volcano.ma.plot(diff.res,
+#'               sig.value = "pval",
+#'               sig.line = 0.05,
+#'               plot.type = "volcano",
+#'               interactive = T,
+#'               out.name = "Volcano.plot-Control2_vs_Treated3")
+#'
+#'
+#' volcano.ma.plot(diff.res,
+#'              sig.value = "pval",
+#'              sig.line = 0.05,
+#'              plot.type = "ma",
+#'              interactive = T,
+#'              out.name = "MA.plot-Control2_vs_Treated3")
 #' }
 #'
 #' @export

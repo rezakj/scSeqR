@@ -1,11 +1,12 @@
-#' Scale data
+#' Make statistical information for each gene across all the cells (SD, mean, expression, etc.)
 #'
-#' This function takes an object of class scSeqR and scales the normalized data.
+#' This function takes an object of class scSeqR and provides some statistical information for the genes.
 #' @param x An object of class scSeqR.
+#' @param which.data Choose from "raw.data" or "main.data", defult = "raw.data".
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' gene.stats(my.obj)
+#' my.obj <- gene.stats(my.obj, which.data = "main.data")
 #' }
 #' @export
 gene.stats <- function (x = NULL,

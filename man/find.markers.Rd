@@ -2,23 +2,33 @@
 % Please edit documentation in R/find.markers.R
 \name{find.markers}
 \alias{find.markers}
-\title{Create an object of class scSeqR.}
+\title{Find marker genes for each cluster}
 \usage{
 find.markers(x = NULL, fold.change = 2, padjval = 0.1, Inf.FCs = FALSE,
   uniq = T, positive = TRUE)
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{An object of class scSeqR.}
+
+\item{fold.change}{A number that designates the minimum fold change for out put, defult = 2.}
+
+\item{padjval}{Minimum adjusted p value for out put, defult = 0.1.}
+
+\item{Inf.FCs}{If set to FALSE the infinate fold changes would be filtered from out put, defult = FALSE.}
+
+\item{uniq}{If set to TRUE only genes that are a marker for only one cluster would be in the out put, defult = TRUE.}
+
+\item{positive}{If set to FALSE both the up regulated (positive) and down regulated (negetive) markers would be in the out put, defult = FALSE.}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function takes an object of class scSeqR and performs differential expression (DE) analysis to find marker genes for each cluster.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+marker.genes <- find.markers(my.obj,fold.change = 2,padjval = 0.1,uniq = T)
 }
 
 }

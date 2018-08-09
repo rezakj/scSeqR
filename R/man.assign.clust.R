@@ -1,9 +1,8 @@
-#' Assign the optimal number of clusters to hierarchical clustering.
+#' Hierarchical clustering based on tSNE
 #'
-#' This function takes an object of class scSeqR and finds optimal number of clusters based on three methods.
+#' This function takes an object of class scSeqR and performs hierarchical clustering based on tSNE data.
 #' @param x An object of class scSeqR.
-#' @param clust.num Number of clusters
-#' @param  clust.type Choose from "tsne","pca" or "distance", defult = "tsne".
+#' @param clust.num Number of clusters to be made.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{

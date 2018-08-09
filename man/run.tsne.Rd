@@ -2,7 +2,7 @@
 % Please edit documentation in R/run.tsne.R
 \name{run.tsne}
 \alias{run.tsne}
-\title{Cluster based on tSNE}
+\title{Run tSNE on the main data}
 \usage{
 run.tsne(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
   gene.list = "my_model_genes.txt")
@@ -10,22 +10,20 @@ run.tsne(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{clust.method}{A method to choose your genes for clustering. Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".}
+\item{clust.method}{Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".}
 
-\item{top.rank}{Number of ranked genes you want to use for clustering, defult = 500.}
+\item{top.rank}{A number taking the top genes ranked by base mean, defult = 500.}
 
-\item{clust.type}{Choose from "tsne", "pca" or "distance".}
-
-\item{dist.method}{Choose "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski", defult = "euclidean".}
+\item{gene.list}{A list of genes to be used for tSNE analysis. If "clust.method" is set to "gene.model", defult = "my_model_genes.txt".}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and clusters the normalized data.
+This function takes an object of class scSeqR and runs tSNE on the main data.
 }
 \examples{
 \dontrun{
-cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3)
+my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 }
 }

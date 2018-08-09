@@ -12,6 +12,10 @@ diff.exp(x = NULL, de.by = "clusters", cond.1 = "array",
 
 \item{de.by}{Choose from "clusters", "conditions", "clustBase.condComp" or "condBase.clustComp".}
 
+\item{cond.1}{First condition to do DE analysis on.}
+
+\item{cond.2}{Second condition to do DE analysis on.}
+
 \item{base.cond}{A base condition or cluster if de.by is either cond.clust or clust.cond}
 }
 \value{

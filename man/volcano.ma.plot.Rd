@@ -2,7 +2,7 @@
 % Please edit documentation in R/volcano.ma.plot.R
 \name{volcano.ma.plot}
 \alias{volcano.ma.plot}
-\title{Create an object of class scSeqR.}
+\title{Create MA and Volcano plots.}
 \usage{
 volcano.ma.plot(x = NULL, sig.value = "padj", sig.line = 0.1,
   plot.type = "volcano", x.limit = 2, y.limit = 2, limit.force = F,
@@ -11,17 +11,54 @@ volcano.ma.plot(x = NULL, sig.value = "padj", sig.line = 0.1,
   out.name = "plot")
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{A data frame containing differential expression (DE) analysis results.}
+
+\item{sig.value}{Choose from "pval" or "padj", defult = "padj".}
+
+\item{sig.line}{A number to draw the line for the significant genes based on sig.value type, defult 0.1.}
+
+\item{plot.type}{Choose from "ma" or "volcano", defult = "volcano".}
+
+\item{x.limit}{A number to set a limit for the x axis.}
+
+\item{y.limit}{A number to set a limit for the y axis.}
+
+\item{limit.force}{If set to TRUE the x.limit and y.limit will be forced, defult = FALSE.}
+
+\item{scale.ax}{If set to TRUE the y axis will be scaled to include all the points, defult = TRUE.}
+
+\item{dot.size}{A number for the size of the points in the plot, defult = 1.75.}
+
+\item{dot.transparency}{Color transparency for points in "scatterplot" and "boxplot", defult = 0.5.}
+
+\item{dot.col}{A set of three colors for the points in the volcano plot, defult = c("#E64B35","#3182bd","#636363").}
+
+\item{interactive}{If set to TRUE an intractive HTML file will be created, defult = TRUE.}
+
+\item{out.name}{If "interactive" is set to TRUE, the out put name for HTML, defult = "plot".}
 }
 \value{
-An object of class scSeqR
+Plots
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function takes the result of differential expression (DE) analysis and provides MA and volcano plots.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+volcano.ma.plot(diff.res,
+              sig.value = "pval",
+              sig.line = 0.05,
+              plot.type = "volcano",
+              interactive = T,
+              out.name = "Volcano.plot-Control2_vs_Treated3")
+
+
+volcano.ma.plot(diff.res,
+             sig.value = "pval",
+             sig.line = 0.05,
+             plot.type = "ma",
+             interactive = T,
+             out.name = "MA.plot-Control2_vs_Treated3")
 }
 
 }
