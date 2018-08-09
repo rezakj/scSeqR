@@ -2,22 +2,24 @@
 % Please edit documentation in R/adt.rna.merge.R
 \name{adt.rna.merge}
 \alias{adt.rna.merge}
-\title{Create an object of class scSeqR.}
+\title{Merge RNA and ADT data}
 \usage{
 adt.rna.merge(x = NULL, adt.data = "raw")
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{An object of class scSeqR.}
+
+\item{adt.data}{Choose from raw or main (normalized) ADT data. Defult = "raw"}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function is to merge the RNA and ADT data to the main.data slot of the scSeqR object.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+my.obj <- adt.rna.merge(my.obj, adt.data = "raw")
 }
 
 }

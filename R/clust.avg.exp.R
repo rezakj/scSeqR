@@ -1,11 +1,11 @@
-#' Scale data
+#' Create a data frame of mean expression of genes per cluster
 #'
-#' This function takes an object of class scSeqR and scales the normalized data.
+#' This function takes an object of class scSeqR and creats an avarage gene expression for every cluster.
 #' @param x An object of class scSeqR.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' scale.data(my.obj)
+#' my.obj <- clust.avg.exp(my.obj)
 #' }
 #' @export
 clust.avg.exp <- function (x = NULL) {

@@ -1,16 +1,17 @@
-#' Load 10X data as data.frame
+#' Choose top marker genes
 #'
-#' This function takes 10X data files barcodes.tsv, genes.tsv and matrix.mtx and converts them to proper matrix file for scSeqR.
-#' @param dir.10x A directory that includes the 10X barcodes.tsv, genes.tsv and matrix.mtx files.
-#' @param gene.name Should be either geneSymbol or ensembleID.
-#' @return The data frame object
+#' This function takes the marker genes info if chooses marker gene names for plots.
+#' @param x An object of class scSeqR.
+#' @param topde Number of top differentialy expressed genes to be choosen from each cluster, defult = 10.
+#' @param min.base.mean Minimum base mean of the genes to be choosen, defult = 0.5.
+#' @return A set of gene names
 #' @examples
 #' \dontrun{
-#' load10x("/hg19", gene.name = "geneSymbol")
+#' MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
 #' }
 #' @import Matrix
 #' @export
-top.markers <- function (x = NULL, topde = 5, min.base.mean = 0.5) {
+top.markers <- function (x = NULL, topde = 10, min.base.mean = 0.5) {
   MyClusts <- (unique(x$clusters))
 #  x <- x[order(x$baseMean,decreasing = T),]
   for (i in MyClusts) {

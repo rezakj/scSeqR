@@ -2,7 +2,7 @@
 % Please edit documentation in R/clust.avg.exp.R
 \name{clust.avg.exp}
 \alias{clust.avg.exp}
-\title{Scale data}
+\title{Create a data frame of mean expression of genes per cluster}
 \usage{
 clust.avg.exp(x = NULL)
 }
@@ -13,10 +13,10 @@ clust.avg.exp(x = NULL)
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and scales the normalized data.
+This function takes an object of class scSeqR and creats an avarage gene expression for every cluster.
 }
 \examples{
 \dontrun{
-scale.data(my.obj)
+my.obj <- clust.avg.exp(my.obj)
 }
 }

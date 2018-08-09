@@ -2,22 +2,24 @@
 % Please edit documentation in R/norm.adt.R
 \name{norm.adt}
 \alias{norm.adt}
-\title{Create an object of class scSeqR.}
+\title{Normalize ADT data.
+This function takes data frame and Normalizes ADT data.}
 \usage{
 norm.adt(x = NULL)
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{x}{An object of class scSeqR.}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+Normalize ADT data.
+This function takes data frame and Normalizes ADT data.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+my.obj <- make.obj(my.obj)
 }
 
 }

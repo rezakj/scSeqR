@@ -2,23 +2,25 @@
 % Please edit documentation in R/top.markers.R
 \name{top.markers}
 \alias{top.markers}
-\title{Load 10X data as data.frame}
+\title{Choose top marker genes}
 \usage{
-top.markers(x = NULL, topde = 5, min.base.mean = 0.5)
+top.markers(x = NULL, topde = 10, min.base.mean = 0.5)
 }
 \arguments{
-\item{dir.10x}{A directory that includes the 10X barcodes.tsv, genes.tsv and matrix.mtx files.}
+\item{x}{An object of class scSeqR.}
 
-\item{gene.name}{Should be either geneSymbol or ensembleID.}
+\item{topde}{Number of top differentialy expressed genes to be choosen from each cluster, defult = 10.}
+
+\item{min.base.mean}{Minimum base mean of the genes to be choosen, defult = 0.5.}
 }
 \value{
-The data frame object
+A set of gene names
 }
 \description{
-This function takes 10X data files barcodes.tsv, genes.tsv and matrix.mtx and converts them to proper matrix file for scSeqR.
+This function takes the marker genes info if chooses marker gene names for plots.
 }
 \examples{
 \dontrun{
-load10x("/hg19", gene.name = "geneSymbol")
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
 }
 }

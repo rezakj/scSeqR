@@ -11,6 +11,8 @@
 #' @param clust.dim A numeric value for plot dimentions. Choose either 2 or 3, defult = 2.
 #' @param interactive If TRUE an html intractive file will be made, defult = TRUE.
 #' @param out.name Output name for html file if interactive = TRUE defult = "plot".
+#' @param angle A number to rotate the non-interactive 3D plot.
+#' @param density If TRUE the density plots for PCA/tSNE second dimention will be created, defult = FALSE.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
@@ -26,6 +28,7 @@ cluster.plot <- function (x = NULL,
                           cell.color = "black",
                           back.col = "white",
                           col.by = "clusters",
+                          cond.shape = F,
                           cell.transparency = 0.5,
                           clust.dim = 2,
                           angle = 20,
@@ -104,34 +107,70 @@ cluster.plot <- function (x = NULL,
     }
 # plot 2d
   if (clust.dim == 2) {
-    if (interactive == F) {
-      myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
-                                 text = row.names(DATA), color = col.legend)) +
-        geom_point(size = cell.size, alpha = cell.transparency) +
-        guides(colour = guide_legend(override.aes = list(size=5))) +
-        xlab("Dim1") +
-        ylab("Dim2") +
-        ggtitle(MyTitle) +
-        scale_color_discrete(name="") +
-        theme(panel.background = element_rect(fill = back.col, colour = "black"),
-              panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-              legend.key = element_rect(fill = back.col))
-    } else {
-      myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
-                                 text = row.names(DATA), color = col.legend)) +
-        geom_point(size = cell.size, alpha = cell.transparency) +
-        guides(colour = guide_legend(override.aes = list(size=5))) +
-        xlab("Dim1") +
-        ylab("Dim2") +
-        ggtitle(MyTitle) +
-        scale_color_discrete(name="") +
-        theme_bw()
+    if (cond.shape == F) {
+      if (interactive == F) {
+        myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
+                                   text = row.names(DATA), color = col.legend)) +
+          geom_point(size = cell.size, alpha = cell.transparency) +
+          guides(colour = guide_legend(override.aes = list(size=5))) +
+          xlab("Dim1") +
+          ylab("Dim2") +
+          ggtitle(MyTitle) +
+          scale_color_discrete(name="") +
+          theme(panel.background = element_rect(fill = back.col, colour = "black"),
+                panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                legend.key = element_rect(fill = back.col))
+      }
+      if (interactive == T) {
+        myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
+                                   text = row.names(DATA), color = col.legend)) +
+          geom_point(size = cell.size, alpha = cell.transparency) +
+          guides(colour = guide_legend(override.aes = list(size=5))) +
+          xlab("Dim1") +
+          ylab("Dim2") +
+          ggtitle(MyTitle) +
+          scale_color_discrete(name="") +
+          theme_bw()
+      }
+    }
+      if (cond.shape == T) {
+        conds.sh <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
+        cond.shape <- factor(as.matrix(conds.sh))
+        if (interactive == F) {
+          myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
+                                     text = row.names(DATA), color = col.legend, shape = cond.shape)) +
+            geom_point(size = cell.size, alpha = cell.transparency) +
+            guides(colour = guide_legend(override.aes = list(size=5))) +
+            xlab("Dim1") +
+            ylab("Dim2") +
+            ggtitle(MyTitle) +
+            scale_color_discrete(name="") +
+            theme(panel.background = element_rect(fill = back.col, colour = "black"),
+                  panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                  legend.key = element_rect(fill = back.col))
+        }
+        if (interactive == T) {
+          myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
+                                     text = row.names(DATA), color = col.legend, shape = cond.shape)) +
+            geom_point(size = cell.size, alpha = cell.transparency) +
+            guides(colour = guide_legend(override.aes = list(size=5))) +
+            xlab("Dim1") +
+            ylab("Dim2") +
+            ggtitle(MyTitle) +
+            scale_color_discrete(name="") +
+            theme_bw()
+      }
     }
   }
 # plot 3d
   if (clust.dim == 3) {
     if (interactive == T) {
-    myPLOT <- plot_ly(DATA, x = DATA[,1], y = DATA[,2], z = DATA[,3], text = row.names(DATA),
+      DATAann <- as.data.frame(x@cluster.data$Best.partition)
+      A = (row.names(DATAann))
+      colnames(DATAann) <- ("clusters")
+      B = as.character(as.matrix(DATAann[1]))
+      ANNOT <- paste(A,"clust",B,sep="_")
+    myPLOT <- plot_ly(DATA, x = DATA[,1], y = DATA[,2], z = DATA[,3], text = ANNOT,
                       color = col.legend, opacity = cell.transparency, marker = list(size = cell.size + 2)) %>%
       layout(DATA, x = DATA[,1], y = DATA[,2], z = DATA[,3]) %>%
       layout(plot_bgcolor = back.col) %>%
@@ -145,12 +184,16 @@ cluster.plot <- function (x = NULL,
 #    col.legend <- factor(x@best.clust$clusters)
     qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
     colors = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+    colors <- c(colors[1:3],colors[5:30])
     if (col.by == "clusters") {
       cols <- colors[as.numeric(x@best.clust$clusters)]
+      col.legend <- as.factor(x@best.clust$clusters)
+
     }
     if (col.by == "conditions") {
       col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
-      cols <- colors[as.numeric(as.matrix(col.legend))]
+      col.legend <- factor(as.matrix(col.legend))
+      cols <- colors[col.legend]
     }
     #
     scatterplot3d (x = DATA[,2], y = DATA[,3], z = DATA[,1],
@@ -167,7 +210,7 @@ cluster.plot <- function (x = NULL,
                 cex.symbols = cell.size,
                 highlight.3d = FALSE)
     # legend
-    legend("topright", legend = levels(as.factor(x@best.clust$clusters)),
+    legend("topright", legend = levels(col.legend),
            col =  colors,
            pch = 19,
            inset = -0.1,
@@ -203,6 +246,6 @@ cluster.plot <- function (x = NULL,
     htmlwidgets::saveWidget(ggplotly(myPLOT), OUT.PUT)
   } else {
     return(myPLOT)
-  }
+    }
 }
 

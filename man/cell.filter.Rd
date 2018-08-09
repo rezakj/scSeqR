@@ -23,12 +23,18 @@ cell.filter(x = NULL, min.mito = 0, max.mito = 1, min.genes = 0,
 \item{min.umis}{Min number UMIs per cell, defult = 0.}
 
 \item{max.umis}{Max number UMIs per cell, defult = Inf.}
+
+\item{filter.by.cell.id}{A character vector of cell ids to be filtered out.}
+
+\item{filter.by.gene}{A character vector of gene names to be filtered by thier expression. If more then one gene is defined it would be OR not AND.}
+
+\item{filter.by.gene.exp.min}{Minimum gene expression to be filtered by the genes set in filter.by.gene, defult = 1.}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and filters the raw data based on the number of UMIs, genes per cell and percentage of mitochondrial genes per cell.
+This function takes an object of class scSeqR and filters the raw data based on the number of UMIs, genes per cell, percentage of mitochondrial genes per cell, genes, gene expression and cell ids.
 }
 \examples{
 \dontrun{

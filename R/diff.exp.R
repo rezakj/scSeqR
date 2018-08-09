@@ -1,38 +1,55 @@
-#' Create an object of class scSeqR.
+#' Differential expression (DE) analysis
 #'
-#' This function takes data frame and makes an object of class scSeqR.
-#' @param x A data frame containing gene counts for cells.
+#' This function takes an object of class scSeqR and performs differential expression (DE) analysis for clusters and conditions.
+#' @param x An object of class scSeqR.
+#' @param de.by Choose from "clusters", "conditions", "clustBase.condComp" or "condBase.clustComp".
+#' @param cond.1 First condition to do DE analysis on.
+#' @param cond.2 Second condition to do DE analysis on.
+#' @param base.cond A base condition or cluster if de.by is either cond.clust or clust.cond
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+#' diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
+#' diff.res <- diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
+#' diff.res <- diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
 #' }
 #'
 #' @export
 diff.exp <- function (x = NULL,
                       de.by = "clusters",
                       cond.1 = "array",
-                      cond.2 = "array") {
+                      cond.2 = "array",
+                      base.cond = 0) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
   ###########
   dat <- x@main.data
   # 2 dimentions
-      DATA <- x@best.clust
+  DATA <- x@best.clust
   ############## set wich clusters you want as condition 1 and 2
   CondA = cond.1
   CondB = cond.2
   CondAnames = paste(CondA, collapse="_")
   CondBnames = paste(CondB, collapse="_")
+  if (de.by == "clustBase.condComp") {
+    CondAnames = paste(CondA, collapse="_")
+    CondAnames = paste(CondAnames,"inClust",base.cond,sep=".")
+    CondBnames = paste(CondB, collapse="_")
+    CondBnames = paste(CondBnames,"inClust",base.cond,sep=".")
+  }
+  if (de.by == "condBase.clustComp") {
+    CondAnames = paste(CondA, collapse="_")
+    CondAnames = paste(CondAnames,"inCond",base.cond,sep=".")
+    CondBnames = paste(CondB, collapse="_")
+    CondBnames = paste(CondBnames,"inCond",base.cond,sep=".")
+  }
   # conditions
   if (de.by == "conditions") {
     col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
     conditions <- as.character(as.matrix(col.legend))
-    IDs = as.character(rownames(DATA))
-    myconds <- as.data.frame(cbind(IDs = IDs, conditions = conditions))
-    rownames(myconds) <- myconds$IDs
-    Table <- myconds[2]
+    Table <- as.data.frame(cbind(DATA, conditions = conditions))
     Cluster0 <- row.names(subset(Table, Table$conditions %in% CondA))
     Cluster1 <- row.names(subset(Table, Table$conditions %in% CondB))
   }
@@ -47,6 +64,31 @@ diff.exp <- function (x = NULL,
     }
   }
   #
+  if (de.by == "clustBase.condComp") {
+    if (base.cond == 0) {
+      stop("You should choose a base cluster/clusters to compare the conditions in it/them")
+    }
+    my.base.cond = base.cond
+    col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
+    conditions <- as.character(as.matrix(col.legend))
+    Table <- as.data.frame(cbind(DATA, conditions = conditions))
+    Table <- subset(Table, Table$clusters %in% my.base.cond)
+    Cluster0 <- row.names(subset(Table, Table$conditions %in% CondA))
+    Cluster1 <- row.names(subset(Table, Table$conditions %in% CondB))
+  }
+  #
+  if (de.by == "condBase.clustComp") {
+    if (base.cond == 0) {
+      stop("You should choose a base condition/conditions to compare the clusters in it/them")
+    }
+    my.base.cond = base.cond
+    col.legend <- data.frame(do.call('rbind', strsplit(as.character(rownames(DATA)),'_',fixed=TRUE)))[1]
+    conditions <- as.character(as.matrix(col.legend))
+    Table <- as.data.frame(cbind(DATA, conditions = conditions))
+    Table <- subset(Table, Table$conditions %in% my.base.cond)
+    Cluster0 <- row.names(subset(Table, Table$clusters %in% CondA))
+    Cluster1 <- row.names(subset(Table, Table$clusters %in% CondB))
+  }
   ############## Filter
   cond1 <- dat[,Cluster0]
   cond2 <- dat[,Cluster1]
@@ -85,7 +127,6 @@ diff.exp <- function (x = NULL,
     t.test.adj=FDR)
   # name column
   colnames(Stats) <- c("baseMean",CondAnames, CondBnames,"foldChange","log2FoldChange","pval","padj")
-# return
-    return(Stats)
+  # return
+  return(Stats)
 }
-

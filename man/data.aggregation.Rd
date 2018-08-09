@@ -2,22 +2,25 @@
 % Please edit documentation in R/data.aggregation.R
 \name{data.aggregation}
 \alias{data.aggregation}
-\title{Create an object of class scSeqR.}
+\title{Merge multiple data frames and add the condition names to their cell ids}
 \usage{
 data.aggregation(samples = NULL, condition.names = NULL)
 }
 \arguments{
-\item{x}{A data frame containing gene counts for cells.}
+\item{samples}{A character vector of data.frame object names.}
+
+\item{condition.names}{A character vector of data.frame condition names.}
 }
 \value{
 An object of class scSeqR
 }
 \description{
-This function takes data frame and makes an object of class scSeqR.
+This function takes data frame and merges them while also adding condition names to cell ids..
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+my.data <- data.aggregation(samples = c("sample1","sample2","sample3"),
+                            condition.names = c("WT","KO","Ctrl"))
 }
 
 }

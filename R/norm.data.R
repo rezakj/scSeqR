@@ -9,7 +9,14 @@
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' norm(my.obj, "ranked.glsf", top.rank = 500)
+#' my.obj <- norm.data(my.obj,
+#'                    norm.method = "ranked.glsf",
+#'                    top.rank = 500) # best for scRNA-Seq
+#'
+#' my.obj <- norm.data(my.obj, norm.method = "global.glsf") # best for bulk RNA-Seq
+#' my.obj <- norm.data(my.obj, norm.method = "rpm", rpm.factor = 100000) # best for bulk RNA-Seq
+#' my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
+#' my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 #' }
 #' @export
 norm.data <- function (x = NULL,

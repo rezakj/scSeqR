@@ -5,7 +5,7 @@
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' data.scale(my.obj)
+#' my.obj <- data.scale(my.obj)
 #' }
 #'
 #' @export
@@ -14,9 +14,10 @@ data.scale <- function (x = NULL) {
     stop("x should be an object of class scSeqR")
   }
   DATA <- x@main.data
-  DATA1 = DATA + 1
-  NormLog = log2(DATA1)
-  attributes(x)$scaled.data <- NormLog
+  NormLog = log(DATA + 0.1)
+  NormLog = as.data.frame(t(NormLog))
+  TopNormLogScale <- as.data.frame(t(scale(NormLog)))
+  attributes(x)$scaled.data <- TopNormLogScale
   return(x)
 }
 

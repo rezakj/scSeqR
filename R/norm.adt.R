@@ -1,11 +1,10 @@
-#' Create an object of class scSeqR.
-#'
-#' This function takes data frame and makes an object of class scSeqR.
-#' @param x A data frame containing gene counts for cells.
+#' Normalize ADT data.
+#' This function takes data frame and Normalizes ADT data.
+#' @param x An object of class scSeqR.
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' my.obj <- make.obj(my.obj)
 #' }
 #'
 #' @export

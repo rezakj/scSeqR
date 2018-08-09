@@ -1,19 +1,32 @@
 #' Plot nGenes, UMIs and perecent mito
 #'
-#' This function takes an object of class scSeqR and creats plot.
+#' This function takes an object of class scSeqR and creats QC plot.
 #' @param x An object of class scSeqR.
 #' @param plot.type Choose from "box.umi", "box.mito", "box.gene", "box.gene.umi.mito", "point.mito.umi", "point.gene.umi".
-#' @param cell.color Choose a color for dots.
-#' @param cell.size Choose a size for dots.
-#' @param cell.transparency Transparency of colors.
-#' @param box.color Choose color for box.
-#' @param box.line.col Choose a color for line around box plot.
-#' @param interactive Make html intractive plot.
-#' @param out.name Name for intractive plot html file.
+#' @param cell.color Choose a color for points in the plot.
+#' @param cell.size A number for the size of the points in the plot, defult = 1.
+#' @param box.color A color for the boxes in the "boxplot", defult = "red".
+#' @param box.line.col A color for the lines around the "boxplot", defult = "green".
+#' @param cell.transparency Color transparency for points in "scatterplot" and "boxplot", defult = 0.5.
+#' @param interactive If set to TRUE an intractive HTML file will be created, defult = TRUE.
+#' @param out.name If "interactive" is set to TRUE, the out put name for HTML, defult = "plot".
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' plot.stats(my.obj)
+#' stats.plot(my.obj,
+#'           plot.type = "box.gene.umi.mito",
+#'           out.name = "UMI-plot",
+#'           interactive = F,
+#'           cell.color = "slategray3",
+#'           cell.size = 1,
+#'           cell.transparency = 0.5,
+#'           box.color = "red",
+#'           box.line.col = "green",
+#'           back.col = "white")
+#'
+#' stats.plot(my.obj, plot.type = "point.gene.umi", interactive = T, out.name = "scatter.gene.umi")
+#'
+#' stats.plot(my.obj, plot.type = "point.mito.umi", interactive = T, out.name = "scatter.mito.umi")
 #' }
 #' @export
 stats.plot <- function (x = NULL,

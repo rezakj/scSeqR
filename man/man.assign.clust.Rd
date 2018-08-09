@@ -2,22 +2,20 @@
 % Please edit documentation in R/man.assign.clust.R
 \name{man.assign.clust}
 \alias{man.assign.clust}
-\title{Assign the optimal number of clusters to hierarchical clustering.}
+\title{Hierarchical clustering based on tSNE}
 \usage{
 man.assign.clust(x = NULL, clust.num = 0)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{clust.num}{Number of clusters}
-
-\item{clust.type}{Choose from "tsne","pca" or "distance", defult = "tsne".}
+\item{clust.num}{Number of clusters to be made.}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and finds optimal number of clusters based on three methods.
+This function takes an object of class scSeqR and performs hierarchical clustering based on tSNE data.
 }
 \examples{
 \dontrun{

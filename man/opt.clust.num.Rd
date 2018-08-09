@@ -28,6 +28,6 @@ This function takes an object of class scSeqR and finds optimal number of cluste
 }
 \examples{
 \dontrun{
-pot.clust.num(my.obj)
+opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
 }
 }

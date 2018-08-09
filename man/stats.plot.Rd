@@ -14,28 +14,41 @@ stats.plot(x = NULL, plot.type = "box.umi", cell.color = "slategray3",
 
 \item{plot.type}{Choose from "box.umi", "box.mito", "box.gene", "box.gene.umi.mito", "point.mito.umi", "point.gene.umi".}
 
-\item{cell.color}{Choose a color for dots.}
+\item{cell.color}{Choose a color for points in the plot.}
 
-\item{cell.size}{Choose a size for dots.}
+\item{cell.size}{A number for the size of the points in the plot, defult = 1.}
 
-\item{cell.transparency}{Transparency of colors.}
+\item{cell.transparency}{Color transparency for points in "scatterplot" and "boxplot", defult = 0.5.}
 
-\item{box.color}{Choose color for box.}
+\item{box.color}{A color for the boxes in the "boxplot", defult = "red".}
 
-\item{box.line.col}{Choose a color for line around box plot.}
+\item{box.line.col}{A color for the lines around the "boxplot", defult = "green".}
 
-\item{interactive}{Make html intractive plot.}
+\item{interactive}{If set to TRUE an intractive HTML file will be created, defult = TRUE.}
 
-\item{out.name}{Name for intractive plot html file.}
+\item{out.name}{If "interactive" is set to TRUE, the out put name for HTML, defult = "plot".}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and creats plot.
+This function takes an object of class scSeqR and creats QC plot.
 }
 \examples{
 \dontrun{
-plot.stats(my.obj)
+stats.plot(my.obj,
+          plot.type = "box.gene.umi.mito",
+          out.name = "UMI-plot",
+          interactive = F,
+          cell.color = "slategray3",
+          cell.size = 1,
+          cell.transparency = 0.5,
+          box.color = "red",
+          box.line.col = "green",
+          back.col = "white")
+
+stats.plot(my.obj, plot.type = "point.gene.umi", interactive = T, out.name = "scatter.gene.umi")
+
+stats.plot(my.obj, plot.type = "point.mito.umi", interactive = T, out.name = "scatter.mito.umi")
 }
 }

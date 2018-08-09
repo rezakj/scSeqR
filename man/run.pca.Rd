@@ -2,7 +2,7 @@
 % Please edit documentation in R/run.pca.R
 \name{run.pca}
 \alias{run.pca}
-\title{Cluster based on tSNE}
+\title{Run PCA on the main data}
 \usage{
 run.pca(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
   gene.list = "my_model_genes.txt")
@@ -10,22 +10,20 @@ run.pca(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{clust.method}{A method to choose your genes for clustering. Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".}
+\item{clust.method}{Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".}
 
-\item{top.rank}{Number of ranked genes you want to use for clustering, defult = 500.}
+\item{top.rank}{A number taking the top genes ranked by base mean, defult = 500.}
 
-\item{clust.type}{Choose from "tsne", "pca" or "distance".}
-
-\item{dist.method}{Choose "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski", defult = "euclidean".}
+\item{gene.list}{A list of genes to be used for PCA. If "clust.method" is set to "gene.model", defult = "my_model_genes.txt".}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and clusters the normalized data.
+This function takes an object of class scSeqR and runs PCA on the main data.
 }
 \examples{
 \dontrun{
-cluster.data(my.obj, clust.method = "base.mean.rank", top.rank = 500, clust.dim = 3)
+my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 }
 }

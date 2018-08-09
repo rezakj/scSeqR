@@ -6,8 +6,8 @@
 \usage{
 cluster.plot(x = NULL, cell.size = 1, plot.type = "tsne",
   cell.color = "black", back.col = "white", col.by = "clusters",
-  cell.transparency = 0.5, clust.dim = 2, angle = 20, density = F,
-  interactive = TRUE, out.name = "plot")
+  cond.shape = F, cell.transparency = 0.5, clust.dim = 2, angle = 20,
+  density = F, interactive = TRUE, out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
@@ -25,6 +25,10 @@ cluster.plot(x = NULL, cell.size = 1, plot.type = "tsne",
 \item{cell.transparency}{A numeric value between 0 to 1, defult = 0.5.}
 
 \item{clust.dim}{A numeric value for plot dimentions. Choose either 2 or 3, defult = 2.}
+
+\item{angle}{A number to rotate the non-interactive 3D plot.}
+
+\item{density}{If TRUE the density plots for PCA/tSNE second dimention will be created, defult = FALSE.}
 
 \item{interactive}{If TRUE an html intractive file will be made, defult = TRUE.}
 

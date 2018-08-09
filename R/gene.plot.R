@@ -1,12 +1,73 @@
-#' Find optimal number of clusters.
+#' Make scatter, box and bar plots for genes
 #'
-#' This function takes an object of class scSeqR and finds optimal number of clusters based on three methods.
+#' This function takes an object of class scSeqR and provides plots for genes.
 #' @param x An object of class scSeqR.
-#' @param clust.num Number of clusters
+#' @param gene A gene name to be plotted.
+#' @param box.to.test A cluster number so that all the boxes in the box plot would be compared to. If set to "0" the cluster with the highest avrage would be choosen, defult = 0.
+#' @param box.pval Choose from "sig.values" and "sig.signs". If set to "sig.signs" p values would be replaced with signs ("na", "*", "**", "***"), defult = "sig.signs".
+#' @param plot.data.type Choose from "tsne" and "pca", defult = "tsne".
+#' @param clust.dim 2 for 2D plots and 3 for 3D plots, defult = 2.
+#' @param col.by Choose from "clusters" and "conditions", defult = "clusters".
+#' @param plot.type Choose from "scatterplot", "boxplot" and "barplot", defult = "scatterplot".
+#' @param cell.size A number for the size of the points in the plot, defult = 1.
+#' @param cell.colors Colors for heat mapping the points in "scatterplot", defult = c("gray","red").
+#' @param box.cell.col A color for the points in the box plot, defult = "black".
+#' @param box.color A color for the boxes in the "boxplot", defult = "red".
+#' @param box.line.col A color for the lines around the "boxplot", defult = "green".
+#' @param back.col A color for the plot background, defult = "black".
+#' @param cell.transparency Color transparency for points in "scatterplot" and "boxplot", defult = 0.5.
+#' @param interactive If set to TRUE an intractive HTML file will be created, defult = TRUE.
+#' @param out.name If "interactive" is set to TRUE, the out put name for HTML, defult = "plot".
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' gene.plot(my.obj, gene = "NULL", box.to.test = 0, box.pval = "sig.signs")
+#' cluster.plot(my.obj,
+#'             cell.size = 1,
+#'             plot.type = "tsne",
+#'             cell.color = "black",
+#'             back.col = "white",
+#'             col.by = "clusters",
+#'             cell.transparency = 0.5,
+#'             clust.dim = 3,
+#'             interactive = T,
+#'             density = F,
+#'             out.name = "tSNE_3D_clusters")
+#'
+#' cluster.plot(my.obj, cell.size = 1,
+#'             plot.type = "tsne",
+#'             col.by = "clusters",
+#'             cell.transparency = 0.5,
+#'             clust.dim = 2,
+#'             interactive = T,
+#'             density = F,
+#'             out.name = "tSNE_2D_clusters")
+#'
+#'cluster.plot(my.obj,
+#'            cell.size = 2,
+#'            plot.type = "tsne",
+#'            clust.dim = 2,
+#'            interactive = F)
+#'
+#'cluster.plot(my.obj,
+#'            cell.size = 1,
+#'            plot.type = "tsne",
+#'            col.by = "clusters",
+#'            clust.dim = 3,
+#'            interactive = F,
+#'            angle = 45)
+#'
+#'
+#'cluster.plot(my.obj,
+#'           cell.size = 1,
+#'           plot.type = "pca",
+#'           cell.color = "black",
+#'           back.col = "white",
+#'           col.by = "conditions",
+#'           cell.transparency = 0.5,
+#'           clust.dim = 3,
+#'           interactive = T,
+#'           density = F,
+#'           out.name = "PCA_3D_conditions")
 #' }
 #' @import ggpubr
 #' @export
@@ -24,7 +85,7 @@ gene.plot <- function (x = NULL,
                        box.color = "red",
                        box.line.col = "green",
                        back.col = "white",
-                       cell.transparency = 0.5,
+                       cell.transparency = 1,
                        interactive = TRUE,
                        out.name = "plot") {
   if ("scSeqR" != class(x)[1]) {

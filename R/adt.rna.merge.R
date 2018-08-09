@@ -1,11 +1,12 @@
-#' Create an object of class scSeqR.
+#' Merge RNA and ADT data
 #'
-#' This function takes data frame and makes an object of class scSeqR.
-#' @param x A data frame containing gene counts for cells.
+#' This function is to merge the RNA and ADT data to the main.data slot of the scSeqR object.
+#' @param x An object of class scSeqR.
+#' @param adt.data Choose from raw or main (normalized) ADT data. Defult = "raw"
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' my.obj <- adt.rna.merge(my.obj, adt.data = "raw")
 #' }
 #'
 #' @export

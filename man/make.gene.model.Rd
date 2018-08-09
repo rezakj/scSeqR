@@ -2,7 +2,7 @@
 % Please edit documentation in R/make.gene.model.R
 \name{make.gene.model}
 \alias{make.gene.model}
-\title{Scale data}
+\title{Make a gene model for clustering}
 \usage{
 make.gene.model(x = NULL, dispersion.limit = 1.5, base.mean.rank = 500,
   non.sig.col = "darkgray", right.sig.col = "chartreuse3",
@@ -13,16 +13,56 @@ make.gene.model(x = NULL, dispersion.limit = 1.5, base.mean.rank = 500,
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
+
+\item{dispersion.limit}{A number for taking the genes that have dispersion above this number, defult = 1.5.}
+
+\item{base.mean.rank}{A number taking the top genes ranked by base mean, defult = 500.}
+
+\item{non.sig.col}{Color for the genes not used for the model, defult = "darkgray".}
+
+\item{right.sig.col}{Color for the genes above the dispersion limit, defult = "chartreuse3".}
+
+\item{left.sig.col}{Color for the genes above the rank limit, defult = "cadetblue3".}
+
+\item{disp.line.col}{Color of the line for dispersion limit, defult = "black".}
+
+\item{rank.line.col}{Color of the line for rank limit, defult = "red".}
+
+\item{cell.size}{A number for the size of the points in the plot, defult = 1.75.}
+
+\item{cell.transparency}{Color transparency for the points in the plot, defult = 0.5.}
+
+\item{no.mito.model}{If set to TRUE, mitochondrial genes would be excluded from the gene list made for clustering, defult = TRUE.}
+
+\item{mark.mito}{Mark mitochondrial genes in the plot, defult = TRUE.}
+
+\item{interactive}{If set to TRUE an intractive HTML file will be created, defult = TRUE.}
+
+\item{out.name}{If "interactive" is set to TRUE, the out put name for HTML, defult = "plot".}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and scales the normalized data.
+This function takes an object of class scSeqR and priveds a gene list for clustering based on the parameters set in the model.
 }
 \examples{
 \dontrun{
-gene.stats.plot(my.obj)
+make.gene.model(my.obj,
+               dispersion.limit = 1.5,
+               base.mean.rank = 500,
+               no.mito.model = T,
+               mark.mito = T,
+               interactive = T,
+               out.name = "gene.model")
+
+make.gene.model(my.obj,
+             dispersion.limit = 1.5,
+             base.mean.rank = 500,
+             no.mito.model = T,
+             mark.mito = T,
+             interactive = F,
+             out.name = "gene.model")
 }
 
 }

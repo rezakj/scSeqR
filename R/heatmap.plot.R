@@ -1,11 +1,18 @@
-#' Create an object of class scSeqR.
+#' Create heatmaps for genes in clusters or conditions.
 #'
-#' This function takes data frame and makes an object of class scSeqR.
+#' This function takes an object of class scSeqR and genes and provides a heatmap.
 #' @param x A data frame containing gene counts for cells.
+#' @param gene A set of gene names to be heatmapped.
+#' @param cluster.by Choose from "clusters" or "conditions", defult = "clusters".
+#' @param cluster.rows If set to FALSE the genes would not be clustered, defult = TRUE.
+#' @param scale Choose from "row" or "column", defult = "row".
+#' @param heat.colors Colors for heatmap, defult = c("blue" ,"white", "red").
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' MyGenes <- c("SOD1","CD7")
+#' MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
+#' heatmap.plot (my.obj, gene = MyGenes, cluster.by = "clusters", cluster.rows = T)
 #' }
 #' @import pheatmap
 #' @export
