@@ -448,19 +448,19 @@ head(marker.genes)
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot")
+	out.name = "scatter_plot")
 # PCA 2D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot",
+	out.name = "scatter_plot",
 	plot.data.type = "pca")
 	
 # tSNE 3D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot",
+	out.name = "scatter_plot",
 	clust.dim = 3)
 	
 # Box Plot
