@@ -11,7 +11,7 @@ files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.
 ***
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/GIF.gif" width="800" height="800" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/GIF.gif" width="400" height="400" />
 </p>
 
 ## How to install scSeqR
