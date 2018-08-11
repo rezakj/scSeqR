@@ -9,6 +9,11 @@ files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.
 **already normalized** data. You also have the option of choosing from a variaty of clustering algorithms. 
 
 ***
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/GIF.gif" width="800" height="800" />
+</p>
+
 ## How to install scSeqR
 
 - Install the dependencies for scSeqR in R.
@@ -139,13 +144,6 @@ stats.plot(my.obj,
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" width="800" height="700" />
 </p>
-
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out.gif" width="800" height="700" />
-</p>
-
-
 
 
 ```r  
