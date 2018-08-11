@@ -11,9 +11,9 @@ Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
 </p>
 
-scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
+scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
 files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.gov/)). The program inputs single cell data in [10X format](https://www.10xgenomics.com/), large numeric **matrix files** and **data frames** and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster. scSeqR, allows you to choose from **multiple normalization** methods and **spike-in normalization** depending on your data type. Alternatively, you can also use 
-**already normalized** data. You also have the option of choosing from a variaty of clustering algorithms. 
+**already normalized** data. scSeqR, also allows you to choose from **multiple clustering algorithms** and a lot more.
 
 ***
 ## How to install scSeqR
@@ -147,13 +147,11 @@ stats.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" width="800" height="700" />
 </p>
 
-
 ```r  
 # Scatter plots
 stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
 stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 ```
-
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out5.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out6.gif" width="400"/>
@@ -454,19 +452,19 @@ head(marker.genes)
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot")
+	out.name = "scatter_plot")
 # PCA 2D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot",
+	out.name = "scatter_plot",
 	plot.data.type = "pca")
 	
 # tSNE 3D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot",
+	out.name = "scatter_plot",
 	clust.dim = 3)
 	
 # Box Plot
