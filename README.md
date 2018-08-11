@@ -5,7 +5,10 @@ Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 ### Single Cell Sequencing R package (scSeqR)
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out.gif" width="700" height="600" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out1.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out2.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out3.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
 </p>
 
 scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
