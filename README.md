@@ -152,13 +152,10 @@ stats.plot(my.obj,
 stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
 stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 ```
-
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/mito.umi.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gene.umi.png" width="400"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out5.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out6.gif" width="400"/>
 </p>
-
-## To see interactive version of the plots click on these links: [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/mito-umi-plot.html) and [gene-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene-umi-plot.html)
 
 - Filter cells. 
 
