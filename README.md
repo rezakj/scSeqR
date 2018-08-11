@@ -4,16 +4,15 @@ Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 
 ### Single Cell Sequencing R package (scSeqR)
 
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out.gif" width="600" height="600" />
+</p>
+
 scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
 files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.gov/)). The program inputs single cell data in [10X format](https://www.10xgenomics.com/), large numeric **matrix files** and **data frames** and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster. scSeqR, allows you to choose from **multiple normalization** methods and **spike-in normalization** depending on your data type. Alternatively, you can also use 
 **already normalized** data. You also have the option of choosing from a variaty of clustering algorithms. 
 
 ***
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out.gif" width="600" height="500" />
-</p>
-
 ## How to install scSeqR
 
 - Install the dependencies for scSeqR in R.
