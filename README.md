@@ -140,6 +140,14 @@ stats.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" width="800" height="700" />
 </p>
 
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out.gif" width="800" height="700" />
+</p>
+
+
+
+
 ```r  
 # Scatter plots
 stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
