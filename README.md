@@ -1,6 +1,7 @@
 # scSeqR v0.99.0
 
 Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
+(We hope to have an official release with stable functions and complete documentation in August!)
 
 ### Single Cell Sequencing R package (scSeqR)
 
