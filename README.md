@@ -260,14 +260,14 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 </p>
 
 
-- Perform PCA and tSNE
+- Perform PCA
 
 ```r
 # PCA
 my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
-# tSNE
-my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+find.opt.pcs(my.obj)
+my.obj@opt.pcs
 ```        
 
 - Cluster the data
@@ -285,14 +285,21 @@ my.obj <- run.clustering(my.obj,
 	clust.method = "kmeans", 
 	dist.method = "euclidean",
 	index.method = "silhouette",
-	max.clust = 20,
-	dims = 1:10)
+	max.clust = 25,
+	dims = 1:my.obj@opt.pcs)
 
 # number of clusters found and assigned
 
 my.obj@cluster.data$Best.nc
 #Number_clusters     Value_Index 
 #         7.0000          0.2849 
+```
+
+- Perform tSNE
+
+```r
+# tSNE
+my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 ```
 
  - Optional manual clustering or renaming the clusters 
