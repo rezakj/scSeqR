@@ -270,6 +270,11 @@ find.opt.pcs(my.obj)
 my.obj@opt.pcs
 ```        
 
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Opt_Number_Of_PCs.png" width="800" height="800" />
+</p>
+
+
 - Cluster the data
 
 Here we cluster the first 10 dimensions of the data which is converted to principal components, to do this, you have the option of clustering your data based on the following methods: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
