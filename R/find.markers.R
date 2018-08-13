@@ -27,7 +27,7 @@ find.markers <- function (x = NULL,
   ###########
   dat <- x@main.data
   # get cluster data
-      DATA <- x@best.clust
+  DATA <- x@best.clust
   ############## set wich clusters you want as condition 1 and 2
   MyClusts <- as.numeric(unique(DATA$clusters))
 ############################### loop start
