@@ -2,11 +2,22 @@
 
 Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
 
+We hope to have an official release with stable functions and complete documentation in August!
+
 ### Single Cell Sequencing R package (scSeqR)
 
-scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out1.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out2.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out3.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
+</p>
+
+scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
 files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.gov/)). The program inputs single cell data in [10X format](https://www.10xgenomics.com/), large numeric **matrix files** and **data frames** and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster. scSeqR, allows you to choose from **multiple normalization** methods and **spike-in normalization** depending on your data type. Alternatively, you can also use 
-**already normalized** data. You also have the option of choosing from a variaty of clustering algorithms. 
+**already normalized** data. scSeqR, also allows you to choose from **multiple clustering algorithms** and a lot more.
+
+## To see example interactive clustering plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
 
 ***
 ## How to install scSeqR
@@ -145,13 +156,10 @@ stats.plot(my.obj,
 stats.plot(my.obj, plot.type = "point.mito.umi", out.name = "mito-umi-plot")
 stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 ```
-
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/mito.umi.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gene.umi.png" width="400"/>      
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out5.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out6.gif" width="400"/>
 </p>
-
-## To see interactive version of the plots click on these links: [mito-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/mito-umi-plot.html) and [gene-UMIs plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene-umi-plot.html)
 
 - Filter cells. 
 
@@ -208,6 +216,12 @@ my.obj <- norm.data(my.obj,
 #my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
 
+- Scale data
+
+```r
+my.obj <- data.scale(my.obj)
+```
+
 - Gene stats
 
 It's better to run gene.stats on your main data and update the gene.data of your object. 
@@ -246,15 +260,20 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 </p>
 
 
-- Perform PCA and tSNE
+- Perform PCA
 
 ```r
 # PCA
 my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
-# tSNE
-my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+find.opt.pcs(my.obj)
+my.obj@opt.pcs
 ```        
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Opt_Number_Of_PCs.png" />
+</p>
+
 
 - Cluster the data
 
@@ -271,8 +290,8 @@ my.obj <- run.clustering(my.obj,
 	clust.method = "kmeans", 
 	dist.method = "euclidean",
 	index.method = "silhouette",
-	max.clust = 20,
-	dims = 1:10)
+	max.clust = 25,
+	dims = 1:my.obj@opt.pcs)
 
 # number of clusters found and assigned
 
@@ -281,23 +300,12 @@ my.obj@cluster.data$Best.nc
 #         7.0000          0.2849 
 ```
 
- - Optional manual clustering or renaming the clusters 
- 
- You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
-To do this you might need to see what is the optimal number of clusters. 
+- Perform tSNE
 
 ```r
-##### Find optimal number of clusters for hierarchical clustering
-#opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
-##### Manual clustering 
-#my.obj <- man.assign.clust(my.obj, clust.num = 7)
-##### re-assign clusters 
-#my.obj <- change.clust(my.obj,change.clust = 1,to.clust = 20)
+# tSNE
+my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 ```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
-</p>
 
 - Visualize conditions
 
@@ -448,19 +456,19 @@ head(marker.genes)
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot")
+	out.name = "scatter_plot")
 # PCA 2D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot",
+	out.name = "scatter_plot",
 	plot.data.type = "pca")
 	
 # tSNE 3D	
 gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
-	out.name = "Cebpb_scatter_plot",
+	out.name = "scatter_plot",
 	clust.dim = 3)
 	
 # Box Plot
@@ -589,5 +597,23 @@ volcano.ma.plot(diff.res,
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/volc_plot.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
+</p>
+
+ - Optional manual clustering or renaming the clusters 
+ 
+ You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
+To do this you might need to see what is the optimal number of clusters. 
+
+```r
+##### Find optimal number of clusters for hierarchical clustering
+#opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
+##### Manual clustering 
+#my.obj <- man.assign.clust(my.obj, clust.num = 7)
+##### re-assign clusters 
+#my.obj <- change.clust(my.obj,change.clust = 1,to.clust = 20)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
 </p>
 

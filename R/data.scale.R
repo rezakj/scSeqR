@@ -14,9 +14,9 @@ data.scale <- function (x = NULL) {
     stop("x should be an object of class scSeqR")
   }
   DATA <- x@main.data
-  NormLog = log(DATA + 0.1)
+  NormLog = log2(DATA + 1)
   NormLog = as.data.frame(t(NormLog))
-  TopNormLogScale <- as.data.frame(t(scale(NormLog)))
+  TopNormLogScale <- as.data.frame(t(scale(NormLog, center=F)))
   attributes(x)$scaled.data <- TopNormLogScale
   return(x)
 }

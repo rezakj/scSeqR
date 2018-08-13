@@ -38,10 +38,19 @@ run.pca <- function (x = NULL,
 #      TopNormLogScale <- as.data.frame(scale(TopNormLogScale))
     }
   }
-# PCA
+# Returns
+  # info
     counts.pca <- prcomp(TopNormLogScale, center = T, scale. = T)
     attributes(x)$pca.info <- counts.pca
+    # DATA
     dataPCA = data.frame(counts.pca$rotation) # [1:max.dim]
     attributes(x)$pca.data <- dataPCA
+    # optimal
+    DATA <- counts.pca$sdev
+    OPTpcs <- mean(DATA)*2
+    OPTpcs <- (DATA > OPTpcs)
+    OPTpcs <- length(OPTpcs[OPTpcs==TRUE])
+    attributes(x)$opt.pcs <- OPTpcs
+    # object
   return(x)
 }
