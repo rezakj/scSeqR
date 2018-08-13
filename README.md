@@ -271,7 +271,7 @@ my.obj@opt.pcs
 ```        
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Opt_Number_Of_PCs.png" width="800" height="800" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Opt_Number_Of_PCs.png" />
 </p>
 
 
