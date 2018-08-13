@@ -307,24 +307,6 @@ my.obj@cluster.data$Best.nc
 my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 ```
 
- - Optional manual clustering or renaming the clusters 
- 
- You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
-To do this you might need to see what is the optimal number of clusters. 
-
-```r
-##### Find optimal number of clusters for hierarchical clustering
-#opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
-##### Manual clustering 
-#my.obj <- man.assign.clust(my.obj, clust.num = 7)
-##### re-assign clusters 
-#my.obj <- change.clust(my.obj,change.clust = 1,to.clust = 20)
-```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
-</p>
-
 - Visualize conditions
 
 As we artificially made 3 conditions by randomly dividing the sample into 3. All the conditions should be looking similar.
@@ -615,5 +597,23 @@ volcano.ma.plot(diff.res,
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/volc_plot.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
+</p>
+
+ - Optional manual clustering or renaming the clusters 
+ 
+ You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
+To do this you might need to see what is the optimal number of clusters. 
+
+```r
+##### Find optimal number of clusters for hierarchical clustering
+#opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
+##### Manual clustering 
+#my.obj <- man.assign.clust(my.obj, clust.num = 7)
+##### re-assign clusters 
+#my.obj <- change.clust(my.obj,change.clust = 1,to.clust = 20)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
 </p>
 
