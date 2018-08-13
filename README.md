@@ -216,6 +216,12 @@ my.obj <- norm.data(my.obj,
 #my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
 
+- Scale data
+
+```r
+my.obj <- data.scale(my.obj)
+```
+
 - Gene stats
 
 It's better to run gene.stats on your main data and update the gene.data of your object. 
