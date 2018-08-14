@@ -10,7 +10,7 @@
 #' }
 #'
 #' @export
-find.opt.pcs <- function (x = NULL, pcs.in.plot = 50) {
+plot.opt.pcs <- function (x = NULL, pcs.in.plot = 50) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
