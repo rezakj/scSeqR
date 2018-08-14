@@ -49,7 +49,7 @@ run.pca <- function (x = NULL,
     DATA <- counts.pca$sdev
     OPTpcs <- mean(DATA)*2
     OPTpcs <- (DATA > OPTpcs)
-    OPTpcs <- length(OPTpcs[OPTpcs==TRUE])
+    OPTpcs <- length(OPTpcs[OPTpcs==TRUE]) + 1
     attributes(x)$opt.pcs <- OPTpcs
     # object
   return(x)
