@@ -291,7 +291,7 @@ my.obj <- run.clustering(my.obj,
 	dist.method = "euclidean",
 	index.method = "silhouette",
 	max.clust = 25,
-	dims = 1:my.obj@opt.pcs)
+	dims = 1:10)
 
 # number of clusters found and assigned
 
@@ -602,7 +602,6 @@ volcano.ma.plot(diff.res,
  - Optional manual clustering or renaming the clusters 
  
  You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
-To do this you might need to see what is the optimal number of clusters. 
 
 ```r
 ##### Find optimal number of clusters for hierarchical clustering
