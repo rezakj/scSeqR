@@ -5,8 +5,7 @@
 \title{Create heatmaps for genes in clusters or conditions.}
 \usage{
 heatmap.plot(x = NULL, gene = "NULL", cluster.by = "clusters",
-  cluster.rows = T, scale = "row", heat.colors = c("blue", "white",
-  "red"))
+  cluster.rows = F, heat.colors = c("blue", "white", "red"))
 }
 \arguments{
 \item{x}{A data frame containing gene counts for cells.}
@@ -17,9 +16,9 @@ heatmap.plot(x = NULL, gene = "NULL", cluster.by = "clusters",
 
 \item{cluster.rows}{If set to FALSE the genes would not be clustered, defult = TRUE.}
 
-\item{scale}{Choose from "row" or "column", defult = "row".}
-
 \item{heat.colors}{Colors for heatmap, defult = c("blue" ,"white", "red").}
+
+\item{scale}{Choose from "row" or "column", defult = "row".}
 }
 \value{
 An object of class scSeqR
