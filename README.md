@@ -393,7 +393,21 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
 </p>
 
-        
+
+- Clusters and conditions cell frequency 
+
+```r
+clust.cond.info(my.obj, plot.type = "pie")
+# [1] "clust_cond_freq_info.txt file has beed generated."
+
+clust.cond.info(my.obj, plot.type = "bar")
+# [1] "clust_cond_freq_info.txt file has beed generated."
+```
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 	
+</p>
+
 - Avrage expression per cluster
 
 ```r
@@ -584,6 +598,14 @@ volcano.ma.plot(diff.res,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
 </p>
 
+ - Merging, resetting and renaming clusters 
+ 
+ ```r
+my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 1)
+my.obj <- change.clust(my.obj, change.clust = 2, to.clust = "B Cell")
+my.obj <- change.clust(my.obj, clust.reset = T)
+```
+
  - Optional manual clustering or renaming the clusters 
  
  You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
@@ -591,10 +613,6 @@ volcano.ma.plot(diff.res,
 ```r
 ##### Find optimal number of clusters for hierarchical clustering
 #opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
-##### Manual clustering 
-#my.obj <- man.assign.clust(my.obj, clust.num = 7)
-##### re-assign clusters 
-#my.obj <- change.clust(my.obj,change.clust = 1,to.clust = 20)
 ```
 
 <p align="center">
