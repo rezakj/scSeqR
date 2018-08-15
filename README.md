@@ -543,7 +543,7 @@ heatmap.plot (my.obj, gene = MyGenes)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" width="800" height="800" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" />
 </p>
 
 
