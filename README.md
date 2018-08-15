@@ -394,7 +394,21 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
 </p>
 
-        
+
+- Clusters and conditions cell frequency 
+
+```r
+clust.cond.info(my.obj, plot.type = "pie")
+# [1] "clust_cond_freq_info.txt file has beed generated."
+
+clust.cond.info(my.obj, plot.type = "bar")
+# [1] "clust_cond_freq_info.txt file has beed generated."
+```
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 	
+</p>
+
 - Avrage expression per cluster
 
 ```r
@@ -536,45 +550,30 @@ heatmap.plot (my.obj, gene = MyGenes)
 - Differential Expression Analysis 
 
 ```r
-diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
-head(diff.res)
-#            baseMean          WT          KO foldChange log2FoldChange       pval padj
-#A1BG     0.068250244 0.073606778 0.062875387  0.8542065     -0.2273433 0.46284942    1
-#A1BG.AS1 0.009902209 0.012277809 0.007518483  0.6123636     -0.7075395 0.31076602    1
-#A1CF     0.000000000 0.000000000 0.000000000        NaN            NaN        NaN  NaN
-#A2M      0.001555311 0.003105320 0.000000000  0.0000000           -Inf 0.09170874    1
-#A2M.AS1  0.010411651 0.005819828 0.015019181  2.5806916      1.3677577 0.13272473    1
-#A2ML1    0.000000000 0.000000000 0.000000000        NaN            NaN        NaN  NaN
-
 diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
-head(diff.res)
-#            baseMean         1_4          2 foldChange log2FoldChange       pval padj
-#A1BG     0.073234544 0.094378843 0.02684924  0.2844837     -1.8135823 0.01472597    1
-#A1BG.AS1 0.002151004 0.003131519 0.00000000  0.0000000           -Inf 0.31800136    1
-#A1CF     0.000000000 0.000000000 0.00000000        NaN            NaN        NaN  NaN
-#A2M      0.002164828 0.000000000 0.00691392        Inf            Inf 0.31882994    1
-#A2M.AS1  0.042598420 0.036532388 0.05590578  1.5303072      0.6138213 0.52322284    1
-#A2ML1    0.000000000 0.000000000 0.00000000        NaN            NaN        NaN  NaN
+diff.res1 <- as.data.frame(diff.res)
+diff.res1 <- subset(diff.res1, padj < 0.05)
+head(diff.res1)
+#             baseMean        1_4           2 foldChange log2FoldChange         pval
+#AAK1       0.19554589 0.26338228 0.041792762 0.15867719      -2.655833 8.497012e-33
+#ABHD14A    0.09645732 0.12708519 0.027038379 0.21275791      -2.232715 1.151865e-11
+#ABHD14B    0.19132829 0.23177944 0.099644572 0.42991118      -1.217889 3.163623e-09
+#ABLIM1     0.06901900 0.08749258 0.027148089 0.31029018      -1.688310 1.076382e-06
+#AC013264.2 0.07383608 0.10584821 0.001279649 0.01208947      -6.370105 1.291674e-19
+#AC092580.4 0.03730859 0.05112053 0.006003441 0.11743700      -3.090041 5.048838e-07
+                   padj
+#AAK1       1.294690e-28
+#ABHD14A    1.708446e-07
+#ABHD14B    4.636290e-05
+#ABLIM1     1.540087e-02
+#AC013264.2 1.950557e-15
+#AC092580.4 7.254675e-03
 
-diff.res <- diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
-head(diff.res)
-#            baseMean WT.inClust.1 KO.inClust.1 foldChange log2FoldChange      pval padj
-#A1BG     0.085041487  0.041275761   0.12841293   3.111098       1.637424 0.1363094    1
-#A1BG.AS1 0.004973589  0.009992392   0.00000000   0.000000           -Inf 0.3195253    1
-#A1CF     0.000000000  0.000000000   0.00000000        NaN            NaN       NaN  NaN
-#A2M      0.000000000  0.000000000   0.00000000        NaN            NaN       NaN  NaN
-#A2M.AS1  0.028292066  0.011177204   0.04525274   4.048664       2.017446 0.2468776    1
-#A2ML1    0.000000000  0.000000000   0.00000000        NaN            NaN       NaN  NaN
-
-diff.res <- diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
-head(diff.res)
-#            baseMean 1.inCond.WT 2.inCond.WT foldChange log2FoldChange      pval padj
-#A1BG     0.042345533 0.041275761  0.04452470   1.078713      0.1093111 0.9314472    1
-#A1BG.AS1 0.006702214 0.009992392  0.00000000   0.000000           -Inf 0.3195253    1
-#A1CF     0.000000000 0.000000000  0.00000000        NaN            NaN       NaN  NaN
-#A2M      0.006745287 0.000000000  0.02048569        Inf            Inf 0.3218544    1
-#A2M.AS1  0.007496905 0.011177204  0.00000000   0.000000           -Inf 0.3195253    1
-#A2ML1    0.000000000 0.000000000  0.00000000        NaN            NaN       NaN  NaN
+# more examples 
+# diff.res <- diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
+# diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+# diff.res <- diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
+# diff.res <- diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
 ```
 
 - Volcano and MA plots 
@@ -600,6 +599,14 @@ volcano.ma.plot(diff.res,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
 </p>
 
+ - Merging, resetting and renaming clusters 
+ 
+ ```r
+my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 1)
+my.obj <- change.clust(my.obj, change.clust = 2, to.clust = "B Cell")
+my.obj <- change.clust(my.obj, clust.reset = T)
+```
+
  - Optional manual clustering or renaming the clusters 
  
  You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
@@ -609,8 +616,6 @@ volcano.ma.plot(diff.res,
 #opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
 ##### Manual clustering 
 #my.obj <- man.assign.clust(my.obj, clust.num = 7)
-##### re-assign clusters 
-#my.obj <- change.clust(my.obj,change.clust = 1,to.clust = 20)
 ```
 
 <p align="center">
