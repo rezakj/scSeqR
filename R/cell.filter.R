@@ -133,6 +133,7 @@ cell.filter <- function (x = NULL,
   write.table((FilterFile),file="filters_set.txt", row.names =F, quote = F, col.names = F)
   print("filters_set.txt file has beed generated and includes the filters set for this experiment.")
 # return data
+  row.names(DATA) <- gsub("-",".", row.names(DATA))
   attributes(x)$main.data <- DATA
   return(x)
 }

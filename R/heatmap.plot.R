@@ -19,9 +19,8 @@
 heatmap.plot <- function (x = NULL,
                           gene = "NULL",
                           cluster.by = "clusters",
-                          cluster.rows = T,
-                          scale = "row",
-                          heat.colors = c("blue" ,"white", "red")) {
+                          cluster.rows = F,
+                          heat.colors = c("blue","white", "red")) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -50,12 +49,14 @@ To see the gene names issue this command: row.names(YOURobject@main.data)", sep=
   mrgd <- merge(clusters, data.expr, by="row.names")
   row.names(mrgd) <- mrgd$Row.names
   mrgd <- mrgd[,-1]
-  mrgd <- (mrgd[order(mrgd$clusters, decreasing = F),])
+  mrgd <- (mrgd[order(as.numeric(as.character(mrgd$clusters)), decreasing = F),])
   SideCol <- mrgd[1]
   SideCol$clusters <- sub("^", "cl.",SideCol$clusters)
   data <- mrgd[,-1]
-  data <- data.matrix(data)
+  data <- as.matrix(data)
   data <- log2(data + 1)
+#  data <- t(data)
+#  data <- t(scale(data, center = scale.center, scale = TRUE))
   }
   # conditions
   if (cluster.by == "conditions") {
@@ -77,6 +78,21 @@ To see the gene names issue this command: row.names(YOURobject@main.data)", sep=
   }
 # Heat map
   mycol <- colorRampPalette(heat.colors)(n = 100)
+# fix order
+  ClustersOrder <- c(1:length(gene))
+  ClustersOrder <- log2(ClustersOrder +1)
+#  ClustersOrder <- as.numeric(paste(ClustersOrder,".05", sep=""))
+  DATA <- as.data.frame(cbind(gene,ClustersOrder))
+  rownames(DATA) <- DATA$gene
+  DATA <- (DATA)[2]
+  data <- as.data.frame(t(data))
+  mrgd <- merge(DATA,data, by="row.names")
+  row.names(mrgd) <- mrgd$Row.names
+  mrgd <- mrgd[,-1]
+#  mrgd <- as.data.frame(as.matrix(mrgd))
+  mrgd <- mrgd[order(mrgd$ClustersOrder, decreasing = F),]
+  mrgd <- mrgd[,-1]
+  data <- t(mrgd)
 # return
   return(pheatmap(t(data),
                   col = mycol,
@@ -84,5 +100,5 @@ To see the gene names issue this command: row.names(YOURobject@main.data)", sep=
                   cluster_rows = cluster.rows,
                   cluster_cols = F,
                   annotation_col = SideCol,
-                  scale = scale))
+                  scale = "column"))
 }

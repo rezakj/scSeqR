@@ -25,7 +25,8 @@ run.pca <- function (x = NULL,
     raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
     topGenes <- head(raw.data.order,top.rank)
     TopNormLogScale <- log(topGenes + 0.1)
-#    TopNormLogScale <- as.data.frame(scale(TopNormLogScale))
+#    TopNormLogScale <- t(TopNormLogScale)
+#    TopNormLogScale <- as.data.frame(t(scale(TopNormLogScale)))
   }
   # gene model
   if (clust.method == "gene.model") {
@@ -35,7 +36,8 @@ run.pca <- function (x = NULL,
       genesForClustering <- readLines(gene.list)
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
       TopNormLogScale <- log(topGenes + 0.1)
-#      TopNormLogScale <- as.data.frame(scale(TopNormLogScale))
+#      TopNormLogScale <- t(TopNormLogScale)
+#      TopNormLogScale <- as.data.frame(t(scale(TopNormLogScale)))
     }
   }
 # Returns
