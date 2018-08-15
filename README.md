@@ -398,15 +398,15 @@ cluster.plot(my.obj,
 - Clusters and conditions cell frequency 
 
 ```r
-clust.cond.info(my.obj, plot.type = "pie")
+clust.cond.info(my.obj, plot.type = "bar")
 # [1] "clust_cond_freq_info.txt file has beed generated."
 
-clust.cond.info(my.obj, plot.type = "bar")
+clust.cond.info(my.obj, plot.type = "pie")
 # [1] "clust_cond_freq_info.txt file has beed generated."
 ```
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 	
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/bar.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pie.png" width="400"/> 	
 </p>
 
 - Avrage expression per cluster
