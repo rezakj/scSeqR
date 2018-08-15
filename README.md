@@ -604,14 +604,21 @@ volcano.ma.plot(diff.res,
  - Merging, resetting, renaming and removing clusters 
  
  ```r
+# let's say you  want to merge cluster 3 and 2.
 my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 2)
+
+# to reset to the original clusters run this.
 my.obj <- change.clust(my.obj, clust.reset = T)
+
+# you can also re-name the cluster numbers to cell types. Remember to reset after this so you can ran other analysis. 
 my.obj <- change.clust(my.obj, change.clust = 7, to.clust = "B Cell")
 
-# remove (remember that this would perminantly remove the data from all the slots in the object ecept frrom raw.data slot in the object)
+# Let's say for what ever reason you want to remove acluster, to do so run this.
 my.obj <- clust.rm(my.obj, clust.to.rm = 1)
 
-# To reposition the cells run tSNE again 
+# Remember that this would perminantly remove the data from all the slots in the object except frrom raw.data slot in the object. If you want to reset you need to start from the filtering cells step in the biginging of the analysis (using cell.filter function). 
+
+# To re-position the cells run tSNE again 
 my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
 # Use this for plotting as you make the changes
