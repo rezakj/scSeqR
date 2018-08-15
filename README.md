@@ -599,12 +599,18 @@ volcano.ma.plot(diff.res,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/MA_plot.png" width="400"/>      
 </p>
 
- - Merging, resetting and renaming clusters 
+ - Merging, resetting, renaming and removing clusters 
  
  ```r
-my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 1)
-my.obj <- change.clust(my.obj, change.clust = 2, to.clust = "B Cell")
+my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 2)
 my.obj <- change.clust(my.obj, clust.reset = T)
+my.obj <- change.clust(my.obj, change.clust = 7, to.clust = "B Cell")
+
+# remove (remember that this would perminantly remove the data from all the slots in the object ecept frrom raw.data slot in the object)
+my.obj <- clust.rm(my.obj, clust.to.rm = 1)
+
+# To reposition the cells run tSNE again 
+my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 ```
 
  - Optional manual clustering or renaming the clusters 
