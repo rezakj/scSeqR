@@ -395,7 +395,7 @@ cluster.plot(my.obj,
 </p>
 
 
-- Clusters and conditions cell frequency 
+- Cell frequencies in clusters and conditions
 
 ```r
 clust.cond.info(my.obj, plot.type = "bar")
@@ -537,7 +537,7 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 
 ```r
 # find top genes
-MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
+MyGenes <- top.markers(marker.genes, topde = 10)
 # plot
 heatmap.plot (my.obj, gene = MyGenes)
 ```
@@ -611,7 +611,27 @@ my.obj <- clust.rm(my.obj, clust.to.rm = 1)
 
 # To reposition the cells run tSNE again 
 my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+
+# Use this for plotting as you make the changes
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "tsne",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
 ```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_a.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_b.png" width="400"/>    
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_c.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_d.png" width="400"/>  
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_e.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
+</p>
 
  - Optional manual clustering or renaming the clusters 
  
