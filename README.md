@@ -539,7 +539,7 @@ diff.res <- diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
 diff.res1 <- as.data.frame(diff.res)
 diff.res1 <- subset(diff.res1, padj < 0.05)
 head(diff.res1)
-             baseMean        1_4           2 foldChange log2FoldChange         pval
+#             baseMean        1_4           2 foldChange log2FoldChange         pval
 #AAK1       0.19554589 0.26338228 0.041792762 0.15867719      -2.655833 8.497012e-33
 #ABHD14A    0.09645732 0.12708519 0.027038379 0.21275791      -2.232715 1.151865e-11
 #ABHD14B    0.19132829 0.23177944 0.099644572 0.42991118      -1.217889 3.163623e-09
