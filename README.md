@@ -34,6 +34,7 @@ install.packages(c("ggplot2",
      "gridExtra",
      "scatterplot3d",
      "RColorBrewer",
+     "NbClust",
      "pheatmap"))
  ```
         
