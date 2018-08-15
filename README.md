@@ -397,7 +397,7 @@ cluster.plot(my.obj,
 
 - Cell frequencies in clusters and conditions
 
-Remember that these are not normalized for the total number of cells in each condition. To do so, clust_cond_freq_info.tsv and do so and re plot them.
+Remember that these are not normalized for the total number of cells in each condition. You can normalize based on the number of the cells in each condition using the clust_cond_freq_info.tsv file that is generated and re-plot them in R or in excel sheet.
 
 ```r
 clust.cond.info(my.obj, plot.type = "bar")
