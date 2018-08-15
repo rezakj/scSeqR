@@ -613,6 +613,8 @@ my.obj <- change.clust(my.obj, clust.reset = T)
 ```r
 ##### Find optimal number of clusters for hierarchical clustering
 #opt.clust.num(my.obj, max.clust = 10, clust.type = "tsne", opt.method = "silhouette")
+##### Manual clustering 
+#my.obj <- man.assign.clust(my.obj, clust.num = 7)
 ```
 
 <p align="center">
