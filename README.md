@@ -657,3 +657,7 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
 </p>
 
+# How to analyze CITE-seq data using scSeqR
+
+
+
