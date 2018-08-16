@@ -1,6 +1,6 @@
 # scSeqR v0.99.0
 
-Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
+Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publications?name=khodadadi-Jamayran&format=html&sort=newest) and [Aristotelis Tsirigos](https://med.nyu.edu/faculty/aristotelis-tsirigos).
 
 We hope to have an official release with stable functions and complete documentation in August!
 
