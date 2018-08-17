@@ -292,7 +292,7 @@ my.obj <- run.clustering(my.obj,
 	dist.method = "euclidean",
 	index.method = "silhouette",
 	max.clust = 25,
-	dims = 1:10)
+	dims = 1:my.obj@opt.pcs)
 
 # number of clusters found and assigned
 
