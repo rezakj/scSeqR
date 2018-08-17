@@ -642,6 +642,19 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
+ - Pathway analysis
+ 
+ 
+```r
+# Pathway  
+pathways.kegg(my.obj, clust.num = 7)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/volc_plot.png" />    
+</p>
+
+
  - Optional manual clustering or renaming the clusters 
  
  You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
