@@ -651,7 +651,7 @@ pathways.kegg(my.obj, clust.num = 7)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/volc_plot.png" />    
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
 </p>
 
 
@@ -672,5 +672,9 @@ pathways.kegg(my.obj, clust.num = 7)
 
 # How to analyze CITE-seq data using scSeqR
 
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list3.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list5.png" />
+</p>
 
 
