@@ -267,7 +267,7 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 # PCA
 my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
-plot.opt.pcs(my.obj)
+opt.pcs.plot(my.obj)
 my.obj@opt.pcs
 ```        
 
