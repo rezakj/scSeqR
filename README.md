@@ -207,7 +207,7 @@ dim(my.obj@main.data)
 
 - Normalize data
 
-You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, this is Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
+You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, which is a Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
 
 ```r
 my.obj <- norm.data(my.obj, 
