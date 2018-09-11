@@ -4,8 +4,8 @@
 \alias{find.markers}
 \title{Find marker genes for each cluster}
 \usage{
-find.markers(x = NULL, fold.change = 2, padjval = 0.1, Inf.FCs = FALSE,
-  uniq = T, positive = TRUE)
+find.markers(x = NULL, fold.change = 2, padjval = 0.1, Inf.FCs = F,
+  uniq = F, positive = TRUE)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

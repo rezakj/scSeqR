@@ -165,7 +165,8 @@ cluster.plot <- function (x = NULL,
 # plot 3d
   if (clust.dim == 3) {
     if (interactive == T) {
-      DATAann <- as.data.frame(x@cluster.data$Best.partition)
+#      DATAann <- as.data.frame(x@cluster.data$Best.partition)
+      DATAann <- as.data.frame(x@best.clust)
       A = (row.names(DATAann))
       colnames(DATAann) <- ("clusters")
       B = as.character(as.matrix(DATAann[1]))

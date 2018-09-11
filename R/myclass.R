@@ -1,5 +1,6 @@
 setClass("scSeqR", representation (raw.data = "data.frame",
                                    stats = "data.frame",
+                                   obj.info = "character",
                                    main.data = "data.frame",
                                    scaled.data = "data.frame",
                                    tsne.data = "data.frame",
@@ -18,3 +19,9 @@ setClass("scSeqR", representation (raw.data = "data.frame",
                                    best.clust = "data.frame",
                                    data.conditions = "character",
                                    norm.factors = "data.frame"))
+# hide slots
+setMethod("show",
+          "scSeqR",
+          function(object){
+            show(object@obj.info)
+          })
