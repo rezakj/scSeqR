@@ -4,6 +4,9 @@ Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publication
 
 We hope to have an official release with stable functions and complete documentation in August!
 
+For citation pleae use this link: https://github.com/rezakj/scSeqR
+Our manuscript is in preparation.
+
 ### Single Cell Sequencing R package (scSeqR)
 
 <p align="center">
