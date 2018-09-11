@@ -4,7 +4,7 @@ Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publication
 
 We hope to have an official release with stable functions and complete documentation in october!
 
-For citation pleae use this link: https://github.com/rezakj/scSeqR
+For citation please use this link: https://github.com/rezakj/scSeqR
 
 Our manuscript is in preparation.
 
