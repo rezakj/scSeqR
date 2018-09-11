@@ -1,8 +1,12 @@
 # scSeqR v0.99.0
 
-Authors: Alireza Khodadadi-Jamayran and Aristotelis Tsirigos.
+Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publications?name=khodadadi-Jamayran&format=html&sort=newest) and [Aristotelis Tsirigos](https://med.nyu.edu/faculty/aristotelis-tsirigos).
 
-We hope to have an official release with stable functions and complete documentation in August!
+We hope to have an official release with stable functions and complete documentation in october!
+
+For citation please use this link: https://github.com/rezakj/scSeqR
+
+Our manuscript is in preparation.
 
 ### Single Cell Sequencing R package (scSeqR)
 
@@ -203,7 +207,7 @@ dim(my.obj@main.data)
 
 - Normalize data
 
-You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, this is Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
+You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, which is a Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
 
 ```r
 my.obj <- norm.data(my.obj, 
@@ -267,7 +271,7 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 # PCA
 my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
-plot.opt.pcs(my.obj)
+opt.pcs.plot(my.obj)
 my.obj@opt.pcs
 ```        
 
@@ -292,7 +296,7 @@ my.obj <- run.clustering(my.obj,
 	dist.method = "euclidean",
 	index.method = "silhouette",
 	max.clust = 25,
-	dims = 1:10)
+	dims = 1:my.obj@opt.pcs)
 
 # number of clusters found and assigned
 
@@ -604,14 +608,21 @@ volcano.ma.plot(diff.res,
  - Merging, resetting, renaming and removing clusters 
  
  ```r
+# let's say you  want to merge cluster 3 and 2.
 my.obj <- change.clust(my.obj, change.clust = 3, to.clust = 2)
+
+# to reset to the original clusters run this.
 my.obj <- change.clust(my.obj, clust.reset = T)
+
+# you can also re-name the cluster numbers to cell types. Remember to reset after this so you can ran other analysis. 
 my.obj <- change.clust(my.obj, change.clust = 7, to.clust = "B Cell")
 
-# remove (remember that this would perminantly remove the data from all the slots in the object ecept frrom raw.data slot in the object)
+# Let's say for what ever reason you want to remove acluster, to do so run this.
 my.obj <- clust.rm(my.obj, clust.to.rm = 1)
 
-# To reposition the cells run tSNE again 
+# Remember that this would perminantly remove the data from all the slots in the object except frrom raw.data slot in the object. If you want to reset you need to start from the filtering cells step in the biginging of the analysis (using cell.filter function). 
+
+# To re-position the cells run tSNE again 
 my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
 # Use this for plotting as you make the changes
@@ -635,6 +646,19 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
+ - Pathway analysis
+ 
+ 
+```r
+# Pathway  
+pathways.kegg(my.obj, clust.num = 7)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
+</p>
+
+
  - Optional manual clustering or renaming the clusters 
  
  You also have the option of manual hirarchical clustering or renaming the clusters. It is highly recomanded to not use this method as the above method is much more accurate. 
@@ -649,4 +673,12 @@ cluster.plot(my.obj,
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/optim_clust_num1.png" width="800" />
 </p>
+
+# How to analyze CITE-seq data using scSeqR
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list3.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list5.png" />
+</p>
+
 

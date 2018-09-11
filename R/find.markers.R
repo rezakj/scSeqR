@@ -18,8 +18,8 @@
 find.markers <- function (x = NULL,
           fold.change = 2,
           padjval = 0.1,
-          Inf.FCs = FALSE,
-          uniq = T,
+          Inf.FCs = F,
+          uniq = F,
           positive = TRUE) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
