@@ -15,6 +15,10 @@ clust.cond.info <- function (x = NULL, plot.type = "pie" ) {
     stop("x should be an object of class scSeqR")
   }
   ###################
+  if (my.obj@data.conditions == "Data conditions: no conditions/single sample") {
+    stop("This function only runs when there are conditions/more than one sample")
+  }
+  ###################
   DATA <- (x@best.clust)
   Conds <- (as.data.frame(do.call("rbind", strsplit(row.names(DATA), "_")))[1])
   clusts <- (as.data.frame(DATA$clusters))

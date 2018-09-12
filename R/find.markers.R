@@ -25,6 +25,7 @@ find.markers <- function (x = NULL,
     stop("x should be an object of class scSeqR")
   }
   ###########
+#  x <- clust.avg.exp(x)
   dat <- x@main.data
   # get cluster data
   DATA <- x@best.clust
