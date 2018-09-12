@@ -126,6 +126,12 @@ head(my.data)[1:2]
 
 ```r
 my.obj <- make.obj(my.data)
+my.obj
+#[1] "An object of class scSeqR version: 0.99.0"                                     
+#[2] "Raw/original data dimentions (rows,columns): 32738,2700"                       
+#[3] "Data conditions: WT,KO,Ctrl"                                                   
+#[4] "Columns names: WT_AAACATACAACCAC.1,WT_AAACATTGAGCTAC.1,WT_AAACATTGATCAGC.1 ..."
+#[5] "Row names: A1BG,A1BG.AS1,A1CF ..." 
 ```
 
 - Perform some QC 
