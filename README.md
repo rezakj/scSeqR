@@ -126,6 +126,12 @@ head(my.data)[1:2]
 
 ```r
 my.obj <- make.obj(my.data)
+my.obj
+#[1] "An object of class scSeqR version: 0.99.0"                                     
+#[2] "Raw/original data dimentions (rows,columns): 32738,2700"                       
+#[3] "Data conditions: WT,KO,Ctrl"                                                   
+#[4] "Columns names: WT_AAACATACAACCAC.1,WT_AAACATTGAGCTAC.1,WT_AAACATTGATCAGC.1 ..."
+#[5] "Row names: A1BG,A1BG.AS1,A1CF ..." 
 ```
 
 - Perform some QC 
@@ -307,9 +313,23 @@ my.obj@cluster.data$Best.nc
 
 - Perform tSNE
 
+You have two options here. One is to run tSNE on PCs (faster) and the other is to run it based on main data. They both should look similar if they are running in default mode, however, they each can each be very useful in different study designs. For example if you decide to run tSNE on a different gene set to change the spacing of the cells the second option might be useful. 
+
 ```r
 # tSNE
-my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+# or 
+# my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+```
+
+- Low Variance Batch Spacing Correction (LVBSC)
+
+We believe that batch correction should be done at the normalization level and scSeqR uses a geometric normalization for doing so as well as correcting for drop outs by excluding the genes with low count reads in the normalization step. However, in some cases one might need to also perform a cell spacing correction. This helps the same cell types in different samples come closer together in tSNE. For example, B cell in two sets of samples would be closer to each other and won't look like as if they should be two separate clusters. This step is optional.
+
+```r
+# optional
+# my.obj <- lvbsc(my.obj, dispersion.limit.max = 1.5, base.mean.rank.max = 500)
+# my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "lvbsc.txt", correction.method = "lvbsc")
 ```
 
 - Visualize conditions
