@@ -42,6 +42,7 @@ clust.avg.exp <- function (x = NULL) {
 #
 #  MeanExpForClusters <- multmerge()
 #  file.remove(list.files(pattern="meanExp"))
-  attributes(x)$clust.avg <- MeanExpForClusters
+   MeanExpForClusters <- MeanExpForClusters[order(nchar(colnames(MeanExpForClusters)),colnames(MeanExpForClusters))]
+   attributes(x)$clust.avg <- MeanExpForClusters
   return(x)
 }

@@ -93,6 +93,44 @@ To see the gene names issue this command: row.names(YOURobject@main.data)", sep=
   mrgd <- mrgd[order(mrgd$ClustersOrder, decreasing = F),]
   mrgd <- mrgd[,-1]
   data <- t(mrgd)
+###########
+############ ggplot 2
+  # fix order
+#  data <- as.data.frame(data)
+#  Merged <- merge(SideCol, data, by="row.names")
+#  Merged <- Merged[order(nchar(Merged$clusters),Merged$clusters, decreasing = F),]
+#  row.names(Merged) <- Merged$Row.names
+#  Merged <- Merged[,-1]
+#  SideCol <- Merged[1]
+#  Merged <- Merged[,-1]
+#  data <- as.matrix(Merged)
+####### heatmap.2(data, col = mycol,
+#  key=TRUE, symm=F,symkey=F,
+#  trace="none",density.info="none",
+#  Rowv=F, Colv=F,scale="row",
+#  cexRow=0.6,cexCol=0.8,margins=c(11,7))
+  ###
+###
+#  row.names(Merged) <- Merged$Row.names
+#  Merged <- Merged[,-1]
+#  clust.data <- Merged$clusters
+#  Merged <- Merged[,-1]
+#  Merged <- as.data.frame(t(Merged))
+#  Merged <- cbind(gene = rownames(Merged), Merged)
+#  Merged <- melt(Merged, id.vars = "gene")
+#
+#  ggplot(Merged , aes(variable, gene)) +
+#    geom_tile(aes(fill = value), color = "white") +
+#    scale_fill_gradient(low = "white", high = "steelblue") +
+#    ylab("genes ") +
+#    xlab("cells") +
+#    theme(legend.title = element_text(size = 10),
+#          legend.text = element_text(size = 12),
+#          plot.title = element_text(size=16),
+#          axis.title=element_text(size=14,face="bold"),
+#          axis.text.x = element_text(angle = 90, hjust = 1)) +
+#    labs(fill = "Expression")
+#
 # return
   return(pheatmap(t(data),
                   col = mycol,
