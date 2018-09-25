@@ -39,6 +39,7 @@ install.packages(c("ggplot2",
      "scatterplot3d",
      "RColorBrewer",
      "NbClust",
+     "reshape",
      "pheatmap"))
  ```
         
