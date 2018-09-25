@@ -17,6 +17,7 @@ Imports: Matrix,
   RColorBrewer,
   knitr,
   NbClust,
+  reshape,
   pheatmap
 License: GPL-2
 Encoding: UTF-8

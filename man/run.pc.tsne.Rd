@@ -2,27 +2,23 @@
 % Please edit documentation in R/run.pc.tsne.R
 \name{run.pc.tsne}
 \alias{run.pc.tsne}
-\title{Run tSNE on the main data}
+\title{Run tSNE on PCA data}
 \usage{
 run.pc.tsne(x = NULL, dims = 1:20)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{clust.method}{Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".}
-
-\item{top.rank}{A number taking the top genes ranked by base mean, defult = 500.}
-
-\item{gene.list}{A list of genes to be used for tSNE analysis. If "clust.method" is set to "gene.model", defult = "my_model_genes.txt".}
+\item{dims}{PC dimentions to be used for tSNE analysis.}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and runs tSNE on the main data.
+This function takes an object of class scSeqR and runs tSNE on PCA data.
 }
 \examples{
 \dontrun{
-my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
 }
 }
