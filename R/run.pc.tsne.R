@@ -1,14 +1,12 @@
-#' Run tSNE on the main data
+#' Run tSNE on PCA data
 #'
-#' This function takes an object of class scSeqR and runs tSNE on the main data.
+#' This function takes an object of class scSeqR and runs tSNE on PCA data.
 #' @param x An object of class scSeqR.
-#' @param clust.method Choose from "base.mean.rank" or "gene.model", defult is "base.mean.rank".
-#' @param top.rank A number taking the top genes ranked by base mean, defult = 500.
-#' @param gene.list A list of genes to be used for tSNE analysis. If "clust.method" is set to "gene.model", defult = "my_model_genes.txt".
+#' @param dims PC dimentions to be used for tSNE analysis.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+#' my.obj <- run.pc.tsne(my.obj, dims = 1:10)
 #' }
 #' @import Rtsne
 #' @export
