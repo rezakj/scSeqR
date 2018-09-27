@@ -17,11 +17,8 @@ Our manuscript is in preparation.
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
 </p>
 
-scSeqR is an R package that can analyze single cell sequencing data types (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))) and large numeric [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) 
-files (i.e. count tables with many samples from [TCGA](https://cancergenome.nih.gov/)). The program inputs single cell data in [10X format](https://www.10xgenomics.com/), large numeric **matrix files** and **data frames** and helps you to perform QC, filtering, visualization, normalization, clustering, differential expression analysis and find positive and negative markers for each cluster. scSeqR, allows you to choose from **multiple normalization** methods and **spike-in normalization** depending on your data type. Alternatively, you can also use 
-**already normalized** data. scSeqR, also allows you to choose from **multiple clustering algorithms** and a lot more.
 
-## To see example interactive clustering plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
+scSeqR (Single Cell Sequencing R package) is an R package with 2D and 3D interactive visualizations to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
 
 ***
 ## How to install scSeqR
@@ -39,6 +36,7 @@ install.packages(c("ggplot2",
      "scatterplot3d",
      "RColorBrewer",
      "NbClust",
+     "reshape",
      "pheatmap"))
  ```
         
@@ -87,10 +85,9 @@ To see the help page for each function use question mark as:
 ?load10x
 ```
 
-- Aggregating data
+- Aggregate data
      
-Conditions in scSeqR, are set in the header of the data and are separated by an underscore (_).
-Let's say you want to merge multiple datasets and run scSeqR in aggregated mode. To do this let's divide your sample into 3,  assuming that there are 3 samples and aggregate them into one matrix. 
+Conditions in scSeqR are set in the header of the data and are separated by an underscore (_). Let's say you want to merge multiple datasets and run scSeqR in aggregate mode. Here’s an example: I divided this sample into three sets and then aggregate them into one matrix. 
 
 ```r
 dim(my.data)
@@ -142,7 +139,7 @@ my.obj <- UMIs.genes.mito(my.obj)
 
 - Plot QC
 
-By defult all the plotting functions would creat interactive html files unless interactive = FALSE.
+By default all the plotting functions would create interactive html files unless you set this parameter: interactive = FALSE.
 
 ```r
 # plot UMIs, genes and percent mito all at once and in one plot. 
@@ -174,31 +171,10 @@ stats.plot(my.obj, plot.type = "point.gene.umi", out.name = "gene-umi-plot")
 
 - Filter cells. 
 
-scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondial content and even based on one or more genes, or cell ids. 
-
-Befor filtering let's do a quick test and see how the data looks like. This might be very helpful to check the gene or genes of your interest and see in howmany cells they are expressed in. This could also be helful to choose the genes for cell sorting or filteering that are needed in some studies. 
-
-```r
-# run gene stats 
-my.obj <- gene.stats(my.obj, which.data = "raw.data")
-
-# sort and see the head of the gene stats
-head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
-#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
-#30303 TMSB4X          2700               2700      100.00000 46.00370 30.86793
-#3633     B2M          2699               2700       99.96296 44.94926 25.89472
-#14403 MALAT1          2699               2700       99.96296 59.88333 32.56044
-#27191 RPL13A          2698               2700       99.92593 28.46037 16.70928
-#27185  RPL10          2695               2700       99.81481 32.78407 17.90696
-#27190  RPL13          2693               2700       99.74074 28.55963 17.00709
-```
-
-Let's say that you are only interested in the cells in which RPL13 "OR" RPL10 are expressed, while have a maximum mito percent of 0.05 and a minimum number of 250 genes expressed and a maximum of 2400 genes. Maybe you also want to filter a cell with this id: WT_AAACATACAACCAC.1 
+scSeqR allows you to filter based on library sizes (UMIs), number of genes per cell, percent mitochondrial content, one or more genes, and cell ids.
 
 ```r
 my.obj <- cell.filter(my.obj,
-	filter.by.gene = c("RPL13","RPL10"),
-	filter.by.cell.id = c("WT_AAACATACAACCAC.1"),
 	min.mito = 0,
 	max.mito = 0.05,
 	min.genes = 200,
@@ -206,14 +182,17 @@ my.obj <- cell.filter(my.obj,
 	min.umis = 0,
 	max.umis = Inf)
 
+# more examples 
+# my.obj <- cell.filter(my.obj, filter.by.gene = c("RPL13","RPL10")) # filter our cell having no counts for these genes
+# my.obj <- cell.filter(my.obj, filter.by.cell.id = c("WT_AAACATACAACCAC.1")) # filter our cell cell by their cell ids.
+
 # chack to see how many cells are left.  
 dim(my.obj@main.data)
-# [1] 32738  2634
 ```
 
 - Normalize data
 
-You have a few options to normalize your data based on your study. You can also normalize your data using any tool other than scSeqR. We recomend "ranked.glsf" normalization for most singel cell studies, which is a Geometric Library Size Factor (GLSF) normalization that is using top expressed genes ranked by base mean. This normalization is great for fixing for matrices with a lot of zeros and because it's geometric it is great for fixing for batch effects as long as all the data is aggregated in one file (to aggregate your data see "aggregating data" section above). 
+You have a few options to normalize your data based on your study. You can also normalize your data using tools other than scSeqR and import your data to scSeqR. We recommend "ranked.glsf" normalization for most single cell studies. This normalization is great for fixing matrixes with lots of zeros and because it's geometric it is great for fixing for batch effects, as long as all the data is aggregated into one file (to aggregate your data see "aggregating data" section above). 
 
 ```r
 my.obj <- norm.data(my.obj, 
@@ -234,8 +213,6 @@ my.obj <- data.scale(my.obj)
 ```
 
 - Gene stats
-
-It's better to run gene.stats on your main data and update the gene.data of your object. 
 
 ```r
 my.obj <- gene.stats(my.obj, which.data = "main.data")
