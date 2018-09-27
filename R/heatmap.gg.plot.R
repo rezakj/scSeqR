@@ -14,7 +14,7 @@
 #' heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
 #' }
 #' @import pheatmap
-#' @import reshape
+#' @importFrom reshape melt
 #' @export
 heatmap.gg.plot <- function (x = NULL,
                           gene = "NULL",
@@ -50,11 +50,21 @@ heatmap.gg.plot <- function (x = NULL,
 #  MYord <- (MYord[order(MYord$Row, decreasing = F),])
   MYord <- (MYord[order(MYord$clusters, decreasing = F),])
   clustOrd <- unique(MYord$clusters)
+  z = as.data.frame(MYord$clusters)
+  # make break lines
+  for(i in 1:length(clustOrd)) {
+    NameCol=paste("cluster",i,sep="_")
+    myDATA = as.numeric(tail(row.names(subset(z, MYord$clusters == i)),1))
+    eval(call("<-", as.name(NameCol), myDATA))
+  }
+  MyLines <- as.numeric(mget(ls(pattern="cluster_")))
+  MyLines <- MyLines[1:length(MyLines)-1]
 }
   if (cluster.by == "conditions") {
     MYord <- (MYord[order(MYord$Row, decreasing = F),])
+    z = as.data.frame(MYord$Row)
   }
-  # order by condition
+  # order
   MYord <- row.names(MYord)
   ### get main data
   sub.data <- DATAmain[gene, colnames(DATAmain),drop = FALSE]
@@ -145,16 +155,41 @@ heatmap.gg.plot <- function (x = NULL,
                              axis.line = element_blank(), axis.title.y = element_blank(),
                              axis.ticks.y = element_blank())
   #
-  Clust.Ord <- factor(data$clusters, levels = clustOrd)
+#  Clust.Ord <- factor(data$clusters, levels = clustOrd)
 #  heatmap <- heatmap + scale_x_discrete(labels = Clust.Ord, position = "top")
 #  heatmap <- heatmap + scale_x_discrete(position = "top")
 #  heatmap <- heatmap + scale_x_discrete(labels = as.character(sort(as.numeric(Clust.Ord))))
 #  heatmap <- heatmap + scale_x_discrete(breaks=as.character(sort(as.numeric(Clust.Ord))),
 #                        labels=as.character(sort(as.numeric(Clust.Ord))),position = "top")
+#  geom_vline(xintercept = top.rank.line, colour = rank.line.col) +
+#  geom_hline(yintercept = SDlimit, colour = disp.line.col) +
+#  my.lines<-data.frame(x=c(.5,4.5), y=c(5.5,.5), xend=c(4.5,4.5), yend=c(5.5,5.5))
+#  geom_segment(data=my.lines, aes(x,y,xend=xend, yend=yend), size=3, inherit.aes=F)
 
+#########
+#  if (clustline == T) {
+#    heatmap <- heatmap + geom_vline(xintercept = MyLines,
+#                                    alpha = line.transparency,
+#                                    size = line.size,
+#                                    colour = "black")
+#  }
+
+  ###
+
+  heatmap <- heatmap + facet_wrap( ~ clusters, nrow = 1,scales = "free_x") +
+    theme(strip.background = element_rect(fill= NA))
+
+  # line per group of genes
+#  if (geneline == T) {
+#    PerClust <- length(gene) / tail(clustOrd,1)
+#    PerClust <- (clustOrd * PerClust)
+#    PerClust <- PerClust[1:length(PerClust)-1]
+#    PerClust <- PerClust + 0.5
+#    heatmap <- heatmap + geom_hline(yintercept = PerClust, colour = "black")
+#  }
   #
-  panel.spacing <- unit(x = 0.15, units = "lines")
-  heatmap <- heatmap + theme(strip.background = element_blank(),panel.spacing = panel.spacing)
+#  panel.spacing <- unit(x = 0.15, units = "lines")
+#  heatmap <- heatmap + theme(strip.background = element_blank(),panel.spacing = panel.spacing)
   # rmove key
   if (no.key == T) {
     heatmap <- heatmap + theme(legend.position = "none")
