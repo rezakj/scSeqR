@@ -11,7 +11,7 @@
 #' }
 #' @import Matrix
 #' @export
-top.markers <- function (x = NULL, topde = 10, min.base.mean = 0.5) {
+top.markers <- function (x = NULL, topde = 10, min.base.mean = 0.2) {
   MyClusts <- (unique(x$clusters))
 #  x <- x[order(x$baseMean,decreasing = T),]
   for (i in MyClusts) {
