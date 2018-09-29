@@ -542,7 +542,7 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 # find top genes
 MyGenes <- top.markers(marker.genes, topde = 10)
 # plot
-heatmap.plot (my.obj, gene = MyGenes)
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
 ```
 
 <p align="center">
