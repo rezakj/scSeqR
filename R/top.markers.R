@@ -11,7 +11,8 @@
 #' }
 #' @import Matrix
 #' @export
-top.markers <- function (x = NULL, topde = 10, min.base.mean = 0.2) {
+top.markers <- function (x = NULL, topde = 10, min.base.mean = 0.2, cluster = 0) {
+  if (cluster == 0) {
   MyClusts <- (unique(x$clusters))
 #  x <- x[order(x$baseMean,decreasing = T),]
   for (i in MyClusts) {
@@ -25,6 +26,13 @@ top.markers <- function (x = NULL, topde = 10, min.base.mean = 0.2) {
   filenames <- ls(pattern="topgenes_")
   datalist <- mget(filenames)
   topGenes <- as.character(do.call("c", datalist))
+  }
+  if (cluster != 0) {
+    MyClusts <- cluster
+    DATA <- subset(x, x$clusters == MyClusts)
+    DATA <- subset(DATA, DATA$baseMean >= min.base.mean)
+    topGenes <- as.character(head(DATA,topde)$gene)
+  }
     return(topGenes)
   }
 
