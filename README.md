@@ -542,7 +542,7 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 # find top genes
 MyGenes <- top.markers(marker.genes, topde = 10)
 # plot
-heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
+heatmap.plot (my.obj, gene = MyGenes)
 ```
 
 <p align="center">
@@ -642,6 +642,17 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_e.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
+
+ - Cell type prediction using ImmGen
+
+```r
+Cluster = 7
+MyGenes <- top.markers(marker.genes, topde = 40, min.base.mean = 0.2, cluster = Cluster)
+MyGenes <- unique(MyGenes)
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
+# or 
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
+```
 
  - Pathway analysis
  
