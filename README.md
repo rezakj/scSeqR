@@ -655,8 +655,8 @@ imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_for_Cluster_7.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_for_Cluster_7.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_for_Cluster_7.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_for_Cluster_7.png" />
 </p>
 
 
