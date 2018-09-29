@@ -643,6 +643,17 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
+ - Cell type prediction using ImmGen
+
+```r
+Cluster = 7
+MyGenes <- top.markers(marker.genes, topde = 40, min.base.mean = 0.2, cluster = Cluster)
+MyGenes <- unique(MyGenes)
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
+# or 
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
+```
+
  - Pathway analysis
  
  
