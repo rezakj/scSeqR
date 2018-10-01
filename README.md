@@ -572,10 +572,9 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
 # As you can see cluster 7 is most likely to be B-cells.   
 ```
 
-
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_RNA_Cluster_7.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_ULI-RNA_Cluster_7.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_RNA_Cluster_7.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_ULI-RNA_Cluster_7.png" /> 
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_RNA_Cluster_7.png" /> 
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_ULI-RNA_Cluster_7.png" />
 <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap_Cluster_7.png" /> 	
@@ -593,6 +592,17 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
 </p>
 
+- QC on clusters 
+
+```r
+clust.stats.plot(my.obj, plot.type = "box.mito", interactive = F)
+clust.stats.plot(my.obj, plot.type = "box.gene", interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/box.mito.clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/box.gene.clusters.png" width="400"/>      
+</p>
 
 
 - Differential Expression Analysis 
