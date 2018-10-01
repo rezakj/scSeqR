@@ -2,23 +2,21 @@
 % Please edit documentation in R/imm.gen.R
 \name{imm.gen}
 \alias{imm.gen}
-\title{Create heatmaps for genes in clusters or conditions.}
+\title{Create heatmaps or dot plots for genes in clusters to find thier cell types using ImmGen data.}
 \usage{
-imm.gen(immgen.data = "rna", gene = "NULL", plot.type = "heatmap",
-  heat.colors = c("blue", "white", "red"))
+imm.gen(immgen.data = "rna", gene = "NULL", top.cell.types = 50,
+  plot.type = "heatmap", heat.colors = c("blue", "white", "red"))
 }
 \arguments{
-\item{gene}{A set of gene names to be heatmapped.}
+\item{immgen.data}{Choose from "rna" od "uli.rna", defult = "rna"}
+
+\item{gene}{A set of gene names to used to predict cell type.}
+
+\item{top.cell.types}{Top cell types sorted by cumulative expression, defult = 25.}
+
+\item{plot.type}{Choose from "heatmap" od "point.plot", defult = "heatmap"}
 
 \item{heat.colors}{Colors for heatmap, defult = c("blue" ,"white", "red").}
-
-\item{x}{A data frame containing gene counts for cells.}
-
-\item{cluster.by}{Choose from "clusters" or "conditions", defult = "clusters".}
-
-\item{cluster.rows}{If set to FALSE the genes would not be clustered, defult = TRUE.}
-
-\item{scale}{Choose from "row" or "column", defult = "row".}
 }
 \value{
 An object of class scSeqR
@@ -28,8 +26,7 @@ This function takes an object of class scSeqR and genes and provides a heatmap.
 }
 \examples{
 \dontrun{
-MyGenes <- c("SOD1","CD7")
-MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
-heatmap.plot (my.obj, gene = MyGenes, cluster.by = "clusters", cluster.rows = T)
+imm.gen(immgen.data = "uli.rna", gene = MyGenes, plot.type = "heatmap")
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
 }
 }

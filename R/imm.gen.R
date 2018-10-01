@@ -1,42 +1,47 @@
-#' Create heatmaps for genes in clusters or conditions.
+#' Create heatmaps or dot plots for genes in clusters to find thier cell types using ImmGen data.
 #'
 #' This function takes an object of class scSeqR and genes and provides a heatmap.
-#' @param x A data frame containing gene counts for cells.
-#' @param gene A set of gene names to be heatmapped.
-#' @param cluster.by Choose from "clusters" or "conditions", defult = "clusters".
-#' @param cluster.rows If set to FALSE the genes would not be clustered, defult = TRUE.
-#' @param scale Choose from "row" or "column", defult = "row".
+#' @param immgen.data Choose from "rna" od "uli.rna", defult = "rna"
+#' @param gene A set of gene names to used to predict cell type.
+#' @param plot.type Choose from "heatmap" od "point.plot", defult = "heatmap"
+#' @param top.cell.types Top cell types sorted by cumulative expression, defult = 25.
 #' @param heat.colors Colors for heatmap, defult = c("blue" ,"white", "red").
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' MyGenes <- c("SOD1","CD7")
-#' MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.8)
-#' heatmap.plot (my.obj, gene = MyGenes, cluster.by = "clusters", cluster.rows = T)
+#' imm.gen(immgen.data = "uli.rna", gene = MyGenes, plot.type = "heatmap")
+#' imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
 #' }
 #' @import pheatmap
 #' @export
 imm.gen <- function (immgen.data = "rna",
                      gene = "NULL",
+                     top.cell.types = 50,
                      plot.type = "heatmap",
                      heat.colors = c("blue","white", "red")) {
   ## get main data
-#  my.data <- read.delim(x,header=TRUE)
-#  rownames(my.data) <- toupper(my.data$gene)
 if (immgen.data == "rna") {
   my.data <- immgen.rna
-}
+  MyTitle = "Top 23 out of 23 (ImmGen RNA-seq)"
+  }
+  if (immgen.data == "uli.rna") {
+    my.data <- immgen.uli.rna
+    MyTitle = paste("Top", top.cell.types, "out of 157 (ImmGen ultra-low-input RNA-seq)")
+  }
+  # fix row names
   MyRows <- toupper(row.names(my.data))
   MyRows <- gsub("-",".", MyRows)
   rownames(my.data) <- MyRows
-#  rownames(my.data) <- make.names(MyRows, unique=TRUE)
-#  my.data <- my.data[,-1]
+# get genes
   gene <- toupper(gene)
   my.data <- subset(my.data,row.names(my.data) %in% gene)
+  # scale
+  my.data <- log2(my.data + 1)
   # gg plot
   MYdf <- as.data.frame(sort(colSums(my.data),decreasing = F))
   colnames(MYdf) <- c("MyLev")
   MYdf <- cbind(cells = rownames(MYdf),MYdf)
+  MYdf <- tail(MYdf, top.cell.types)
   MYdf$cells <- factor(MYdf$cells, levels = row.names(MYdf))
   #
   if (plot.type == "point.plot") {
@@ -45,15 +50,12 @@ if (immgen.data == "rna") {
              geom_point() +
              xlab("log2(cumulative expression)") +
              ylab("ImmGen RNA-seq Cell Types") +
+             ggtitle(MyTitle) +
              theme_classic() +
              scale_size("") +
              scale_colour_gradient(low = "gray", high = "red", name="")
              )
   }
-#  ggplot(MYdf, aes(x=cells, y=log2(MyLev))) +
-#    geom_bar(stat = "identity") + coord_flip() +
-#    theme_classic()
-#  my.data <- my.data[ rowSums(counts(my.data)) == 0, ]
   # heatmap colors
   mycol <- colorRampPalette(heat.colors)(n = 100)
   # return

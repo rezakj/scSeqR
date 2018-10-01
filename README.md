@@ -542,7 +542,7 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 # find top genes
 MyGenes <- top.markers(marker.genes, topde = 10)
 # plot
-heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
+heatmap.plot (my.obj, gene = MyGenes)
 ```
 
 <p align="center">
@@ -654,13 +654,8 @@ imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
 imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
 ```
 
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_for_Cluster_7.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_for_Cluster_4.png" />
-</p>
-
-
  - Pathway analysis
+ 
  
 ```r
 # Pathway  
