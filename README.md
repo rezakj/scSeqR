@@ -4,9 +4,7 @@ Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publication
 
 We hope to have an official release with stable functions and complete documentation in october!
 
-For citation please use this link: https://github.com/rezakj/scSeqR
-
-Our manuscript is in preparation.
+For citation please use this link (our manuscript is in preparation): https://github.com/rezakj/scSeqR
 
 ### Single Cell Sequencing R package (scSeqR)
 
@@ -540,7 +538,7 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 
 ```r
 # find top genes
-MyGenes <- top.markers(marker.genes, topde = 10)
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2)
 MyGenes <- unique(MyGenes)
 # plot
 heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
@@ -585,7 +583,8 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
  
 ```r
 # Pathway  
-# pathways.kegg(my.obj, clust.num = 7) # this function is being imporoved and soon will be available
+# pathways.kegg(my.obj, clust.num = 7) 
+# this function is being improved and soon will be available
 ```
 
 <p align="center">
