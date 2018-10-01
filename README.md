@@ -551,6 +551,8 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
 </p>
 
  - Cell type prediction using ImmGen
+ 
+Note that ImmGen is mouse genome data and the sample data here is human. For 157 ULI-RNA-Seq samples use this meta data: [metadata](https://github.com/rezakj/scSeqR/blob/dev/doc/uli_RNA_metadat.txt). 
 
 ```r
 Cluster = 7
