@@ -4,9 +4,7 @@ Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publication
 
 We hope to have an official release with stable functions and complete documentation in october!
 
-For citation please use this link: https://github.com/rezakj/scSeqR
-
-Our manuscript is in preparation.
+For citation please use this link (our manuscript is in preparation): https://github.com/rezakj/scSeqR
 
 ### Single Cell Sequencing R package (scSeqR)
 
@@ -540,13 +538,69 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 
 ```r
 # find top genes
-MyGenes <- top.markers(marker.genes, topde = 10)
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2)
+MyGenes <- unique(MyGenes)
 # plot
 heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
+# or 
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
 ```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" />
+</p>
+
+ - Cell type prediction using ImmGen
+
+```r
+Cluster = 7
+MyGenes <- top.markers(marker.genes, topde = 40, min.base.mean = 0.2, cluster = Cluster)
+# plot 
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
+# and
+imm.gen(immgen.data = "uli.rna", gene = MyGenes, plot.type = "point.plot", top.cell.types = 50)
+# or 
+imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
+# and
+imm.gen(immgen.data = "uli.rna", gene = MyGenes, plot.type = "heatmap")
+
+# And finally check the genes in the cells and find the common ones to predict
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
+
+# As you can see cluster 7 is most likely to be B-cells.   
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_RNA_Cluster_7.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_ULI-RNA_Cluster_7.png" /> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_RNA_Cluster_7.png" /> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_ULI-RNA_Cluster_7.png" />
+<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap_Cluster_7.png" /> 	
+</p>
+
+
+ - Pathway analysis
+ 
+```r
+# Pathway  
+# pathways.kegg(my.obj, clust.num = 7) 
+# this function is being improved and soon will be available
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
+</p>
+
+- QC on clusters 
+
+```r
+clust.stats.plot(my.obj, plot.type = "box.mito", interactive = F)
+clust.stats.plot(my.obj, plot.type = "box.gene", interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/box.mito.clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/box.gene.clusters.png" width="400"/>      
 </p>
 
 
@@ -642,35 +696,6 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_e.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
-
- - Cell type prediction using ImmGen
-
-```r
-Cluster = 7
-MyGenes <- top.markers(marker.genes, topde = 40, min.base.mean = 0.2, cluster = Cluster)
-MyGenes <- unique(MyGenes)
-imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
-# or 
-imm.gen(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
-```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_for_Cluster_7.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_for_Cluster_4.png" />
-</p>
-
-
- - Pathway analysis
- 
-```r
-# Pathway  
-pathways.kegg(my.obj, clust.num = 7)
-```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
-</p>
-
 
  - Optional manual clustering or renaming the clusters 
  
