@@ -4,7 +4,8 @@
 \alias{change.clust}
 \title{Change the cluster number or re-name them}
 \usage{
-change.clust(x = NULL, change.clust = 0, to.clust = 0, clust.reset = F)
+change.clust(x = NULL, change.clust = 0, to.clust = 0,
+  clust.reset = F)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

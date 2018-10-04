@@ -17,7 +17,7 @@ This function takes data frame and makes an object of class scSeqR.
 }
 \examples{
 \dontrun{
-make.obj(my.data)
+my.obj <- make.obj(my.data)
 }
 
 }

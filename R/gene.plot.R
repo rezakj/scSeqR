@@ -117,6 +117,10 @@ gene.plot <- function (x = NULL,
       MyTitle = "PCA Plot"
       DATA <- x@pca.data
     }
+    if (plot.data.type == "dst") {
+      MyTitle = "DST Plot"
+      DATA <- x@diff.st.data
+    }
   }
   # 3 dimentions
   if (clust.dim == 3) {
@@ -127,6 +131,10 @@ gene.plot <- function (x = NULL,
     if (plot.data.type == "pca") {
       MyTitle = "3D PCA Plot"
       DATA <- x@pca.data
+    }
+    if (plot.data.type == "dst") {
+      MyTitle = "3D DST Plot"
+      DATA <- x@diff.st.data
     }
   }
   # conditions

@@ -52,6 +52,10 @@ cluster.plot <- function (x = NULL,
       MyTitle = "PCA Plot"
       DATA <- x@pca.data
     }
+    if (plot.type == "dst") {
+      MyTitle = "DST Plot"
+      DATA <- x@diff.st.data
+    }
   }
   # 3 dimentions
   if (clust.dim == 3) {
@@ -62,6 +66,10 @@ cluster.plot <- function (x = NULL,
     if (plot.type == "pca") {
       MyTitle = "3D PCA Plot"
       DATA <- x@pca.data
+    }
+    if (plot.type == "dst") {
+      MyTitle = "3D DST Plot"
+      DATA <- x@diff.st.data
     }
   }
   # conditions

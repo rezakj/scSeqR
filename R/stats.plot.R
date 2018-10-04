@@ -2,7 +2,7 @@
 #'
 #' This function takes an object of class scSeqR and creats QC plot.
 #' @param x An object of class scSeqR.
-#' @param plot.type Choose from "box.umi", "box.mito", "box.gene", "box.gene.umi.mito", "point.mito.umi", "point.gene.umi".
+#' @param plot.type Choose from "box.umi", "box.mito", "box.gene", "box.s.phase", "box.g2m.phase","all.in.one", "point.mito.umi", "point.gene.umi".
 #' @param cell.color Choose a color for points in the plot.
 #' @param cell.size A number for the size of the points in the plot, defult = 1.
 #' @param box.color A color for the boxes in the "boxplot", defult = "red".
@@ -28,6 +28,7 @@
 #'
 #' stats.plot(my.obj, plot.type = "point.mito.umi", interactive = T, out.name = "scatter.mito.umi")
 #' }
+#' @import gridExtra
 #' @export
 stats.plot <- function (x = NULL,
                         plot.type = "box.umi",
@@ -72,6 +73,18 @@ if (do == 2) {
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
     xlab("UMIs") + ylab("number of UMIs per cell") +
+    theme_bw()
+  # s.phase
+  s.plot <- ggplot(DATA,aes(y=S.phase.probability,x=col.legend)) +
+    geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
+    geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    xlab("S phase") + ylab("S phase probability") +
+    theme_bw()
+  # g2m.phase.probability
+  g2m.plot <- ggplot(DATA,aes(y=g2m.phase.probability,x=col.legend)) +
+    geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
+    geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    xlab("G2 and M phase") + ylab("G2 and M phase probability") +
     theme_bw()
 # scatter plots
   if (col.legend[1] == ".") {
@@ -135,7 +148,7 @@ if (do == 2) {
   if (plot.type == "box.umi") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
-      htmlwidgets::saveWidget(ggplotly(Mito.UMIs),OUT.PUT)
+      htmlwidgets::saveWidget(ggplotly(UMIsplot),OUT.PUT)
     }
     else
     return(UMIsplot)
@@ -144,7 +157,7 @@ if (do == 2) {
   if (plot.type == "box.mito") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
-      htmlwidgets::saveWidget(ggplotly(Mito.UMIs),OUT.PUT)
+      htmlwidgets::saveWidget(ggplotly(mito.percent.plot),OUT.PUT)
     }
     else
     return(mito.percent.plot)
@@ -153,16 +166,39 @@ if (do == 2) {
   if (plot.type == "box.gene") {
     if (interactive == T) {
       OUT.PUT <- paste(out.name, ".html", sep="")
-      htmlwidgets::saveWidget(ggplotly(Mito.UMIs),OUT.PUT)
+      htmlwidgets::saveWidget(ggplotly(nGenes.plot),OUT.PUT)
     }
     else
     return(nGenes.plot)
   }
   #
-  if (plot.type == "box.gene.umi.mito") {
+  if (plot.type == "box.s.phase") {
+    if (interactive == T) {
+      OUT.PUT <- paste(out.name, ".html", sep="")
+      htmlwidgets::saveWidget(ggplotly(s.plot),OUT.PUT)
+    }
+    else
+      return(s.plot)
+  }
+  #
+  if (plot.type == "box.g2m.phase") {
+    if (interactive == T) {
+      OUT.PUT <- paste(out.name, ".html", sep="")
+      htmlwidgets::saveWidget(ggplotly(g2m.plot),OUT.PUT)
+    }
+    else
+      return(g2m.plot)
+  }
+  #
+  if (plot.type == "all.in.one") {
     if (interactive == T) {
       print("for interactive mode use single plots (i.e. box.mito, box.gene, etc.) in plot.type")
     }
-    return(grid.arrange(nGenes.plot, UMIsplot,mito.percent.plot, ncol = 3))
+    return(grid.arrange(nGenes.plot,
+                        UMIsplot,
+                        mito.percent.plot,
+                        s.plot,
+                        g2m.plot,
+                        ncol = 5))
   }
 }
