@@ -132,7 +132,7 @@ my.obj
 - Perform some QC 
 
 ```r
-my.obj <- UMIs.genes.mito(my.obj)
+my.obj <- qc.stats(my.obj)
 ``` 
 
 - Plot QC
@@ -143,7 +143,7 @@ By default all the plotting functions would create interactive html files unless
 # plot UMIs, genes and percent mito all at once and in one plot. 
 # you can make them individually as well, see the arguments ?stats.plot.
 stats.plot(my.obj,
-	plot.type = "box.gene.umi.mito",
+	plot.type = "all.in.one",
 	out.name = "UMI-plot",
 	interactive = FALSE,
 	cell.color = "slategray3", 
@@ -233,7 +233,8 @@ It's best to always to avoid global clustering and use a set of model genes. In 
 make.gene.model(my.obj, 
 	dispersion.limit = 1.5, 
 	base.mean.rank = 500, 
-	no.mito.model = T, 
+	no.mito.model = T,
+	no.cell.cycle = T,
 	mark.mito = T, 
 	interactive = T,
 	out.name = "gene.model")
@@ -273,17 +274,26 @@ We recomand to use the defult options as below:
 
 ```r
 my.obj <- run.clustering(my.obj, 
-	clust.method = "kmeans", 
+	clust.method = "ward.D",
 	dist.method = "euclidean",
-	index.method = "silhouette",
+	index.method = "kl",
 	max.clust = 25,
 	dims = 1:my.obj@opt.pcs)
 
-# number of clusters found and assigned
+# more examples 
+#my.obj <- run.clustering(my.obj, 
+#	clust.method = "kmeans", 
+#	dist.method = "euclidean",
+#	index.method = "silhouette",
+#	max.clust = 25,
+#	dims = 1:my.obj@opt.pcs)
 
-my.obj@cluster.data$Best.nc
-#Number_clusters     Value_Index 
-#         7.0000          0.2849 
+#my.obj <- run.clustering(my.obj, 
+#	clust.method = "kmeans", 
+#	dist.method = "euclidean",
+#	index.method = "ccc",
+#	max.clust = 12,
+#	dims = 1:my.obj@opt.pcs)
 ```
 
 - Perform tSNE
@@ -295,16 +305,6 @@ You have two options here. One is to run tSNE on PCs (faster) and the other is t
 my.obj <- run.pc.tsne(my.obj, dims = 1:10)
 # or 
 # my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
-```
-
-- Low Variance Batch Spacing Correction (LVBSC)
-
-We believe that batch correction should be done at the normalization level and scSeqR uses a geometric normalization for doing so as well as correcting for drop outs by excluding the genes with low count reads in the normalization step. However, in some cases one might need to also perform a cell spacing correction. This helps the same cell types in different samples come closer together in tSNE. For example, B cell in two sets of samples would be closer to each other and won't look like as if they should be two separate clusters. This step is optional.
-
-```r
-# optional
-# my.obj <- lvbsc(my.obj, dispersion.limit.max = 1.5, base.mean.rank.max = 500)
-# my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "lvbsc.txt", correction.method = "lvbsc")
 ```
 
 - Visualize conditions
@@ -465,6 +465,19 @@ head(marker.genes)
 #MAL       0.041585770 0.03214897 0.026263849
 ```
 
+- 2 Pass Batch Spacing Correction (2PBSC)
+
+We believe that batch correction should be done at the normalization level and scSeqR uses a geometric normalization for doing so as well as correcting for drop outs by excluding the genes with low count reads in the normalization step. However, in some cases one might need to also perform a cell spacing correction. This helps the same cell types in different samples come closer together in tSNE or lay on top of each other. For example, B cell in two sets of samples would be closer to each other and won't look like as if they should be two separate clusters. This step is optional.
+
+```r
+# optional
+MyGenes <- top.markers(marker.genes, topde = 50, min.base.mean = 0.2)
+MyGenes <- unique(MyGenes)
+write.table((MyGenes),file="my_DE_model_genes.txt", row.names =F, quote = F, col.names = F)
+# you can run tSNE angain or use "my_DE_model_genes.txt" for another PCA and clustering round. 
+my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_DE_model_genes.txt")
+```
+
 - Plot genes
 
 ```r
@@ -532,7 +545,6 @@ grid.arrange(PPBP,LYZ,MS4A1,GNLY,LTB,NKG7,IFITM2,CD14,S100A9)
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list1.png" width="800" height="800" />
 </p>
-
 
 - Heatmap
 
@@ -698,6 +710,28 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_e.png" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
+
+ - Differentiation SpaceTime Analysis (DSTA) 
+ 
+ This is analogous pseudo-time analysis. 
+ 
+ ```r
+ my.obj <- run.diff.st(my.obj, dist.method = "euclidean")
+ cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "dst",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
+ ```
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" />
+</p>
+
 
  - Optional manual clustering or renaming the clusters 
  
