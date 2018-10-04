@@ -154,7 +154,7 @@ stats.plot(my.obj,
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" width="800" height="700" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" />
 </p>
 
 ```r  
