@@ -187,6 +187,13 @@ my.obj <- cell.filter(my.obj,
 # chack to see how many cells are left.  
 dim(my.obj@main.data)
 ```
+- Down sampling 
+
+This step is option and is for having the same number of cells for each condition. 
+
+```r
+# my.obj <- down.sample(my.obj)
+```
 
 - Normalize data
 
@@ -471,11 +478,11 @@ We believe that batch correction should be done at the normalization level and s
 
 ```r
 # optional
-MyGenes <- top.markers(marker.genes, topde = 50, min.base.mean = 0.2)
-MyGenes <- unique(MyGenes)
-write.table((MyGenes),file="my_DE_model_genes.txt", row.names =F, quote = F, col.names = F)
+# MyGenes <- top.markers(marker.genes, topde = 50, min.base.mean = 0.2)
+# MyGenes <- unique(MyGenes)
+# write.table((MyGenes),file="my_DE_model_genes.txt", row.names =F, quote = F, col.names = F)
 # you can run tSNE angain or use "my_DE_model_genes.txt" for another PCA and clustering round. 
-my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_DE_model_genes.txt")
+# my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_DE_model_genes.txt")
 ```
 
 - Plot genes
