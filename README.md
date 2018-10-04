@@ -720,7 +720,7 @@ cluster.plot(my.obj,
 
  - Differentiation SpaceTime Analysis (DSTA) 
  
- This is analogous pseudo-time analysis. 
+ This is analogous to pseudo-time analysis. 
  
  ```r
  my.obj <- run.diff.st(my.obj, dist.method = "euclidean")
