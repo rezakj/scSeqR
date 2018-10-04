@@ -5,7 +5,7 @@
 #' @return An object of class scSeqR
 #' @examples
 #' \dontrun{
-#' make.obj(my.data)
+#' my.obj <- make.obj(my.data)
 #' }
 #'
 #' @export
@@ -28,9 +28,10 @@ make.obj <- function (x = NULL) {
   do <- dim(do)[2]
   if (do == 2) {
     My.Conds <- data.frame(do.call('rbind', strsplit(as.character(DATA),'_',fixed=TRUE)))[1]
-    My.Conds <- as.character(unique(as.matrix(My.Conds)))
-    My.Conds <- paste(My.Conds , collapse=",")
-    My.Conds <- paste("Data conditions:", My.Conds)
+    My.Conds <- as.data.frame(table(My.Conds))
+    Conds <- paste(as.character(My.Conds$My.Conds) , collapse=",")
+    cond.counts <- paste(as.character(My.Conds$Freq) , collapse=",")
+    My.Conds <- paste("Data conditions in raw data: ", Conds, " (",cond.counts,")", sep="")
   } else {
     My.Conds = "Data conditions: no conditions/single sample"
   }

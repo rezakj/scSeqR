@@ -4,15 +4,15 @@
 \alias{stats.plot}
 \title{Plot nGenes, UMIs and perecent mito}
 \usage{
-stats.plot(x = NULL, plot.type = "box.umi", cell.color = "slategray3",
-  cell.size = 1, cell.transparency = 0.5, box.color = "red",
-  box.line.col = "green", back.col = "white", interactive = TRUE,
-  out.name = "plot")
+stats.plot(x = NULL, plot.type = "box.umi",
+  cell.color = "slategray3", cell.size = 1, cell.transparency = 0.5,
+  box.color = "red", box.line.col = "green", back.col = "white",
+  interactive = TRUE, out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{plot.type}{Choose from "box.umi", "box.mito", "box.gene", "box.gene.umi.mito", "point.mito.umi", "point.gene.umi".}
+\item{plot.type}{Choose from "box.umi", "box.mito", "box.gene", "box.s.phase", "box.g2m.phase","all.in.one", "point.mito.umi", "point.gene.umi".}
 
 \item{cell.color}{Choose a color for points in the plot.}
 

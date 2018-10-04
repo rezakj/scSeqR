@@ -48,6 +48,7 @@ make.gene.model <- function (x = NULL,
                              cell.size = 1.75,
                              cell.transparency = 0.5,
                              no.mito.model = T,
+                             no.cell.cycle = T,
                              mark.mito = T,
                              interactive = TRUE,
                              out.name = "plot") {
@@ -74,7 +75,16 @@ make.gene.model <- function (x = NULL,
     mito.genes <- grep(pattern = "^mt\\.", x = data$genes, value = TRUE, ignore.case = TRUE)
   }
   top_labelled <- subset(data, data$gene %in% mito.genes)
-#  plot
+# get cell cycle genes
+  s.phase.genes <- s.phase
+  g2m.phase.genes <- g2m.phase
+  sg2m <- c(s.phase.genes,g2m.phase.genes)
+  sg2m <- (unique(sort(sg2m)))
+  sg2m <- paste("^",sg2m,"$", sep="")
+  sg2m <- paste(sg2m,collapse="|")
+  Cell.Cycle <- grep(sg2m, x = data$genes, value = T, ignore.case = TRUE)
+#  top_labelled <- subset(data, data$gene %in% Cell.Cycle)
+  #  plot
   myPlot <- ggplot(data,aes(x=log2(numberOfCells),y=SDs, text = genes, label = genes)) +
     geom_point(aes(color = factor(color)),size = cell.size, alpha = cell.transparency) +
     theme_bw(base_size = 16) +
@@ -104,6 +114,10 @@ make.gene.model <- function (x = NULL,
 # exclude mito genes from model genes
   if (no.mito.model == T) {
     my.clust.genes <- subset(my.clust.genes, !(genes %in% mito.genes))
+  }
+  # exclude cell cycle genes from model genes
+  if (no.cell.cycle == T) {
+    my.clust.genes <- subset(my.clust.genes, !(genes %in% Cell.Cycle))
   }
   # retrun
   # write out gene model
