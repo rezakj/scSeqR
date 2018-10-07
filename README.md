@@ -21,8 +21,6 @@ scSeqR (Single Cell Sequencing R package) is an R package with 2D and 3D interac
 ***
 ## How to install scSeqR
         
-- Then install the package in R.
-
 ```r
 library(devtools)
 install_github("rezakj/scSeqR")
