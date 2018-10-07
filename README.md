@@ -20,23 +20,6 @@ scSeqR (Single Cell Sequencing R package) is an R package with 2D and 3D interac
 
 ***
 ## How to install scSeqR
-
-- Install the dependencies for scSeqR in R.
-
-```r
-install.packages(c("ggplot2",
-     "Matrix",
-     "plotly",
-     "Rtsne",
-     "gmp", 
-     "factoextra", 
-     "gridExtra",
-     "scatterplot3d",
-     "RColorBrewer",
-     "NbClust",
-     "reshape",
-     "pheatmap"))
- ```
         
 - Then install the package in R.
 
@@ -718,9 +701,7 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
- - Differentiation SpaceTime Analysis (DSTA) 
- 
- This is analogous to pseudo-time analysis. 
+ - Pseudo-time analysis
  
  ```r
  my.obj <- run.diff.st(my.obj, dist.method = "euclidean")
