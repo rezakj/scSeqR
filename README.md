@@ -13,33 +13,17 @@ For citation please use this link (our manuscript is in preparation): https://gi
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out2.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out3.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
+<img src="https://github.com/rezakj/scSeqR/blob/master/doc/out10.gif" /> 
 </p>
 
 
-scSeqR (Single Cell Sequencing R package) is an R package with 2D and 3D interactive visualizations to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
+
+
+scSeqR (Single Cell Sequencing R package) is an interactive R package to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
 
 ***
 ## How to install scSeqR
-
-- Install the dependencies for scSeqR in R.
-
-```r
-install.packages(c("ggplot2",
-     "Matrix",
-     "plotly",
-     "Rtsne",
-     "gmp", 
-     "factoextra", 
-     "gridExtra",
-     "scatterplot3d",
-     "RColorBrewer",
-     "NbClust",
-     "reshape",
-     "pheatmap"))
- ```
         
-- Then install the package in R.
-
 ```r
 library(devtools)
 install_github("rezakj/scSeqR")
@@ -189,9 +173,10 @@ dim(my.obj@main.data)
 ```
 - Down sampling 
 
-This step is option and is for having the same number of cells for each condition. 
+This step is optional and is for having the same number of cells for each condition. 
 
 ```r
+# optional
 # my.obj <- down.sample(my.obj)
 ```
 
@@ -271,7 +256,7 @@ my.obj@opt.pcs
 
 - Cluster the data
 
-Here we cluster the first 10 dimensions of the data which is converted to principal components, to do this, you have the option of clustering your data based on the following methods: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
+Here we cluster the first 10 dimensions of the data which is converted to principal components. You have the option of clustering your data based on the following methods: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
 
  For the distance calculation used for clustering, you have the following options: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski" or "NULL"
 
@@ -718,9 +703,7 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
- - Differentiation SpaceTime Analysis (DSTA) 
- 
- This is analogous to pseudo-time analysis. 
+ - Pseudo-time analysis
  
  ```r
  my.obj <- run.diff.st(my.obj, dist.method = "euclidean")
