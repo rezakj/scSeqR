@@ -173,9 +173,10 @@ dim(my.obj@main.data)
 ```
 - Down sampling 
 
-This step is option and is for having the same number of cells for each condition. 
+This step is optional and is for having the same number of cells for each condition. 
 
 ```r
+# optional
 # my.obj <- down.sample(my.obj)
 ```
 
@@ -255,7 +256,7 @@ my.obj@opt.pcs
 
 - Cluster the data
 
-Here we cluster the first 10 dimensions of the data which is converted to principal components, to do this, you have the option of clustering your data based on the following methods: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
+Here we cluster the first 10 dimensions of the data which is converted to principal components. You have the option of clustering your data based on the following methods: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
 
  For the distance calculation used for clustering, you have the following options: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski" or "NULL"
 
