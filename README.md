@@ -181,6 +181,7 @@ my.obj <- cell.filter(my.obj,
 
 # chack to see how many cells are left.  
 dim(my.obj@main.data)
+#[1] 32738  2637
 ```
 - Down sampling 
 
