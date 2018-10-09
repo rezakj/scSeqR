@@ -19,7 +19,11 @@ For citation please use this link (our manuscript is in preparation): https://gi
 
 
 
-scSeqR (Single Cell Sequencing R package) is an interactive R package to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, VDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
+scSeqR (Single Cell Sequencing R package) is an interactive R package to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, scATAC-seq, scVDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, **gating** (mainly used for CITE-seq), pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
+
+<p align="center">
+<img src="https://github.com/rezakj/scSeqR/blob/master/doc/Workflow_scSeqR.jpg" /> 
+</p>
 
 ***
 ## How to install scSeqR
@@ -108,9 +112,9 @@ my.obj <- make.obj(my.data)
 my.obj
 #[1] "An object of class scSeqR version: 0.99.0"                                     
 #[2] "Raw/original data dimentions (rows,columns): 32738,2700"                       
-#[3] "Data conditions: WT,KO,Ctrl"                                                   
+#[3] "Data conditions in raw data: Ctrl,KO,WT (900,900,900)"                         
 #[4] "Columns names: WT_AAACATACAACCAC.1,WT_AAACATTGAGCTAC.1,WT_AAACATTGATCAGC.1 ..."
-#[5] "Row names: A1BG,A1BG.AS1,A1CF ..." 
+#[5] "Row names: A1BG,A1BG.AS1,A1CF ..."   
 ```
 
 - Perform some QC 
@@ -163,6 +167,13 @@ my.obj <- cell.filter(my.obj,
 	max.genes = 2400,
 	min.umis = 0,
 	max.umis = Inf)
+	
+#[1] "cells with min mito ratio of 0 and max mito ratio of 0.05 were filtered."
+#[1] "cells with min genes of 200 and max genes of 2400 were filtered."
+#[1] "No UMI number filter"
+#[1] "No cell filter by provided gene/genes"
+#[1] "No cell id filter"
+#[1] "filters_set.txt file has beed generated and includes the filters set for this experiment."	
 
 # more examples 
 # my.obj <- cell.filter(my.obj, filter.by.gene = c("RPL13","RPL10")) # filter our cell having no counts for these genes
@@ -170,6 +181,7 @@ my.obj <- cell.filter(my.obj,
 
 # chack to see how many cells are left.  
 dim(my.obj@main.data)
+#[1] 32738  2637
 ```
 - Down sampling 
 
@@ -178,6 +190,10 @@ This step is optional and is for having the same number of cells for each condit
 ```r
 # optional
 # my.obj <- down.sample(my.obj)
+#[1] "From"
+#[1] "Data conditions: Ctrl,KO,WT (877,877,883)"
+#[1] "to"
+#[1] "Data conditions: Ctrl,KO,WT (877,877,877)"
 ```
 
 - Normalize data
@@ -195,6 +211,27 @@ my.obj <- norm.data(my.obj,
 #my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
 #my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
+
+- Perform second QC 
+
+```r
+my.obj <- qc.stats(my.obj,which.data = "main.data")
+
+stats.plot(my.obj,
+	plot.type = "all.in.one",
+	out.name = "UMI-plot",
+	interactive = F,
+	cell.color = "slategray3", 
+	cell.size = 1, 
+	cell.transparency = 0.5,
+	box.color = "red",
+	box.line.col = "green",
+	back.col = "white")
+``` 
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats2.png" />
+</p>
 
 - Scale data
 
@@ -271,6 +308,15 @@ my.obj <- run.clustering(my.obj,
 	index.method = "kl",
 	max.clust = 25,
 	dims = 1:my.obj@opt.pcs)
+	
+# If you want to manually set the number of clusters, and not used the predicted optimal number, set the minimum and maximum to the number you want:
+#my.obj <- run.clustering(my.obj, 
+#	clust.method = "ward.D",
+#	dist.method = "euclidean",
+#	index.method = "ccc",
+#	max.clust = 8,
+#	min.clust = 8,
+#	dims = 1:my.obj@opt.pcs)
 
 # more examples 
 #my.obj <- run.clustering(my.obj, 
