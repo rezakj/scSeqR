@@ -24,6 +24,7 @@ scSeqR (Single Cell Sequencing R package) is an interactive R package to works w
 <p align="center">
 <img src="https://github.com/rezakj/scSeqR/blob/master/doc/Workflow_scSeqR.png" /> 
 </p>
+
 ***
 ## How to install scSeqR
         
