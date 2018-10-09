@@ -6,7 +6,7 @@
 \usage{
 run.clustering(x = NULL, clust.method = "kmeans",
   dist.method = "euclidean", index.method = "silhouette",
-  max.clust = 25, dims = 1:10)
+  max.clust = 25, min.clust = 2, dims = 1:10)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
@@ -18,6 +18,8 @@ run.clustering(x = NULL, clust.method = "kmeans",
 \item{index.method}{the index to be calculated. This should be one of : "kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew", "friedman", "rubin", "cindex", "db", "silhouette", "duda", "pseudot2", "beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain", "gamma", "gplus", "tau", "dunn", "hubert", "sdindex", "dindex", "sdbw", "all" (all indices except GAP, Gamma, Gplus and Tau), "alllong" (all indices with Gap, Gamma, Gplus and Tau included).}
 
 \item{max.clust}{maximal number of clusters, between 2 and (number of objects - 1), greater or equal to min.nc.}
+
+\item{min.clust}{minimum number of clusters, defult = 2.}
 
 \item{dims}{PCA dimentions to be use for clustering, defult = 1:10.}
 }
@@ -34,6 +36,7 @@ my.obj <- run.clustering(my.obj,
                         dist.method = "euclidean",
                         index.method = "silhouette",
                         max.clust = 25,
+                        min.clust = 2,
                         dims = 1:10)
 }
 }
