@@ -212,7 +212,7 @@ my.obj <- norm.data(my.obj,
 #my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
 
-- Perform QC 
+- Perform second QC 
 
 ```r
 my.obj <- qc.stats(my.obj,which.data = "main.data")
