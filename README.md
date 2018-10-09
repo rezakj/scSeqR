@@ -212,6 +212,27 @@ my.obj <- norm.data(my.obj,
 #my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
 
+- Perform QC 
+
+```r
+my.obj <- qc.stats(my.obj,which.data = "main.data")
+
+stats.plot(my.obj,
+	plot.type = "all.in.one",
+	out.name = "UMI-plot",
+	interactive = F,
+	cell.color = "slategray3", 
+	cell.size = 1, 
+	cell.transparency = 0.5,
+	box.color = "red",
+	box.line.col = "green",
+	back.col = "white")
+``` 
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats2.png" />
+</p>
+
 - Scale data
 
 ```r
