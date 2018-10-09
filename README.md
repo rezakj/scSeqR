@@ -307,7 +307,7 @@ my.obj <- run.clustering(my.obj,
 	dist.method = "euclidean",
 	index.method = "kl",
 	max.clust = 25,
-	dims = 1:my.obj@opt.pcs)
+	dims = 1:10)
 	
 # If you want to manually set the number of clusters, and not used the predicted optimal number, set the minimum and maximum to the number you want:
 #my.obj <- run.clustering(my.obj, 
@@ -316,7 +316,7 @@ my.obj <- run.clustering(my.obj,
 #	index.method = "ccc",
 #	max.clust = 8,
 #	min.clust = 8,
-#	dims = 1:my.obj@opt.pcs)
+#	dims = 1:10)
 
 # more examples 
 #my.obj <- run.clustering(my.obj, 
@@ -324,7 +324,7 @@ my.obj <- run.clustering(my.obj,
 #	dist.method = "euclidean",
 #	index.method = "silhouette",
 #	max.clust = 25,
-#	dims = 1:my.obj@opt.pcs)
+#	dims = 1:10)
 
 #my.obj <- run.clustering(my.obj, 
 #	clust.method = "kmeans", 
