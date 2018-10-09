@@ -8,11 +8,18 @@
 #' UMIs.genes.mit(my.data)
 #' }
 #' @export
-qc.stats <- function (x = NULL) {
+qc.stats <- function (x = NULL,
+                      which.data = "raw.data") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  DATA <- x@raw.data
+  # get data
+  if (which.data == "raw.data") {
+    DATA <- x@raw.data
+  }
+  if (which.data == "main.data") {
+    DATA <- x@main.data
+  }
   # get UMIs
   UMIs <- colSums(DATA)
   # get nGENEs
