@@ -167,6 +167,13 @@ my.obj <- cell.filter(my.obj,
 	max.genes = 2400,
 	min.umis = 0,
 	max.umis = Inf)
+	
+#[1] "cells with min mito ratio of 0 and max mito ratio of 0.05 were filtered."
+#[1] "cells with min genes of 200 and max genes of 2400 were filtered."
+#[1] "No UMI number filter"
+#[1] "No cell filter by provided gene/genes"
+#[1] "No cell id filter"
+#[1] "filters_set.txt file has beed generated and includes the filters set for this experiment."	
 
 # more examples 
 # my.obj <- cell.filter(my.obj, filter.by.gene = c("RPL13","RPL10")) # filter our cell having no counts for these genes
@@ -182,6 +189,10 @@ This step is optional and is for having the same number of cells for each condit
 ```r
 # optional
 # my.obj <- down.sample(my.obj)
+#[1] "From"
+#[1] "Data conditions: Ctrl,KO,WT (877,877,883)"
+#[1] "to"
+#[1] "Data conditions: Ctrl,KO,WT (877,877,877)"
 ```
 
 - Normalize data
