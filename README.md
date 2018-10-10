@@ -256,7 +256,9 @@ head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
 
 - Make a gene model for clustering
 
-It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros. You can also use your set of genes as a model rather than making one. 
+It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is good for matrices with a lot of zeros. You can also use your set of genes as a model rather than making one. 
+
+**Batch alignment**: This option is for when you have multiple conditions and want to use their common model genes to have the coditions not be so appart due to the disperesed read covarge for genes (not UMIs, UMI covarage is already geometrically normalized for batches) in different conditions. This option helps a better gene set to be used for the rest of the analysis. (this option is comming soon)  
 
 ```r
 make.gene.model(my.obj, 
