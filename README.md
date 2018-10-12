@@ -245,21 +245,22 @@ my.obj <- data.scale(my.obj)
 
 ```r
 my.obj <- gene.stats(my.obj, which.data = "main.data")
-head(my.obj@gene.data[order(my.obj@gene.data$percentOfCells, decreasing = T),])
+
+head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
 #       genes numberOfCells totalNumberOfCells percentOfCells  meanExp
-#30303 TMSB4X          2637               2637            100 38.55948
-#36371    B2M           877                877            100 44.54987
-#47141 MALAT1           877                877            100 68.32115
-#63041 TMSB4X           877                877            100 38.55948
-#69109    B2M           877                877            100 45.55721
-#92666  RPL13           877                877            100 33.22870
+#30303 TMSB4X          2637               2637      100.00000 38.55948
+#3633     B2M          2636               2637       99.96208 45.07327
+#14403 MALAT1          2636               2637       99.96208 70.95452
+#27191 RPL13A          2635               2637       99.92416 32.29009
+#27185  RPL10          2632               2637       99.81039 35.43002
+#27190  RPL13          2630               2637       99.73455 32.32106
 #               SDs condition
 #30303 7.545968e-15       all
-#36371 2.741287e+01      Ctrl
-#47141 5.809287e+01      Ctrl
-#63041 7.595479e-15      Ctrl
-#69109 3.163813e+01        KO
-#92666 2.808432e+01        KO
+#3633  2.893940e+01       all
+#14403 7.996407e+01       all
+#27191 2.783799e+01       all
+#27185 2.599067e+01       all
+#27190 2.661361e+01       all
 ```
 
 - Make a gene model for clustering
