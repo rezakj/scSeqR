@@ -245,22 +245,26 @@ my.obj <- data.scale(my.obj)
 
 ```r
 my.obj <- gene.stats(my.obj, which.data = "main.data")
-
-head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
-#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
-#30303 TMSB4X          2634               2634      100.00000 46.74179 24.85859
-#3633     B2M          2633               2634       99.96203 46.98768 25.58558
-#14403 MALAT1          2633               2634       99.96203 65.53506 39.68695
-#27191 RPL13A          2633               2634       99.96203 28.96777 12.96873
-#27185  RPL10          2632               2634       99.92407 32.74179 11.13561
-#27190  RPL13          2630               2634       99.84814 29.12121 13.73905
+head(my.obj@gene.data[order(my.obj@gene.data$percentOfCells, decreasing = T),])
+#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp
+#30303 TMSB4X          2637               2637            100 38.55948
+#36371    B2M           877                877            100 44.54987
+#47141 MALAT1           877                877            100 68.32115
+#63041 TMSB4X           877                877            100 38.55948
+#69109    B2M           877                877            100 45.55721
+#92666  RPL13           877                877            100 33.22870
+#               SDs condition
+#30303 7.545968e-15       all
+#36371 2.741287e+01      Ctrl
+#47141 5.809287e+01      Ctrl
+#63041 7.595479e-15      Ctrl
+#69109 3.163813e+01        KO
+#92666 2.808432e+01        KO
 ```
 
 - Make a gene model for clustering
 
 It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is good for matrices with a lot of zeros. You can also use your set of genes as a model rather than making one. 
-
-**Batch alignment**: This option is for when you have multiple conditions and want to use their common model genes to have the coditions not be so appart due to the disperesed read covarge for genes (not UMIs, UMI covarage is already geometrically normalized for batches) in different conditions. This option helps a better gene set to be used for the rest of the analysis. (this option is comming soon)  
 
 ```r
 make.gene.model(my.obj, 
