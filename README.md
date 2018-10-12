@@ -206,6 +206,8 @@ my.obj <- norm.data(my.obj,
      top.rank = 500) # best for scRNA-Seq
 
 # more examples
+#my.obj <- norm.data(my.obj, norm.method = "ranked.deseq", top.rank = 500)
+#my.obj <- norm.data(my.obj, norm.method = "deseq") # best for bulk RNA-Seq 
 #my.obj <- norm.data(my.obj, norm.method = "global.glsf") # best for bulk RNA-Seq 
 #my.obj <- norm.data(my.obj, norm.method = "rpm", rpm.factor = 100000) # best for bulk RNA-Seq
 #my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
