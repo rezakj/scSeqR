@@ -2,7 +2,7 @@
 
 Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publications?name=khodadadi-Jamayran&format=html&sort=newest) and [Aristotelis Tsirigos](https://med.nyu.edu/faculty/aristotelis-tsirigos).
 
-We hope to have an official release with stable functions and complete documentation in october!
+We hope to have an official release with stable functions and complete documentation soon!
 
 For citation please use this link (our manuscript is in preparation): https://github.com/rezakj/scSeqR
 
