@@ -55,10 +55,27 @@ make.gene.model <- function (x = NULL,
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
-  data <- x@gene.data
+  DATA <- x@gene.data
 #  x = c(1:100)
 #  y = log1p(1:100)
-# variables
+  # get conditions
+  Myconds <- as.character(unique(DATA$condition))
+  data <- subset(DATA, DATA$condition == "all")
+  # get mito genes
+  mito.genes <- grep(pattern = "^mt\\-", x = data$genes, value = TRUE, ignore.case = TRUE)
+  if ( length(mito.genes) == 0 ) {
+    mito.genes <- grep(pattern = "^mt\\.", x = data$genes, value = TRUE, ignore.case = TRUE)
+  }
+  top_labelled <- subset(data, data$gene %in% mito.genes)
+  # get cell cycle genes
+  s.phase.genes <- s.phase
+  g2m.phase.genes <- g2m.phase
+  sg2m <- c(s.phase.genes,g2m.phase.genes)
+  sg2m <- (unique(sort(sg2m)))
+  sg2m <- paste("^",sg2m,"$", sep="")
+  sg2m <- paste(sg2m,collapse="|")
+  Cell.Cycle <- grep(sg2m, x = data$genes, value = T, ignore.case = TRUE)
+ # variables
   cellCountLimit = as.numeric(tail(head(data[order(data$meanExp, decreasing = T),],base.mean.rank)[2],1))
   top.rank.line = as.numeric(log2(cellCountLimit))
   SDlimit = dispersion.limit
@@ -69,21 +86,6 @@ make.gene.model <- function (x = NULL,
                           no = ifelse(data$numberOfCells > cellCountLimit,
                                       yes = "leftLimit",
                                       no = "none")))
-# get mito genes
-  mito.genes <- grep(pattern = "^mt\\-", x = data$genes, value = TRUE, ignore.case = TRUE)
-  if ( length(mito.genes) == 0 ) {
-    mito.genes <- grep(pattern = "^mt\\.", x = data$genes, value = TRUE, ignore.case = TRUE)
-  }
-  top_labelled <- subset(data, data$gene %in% mito.genes)
-# get cell cycle genes
-  s.phase.genes <- s.phase
-  g2m.phase.genes <- g2m.phase
-  sg2m <- c(s.phase.genes,g2m.phase.genes)
-  sg2m <- (unique(sort(sg2m)))
-  sg2m <- paste("^",sg2m,"$", sep="")
-  sg2m <- paste(sg2m,collapse="|")
-  Cell.Cycle <- grep(sg2m, x = data$genes, value = T, ignore.case = TRUE)
-#  top_labelled <- subset(data, data$gene %in% Cell.Cycle)
   #  plot
   myPlot <- ggplot(data,aes(x=log2(numberOfCells),y=SDs, text = genes, label = genes)) +
     geom_point(aes(color = factor(color)),size = cell.size, alpha = cell.transparency) +
@@ -118,6 +120,40 @@ make.gene.model <- function (x = NULL,
   # exclude cell cycle genes from model genes
   if (no.cell.cycle == T) {
     my.clust.genes <- subset(my.clust.genes, !(genes %in% Cell.Cycle))
+  }
+  ######## if conditions
+  #  top_labelled <- subset(data, data$gene %in% Cell.Cycle)
+  if (length(Myconds) > 1) {
+    for (i in Myconds) {
+      data <- subset(DATA, DATA$condition == i)
+      data1 <- subset(data, data$SDs > dispersion.limit)
+      data1 <- as.character(data1$genes)
+      data2 <- head(data[order(data$meanExp, decreasing = T),],base.mean.rank)
+      data2 <- as.character(data2$genes)
+      bestGenes <- unique(sort(c(data2,data1)))
+      if (no.mito.model == T) {
+        bestGenes <- subset(bestGenes, !(bestGenes %in% mito.genes))
+      }
+      # exclude cell cycle genes from model genes
+      if (no.cell.cycle == T) {
+        bestGenes <- subset(bestGenes, !(bestGenes %in% Cell.Cycle))
+      }
+      # name
+      bestGenes <- as.data.frame(bestGenes)
+      NameCol=paste("MyGeneStat",i,sep="_")
+      eval(call("<-", as.name(NameCol), bestGenes))
+    }
+    ## merge
+    filenames <- ls(pattern="MyGeneStat_")
+    datalist <- mget(filenames)
+    Table <- do.call(rbind.data.frame, datalist)
+    Table <- as.data.frame(table(as.character(Table$bestGenes)))
+    Table <- subset(Table, Table$Freq == length(Myconds))
+    my.clust.genes.conds <- as.character(Table$Var1)
+  }
+  ############# end of loop
+  if (length(Myconds) > 1) {
+    my.clust.genes <- my.clust.genes.conds
   }
   # retrun
   # write out gene model

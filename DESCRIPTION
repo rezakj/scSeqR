@@ -17,6 +17,8 @@ Imports: Matrix,
   knitr,
   NbClust,
   reshape,
+  DESeq,
+  shiny,
   pheatmap
 License: GPL-2
 Encoding: UTF-8

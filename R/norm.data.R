@@ -18,6 +18,7 @@
 #' my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
 #' my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 #' }
+#' @import DESeq
 #' @export
 norm.data <- function (x = NULL,
                        norm.method = "ranked.glsf",
@@ -41,6 +42,27 @@ norm.data <- function (x = NULL,
     norm.facts <- as.numeric(libSiz) / mean(as.numeric(libSiz))
     dataMat <- as.matrix(DATA)
     normalized <- as.data.frame(sweep(dataMat, 2, norm.facts, `/`))
+  }
+  if (norm.method == "deseq") {
+    CondAnum <- length(colnames(DATA)) - 1
+    conds <- factor( c( rep("CondA", CondAnum) , rep("CondB", 1)))
+    cds <- newCountDataSet(DATA, conds )
+    cds <- estimateSizeFactors( cds )
+    norm.facts <- as.numeric(sizeFactors(cds))
+    normalized <- as.data.frame(counts(cds,normalized=TRUE))
+  }
+  if (norm.method == "ranked.deseq") {
+    raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
+    CondAnum <- length(colnames(DATA)) - 1
+    conds <- factor( c( rep("CondA", CondAnum) , rep("CondB", 1)))
+    cds <- newCountDataSet(raw.data.order, conds )
+    cds <- estimateSizeFactors( cds )
+    norm.facts <- as.numeric(sizeFactors(cds))
+    cds1 <- newCountDataSet(DATA, conds)
+    sizeFactors(cds1) = sizeFactors(cds)
+    rm("cds")
+    normalized <- as.data.frame(counts(cds1, normalized=TRUE))
+    rm("cds1")
   }
   if (norm.method == "spike.in") {
     norm.facts <- read.table(spike.in.factors,sep="\t")[2]
