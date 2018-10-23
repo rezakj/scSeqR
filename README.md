@@ -2,7 +2,7 @@
 
 Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publications?name=khodadadi-Jamayran&format=html&sort=newest) and [Aristotelis Tsirigos](https://med.nyu.edu/faculty/aristotelis-tsirigos).
 
-We hope to have an official release with stable functions and complete documentation in october!
+We hope to have an official release with stable functions and complete documentation soon!
 
 For citation please use this link (our manuscript is in preparation): https://github.com/rezakj/scSeqR
 
@@ -19,10 +19,10 @@ For citation please use this link (our manuscript is in preparation): https://gi
 
 
 
-scSeqR (Single Cell Sequencing R package) is an interactive R package to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, scATAC-seq, scVDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, **gating** (mainly used for CITE-seq), pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
+scSeqR (Single Cell Sequencing R package) is an interactive R package to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, scVDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, **gating** (mainly used for CITE-seq), pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
 
 <p align="center">
-<img src="https://github.com/rezakj/scSeqR/blob/master/doc/Workflow_scSeqR.jpg" /> 
+<img src="https://github.com/rezakj/scSeqR/blob/master/doc/workflow.jpg" /> 
 </p>
 
 ***
@@ -206,6 +206,8 @@ my.obj <- norm.data(my.obj,
      top.rank = 500) # best for scRNA-Seq
 
 # more examples
+#my.obj <- norm.data(my.obj, norm.method = "ranked.deseq", top.rank = 500)
+#my.obj <- norm.data(my.obj, norm.method = "deseq") # best for bulk RNA-Seq 
 #my.obj <- norm.data(my.obj, norm.method = "global.glsf") # best for bulk RNA-Seq 
 #my.obj <- norm.data(my.obj, norm.method = "rpm", rpm.factor = 100000) # best for bulk RNA-Seq
 #my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
@@ -245,18 +247,25 @@ my.obj <- data.scale(my.obj)
 my.obj <- gene.stats(my.obj, which.data = "main.data")
 
 head(my.obj@gene.data[order(my.obj@gene.data$numberOfCells, decreasing = T),])
-#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp      SDs
-#30303 TMSB4X          2634               2634      100.00000 46.74179 24.85859
-#3633     B2M          2633               2634       99.96203 46.98768 25.58558
-#14403 MALAT1          2633               2634       99.96203 65.53506 39.68695
-#27191 RPL13A          2633               2634       99.96203 28.96777 12.96873
-#27185  RPL10          2632               2634       99.92407 32.74179 11.13561
-#27190  RPL13          2630               2634       99.84814 29.12121 13.73905
+#       genes numberOfCells totalNumberOfCells percentOfCells  meanExp
+#30303 TMSB4X          2637               2637      100.00000 38.55948
+#3633     B2M          2636               2637       99.96208 45.07327
+#14403 MALAT1          2636               2637       99.96208 70.95452
+#27191 RPL13A          2635               2637       99.92416 32.29009
+#27185  RPL10          2632               2637       99.81039 35.43002
+#27190  RPL13          2630               2637       99.73455 32.32106
+#               SDs condition
+#30303 7.545968e-15       all
+#3633  2.893940e+01       all
+#14403 7.996407e+01       all
+#27191 2.783799e+01       all
+#27185 2.599067e+01       all
+#27190 2.661361e+01       all
 ```
 
 - Make a gene model for clustering
 
-It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is great for matrices with a lot of zeros. You can also use your set of genes as a model rather than making one. 
+It's best to always to avoid global clustering and use a set of model genes. In bulk RNA-seq data it is very common to cluster the samples based on top 500 genes ranked by base mean, this is to reduce the noise. In scRNA-seq data, it's great to do so as well. This coupled with our ranked.glsf normalization is good for matrices with a lot of zeros. You can also use your set of genes as a model rather than making one. 
 
 ```r
 make.gene.model(my.obj, 
@@ -307,7 +316,7 @@ my.obj <- run.clustering(my.obj,
 	dist.method = "euclidean",
 	index.method = "kl",
 	max.clust = 25,
-	dims = 1:my.obj@opt.pcs)
+	dims = 1:10)
 	
 # If you want to manually set the number of clusters, and not used the predicted optimal number, set the minimum and maximum to the number you want:
 #my.obj <- run.clustering(my.obj, 
@@ -316,7 +325,7 @@ my.obj <- run.clustering(my.obj,
 #	index.method = "ccc",
 #	max.clust = 8,
 #	min.clust = 8,
-#	dims = 1:my.obj@opt.pcs)
+#	dims = 1:10)
 
 # more examples 
 #my.obj <- run.clustering(my.obj, 
@@ -324,7 +333,7 @@ my.obj <- run.clustering(my.obj,
 #	dist.method = "euclidean",
 #	index.method = "silhouette",
 #	max.clust = 25,
-#	dims = 1:my.obj@opt.pcs)
+#	dims = 1:10)
 
 #my.obj <- run.clustering(my.obj, 
 #	clust.method = "kmeans", 
