@@ -43,20 +43,26 @@ clust.stats.plot <- function (x = NULL,
   # mito
   mito.percent.plot <- ggplot(DATA,aes(y=mito.percent, x=as.factor(clusters))) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = "green", notch = notch, outlier.shape = NA, alpha = cell.transparency) +
     xlab("clusters") + ylab("percent of mito genes per cell") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
   # nGenes
   nGenes.plot <- ggplot(DATA,aes(y=nGenes,x=as.factor(clusters))) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = notch, outlier.shape = NA, alpha = cell.transparency) +
     xlab("clusters") + ylab("number of genes per cell") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
   # UMIs
   UMIsplot <- ggplot(DATA,aes(y=UMIs,x=as.factor(clusters))) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
     geom_boxplot(fill = box.color, col = box.line.col, notch = notch, outlier.shape = NA, alpha = cell.transparency) +
     xlab("clusters") + ylab("number of UMIs per cell") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
 # return
   if (plot.type == "box.umi") {

@@ -85,7 +85,7 @@ gene.plot <- function (x = NULL,
                        box.color = "red",
                        box.line.col = "green",
                        back.col = "white",
-                       cell.transparency = 1,
+                       cell.transparency = 0.5,
                        interactive = TRUE,
                        out.name = "plot") {
   if ("scSeqR" != class(x)[1]) {
@@ -232,12 +232,14 @@ gene.plot <- function (x = NULL,
     theme_bw() +
     geom_jitter(color = box.cell.col, size = cell.size, alpha = cell.transparency) +
     ggtitle(gene) +
+    geom_violin(trim=T, col = "black", alpha = cell.transparency) +
     geom_boxplot(fill = box.color,
                  col = "green",
                  notch = F,
                  outlier.shape = NA,
                  alpha = cell.transparency) +
     ylab("scaled normalized expression") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="blue") +
     xlab(".")
   # add p-val
   if (box.to.test == 0) {

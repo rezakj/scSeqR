@@ -14,6 +14,7 @@
 run.pca <- function (x = NULL,
                           clust.method = "base.mean.rank",
                           top.rank = 500,
+                          batch.norm = F,
                           gene.list = "my_model_genes.txt") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
@@ -35,9 +36,18 @@ run.pca <- function (x = NULL,
     } else {
       genesForClustering <- readLines(gene.list)
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
-      TopNormLogScale <- log(topGenes + 0.1)
-#      TopNormLogScale <- t(TopNormLogScale)
-#      TopNormLogScale <- as.data.frame(t(scale(TopNormLogScale)))
+      if (batch.norm == F){
+        TopNormLogScale <- log(topGenes + 0.1)
+      }
+      if (batch.norm == T){
+        ## new method
+        libSiz <- colSums(topGenes)
+        norm.facts <- as.numeric(libSiz) / mean(as.numeric(libSiz))
+        dataMat <- as.matrix(topGenes)
+        normalized <- as.data.frame(sweep(dataMat, 2, norm.facts, `/`))
+        # TopNormLogScale <- log(normalized + 0.1)
+        TopNormLogScale <- normalized
+      }
     }
   }
 # Returns

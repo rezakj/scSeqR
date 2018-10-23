@@ -59,32 +59,42 @@ if (do == 2) {
   # mito
   mito.percent.plot <- ggplot(DATA,aes(y=mito.percent,x=col.legend)) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    geom_boxplot(fill = box.color, col = "green", notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
+    geom_boxplot( fill = box.color, col = "green", notch = F, outlier.shape = NA, alpha = cell.transparency) +
     xlab("mito.percent") + ylab("percent of mito genes per cell") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
     # nGenes
   nGenes.plot <- ggplot(DATA,aes(y=nGenes,x=col.legend)) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
+    geom_boxplot( fill = box.color, col = box.line.col, notch = F, outlier.shape = NA, alpha = cell.transparency) +
     xlab("nGenes") + ylab("number of genes per cell") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
     # UMIs
   UMIsplot <- ggplot(DATA,aes(y=UMIs,x=col.legend)) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
+    geom_boxplot( fill = box.color, col = box.line.col, notch = F, outlier.shape = NA, alpha = cell.transparency) +
     xlab("UMIs") + ylab("number of UMIs per cell") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
   # s.phase
   s.plot <- ggplot(DATA,aes(y=S.phase.probability,x=col.legend)) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
+    geom_boxplot( fill = box.color, col = box.line.col, notch = F, outlier.shape = NA, alpha = cell.transparency) +
     xlab("S phase") + ylab("S phase probability") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
   # g2m.phase.probability
   g2m.plot <- ggplot(DATA,aes(y=g2m.phase.probability,x=col.legend)) +
     geom_jitter(color = cell.color, size = cell.size, alpha = cell.transparency) +
-    geom_boxplot(fill = box.color, col = box.line.col, notch = T, outlier.shape = NA, alpha = cell.transparency) +
+    geom_violin(trim=FALSE, col = "black", alpha = cell.transparency) +
+    geom_boxplot( fill = box.color, col = box.line.col, notch = F, outlier.shape = NA, alpha = cell.transparency) +
     xlab("G2 and M phase") + ylab("G2 and M phase probability") +
+    stat_summary(fun.y=mean, geom="point", size=2, color="black") +
     theme_bw()
 # scatter plots
   if (col.legend[1] == ".") {

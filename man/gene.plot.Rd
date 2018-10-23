@@ -9,7 +9,7 @@ gene.plot(x = NULL, gene = "NULL", box.to.test = 0,
   col.by = "clusters", plot.type = "scatterplot", cell.size = 1,
   cell.colors = c("gray", "red"), box.cell.col = "black",
   box.color = "red", box.line.col = "green", back.col = "white",
-  cell.transparency = 1, interactive = TRUE, out.name = "plot")
+  cell.transparency = 0.5, interactive = TRUE, out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
