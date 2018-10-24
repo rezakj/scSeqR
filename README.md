@@ -766,6 +766,8 @@ my.plot <- gene.plot(my.obj, gene = "GNLY",
 	clust.dim = 2,
 	interactive = F)
 
+cell.gating(my.obj, my.plot = my.plot)	
+
 # or 
 
 #my.plot <- cluster.plot(my.obj,
@@ -773,8 +775,6 @@ my.plot <- gene.plot(my.obj, gene = "GNLY",
 #	cell.transparency = 0.5,
 #	clust.dim = 2,
 #	interactive = F)
-
-cell.gating(my.obj, my.plot = my.plot)
  ```
 
 <p align="center">
