@@ -758,6 +758,37 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
+ - Cell gating 
+ 
+  ```r
+my.plot <- gene.plot(my.obj, gene = "GNLY", 
+	plot.type = "scatterplot",
+	clust.dim = 2,
+	interactive = F)
+
+# or 
+
+#my.plot <- cluster.plot(my.obj,
+#	cell.size = 1,
+#	cell.transparency = 0.5,
+#	clust.dim = 2,
+#	interactive = F)
+
+cell.gating(my.obj, my.plot = my.plot)
+ ```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate3.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate2.png" width="400"/>    
+</p>
+
+
+After downloading the cell ids, use the following cammand to rename their cluster. 
+
+```r
+my.obj <- gate.to.clust(my.obj, my.gate = "cellGating.txt", to.clust = 10)
+ ```
+
  - Pseudo-time analysis
  
  ```r
