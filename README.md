@@ -778,8 +778,8 @@ cell.gating(my.obj, my.plot = my.plot)
  ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate3.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate2.png" width="400"/>    
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate3.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate2.png" />    
 </p>
 
 
