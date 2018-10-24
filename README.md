@@ -291,9 +291,12 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 # PCA
 my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
-# If you have conditions, you can normalize the model genes so that you get as little batch difference as possible by correction for normalization. Another approach is to run CCA (CCA will be added soon).
+# If you have conditions, you can normalize the model genes so that you get as little batch difference as possible by correction for normalization. 
+# to do this, use this command:
 
 # my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", batch.norm = T)
+
+# Another approach is to run CCA (CCA will be added soon).
 
 opt.pcs.plot(my.obj)
 my.obj@opt.pcs
