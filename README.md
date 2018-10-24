@@ -447,6 +447,11 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
 </p>
 
+- Uniform Manifold Approximation and Projection (UMAP)
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP.png" width="400"/>
+</p>
 
 - Cell frequencies in clusters and conditions
 
