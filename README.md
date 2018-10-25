@@ -823,10 +823,10 @@ pseudotime.tree(my.obj,
 
  ```
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" width="400" />
 </p>
 
 
