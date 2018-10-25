@@ -825,7 +825,7 @@ pseudotime.tree(my.obj,
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" width="400" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/bloodCells.jpg" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" width="400" />
 </p>
 
