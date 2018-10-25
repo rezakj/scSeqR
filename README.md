@@ -801,21 +801,30 @@ After downloading the cell ids, use the following cammand to rename their cluste
 my.obj <- gate.to.clust(my.obj, my.gate = "cellGating.txt", to.clust = 10)
  ```
 
- - Pseudo-time analysis
+ - Pseudotime analysis
  
  ```r
- my.obj <- run.diff.st(my.obj, dist.method = "euclidean")
- cluster.plot(my.obj,
-	cell.size = 1,
-	plot.type = "dst",
-	cell.color = "black",
-	back.col = "white",
-	col.by = "clusters",
-	cell.transparency = 0.5,
-	clust.dim = 2,
-	interactive = F)
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2)
+MyGenes <- unique(MyGenes)
+
+pseudotime.tree(my.obj,
+	marker.genes = MyGenes,
+	clust.names = c("1.T.CD4","2.Mon.CD14","3.Mon.FCGR3A","4.Megak","5.T.CD8","6.NK","7.B"),
+	type = "unrooted",
+	clust.method = "complete")
+
+# or 
+
+pseudotime.tree(my.obj,
+	marker.genes = MyGenes,
+	clust.names = c("1.T.CD4","2.Mon.CD14","3.Mon.FCGR3A","4.Megak","5.T.CD8","6.NK","7.B"),
+	type = "classic",
+	clust.method = "complete")
+
  ```
 <p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst.png" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" />
 </p>
