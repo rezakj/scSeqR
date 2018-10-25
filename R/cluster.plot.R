@@ -48,7 +48,7 @@ cluster.plot <- function (x = NULL,
       MyTitle = "tSNE Plot"
       DATA <- x@tsne.data
     }
-    if (plot.type == "pca") {
+    if (plot.type == "pca") {u
       MyTitle = "PCA Plot"
       DATA <- x@pca.data
     }
