@@ -820,13 +820,15 @@ pseudotime.tree(my.obj,
 	clust.names = c("1.T.CD4","2.Mon.CD14","3.Mon.FCGR3A","4.Megak","5.T.CD8","6.NK","7.B"),
 	type = "classic",
 	clust.method = "complete")
+	
+# UMAP and DiffMAP plots to come soon. 	
 
  ```
 <p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/bloodCells.jpg" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" width="400" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/bloodCells.jpg" width="400" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" />
 </p>
 
 
