@@ -48,12 +48,16 @@ cluster.plot <- function (x = NULL,
       MyTitle = "tSNE Plot"
       DATA <- x@tsne.data
     }
-    if (plot.type == "pca") {
+    if (plot.type == "pca") {u
       MyTitle = "PCA Plot"
       DATA <- x@pca.data
     }
+    if (plot.type == "umap") {
+      MyTitle = "UMAP Plot"
+      DATA <- x@umap.data
+    }
     if (plot.type == "dst") {
-      MyTitle = "DST Plot"
+      MyTitle = "DST Plot"$
       DATA <- x@diff.st.data
     }
   }

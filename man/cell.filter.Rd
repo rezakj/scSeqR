@@ -6,8 +6,8 @@
 \usage{
 cell.filter(x = NULL, min.mito = 0, max.mito = 1, min.genes = 0,
   max.genes = Inf, min.umis = 0, max.umis = Inf,
-  filter.by.cell.id = "character", filter.by.gene = "character",
-  filter.by.gene.exp.min = 1)
+  filter.by.cell.id = "character", keep.cell.id = "character",
+  filter.by.gene = "character", filter.by.gene.exp.min = 1)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
@@ -25,6 +25,8 @@ cell.filter(x = NULL, min.mito = 0, max.mito = 1, min.genes = 0,
 \item{max.umis}{Max number UMIs per cell, defult = Inf.}
 
 \item{filter.by.cell.id}{A character vector of cell ids to be filtered out.}
+
+\item{keep.cell.id}{A character vector of cell ids to keep.}
 
 \item{filter.by.gene}{A character vector of gene names to be filtered by thier expression. If more then one gene is defined it would be OR not AND.}
 
@@ -46,5 +48,4 @@ cell.filter(my.obj,
    min.umis = 0,
    max.umis = Inf)
 }
-
 }

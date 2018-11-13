@@ -167,5 +167,5 @@ if (interactive == T) {
 }
 if (interactive == F) {
   return(myPlot)
-}
+  }
 }

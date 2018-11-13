@@ -22,7 +22,7 @@ For citation please use this link (our manuscript is in preparation): https://gi
 scSeqR (Single Cell Sequencing R package) is an interactive R package to works with high-throughput single cell sequencing technologies (i.e [scRNA-seq, scVDJ-seq and CITE-seq](https://en.wikipedia.org/wiki/Single_cell_sequencing#Single-cell_RNA_sequencing_(scRNA-seq))). As some research studies require a more attuned forms of normalization or **spike-in normalization** in some cases, scSeqR allows the users to chose from **multiple normalization methods** and **correcting for dropouts** (nonzero events counted as zero). Because some of the cell types are more challenging to work with, scSeqR also allows the users to choose from **different clustering algorithms (i.e. ward.D, kmeans, ward.D2, hierarchical, etc.)** and **indexing methods (i.e. silhouette, ccc, kl, gap-stats, etc.)** to adjust for sensitivity and stringency in order to find less or more subpopulations of cell types to design both unsupervised and supervised models to best suit your research. scSeqR provides **2D and 3D interactive visualizations**, **differential expression analysis**, filters based on cells and genes, cell helth and cell cycle, merging, normalizing for dropouts and **batch differences**, **gating** (mainly used for CITE-seq), pathway analysis, **cell type prediction** and tools to find marker genes for clusters and conditions. scSeqR inputs single cell data in  **10X format**, large numeric **matrix files** or standard **data frames**.
 
 <p align="center">
-<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/workflow.jpg" /> 
+<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/workflow.png" /> 
 </p>
 
 ***
@@ -291,6 +291,13 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 # PCA
 my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 
+# If you have conditions, you can normalize the model genes so that you get as little batch difference as possible by correction for normalization. 
+# to do this, use this command:
+
+# my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", batch.norm = T)
+
+# Another approach is to run CCA (CCA will be added soon).
+
 opt.pcs.plot(my.obj)
 my.obj@opt.pcs
 ```        
@@ -440,6 +447,11 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
 </p>
 
+- Uniform Manifold Approximation and Projection (UMAP)
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP.png" width="400"/>
+</p>
 
 - Cell frequencies in clusters and conditions
 
@@ -758,23 +770,66 @@ cluster.plot(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_f.png" width="400"/>  
 </p>
 
- - Pseudo-time analysis
+ - Cell gating 
  
- ```r
- my.obj <- run.diff.st(my.obj, dist.method = "euclidean")
- cluster.plot(my.obj,
-	cell.size = 1,
-	plot.type = "dst",
-	cell.color = "black",
-	back.col = "white",
-	col.by = "clusters",
-	cell.transparency = 0.5,
+  ```r
+my.plot <- gene.plot(my.obj, gene = "GNLY", 
+	plot.type = "scatterplot",
 	clust.dim = 2,
 	interactive = F)
+
+cell.gating(my.obj, my.plot = my.plot)	
+
+# or 
+
+#my.plot <- cluster.plot(my.obj,
+#	cell.size = 1,
+#	cell.transparency = 0.5,
+#	clust.dim = 2,
+#	interactive = F)
+ ```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate3.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/gate2.png" />    
+</p>
+
+
+After downloading the cell ids, use the following cammand to rename their cluster. 
+
+```r
+my.obj <- gate.to.clust(my.obj, my.gate = "cellGating.txt", to.clust = 10)
+ ```
+
+ - Pseudotime analysis
+ 
+ ```r
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2)
+MyGenes <- unique(MyGenes)
+
+pseudotime.tree(my.obj,
+	marker.genes = MyGenes,
+	clust.names = c("1.T.CD4","2.Mon.CD14","3.Mon.FCGR3A","4.Megak","5.T.CD8","6.NK","7.B"),
+	type = "unrooted",
+	clust.method = "complete")
+
+# or 
+
+pseudotime.tree(my.obj,
+	marker.genes = MyGenes,
+	clust.names = c("1.T.CD4","2.Mon.CD14","3.Mon.FCGR3A","4.Megak","5.T.CD8","6.NK","7.B"),
+	type = "classic",
+	clust.method = "complete")
+	
+# UMAP and DiffMAP plots to come soon. 	
+
  ```
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/bloodCells.jpg" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted2.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" width="400" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_jitter.png" width="400"/>
 </p>
 
 

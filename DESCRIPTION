@@ -9,7 +9,7 @@ Description: scSeqR (Single Cell Sequencing R package) is an R package with 2D a
 Depends: R (>= 3.3.0), ggplot2, plotly
 Imports: Matrix, Rtsne, gmp, factoextra, gridExtra, ggpubr,
         scatterplot3d, RColorBrewer, knitr, NbClust, reshape, DESeq,
-        shiny, pheatmap
+        shiny, umap, pheatmap
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -17,4 +17,4 @@ RoxygenNote: 6.1.0
 VignetteBuilder: knitr
 URL: https://github.com/rezakj/scSeqR
 NeedsCompilation: no
-Packaged: 2018-10-23 17:08:16 UTC; khodaa01
+Packaged: 2018-11-13 23:57:19 UTC; khodaa01

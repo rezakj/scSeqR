@@ -13,9 +13,9 @@
 #' @import Rtsne
 #' @export
 run.tsne <- function (x = NULL,
-                          clust.method = "base.mean.rank",
-                          top.rank = 500,
-                          gene.list = "my_model_genes.txt") {
+                      clust.method = "base.mean.rank",
+                      top.rank = 500,
+                      gene.list = "character") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -37,10 +37,10 @@ run.tsne <- function (x = NULL,
   }
   # gene model
   if (clust.method == "gene.model") {
-    if (!file.exists(gene.list)) {
-      stop("please provide a file with gene names for clustering")
+    if (gene.list == "character") {
+      stop("please provide gene names for clustering")
     } else {
-      genesForClustering <- readLines(gene.list)
+      genesForClustering <-gene.list
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
       TopNormLogScale <- log(topGenes + 0.1)
 #      TopNormLogScale <- t(TopNormLogScale)

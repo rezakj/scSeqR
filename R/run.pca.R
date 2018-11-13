@@ -15,7 +15,7 @@ run.pca <- function (x = NULL,
                           clust.method = "base.mean.rank",
                           top.rank = 500,
                           batch.norm = F,
-                          gene.list = "my_model_genes.txt") {
+                          gene.list = "character") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -31,10 +31,10 @@ run.pca <- function (x = NULL,
   }
   # gene model
   if (clust.method == "gene.model") {
-    if (!file.exists(gene.list)) {
-      stop("please provide a file with gene names for clustering")
+    if (gene.list == "character") {
+      stop("please provide gene names for clustering")
     } else {
-      genesForClustering <- readLines(gene.list)
+      genesForClustering <- gene.list
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
       if (batch.norm == F){
         TopNormLogScale <- log(topGenes + 0.1)
