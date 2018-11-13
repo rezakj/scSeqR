@@ -9,9 +9,9 @@
 #' @param min.umis Min number UMIs per cell, defult = 0.
 #' @param max.umis Max number UMIs per cell, defult = Inf.
 #' @param filter.by.cell.id A character vector of cell ids to be filtered out.
+#' @param keep.cell.id A character vector of cell ids to keep.
 #' @param filter.by.gene A character vector of gene names to be filtered by thier expression. If more then one gene is defined it would be OR not AND.
 #' @param filter.by.gene.exp.min Minimum gene expression to be filtered by the genes set in filter.by.gene, defult = 1.
-#'
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
@@ -23,7 +23,6 @@
 #'    min.umis = 0,
 #'    max.umis = Inf)
 #' }
-#'
 #' @export
 cell.filter <- function (x = NULL,
                          min.mito = 0,
@@ -33,6 +32,7 @@ cell.filter <- function (x = NULL,
                          min.umis = 0,
                          max.umis = Inf,
                          filter.by.cell.id = "character",
+                         keep.cell.id = "character",
                          filter.by.gene = "character",
                          filter.by.gene.exp.min = 1) {
   if ("scSeqR" != class(x)[1]) {
@@ -62,7 +62,11 @@ cell.filter <- function (x = NULL,
   }
 # filter by cell id
 #  filter.by.cell.id = c("WT_AAACATACAACCAC.1","WT_AAACATTGATCAGC.1")
+  ######## filter out ids
   if (filter.by.cell.id[1] != "character"){
+    if (keep.cell.id[1] != "character"){
+      stop("if filter.by.cell.id is set you can't set keep.cell.id")
+    }
     z = filter.by.cell.id %in% colnames(DATA)
     Missing.cell.ids <- filter.by.cell.id[-which(z, arr.ind = T, useNames = T)]
     Missing.cell.ids <- paste(Missing.cell.ids, collapse=",")
@@ -75,6 +79,24 @@ cell.filter <- function (x = NULL,
   }
   if (filter.by.cell.id[1] == "character") {
     FiltCellIds = "no cell ids were filtered."
+  }
+  ######## keep ids
+  if (keep.cell.id[1] != "character"){
+    if (filter.by.cell.id[1] != "character"){
+      stop("if keep.cell.id is set you can't set filter.by.cell.id")
+    }
+    z = keep.cell.id %in% colnames(DATA)
+    Missing.cell.ids <- filter.by.cell.id[-which(z, arr.ind = T, useNames = T)]
+    Missing.cell.ids <- paste(Missing.cell.ids, collapse=",")
+    if (length(keep.cell.id) != length(z[z==TRUE])) {
+      stop(paste("Your dataset lacks the following ids:   ",Missing.cell.ids))
+    }
+    DATA <- DATA[ , which(names(DATA) %in% keep.cell.id)]
+    FiltCellIds <- paste(keep.cell.id, collapse=",")
+    print(paste("The following cells are kept:   ", FiltCellIds))
+  }
+  if (keep.cell.id[1] == "character") {
+    FiltCellIds = "no cell ids to keep."
   }
 # filter by mito
   MAXmito <- as.character(subset(x@stats, x@stats$mito.percent > max.mito)$CellIds)
@@ -127,7 +149,7 @@ cell.filter <- function (x = NULL,
   - min UMIs",min.umis,"max UMIs",max.umis,"
   - Cells were also filtered by the expression of the following genes (user input):
   ",GenesForFilter,"
-  - In addition the following cell ids were also filtered out (user input):
+  - In addition the following cell ids were set to keep/filter (user input):
   ",FiltCellIds)
 # write filter parameters
   write.table((FilterFile),file="filters_set.txt", row.names =F, quote = F, col.names = F)

@@ -14,7 +14,6 @@
 #' \dontrun{
 #' my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 #' }
-#' @import ape
 #' @export
 pseudotime.tree <- function (x = NULL,
                              marker.genes = "NULL",
@@ -29,6 +28,7 @@ pseudotime.tree <- function (x = NULL,
     stop("x should be an object of class scSeqR")
   }
   # geth the genes and scale them based on model
+  require("ape")
   DATA <- x@clust.avg
   row.names(DATA) <- DATA$gene
   DATA <- DATA[,-1]
