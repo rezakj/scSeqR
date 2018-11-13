@@ -829,7 +829,7 @@ pseudotime.tree(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted2.png" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" width="400" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/dst_2D.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_jitter.png" width="400"/>
 </p>
 
 
