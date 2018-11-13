@@ -2,23 +2,23 @@
 % Please edit documentation in R/run.umap.R
 \name{run.umap}
 \alias{run.umap}
-\title{Run tSNE on PCA data}
+\title{Run UMAP on PCA data}
 \usage{
 run.umap(x = NULL, dims = 1:20)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
-\item{dims}{PC dimentions to be used for tSNE analysis.}
+\item{dims}{PC dimentions to be used for UMAP analysis.}
 }
 \value{
 An object of class scSeqR.
 }
 \description{
-This function takes an object of class scSeqR and runs tSNE on PCA data.
+This function takes an object of class scSeqR and runs UMAP on PCA data.
 }
 \examples{
 \dontrun{
-my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10)
 }
 }

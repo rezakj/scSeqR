@@ -1,12 +1,12 @@
-#' Run tSNE on PCA data
+#' Run UMAP on PCA data
 #'
-#' This function takes an object of class scSeqR and runs tSNE on PCA data.
+#' This function takes an object of class scSeqR and runs UMAP on PCA data.
 #' @param x An object of class scSeqR.
-#' @param dims PC dimentions to be used for tSNE analysis.
+#' @param dims PC dimentions to be used for UMAP analysis.
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+#' my.obj <- run.umap(my.obj, dims = 1:10)
 #' }
 #' @import umap
 #' @export

@@ -10,7 +10,8 @@
 #' }
 #' @export
 gene.stats <- function (x = NULL,
-                        which.data = "raw.data") {
+                        which.data = "raw.data",
+                        each.cond = F) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
@@ -22,29 +23,32 @@ gene.stats <- function (x = NULL,
     DATA <- x@main.data
   }
   # get conditions
-  do <- data.frame(do.call('rbind', strsplit(as.character(colnames(DATA)),'_',fixed=TRUE)))[1]
-  Myconds <- as.character(as.matrix(unique(do)))
-  if (length(Myconds) > 1) {
-  for (i in Myconds) {
-    ha <- subset(do, do == i)
-    dim2 <- max(as.numeric(rownames(ha)))
-    dim1 <- min(as.numeric(rownames(ha)))
-    myDATA <- DATA[dim1:dim2]
-    mymat = as.matrix(myDATA)
-    SDs <- apply(mymat, 1, function(mymat) {sd(mymat)})
-    Table <- list(row.names(myDATA),
-                  as.numeric(rowSums(myDATA > 0)),
-                  rep(dim(myDATA)[2], dim(myDATA)[1]),
-                  (as.numeric(rowSums(myDATA > 0)) / dim(myDATA)[2])*100,
-                  as.numeric(rowMeans(myDATA)),
-                  as.numeric(SDs))
-    names(Table) <- c("genes","numberOfCells","totalNumberOfCells","percentOfCells","meanExp","SDs")
-    Table <- as.data.frame(Table)
-    Table <- cbind(Table, condition = i)
-    NameCol=paste("MyGeneStat",i,sep="_")
-    eval(call("<-", as.name(NameCol), Table))
+  if (each.cond == T) {
+    do <- data.frame(do.call('rbind', strsplit(as.character(colnames(DATA)),'_',fixed=TRUE)))[1]
+    Myconds <- as.character(as.matrix(unique(do)))
+    if (length(Myconds) > 1) {
+      for (i in Myconds) {
+        ha <- subset(do, do == i)
+        dim2 <- max(as.numeric(rownames(ha)))
+        dim1 <- min(as.numeric(rownames(ha)))
+        myDATA <- DATA[dim1:dim2]
+        mymat = as.matrix(myDATA)
+        SDs <- apply(mymat, 1, function(mymat) {sd(mymat)})
+        Table <- list(row.names(myDATA),
+                      as.numeric(rowSums(myDATA > 0)),
+                      rep(dim(myDATA)[2], dim(myDATA)[1]),
+                      (as.numeric(rowSums(myDATA > 0)) / dim(myDATA)[2])*100,
+                      as.numeric(rowMeans(myDATA)),
+                      as.numeric(SDs))
+        names(Table) <- c("genes","numberOfCells","totalNumberOfCells","percentOfCells","meanExp","SDs")
+        Table <- as.data.frame(Table)
+        Table <- cbind(Table, condition = i)
+        NameCol=paste("MyGeneStat",i,sep="_")
+        eval(call("<-", as.name(NameCol), Table))
+      }
+    }
   }
-###### do it for all too
+  ###### do it for all too
   # calculate
   mymat = as.matrix(DATA)
   SDs <- apply(mymat, 1, function(mymat) {sd(mymat)})
@@ -57,7 +61,6 @@ gene.stats <- function (x = NULL,
   names(Table) <- c("genes","numberOfCells","totalNumberOfCells","percentOfCells","meanExp","SDs")
   Table <- as.data.frame(Table)
   MyGeneStat_all <- cbind(Table, condition = "all")
-  }
   ### merge
   filenames <- ls(pattern="MyGeneStat_")
   datalist <- mget(filenames)

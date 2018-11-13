@@ -117,9 +117,9 @@ gene.plot <- function (x = NULL,
       MyTitle = "PCA Plot"
       DATA <- x@pca.data
     }
-    if (plot.data.type == "dst") {
-      MyTitle = "DST Plot"
-      DATA <- x@diff.st.data
+    if (plot.data.type == "umap") {
+      MyTitle = "UMAP Plot"
+      DATA <- x@umap.data
     }
   }
   # 3 dimentions

@@ -5,7 +5,7 @@
 \title{Run tSNE on the main data}
 \usage{
 run.tsne(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
-  gene.list = "my_model_genes.txt")
+  gene.list = "character")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

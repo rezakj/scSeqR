@@ -14,6 +14,7 @@
 #' \dontrun{
 #' my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
 #' }
+#' @import gridExtra
 #' @export
 pseudotime.tree <- function (x = NULL,
                              marker.genes = "NULL",
@@ -28,6 +29,7 @@ pseudotime.tree <- function (x = NULL,
     stop("x should be an object of class scSeqR")
   }
   # geth the genes and scale them based on model
+  require("ggdendro")
   require("ape")
   DATA <- x@clust.avg
   row.names(DATA) <- DATA$gene
@@ -39,13 +41,55 @@ pseudotime.tree <- function (x = NULL,
     stop("provide marker genes for clusters (e.g. top 10 for each cluster)")
   }
   MyGenes <- marker.genes
-  topGenes <- subset(DATA, rownames(DATA) %in% MyGenes)
-  DATA <- log(topGenes + 0.1)
+  topGenes <- as.matrix(subset(DATA, rownames(DATA) %in% MyGenes))
+  DATA <- log2(topGenes + 0.1)
   DATA <- dist(scale(t(DATA)), method = dist.method)
   hc <- hclust(DATA, method = clust.method)
+
+
+##### gitter plot
+  DATA <- x@tsne.data
+  data <- data.matrix(DATA)
+  data <- dist(data, method = dist.method)
+#  hcgg <- hclust(data, method = clust.method)
+#  dhc <- as.dendrogram(hcgg)
+  MyPC <- as.data.frame(as.matrix(data))[1]
+  colnames(MyPC) <- "distance"
+  MyClust <- x@best.clust
+  MyGitterData <- cbind(MyPC, MyClust)
+  MyOrd <- hc$order
+  MyGitterData$clusters <- factor(MyGitterData$clusters, levels = MyOrd)
+  dhc <- as.dendrogram(hc)
+  ddata <- dendro_data(dhc)
+  dend <- ddata$segments
+  ##
+  P1 <- ggplot(MyGitterData,aes(y=scale(distance),x=clusters,col=clusters)) +
+    geom_jitter() +
+    theme(panel.background = element_rect(fill = "white", colour = "white"),
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          legend.key = element_rect(fill = "white")) +
+    theme(legend.position = "none")
+  ##
+  P2 <- ggplot(dend) +
+  geom_segment(aes(x = x,
+                     y = y,
+                     xend = xend,
+                     yend = yend)) +
+    theme(panel.background = element_rect(fill = "white", colour = "white"),
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          legend.key = element_rect(fill = "white")) +
+    theme(axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank()) +
+    ylab("distance")
+#####
   if (type == "classic") {
     return(plot(hc, hang = hang, ylab = "Height", xlab = "Clusters", sub=""))
-  } else {
+  }
+  if (type == "jitter") {
+    return(grid.arrange(P2,P1, nrow = 2, heights=c(1,4)))
+  }
+  if (type != "jitter" || type != "classic") {
     par("mar")
     par(mar=c(0,0,0,0))
     return(plot(as.phylo(hc),

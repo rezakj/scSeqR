@@ -4,7 +4,7 @@
 \alias{gene.stats}
 \title{Make statistical information for each gene across all the cells (SD, mean, expression, etc.)}
 \usage{
-gene.stats(x = NULL, which.data = "raw.data")
+gene.stats(x = NULL, which.data = "raw.data", each.cond = F)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

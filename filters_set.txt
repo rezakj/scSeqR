@@ -1,8 +1,0 @@
-Filters are:
-  - min mito 0 max mito 1 
-  - min # of genes 0 max # of genes Inf 
-  - min UMIs 0 max UMIs Inf 
-  - Cells were also filtered by the expression of the following genes (user input):
-   no cells were filtered based on expression. 
-  - In addition the following cell ids were set to keep/filter (user input):
-   no cell ids to keep.

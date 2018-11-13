@@ -5,7 +5,7 @@
 \title{Run PCA on the main data}
 \usage{
 run.pca(x = NULL, clust.method = "base.mean.rank", top.rank = 500,
-  batch.norm = F, gene.list = "my_model_genes.txt")
+  batch.norm = F, gene.list = "character")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
