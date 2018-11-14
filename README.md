@@ -463,8 +463,8 @@ cluster.plot(my.obj,
 	clust.dim = 2,
 	interactive = F)
 	
-My.gene = "MS4A1"
-gene.plot(my.obj, gene = My.gene, 
+# gene plot
+gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	plot.data.type = "umap",
 	clust.dim = 2,
