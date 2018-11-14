@@ -289,12 +289,12 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 
 ```r
 # PCA
-my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = readLines("my_model_genes.txt"))
 
 # If you have conditions, you can normalize the model genes so that you get as little batch difference as possible by correction for normalization. 
 # to do this, use this command:
 
-# my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt", batch.norm = T)
+# my.obj <- run.pca(my.obj, clust.method = "gene.model", gene.list = readLines("my_model_genes.txt"), batch.norm = T)
 
 # Another approach is to run CCA (CCA will be added soon).
 
@@ -358,7 +358,7 @@ You have two options here. One is to run tSNE on PCs (faster) and the other is t
 # tSNE
 my.obj <- run.pc.tsne(my.obj, dims = 1:10)
 # or 
-# my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = "my_model_genes.txt")
+# my.obj <- run.tsne(my.obj, clust.method = "gene.model", gene.list = readLines("my_model_genes.txt"))
 ```
 
 - Visualize conditions
@@ -449,8 +449,31 @@ cluster.plot(my.obj,
 
 - Uniform Manifold Approximation and Projection (UMAP)
 
+```r
+my.obj <- run.umap(my.obj, dims = 1:10)
+
+# plot 
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "umap",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
+	
+My.gene = "MS4A1"
+gene.plot(my.obj, gene = My.gene, 
+	plot.type = "scatterplot",
+	plot.data.type = "umap",
+	clust.dim = 2,
+	interactive = F)
+```
+
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_2D.png" width="400"/>
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_MS4A1.png" width="400"/>
 </p>
 
 - Cell frequencies in clusters and conditions
