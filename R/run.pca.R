@@ -31,13 +31,14 @@ run.pca <- function (x = NULL,
   }
   # gene model
   if (clust.method == "gene.model") {
-    if (gene.list == "character") {
+    if (gene.list[1] == "character") {
       stop("please provide gene names for clustering")
     } else {
       genesForClustering <- gene.list
       topGenes <- subset(DATA, rownames(DATA) %in% genesForClustering)
       if (batch.norm == F){
-        TopNormLogScale <- log(topGenes + 0.1)
+         TopNormLogScale <- log(topGenes + 0.1)
+        # TopNormLogScale <- scale(topGenes)
       }
       if (batch.norm == T){
         ## new method

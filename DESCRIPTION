@@ -17,7 +17,6 @@ Imports: Matrix,
   knitr,
   NbClust,
   reshape,
-  DESeq,
   shiny,
   umap,
   pheatmap

@@ -4,7 +4,8 @@
 \alias{qc.stats}
 \title{Calculate the number of UMIs and genes per cell and percentage of mitochondrial genes per cell.}
 \usage{
-qc.stats(x = NULL, which.data = "raw.data")
+qc.stats(x = NULL, which.data = "raw.data", mito.genes = "defult",
+  s.phase.genes = s.phase, g2m.phase.genes = g2m.phase)
 }
 \arguments{
 \item{x}{A data frame containing gene counts for cells.}
