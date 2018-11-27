@@ -18,7 +18,6 @@
 #' my.obj <- norm.data(my.obj, norm.method = "spike.in", spike.in.factors = NULL)
 #' my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 #' }
-#' @import DESeq
 #' @export
 norm.data <- function (x = NULL,
                        norm.method = "ranked.glsf",
@@ -44,6 +43,7 @@ norm.data <- function (x = NULL,
     normalized <- as.data.frame(sweep(dataMat, 2, norm.facts, `/`))
   }
   if (norm.method == "deseq") {
+    require(DESeq)
     CondAnum <- length(colnames(DATA)) - 1
     conds <- factor( c( rep("CondA", CondAnum) , rep("CondB", 1)))
     cds <- newCountDataSet(DATA, conds )
@@ -52,6 +52,7 @@ norm.data <- function (x = NULL,
     normalized <- as.data.frame(counts(cds,normalized=TRUE))
   }
   if (norm.method == "ranked.deseq") {
+    require(DESeq)
     raw.data.order <- DATA[ order(rowMeans(DATA), decreasing = T), ]
     CondAnum <- length(colnames(DATA)) - 1
     conds <- factor( c( rep("CondA", CondAnum) , rep("CondB", 1)))

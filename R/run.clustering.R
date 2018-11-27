@@ -32,8 +32,8 @@ run.clustering <- function (x = NULL,
     stop("x should be an object of class scSeqR")
   }
   #  cluster
-    DATA <- (x@pca.data)[dims]
-    nb <- NbClust(DATA,
+  DATA <- (x@pca.data)[dims]
+      nb <- NbClust(DATA,
                   distance = dist.method,
                   min.nc = min.clust,
                   max.nc = max.clust,

@@ -4,7 +4,7 @@
 \alias{run.pc.tsne}
 \title{Run tSNE on PCA data}
 \usage{
-run.pc.tsne(x = NULL, dims = 1:20)
+run.pc.tsne(x = NULL, dims = 1:10)
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

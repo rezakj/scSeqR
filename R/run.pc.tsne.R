@@ -11,7 +11,7 @@
 #' @import Rtsne
 #' @export
 run.pc.tsne <- function (x = NULL,
-                      dims = 1:20) {
+                      dims = 1:10) {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
   }
