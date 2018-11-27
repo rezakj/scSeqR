@@ -878,4 +878,61 @@ pseudotime.tree(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/list5.png" />
 </p>
 
+# How to analyze scVDJ-seq data using scSeqR
+
+Here is an example of how to add VDJ data.
+
+ ```r
+# first prepare the files. 
+# this function would filter the files, calculate clonotype frequencies and proportions and add conditions to the cell ids.
+my.vdj.1 <- prep.vdj(vdj.data = "all_contig_annotations.csv", cond.name = "WT")
+my.vdj.2 <- prep.vdj(vdj.data = "all_contig_annotations.csv", cond.name = "KO")
+my.vdj.3 <- prep.vdj(vdj.data = "all_contig_annotations.csv", cond.name = "Ctrl")
+
+# concatenate all the conditions
+my.vdj.data <- rbind(my.vdj.1, my.vdj.2, my.vdj.3)
+
+# see head of the file
+head(my.vdj.data)
+#  raw_clonotype_id               barcode is_cell                   contig_id
+#1       clonotype1 WT_AAACCTGAGCTAACTC-1    True AAACCTGAGCTAACTC-1_contig_1
+#2       clonotype1 WT_AAACCTGAGCTAACTC-1    True AAACCTGAGCTAACTC-1_contig_2
+#3       clonotype1 WT_AGTTGGTTCTCGCATC-1    True AGTTGGTTCTCGCATC-1_contig_3
+#4       clonotype1 WT_TGACAACCAACTGCTA-1    True TGACAACCAACTGCTA-1_contig_1
+#5       clonotype1 WT_TGTCCCAGTCAAACTC-1    True TGTCCCAGTCAAACTC-1_contig_1
+#6       clonotype1 WT_TGTCCCAGTCAAACTC-1    True TGTCCCAGTCAAACTC-1_contig_2
+#  high_confidence length chain  v_gene d_gene  j_gene c_gene full_length
+#1            True    693   TRA TRAV8-1   None  TRAJ21   TRAC        True
+#2            True    744   TRB  TRBV28  TRBD1 TRBJ2-1  TRBC2        True
+#3            True    647   TRA TRAV8-1   None  TRAJ21   TRAC        True
+#4            True    508   TRB  TRBV28  TRBD1 TRBJ2-1  TRBC2        True
+#5            True    660   TRA TRAV8-1   None  TRAJ21   TRAC        True
+#6            True    770   TRB  TRBV28  TRBD1 TRBJ2-1  TRBC2        True
+#  productive             cdr3                                          cdr3_nt
+#1       True      CAVKDFNKFYF                TGTGCCGTGAAAGACTTCAACAAATTTTACTTT
+#2       True CASSLFSGTGTNEQFF TGTGCCAGCAGTTTATTTTCCGGGACAGGGACGAATGAGCAGTTCTTC
+#3       True      CAVKDFNKFYF                TGTGCCGTGAAAGACTTCAACAAATTTTACTTT
+#4       True CASSLFSGTGTNEQFF TGTGCCAGCAGTTTATTTTCCGGGACAGGGACGAATGAGCAGTTCTTC
+#5       True      CAVKDFNKFYF                TGTGCCGTGAAAGACTTCAACAAATTTTACTTT
+#6       True CASSLFSGTGTNEQFF TGTGCCAGCAGTTTATTTTCCGGGACAGGGACGAATGAGCAGTTCTTC
+#  reads umis       raw_consensus_id my.raw_clonotype_id clonotype.Freq
+#1  1241    2 clonotype1_consensus_1          clonotype1            120
+#2  2400    4 clonotype1_consensus_2          clonotype1            120
+#3  1090    2 clonotype1_consensus_1          clonotype1            120
+#4  2455    4 clonotype1_consensus_2          clonotype1            120
+#5  1346    2 clonotype1_consensus_1          clonotype1            120
+#6  3073    8 clonotype1_consensus_2          clonotype1            120
+#  proportion total.colonotype
+#1 0.04098361             1292
+#2 0.04098361             1292
+#3 0.04098361             1292
+#4 0.04098361             1292
+#5 0.04098361             1292
+#6 0.04098361             1292
+
+# add it to scSeqR object
+add.vdj(my.obj, vdj.data = my.vdj.data)
+ ```
+
+
 
