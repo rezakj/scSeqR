@@ -644,12 +644,12 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" />
 </p>
 
-
- - Run data imputation
+ - Run data imputation (soon will be available)
  
- See the plots before and after data imputation. This helps to fill for drop-outs. 
+  See the plots before and after data imputation. This helps to fill for drop-outs. 
 
 ```r
+# this function is being improved and soon will be available. 
 my.obj <- run.imputation(my.obj, method = "dist.based")
 
 # heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
