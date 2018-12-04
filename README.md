@@ -645,7 +645,9 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
 </p>
 
 
- - Run data imputation 
+ - Run data imputation
+ 
+ See the plots before and after data imputation. This helps to fill for drop-outs. 
 
 ```r
 my.obj <- run.imputation(my.obj, method = "dist.based")
