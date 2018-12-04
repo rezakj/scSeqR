@@ -644,6 +644,26 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" />
 </p>
 
+
+ - Run data imputation 
+
+```r
+my.obj <- run.imputation(my.obj, method = "dist.based")
+
+# heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
+ 
+# gene.plot(my.obj, gene = "MS4A1", plot.type = "scatterplot", plot.data.type = "tsne", clust.dim = 2, interactive = F)
+
+# gene.plot(my.obj, gene = "MS4A1", col.by = "clusters", plot.type = "boxplot", interactive = F)
+```
+
+<p align="center">
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_heatmap.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_dotPlot.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_BoxPlot.png" />
+</p>
+
+
  - Cell type prediction using ImmGen
  
 Note that ImmGen is mouse genome data and the sample data here is human. For 157 ULI-RNA-Seq samples use this meta data: [metadata](https://github.com/rezakj/scSeqR/blob/dev/doc/uli_RNA_metadat.txt). 
