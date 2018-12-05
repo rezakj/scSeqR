@@ -9,7 +9,7 @@ For citation please use this link (our manuscript is in preparation): https://gi
 ### Single Cell Sequencing R package (scSeqR)
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out1.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/first.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out2.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out3.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
@@ -643,7 +643,6 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" />
 </p>
-
 
  - Run data imputation (soon will be available)
  
