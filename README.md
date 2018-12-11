@@ -551,7 +551,7 @@ save(my.obj, file = "my.obj.Robj")
 - Find marker genes
 
 ```r
-marker.genes <- find.markers(my.obj,
+marker.genes <- findMarkers(my.obj,
 	fold.change = 2,
 	padjval = 0.1)
 
