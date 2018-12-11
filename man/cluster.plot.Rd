@@ -7,7 +7,8 @@
 cluster.plot(x = NULL, cell.size = 1, plot.type = "tsne",
   cell.color = "black", back.col = "white", col.by = "clusters",
   cond.shape = F, cell.transparency = 0.5, clust.dim = 2,
-  angle = 20, density = F, interactive = TRUE, out.name = "plot")
+  angle = 20, density = F, interactive = TRUE, static3D = F,
+  out.name = "plot")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}

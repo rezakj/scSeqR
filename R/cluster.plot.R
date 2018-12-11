@@ -18,7 +18,6 @@
 #' \dontrun{
 #' tsne.plot(my.obj)
 #' }
-#' @import ggplot2
 #' @import RColorBrewer
 #' @import scatterplot3d
 #' @export
@@ -34,6 +33,7 @@ cluster.plot <- function (x = NULL,
                           angle = 20,
                           density = F,
                           interactive = TRUE,
+                          static3D = F,
                           out.name = "plot") {
   if ("scSeqR" != class(x)[1]) {
     stop("x should be an object of class scSeqR")
@@ -56,9 +56,9 @@ cluster.plot <- function (x = NULL,
       MyTitle = "UMAP Plot"
       DATA <- x@umap.data
     }
-    if (plot.type == "dst") {
-      MyTitle = "DST Plot"$
-      DATA <- x@diff.st.data
+    if (plot.type == "diffusion") {
+      MyTitle = "Diffusion Map Plot"
+      DATA <- x@diffusion.data
     }
   }
   # 3 dimentions
@@ -71,9 +71,9 @@ cluster.plot <- function (x = NULL,
       MyTitle = "3D PCA Plot"
       DATA <- x@pca.data
     }
-    if (plot.type == "dst") {
-      MyTitle = "3D DST Plot"
-      DATA <- x@diff.st.data
+    if (plot.type == "diffusion") {
+      MyTitle = "3D Diffusion Map Plot"
+        DATA <- x@diffusion.data
     }
   }
   # conditions
@@ -120,7 +120,7 @@ cluster.plot <- function (x = NULL,
 # plot 2d
   if (clust.dim == 2) {
     if (cond.shape == F) {
-      if (interactive == F) {
+      if (static3D == F) {
         myPLOT <- ggplot(DATA, aes(DATA[,1], y = DATA[,2],
                                    text = row.names(DATA), color = col.legend)) +
           geom_point(size = cell.size, alpha = cell.transparency) +
@@ -176,7 +176,7 @@ cluster.plot <- function (x = NULL,
   }
 # plot 3d
   if (clust.dim == 3) {
-    if (interactive == T) {
+    if (static3D == F) {
 #      DATAann <- as.data.frame(x@cluster.data$Best.partition)
       DATAann <- as.data.frame(x@best.clust)
       A = (row.names(DATAann))

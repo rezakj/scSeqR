@@ -74,7 +74,8 @@ heatmap.gg.plot <- function (x = NULL,
     clusters = DATA
     cl.cell <- paste(DATA$clusters, row.names(DATA), sep = "_")
     data <- as.matrix(data.expr)
-    data <- scale(log2(data + 1))
+    # data <- scale(log2(data + 1)) # this makes better cols but fails with moothing
+     data <- scale(data)
     # fix scale
     FixScale <- function (mydata, min, max){
       Mydat <- mydata

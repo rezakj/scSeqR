@@ -15,7 +15,7 @@
 #' }
 #'
 #' @export
-find.markers <- function (x = NULL,
+findMarkers <- function (x = NULL,
           fold.change = 2,
           padjval = 0.1,
           Inf.FCs = F,
