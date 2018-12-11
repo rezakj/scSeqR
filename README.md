@@ -450,11 +450,11 @@ cluster.plot(my.obj,
 - Uniform Manifold Approximation and Projection (UMAP)
 
 ```r
-my.obj <- run.umap(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10, method = "naive")
 
 # or 
 
-# my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
+my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
 # this requires python package umap-learn
 # pip install --user umap-learn
 
@@ -474,6 +474,40 @@ cluster.plot(my.obj,
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-naive.png" width="400"/>
 	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-learn.png" width="400"/>
+</p>
+
+- Diffusion Map
+
+```r
+my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
+# this requires python packge phate 
+# pip install --user phate
+
+# plot 
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "diffusion",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
+	
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "diffusion",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 3,
+	interactive = F)	
+	
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Diffusion.png" width="400"/>
 </p>
 
 - Cell frequencies in clusters and conditions
