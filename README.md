@@ -452,6 +452,12 @@ cluster.plot(my.obj,
 ```r
 my.obj <- run.umap(my.obj, dims = 1:10)
 
+# or 
+
+# my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
+# this requires python package umap-learn
+# pip install --user umap-learn
+
 # plot 
 cluster.plot(my.obj,
 	cell.size = 1,
@@ -463,17 +469,11 @@ cluster.plot(my.obj,
 	clust.dim = 2,
 	interactive = F)
 	
-# gene plot
-gene.plot(my.obj, gene = "MS4A1", 
-	plot.type = "scatterplot",
-	plot.data.type = "umap",
-	clust.dim = 2,
-	interactive = F)
 ```
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_2D.png" width="400"/>
-	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_MS4A1.png" width="400"/>
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-learn.png" width="400"/>
 </p>
 
 - Cell frequencies in clusters and conditions
