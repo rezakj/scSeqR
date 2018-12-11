@@ -508,6 +508,7 @@ cluster.plot(my.obj,
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Diffusion.png" width="400"/>
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/diffiusion3D.gif" width="400"/>
 </p>
 
 - Cell frequencies in clusters and conditions
