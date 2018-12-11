@@ -472,7 +472,7 @@ cluster.plot(my.obj,
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_2D.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-naive.png" width="400"/>
 	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-learn.png" width="400"/>
 </p>
 
