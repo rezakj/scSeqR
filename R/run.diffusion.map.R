@@ -6,11 +6,12 @@
 #' @return An object of class scSeqR.
 #' @examples
 #' \dontrun{
-#' my.obj <- run.diffusion.map(my.obj, dims = 1:10)
+#' my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
 #' }
 #' @export
 run.diffusion.map <- function (x = NULL,
                       dims = 1:10,
+                      method = "phate",
                       ndim = 3,
                       k = 5, alpha = 40, n.landmark = 2000,
                       gamma = 1, t = "auto", knn.dist.method = "euclidean",
@@ -31,6 +32,7 @@ run.diffusion.map <- function (x = NULL,
   #  2 dimention
   #  if (clust.dim == 2) {
   # TransPosed <- t(TopNormLogScale)
+  if (method == "phate") {
   DD <- phate(DATA, ndim = ndim, k = k, alpha = alpha, n.landmark = n.landmark,
               gamma = gamma, t = t, knn.dist.method = knn.dist.method,
               init = init, mds.method = mds.method, mds.dist.method = mds.dist.method,
@@ -44,4 +46,5 @@ run.diffusion.map <- function (x = NULL,
   attributes(x)$diffusion.data <- DATA
   # return
   return(x)
+  }
 }

@@ -4,13 +4,13 @@
 \alias{run.diffusion.map}
 \title{Run PHATE on PCA data (PHATE - Potential of Heat-Diffusion for Affinity-Based Transition Embedding)}
 \usage{
-run.diffusion.map(x = NULL, dims = 1:10, ndim = 3, k = 5,
-  alpha = 40, n.landmark = 2000, gamma = 1, t = "auto",
-  knn.dist.method = "euclidean", init = NULL, mds.method = "metric",
-  mds.dist.method = "euclidean", t.max = 100, npca = 100,
-  plot.optimal.t = FALSE, verbose = 1, n.jobs = 1, seed = NULL,
-  potential.method = NULL, use.alpha = NULL, n.svd = NULL,
-  pca.method = NULL, g.kernel = NULL, diff.op = NULL,
+run.diffusion.map(x = NULL, dims = 1:10, method = "phate",
+  ndim = 3, k = 5, alpha = 40, n.landmark = 2000, gamma = 1,
+  t = "auto", knn.dist.method = "euclidean", init = NULL,
+  mds.method = "metric", mds.dist.method = "euclidean", t.max = 100,
+  npca = 100, plot.optimal.t = FALSE, verbose = 1, n.jobs = 1,
+  seed = NULL, potential.method = NULL, use.alpha = NULL,
+  n.svd = NULL, pca.method = NULL, g.kernel = NULL, diff.op = NULL,
   landmark.transitions = NULL, diff.op.t = NULL, dist.method = NULL)
 }
 \arguments{
@@ -26,6 +26,6 @@ This function takes an object of class scSeqR and runs PHATE on PCA data.
 }
 \examples{
 \dontrun{
-my.obj <- run.diffusion.map(my.obj, dims = 1:10)
+my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
 }
 }
