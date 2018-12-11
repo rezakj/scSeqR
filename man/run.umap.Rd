@@ -2,14 +2,16 @@
 % Please edit documentation in R/run.umap.R
 \name{run.umap}
 \alias{run.umap}
-\title{Run UMAP on PCA data}
+\title{Run UMAP on PCA data (Computes a manifold approximation and projection)}
 \usage{
-run.umap(x = NULL, dims = 1:20)
+run.umap(x = NULL, dims = 1:20, method = "naive")
 }
 \arguments{
 \item{x}{An object of class scSeqR.}
 
 \item{dims}{PC dimentions to be used for UMAP analysis.}
+
+\item{method}{Character, implementation. Available methods are 'naive' (an implementation written in pure R) and 'umap-learn' (requires python package 'umap-learn'). Choose from "naive" and "umap-learn", defilt = "naive".}
 }
 \value{
 An object of class scSeqR.

@@ -9,7 +9,7 @@ For citation please use this link (our manuscript is in preparation): https://gi
 ### Single Cell Sequencing R package (scSeqR)
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out1.gif" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/first.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out2.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out3.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
@@ -450,7 +450,13 @@ cluster.plot(my.obj,
 - Uniform Manifold Approximation and Projection (UMAP)
 
 ```r
-my.obj <- run.umap(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10, method = "naive")
+
+# or 
+
+my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
+# this requires python package umap-learn
+# pip install --user umap-learn
 
 # plot 
 cluster.plot(my.obj,
@@ -463,17 +469,46 @@ cluster.plot(my.obj,
 	clust.dim = 2,
 	interactive = F)
 	
-# gene plot
-gene.plot(my.obj, gene = "MS4A1", 
-	plot.type = "scatterplot",
-	plot.data.type = "umap",
-	clust.dim = 2,
-	interactive = F)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_2D.png" width="400"/>
-	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/UMAP_MS4A1.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-naive.png" width="400"/>
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/umap-learn.png" width="400"/>
+</p>
+
+- Diffusion Map
+
+```r
+my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
+# this requires python packge phate 
+# pip install --user phate
+
+# plot 
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "diffusion",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
+	
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "diffusion",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 3,
+	interactive = F)	
+	
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Diffusion.png" width="400"/>
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/diffiusion3D.gif" width="400"/>
 </p>
 
 - Cell frequencies in clusters and conditions
@@ -516,7 +551,7 @@ save(my.obj, file = "my.obj.Robj")
 - Find marker genes
 
 ```r
-marker.genes <- find.markers(my.obj,
+marker.genes <- findMarkers(my.obj,
 	fold.change = 2,
 	padjval = 0.1)
 
@@ -643,6 +678,28 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/heatmap.png" />
 </p>
+
+ - Run data imputation (soon will be available)
+ 
+  See the plots before and after data imputation. This helps to fill for drop-outs. 
+
+```r
+# this function is being improved and soon will be available. 
+my.obj <- run.imputation(my.obj, method = "dist.based")
+
+# heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
+ 
+# gene.plot(my.obj, gene = "MS4A1", plot.type = "scatterplot", plot.data.type = "tsne", clust.dim = 2, interactive = F)
+
+# gene.plot(my.obj, gene = "MS4A1", col.by = "clusters", plot.type = "boxplot", interactive = F)
+```
+
+<p align="center">
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_heatmap.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_dotPlot.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_BoxPlot.png" />
+</p>
+
 
  - Cell type prediction using ImmGen
  

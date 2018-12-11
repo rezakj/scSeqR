@@ -16,6 +16,7 @@ run.magic <- function (x = NULL) {
   }
 ### load packages
   # https://github.com/KrishnaswamyLab/MAGIC/tree/master/Rmagic
+  # https://www.analyticsvidhya.com/blog/2016/03/tutorial-powerful-packages-imputing-missing-values/
   require(Rmagic)
   require(viridis)
   require(phateR)
