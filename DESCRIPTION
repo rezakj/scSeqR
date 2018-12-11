@@ -26,3 +26,5 @@ LazyData: true
 RoxygenNote: 6.1.0
 VignetteBuilder: knitr
 URL: https://github.com/rezakj/scSeqR
+Suggests: 
+    rmarkdown
