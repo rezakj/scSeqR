@@ -15,7 +15,7 @@ Link to a video tutorial for CITE-Seq and scRNA-Seq analysis: [Video](https://vi
 
 For citation please use this link (our manuscript is in preparation): https://github.com/rezakj/iCellR
 
-If you are using FlowJo or SeqGeq and like to use graphical user interface (GUI) tools, they have made plugins for iCellR and other single cell tools: https://www.flowjo.com/exchange/#/ 
+If you are using FlowJo or SeqGeq and like to use graphical user interface (GUI) tools, they have made plugins for iCellR and other single cell tools: https://www.flowjo.com/exchange/#/ (list of all plugins) and https://www.flowjo.com/exchange/#/plugin/profile?id=34 (iCellR plugin)
 ### Single (i) Cell R package (iCellR)
 
 <p align="center">
@@ -477,8 +477,9 @@ my.obj <- run.umap(my.obj, dims = 1:10, method = "naive")
 # wget https://cran.r-project.org/src/contrib/Archive/phateR/phateR_0.2.9.tar.gz
 # install.packages('phateR/', repos = NULL, type="source")
 
-library(phateR)
-my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
+# optional 
+# library(phateR)
+# my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
 ```
 
 - Visualize data
@@ -803,10 +804,11 @@ heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"
  - Run data imputation
 
 ```r
-library(Rmagic)
-library(phateR)
-library(viridis)
-my.obj <- run.impute(my.obj)
+my.obj <- run.impute(my.obj, dims = 1:10, cell.ratio = 2, data.type = "pca")
+
+# more examples
+# my.obj <- run.impute(my.obj, cell.ratio = 2, data.type = "tsne")
+# my.obj <- run.impute(my.obj, cell.ratio = 2, data.type = "umap")
 
 # save after imputation 
 save(my.obj, file = "my.obj.Robj")
@@ -1699,6 +1701,7 @@ head(my.vdj.data)
 # add it to iCellR object
 add.vdj(my.obj, vdj.data = my.vdj.data)
  ```
+
 
 
 
