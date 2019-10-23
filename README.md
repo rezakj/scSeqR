@@ -13,9 +13,10 @@ Link to manual: [Manual](https://cran.r-project.org/web/packages/iCellR/iCellR.p
 
 Link to a video tutorial for CITE-Seq and scRNA-Seq analysis: [Video](https://vimeo.com/337822487)
 
-For citation please use this link (our manuscript is in preparation): https://github.com/rezakj/iCellR
+For citation please use this link (our manuscript is in preparation): https://CRAN.R-project.org/package=iCellR 
 
-If you are using FlowJo or SeqGeq and like to use graphical user interface (GUI) tools, they have made plugins for iCellR and other single cell tools: https://www.flowjo.com/exchange/#/ (list of all plugins) and https://www.flowjo.com/exchange/#/plugin/profile?id=34 (iCellR plugin)
+If you are using FlowJo or SeqGeq, they have made plugins for iCellR and other single cell tools: https://www.flowjo.com/exchange/#/ (list of all plugins) and https://www.flowjo.com/exchange/#/plugin/profile?id=34 (iCellR plugin)
+
 ### Single (i) Cell R package (iCellR)
 
 <p align="center">
@@ -432,8 +433,8 @@ my.obj <- run.clustering(my.obj,
 
 # or 
 
-#library(Rphenograph)
-#my.obj <- run.phenograph(my.obj,k = 45,dims = 1:10)
+library(Rphenograph)
+my.obj <- run.phenograph(my.obj,k = 100,dims = 1:10)
 
 
 # if Rphenograph not installed
@@ -644,6 +645,9 @@ my.obj <- clust.cond.info(my.obj, plot.type = "bar", normalize.ncell = F)
 - Avrage expression per cluster
 
 ```r
+# remember to run this command again if you recluster the data (change the number of clusters). 
+# This is because this data slot with avrage expressions per cluster is used for finding markers and downstream analysis. 
+
 my.obj <- clust.avg.exp(my.obj)
 
 head(my.obj@clust.avg)
@@ -814,16 +818,17 @@ my.obj <- run.impute(my.obj, dims = 1:10, cell.ratio = 2, data.type = "pca")
 save(my.obj, file = "my.obj.Robj")
 
 # some more plots from another analysis 
+A=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", cell.sort = TRUE)
+B=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", data.type = "imputed", cell.sort = TRUE)
+C=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "conditions", cell.sort = TRUE)
+D=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "none", data.type = "imputed", cell.sort = TRUE)
 
-heatmap.gg.plot(my.obj, gene = MyGenes, 
-                interactive = F, 
-                cluster.by = "clusters")
+# If cluster.by = "none", your heamap would have like a Pseudotime effect.
+# It calculates the distance between the cells based on the genes in the heatmap. 
 
-# Heat map on imputed data 
-heatmap.gg.plot(my.obj, gene = MyGenes, 
-                interactive = F, 
-                cluster.by = "clusters",
-                data.type = "imputed")
+library(gridExtra)
+grid.arrange(A,B,C,D)
+
 # main data 
 gene.plot(my.obj, gene = "MS4A1", 
     plot.type = "scatterplot",
@@ -838,7 +843,7 @@ gene.plot(my.obj, gene = "MS4A1",
 ```
 
 <p align="center">
-	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_heatmap.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/master/doc/heatmaps.png" />
 	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_dotPlot.png" />
 	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_BoxPlot.png" />
 </p>
@@ -1166,11 +1171,17 @@ plot_pseudotime_heatmap(my.monoc.obj[MyGenes,],
 	  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/14_monocol.png" />
 </p>
 
-# How to perform canonical correlation analysis (CCA)
+# How to perform canonical correlation analysis (CCA) for sample alignment 
 
 ```r
+# this function runs Seurat in the background but only works best if you have 2 samples. 
+# If you have more than 2 samples it's best to run the commands explained in the next code block MNN.
+# After CCA just replace the pca.data slot of iCellR with CCA results from Seurat. 
+
+# We recommand running MNN alignment instead of CCA
 
 library(iCellR)
+library(Seurat)
 
 # download sample 1
 sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample1_for_CCA.tsv.gz"
@@ -1213,6 +1224,10 @@ my.obj <- cell.filter(my.obj)
 require(devtools)
 install_version("Seurat", version = "2.3.4", repos = "http://cran.us.r-project.org")
 library(Seurat)
+
+# this function runs Seurat in the background but only works best if you have 2 samples. 
+# If you have more than 2 samples it's best to run the commands explained in the next code block MNN.
+# After CCA just replace the pca.data slot of iCellR with CCA results from Seurat. 
 
 my.obj <- run.cca(my.obj,
 	top.vari.genes = 1000,
@@ -1260,6 +1275,97 @@ Before and After CCA
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/Compare.png" />
 </p>
+
+
+# How to perform mutual nearest neighbor (MNN) sample alignment 
+
+```r
+library(iCellR)
+
+# download sample 1
+sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample1_for_CCA.tsv.gz"
+
+download.file(url = sample.file.url, 
+     destfile = "sample1_for_CCA.tsv.gz", 
+     method = "auto")  
+
+
+# download sample 2
+sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample2_for_CCA.tsv.gz"
+
+download.file(url = sample.file.url, 
+     destfile = "sample2_for_CCA.tsv.gz", 
+     method = "auto")  
+
+# Read both samples 
+S1 <- read.table("sample1_for_CCA.tsv.gz")
+head(S1)[1:5]
+
+S2 <- read.table("sample2_for_CCA.tsv.gz")
+head(S2)[1:5]
+
+# aggregate both samples  
+my.data <- data.aggregation(samples = c("S1","S2"), condition.names = c("S1","S2"))
+
+# make object
+my.obj <- make.obj(my.data)
+
+# QC
+my.obj <- qc.stats(my.obj,
+s.phase.genes = s.phase, 
+g2m.phase.genes = g2m.phase)
+
+# filter
+my.obj <- cell.filter(my.obj)
+my.obj <- gene.stats(my.obj, which.data = "main.data")
+
+my.obj <- make.gene.model(my.obj, my.out.put = "data",
+	dispersion.limit = 1.5,
+	base.mean.rank = 500,
+	no.mito.model = T,
+	mark.mito = T,
+	interactive = F,
+	no.cell.cycle = T,
+	out.name = "gene.model")
+	
+###### Run MNN 
+# This would automatically run all the samples in your experiment 
+
+library(scran)
+my.obj <- run.mnn(my.obj,
+    top.rank = 500,
+    k=20,
+    d=50)
+
+# or 
+#my.obj <- run.mnn(my.obj,
+#    method = "gene.model",
+#    gene.list = my.obj@gene.model,
+#    k=20,
+#    d=50)
+
+# By running MNN alignment you replace the PCA data slot and there is no need to run PCA. 
+# If you run PCA, MNN results will be replaced. (Do only if you want to see the results before and after MNN)
+
+
+# normaliza the main data for iCellR analyses
+my.obj <- norm.data(my.obj, norm.method = "ranked.glsf", top.rank = 500)
+
+## run tSNE 
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn")
+
+cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",interactive = F)
+
+cluster.plot(my.obj,plot.type = "umap",col.by = "conditions",interactive = F)
+```
+
+Before and After MNN analysis
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/MNN.png" />
+</p>
+
 
 # How to demultiplex with hashtag oligos (HTOs)
 
@@ -1703,5 +1809,56 @@ add.vdj(my.obj, vdj.data = my.vdj.data)
  ```
 
 
+```r
+sessionInfo()
+R version 3.5.1 (2018-07-02)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Red Hat Enterprise Linux
 
+Matrix products: default
+BLAS: /gpfs/share/apps/R/3.5.1/lib64/R/lib/libRblas.so
+LAPACK: /gpfs/share/apps/R/3.5.1/lib64/R/lib/libRlapack.so
 
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+other attached packages:
+[1] iCellR_1.2.2  plotly_4.9.0  ggplot2_3.2.1
+
+loaded via a namespace (and not attached):
+ [1] ggrepel_0.8.1        Rcpp_1.0.2           ape_5.3
+ [4] lattice_0.20-38      tidyr_1.0.0          assertthat_0.2.1
+ [7] zeallot_0.1.0        digest_0.6.22        mime_0.7
+[10] R6_2.4.0             plyr_1.8.4           backports_1.1.5
+[13] acepack_1.4.1        httr_1.4.1           pillar_1.4.2
+[16] rlang_0.4.0          lazyeval_0.2.2       rstudioapi_0.10
+[19] data.table_1.12.6    rpart_4.1-15         Matrix_1.2-17
+[22] checkmate_1.9.4      reticulate_1.13      splines_3.5.1
+[25] Rtsne_0.15           stringr_1.4.0        foreign_0.8-72
+[28] htmlwidgets_1.5.1    pheatmap_1.0.12      munsell_0.5.0
+[31] umap_0.2.3.1         shiny_1.4.0          compiler_3.5.1
+[34] httpuv_1.5.2         xfun_0.10            pkgconfig_2.0.3
+[37] askpass_1.1          base64enc_0.1-3      htmltools_0.4.0
+[40] nnet_7.3-12          openssl_1.4.1        tidyselect_0.2.5
+[43] htmlTable_1.13.2     tibble_2.1.3         gridExtra_2.3
+[46] Hmisc_4.2-0          reshape_0.8.8        viridisLite_0.3.0
+[49] ggpubr_0.2.3         crayon_1.3.4         dplyr_0.8.3
+[52] withr_2.1.2          later_1.0.0          MASS_7.3-51.4
+[55] grid_3.5.1           NbClust_3.0          nlme_3.1-141
+[58] jsonlite_1.6         xtable_1.8-4         gtable_0.3.0
+[61] lifecycle_0.1.0      magrittr_1.5         scales_1.0.0
+[64] stringi_1.4.3        ggsignif_0.6.0       promises_1.1.0
+[67] scatterplot3d_0.3-41 latticeExtra_0.6-28  ggdendro_0.1-20
+[70] vctrs_0.2.0          Formula_1.2-3        RColorBrewer_1.1-2
+[73] tools_3.5.1          glue_1.3.1           purrr_0.3.3
+[76] parallel_3.5.1       fastmap_1.0.1        survival_2.44-1.1
+[79] colorspace_1.4-1     cluster_2.1.0        knitr_1.25
+```
