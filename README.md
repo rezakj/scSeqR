@@ -4,24 +4,41 @@
 
 Authors: [Alireza Khodadadi-Jamayran](http://library.med.nyu.edu/api/publications?name=khodadadi-Jamayran&format=html&sort=newest) and [Aristotelis Tsirigos](https://med.nyu.edu/faculty/aristotelis-tsirigos).
 
+[![CRAN Version](https://www.r-pkg.org/badges/version/iCellR)](https://cran.r-project.org/package=iCellR)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/iCellR)](https://cran.r-project.org/package=iCellR)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![Build Status](https://travis-ci.com/rezakj/iCellR.svg?branch=master)](https://travis-ci.com/rezakj/iCellR)
+
 # iCellR
 iCellR is an interactive R package to work with high-throughput single cell sequencing technologies (i.e scRNA-seq, scVDJ-seq and CITE-seq).
 
-Link to Comprehensive R Archive Network [(CRAN)](https://cran.r-project.org/web/packages/iCellR/index.html)
+### News (July 2020): See iCellR version 1.5.5 with new cell cycle analysis for G0, G1S, G2M, M, G1M and S [phase](https://genome.med.nyu.edu/results/external/iCellR/example1/All_cellcycle.png). See Pseudotime Abstract KNetL map [(PAK map)](https://genome.med.nyu.edu/results/external/iCellR/example1/pseudotime.KNetL.png). See gene-gene [correlations](https://genome.med.nyu.edu/results/external/iCellR/example1/gene-gene.correlation.png). See below for how to. 
 
-Link to manual: [Manual](https://cran.r-project.org/web/packages/iCellR/iCellR.pdf)
+### News (May 2020): see our dimensionality reduction called [KNetL map](https://genome.med.nyu.edu/results/external/iCellR/example1/Allclusts.Annotated.png) <img src="https://github.com/rezakj/scSeqR/blob/master/doc/logo.png" alt="drawing" width="30"/> (pronounced like "nettle"). [KNetL](https://www.biorxiv.org/content/10.1101/2020.05.05.078550v1.full) map is capable of zooming and shows a lot more details compared to tSNE and UMAP.
 
-Link to a video tutorial for CITE-Seq and scRNA-Seq analysis: [Video](https://vimeo.com/337822487)
+### News (April 2020): see our imputation/coverage correction ([CC](https://genome.med.nyu.edu/results/external/iCellR/example1/gene-gene.correlation.png)) and batch alignment (CCCA and [CPCA](https://genome.med.nyu.edu/results/external/iCellR/example2/AllCondsClusts.png)) [methods](https://www.biorxiv.org/content/10.1101/2020.03.31.019109v1.full). More databases added for cell type prediction (ImmGen and MCA). 
 
-For citation please use this link (our manuscript is in preparation): https://CRAN.R-project.org/package=iCellR 
+- Tutorial: [example 1 code](https://genome.med.nyu.edu/results/external/iCellR/example1/code.txt) and [results](https://genome.med.nyu.edu/results/external/iCellR/example1/) (based on KNetL map <img src="https://github.com/rezakj/scSeqR/blob/master/doc/logo.png" alt="drawing" width="30"/>) 
+- Tutorial: [example 2 code](https://genome.med.nyu.edu/results/external/iCellR/example2/code.txt) and [results](https://genome.med.nyu.edu/results/external/iCellR/example2/) (based on CPCA batch alignment and KNetL map <img src="https://github.com/rezakj/scSeqR/blob/master/doc/logo.png" alt="drawing" width="30"/>) 
+- Link to a video tutorial for CITE-Seq and scRNA-Seq analysis: [Video](https://vimeo.com/337822487)
+- Link to manual [Manual](https://cran.r-project.org/web/packages/iCellR/iCellR.pdf) and Comprehensive R Archive Network [(CRAN)](https://cran.r-project.org/web/packages/iCellR/index.html). 
 
-If you are using FlowJo or SeqGeq, they have made plugins for iCellR and other single cell tools: https://www.flowjo.com/exchange/#/ (list of all plugins) and https://www.flowjo.com/exchange/#/plugin/profile?id=34 (iCellR plugin)
+iCellR Viewer (web GUI app): https://compbio.nyumc.org/icellr/
+
+If you are using FlowJo or SeqGeq, they have made plugins for iCellR and other single cell tools: https://www.flowjo.com/exchange/#/ (list of all plugins) and https://www.flowjo.com/exchange/#/plugin/profile?id=34 (iCellR plugin). [SeqGeq DE tutorial](https://www.youtube.com/watch?v=gXFmWRpdwow)
+
+For citing iCellR use these:
+- Citation for batch alignment and imputation: https://www.biorxiv.org/content/10.1101/2020.03.31.019109v1.full
+- Citation for KNetL map: https://www.biorxiv.org/content/10.1101/2020.05.05.078550v1.full
+- iCellR publications: [PMID 31744829](https://www.ncbi.nlm.nih.gov/pubmed/31744829) (scRNA-seq), [PMID: 31934613](https://www.ncbi.nlm.nih.gov/pubmed/31934613) (bulk RNA-seq from TCGA), [PMID: 32550269](https://pubmed.ncbi.nlm.nih.gov/32550269/) (scVDJ-seq)
 
 ### Single (i) Cell R package (iCellR)
 
 <p align="center">
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/first.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out2.gif" width="400"/>
+		 <img src="https://github.com/rezakj/scSeqR/blob/master/doc/Slide1_1.png"/>
+			 <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Allclusts.Annotated.png"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out3.gif" width="400"/>
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/out4.gif" width="400"/> 
 	  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/gating2.gif"/>
@@ -77,10 +94,14 @@ To run a test sample follow these steps:
 library("iCellR")
 my.data <- load10x("filtered_gene_bc_matrices/hg19/")
 
-# This directory includes; barcodes.tsv, genes.tsv/features.tsv and matrix.mtx files (data could be zipped or unzipped).
+# This directory includes; barcodes.tsv, genes.tsv/features.tsv and matrix.mtx files
+# Data could be zipped or unzipped.
 
 # if your data is in a csv or tsv format read it like this example
 # my.data <- read.delim("CITE-Seq_sample_RNA.tsv.gz",header=TRUE)
+
+# if your data is in a h5 format read it like this example
+# data <- load.h5("filtered_feature_bc_matrix.h5")
 ```
 
 To see the help page for each function use question mark as: 
@@ -98,13 +119,17 @@ dim(my.data)
 # [1] 32738  2700
 
 # divide your sample into three samples for this example 
-  sample1 <- my.data[1:900]
-  sample2 <- my.data[901:1800]
-  sample3 <- my.data[1801:2700]
-  
-# merge all of your samples to make a single aggregated file.    
-my.data <- data.aggregation(samples = c("sample1","sample2","sample3"), 
-	condition.names = c("WT","KO","Ctrl"))
+
+sample1 <- my.data[1:900]
+sample2 <- my.data[901:1800]
+sample3 <- my.data[1801:2300]
+sample4 <- my.data[2301:2700]
+   
+   
+# merge all of your samples to make a single aggregated file.  
+
+my.data <- data.aggregation(samples = c("sample1","sample2","sample3","sample4"),
+	condition.names = c("WT","KO","Ctrl","KD"))
 ```
 
 - Check the head of your file.
@@ -135,26 +160,34 @@ my.obj
 |  |'  '--'\   --. |  ||  ||  |
 `--' `-----' `----'`--'`--'`--' '--'
 ###################################
-An object of class iCellR version: 0.99.0 
-    Raw/original data dimentions (rows,columns): 32738,2700 
-    Data conditions in raw data: Ctrl,KO,WT (900,900,900) 
-    Row names: A1BG,A1BG.AS1,A1CF ... 
-    Columns names: WT_AAACATACAACCAC.1,WT_AAACATTGAGCTAC.1,WT_AAACATTGATCAGC.1 ... 
+An object of class iCellR version: 1.5.5
+Raw/original data dimentions (rows,columns): 32738,2700
+Data conditions in raw data: Ctrl,KD,KO,WT (500,400,900,900)
+Row names: A1BG,A1BG.AS1,A1CF ...
+Columns names: WT_AAACATACAACCAC.1,WT_AAACATTGAGCTAC.1,WT_AAACATTGATCAGC.1 ...
 ###################################
-   QC stats performed: FALSE , PCA performed: FALSE , CCA performed: FALSE
-   Clustering performed: FALSE , Number of clusters: 0
-   tSNE performed: FALSE , UMAP performed: FALSE , DiffMap performed: FALSE
-   Main data dimentions (rows,columns): 0 0
-   Normalization factors:  ...
-   Imputed data dimentions (rows,columns): 0 0
-############## scVDJ-Seq ###########
-   VDJ data dimentions (rows,columns): 0 0
-############## CITE-Seq ############
-   ADT raw data dimentions (rows,columns): 0 0
-   ADT main data dimentions (rows,columns): 0 0
-   ADT columns names:  ...
-   ADT row names:  ...
-######## iCellR object made ########
+   QC stats performed:TRUE, PCA performed:TRUE
+   Clustering performed:FALSE, Number of clusters:0
+   tSNE performed:TRUE, UMAP performed:TRUE, DiffMap performed:FALSE
+   Main data dimensions (rows,columns): 32738,2643
+   Data conditions in main data:Ctrl,KD,KO,WT(491,388,879,885)
+   Normalization factors:1.06283342125181,...
+   Imputed data dimensions (rows,columns):0,0
+############## scVDJ-seq ###########
+VDJ data dimentions (rows,columns):0,0
+############## CITE-seq ############
+   ADT raw data  dimensions (rows,columns):0,0
+   ADT main data  dimensions (rows,columns):0,0
+   ADT columns names:...
+   ADT row names:...
+############## scATAC-seq ############
+   ATAC raw data  dimensions (rows,columns):0,0
+   ATAC main data  dimensions (rows,columns):0,0
+   ATAC columns names:...
+   ATAC row names:...
+############## Spatial ###########
+Spatial data dimentions (rows,columns):0,0
+########### iCellR object ##########
 ```
 
 - Perform some QC 
@@ -162,44 +195,6 @@ An object of class iCellR version: 0.99.0
 ```r
 my.obj <- qc.stats(my.obj)
 ``` 
-
-
-- Cell cycle prediction 
-
-```r
-my.obj <- cc(my.obj, s.genes = s.phase, g2m.genes = g2m.phase)
-head(my.obj@stats)
-
-#                                CellIds nGenes UMIs mito.percent
-#WT_AAACATACAACCAC.1 WT_AAACATACAACCAC.1    781 2421  0.030152829
-#WT_AAACATTGAGCTAC.1 WT_AAACATTGAGCTAC.1   1352 4903  0.037935958
-#WT_AAACATTGATCAGC.1 WT_AAACATTGATCAGC.1   1131 3149  0.008891712
-#WT_AAACCGTGCTTCCG.1 WT_AAACCGTGCTTCCG.1    960 2639  0.017430845
-#WT_AAACCGTGTATGCG.1 WT_AAACCGTGTATGCG.1    522  981  0.012232416
-#WT_AAACGCACTGGTAC.1 WT_AAACGCACTGGTAC.1    782 2164  0.016635860
-#                    S.phase.probability g2m.phase.probability      S.Score
-#WT_AAACATACAACCAC.1        0.0012391574          0.0004130525  0.030569081
-#WT_AAACATTGAGCTAC.1        0.0002039568          0.0004079135 -0.077860621
-#WT_AAACATTGATCAGC.1        0.0003175611          0.0019053668 -0.028560560
-#WT_AAACCGTGCTTCCG.1        0.0007578628          0.0011367942  0.001917225
-#WT_AAACCGTGTATGCG.1        0.0000000000          0.0020387360 -0.020085210
-#WT_AAACGCACTGGTAC.1        0.0000000000          0.0000000000 -0.038953135
-#                        G2M.Score Phase
-#WT_AAACATACAACCAC.1 -0.0652390011     S
-#WT_AAACATTGAGCTAC.1 -0.1277015099    G1
-#WT_AAACATTGATCAGC.1 -0.0036505733    G1
-#WT_AAACCGTGCTTCCG.1 -0.0499511543     S
-#WT_AAACCGTGTATGCG.1  0.0009426363   G2M
-#WT_AAACGCACTGGTAC.1 -0.0680240629    G1
-
-
-# plot cell cycle rate
-pie(table(my.obj@stats$Phase))
-```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/iCellR_1.png" width="400"/>
-</p>
 
 - Plot QC
 
@@ -209,7 +204,7 @@ By default all the plotting functions would create interactive html files unless
 # plot UMIs, genes and percent mito all at once and in one plot. 
 # you can make them individually as well, see the arguments ?stats.plot.
 stats.plot(my.obj,
-	plot.type = "all.in.one",
+	plot.type = "three.in.one",
 	out.name = "UMI-plot",
 	interactive = FALSE,
 	cell.color = "slategray3", 
@@ -220,7 +215,7 @@ stats.plot(my.obj,
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/stats.png" />
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/plot1_QC_stats.png" />
 </p>
 
 ```r  
@@ -292,31 +287,31 @@ my.obj <- norm.data(my.obj,
 #my.obj <- norm.data(my.obj, norm.method = "no.norm") # if the data is already normalized
 ```
 
-- Perform second QC 
+- Perform second QC (optioal)
 
 ```r
-my.obj <- qc.stats(my.obj,which.data = "main.data")
+#my.obj <- qc.stats(my.obj,which.data = "main.data")
 
-stats.plot(my.obj,
-	plot.type = "all.in.one",
-	out.name = "UMI-plot",
-	interactive = F,
-	cell.color = "slategray3", 
-	cell.size = 1, 
-	cell.transparency = 0.5,
-	box.color = "red",
-	box.line.col = "green",
-	back.col = "white")
+#stats.plot(my.obj,
+#	plot.type = "all.in.one",
+#	out.name = "UMI-plot",
+#	interactive = F,
+#	cell.color = "slategray3", 
+#	cell.size = 1, 
+#	cell.transparency = 0.5,
+#	box.color = "red",
+#	box.line.col = "green",
+#	back.col = "white")
 ``` 
 
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/stats2.png" />
-</p>
+- Scale data (optional)
 
-- Scale data
+iCellR dose not need this step as it scales the data when they need to be scaled on the fly; like for plotting or PCA. 
+It is important to use the untansformed data for differential expression analysis to calculate the accurate fold changes.
+If you run this function the scaled data will be saved in different slot for you to download for plotting but will not be use by iCellR.
 
 ```r
-my.obj <- data.scale(my.obj)
+# my.obj <- data.scale(my.obj)
 ```
 
 - Gene stats
@@ -353,7 +348,6 @@ make.gene.model(my.obj, my.out.put = "plot",
 	no.mito.model = T, 
 	mark.mito = T, 
 	interactive = F,
-	no.cell.cycle = T,
 	out.name = "gene.model")
 	
 # Write the gene model data into the object
@@ -364,7 +358,6 @@ my.obj <- make.gene.model(my.obj, my.out.put = "data",
 	no.mito.model = T, 
 	mark.mito = T, 
 	interactive = F,
-	no.cell.cycle = T,
 	out.name = "gene.model")
 
 head(my.obj@gene.model)
@@ -379,7 +372,7 @@ head(my.obj@gene.model)
 #	interactive = T,
 #	out.name = "plot4_gene.model")
 ```
-To view an the html intractive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene.model.html)
+To view an the html interactive plot click on this links: [Dispersion plot](https://rawgit.com/rezakj/scSeqR/dev/doc/gene.model.html)
 
 
 <p align="center">
@@ -389,22 +382,30 @@ To view an the html intractive plot click on this links: [Dispersion plot](https
 
 - Perform Principal component analysis (PCA)
 
+Note: skip this step if you plan to do batch correction. For batch correction (sample alignment/harmonization/integration) see the sections; CPCA, CCCA, MNN or anchor alignment. 
+
 ```r
-my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main",batch.norm = F)
+# If you run PCA (run.pca) there would be no batch alignment but if you run CPCA (using iba function) this would perform batch alignment and PCA after batch alignment. Example for batch alignment using iba function: 
+# my.obj <- iba(my.obj,dims = 1:30, k = 10,ba.method = "CPCA", method = "gene.model", gene.list = my.obj@gene.model)
+
+# run PCA in case no batch alignment is necessary
+my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main")
 
 opt.pcs.plot(my.obj)
 
-# 2 round PCA (to find top genes in the first 10 PCs and re-run PCA for better clustering
+# 2 round PCA (optional)
+# This is to find top genes in the first 10 PCs and re-run PCA for better clustering. 
 ## This is optional and might not be good in some cases
-length(my.obj@gene.model)
-# 681
-my.obj <- find.dim.genes(my.obj, dims = 1:10,top.pos = 20, top.neg = 20) # (optional)
 
-length(my.obj@gene.model)
-# 214
+#length(my.obj@gene.model)
+# 683
+#my.obj <- find.dim.genes(my.obj, dims = 1:10,top.pos = 20, top.neg = 20) # (optional)
+
+#length(my.obj@gene.model)
+# 211
 
 # second round PC
-my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main",batch.norm = F)
+#my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main")
 ```        
 
 <p align="center">
@@ -412,33 +413,126 @@ my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,d
 </p>
 
 
-- Cluster the data
+- Perform other dimensionality reductiond (tSNE, UMAP, KNetL, PHATE, diffusion map)
 
-Here we cluster the first 10 dimensions of the data which is converted to principal components. You have the option of clustering your data based on the following methods: "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
-
- For the distance calculation used for clustering, you have the following options: "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski" or "NULL"
-
- With the following indexing methods: "kl", "ch", "hartigan", "ccc", "scott", "marriot", "trcovw", "tracew", "friedman", "rubin", "cindex", "db", "silhouette", "duda", "pseudot2", "beale", "ratkowsky", "ball", "ptbiserial", "gap", "frey", "mcclain", "gamma", "gplus", "tau", "dunn", "hubert", "sdindex", "dindex", "sdbw"
-
-We recomand to use the defult options as below:
+We recommend tSNE, UMAP and KNetL. KNetL is fundamentally more powerful. 
 
 ```r
-my.obj <- run.clustering(my.obj, 
-	clust.method = "kmeans", 
-	dist.method = "euclidean",
-	index.method = "silhouette",
-	max.clust = 25,
-	min.clust = 2,
-	dims = 1:10)
+# tSNE
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+
+# UMAP
+my.obj <- run.umap(my.obj, dims = 1:10)
+
+# KNetL (for lager than 5000 cell use a k of about 400) 
+# Because knetl has a very high resolution it's best to use a dim of 20 (this usually works best for most data)
+my.obj <- run.knetl(my.obj, dims = 1:20, k = 110, dim.redux = "umap")
+
+########################### IMPORTANT NOTE ########################################
+#### Because KNetl has a very high resolution it's best to use a dim of 20 (this usually works best for most data)
+#### For zooming use the k value. For data with more than 5000 cells use a k of about 400. 
+#### A k value of 400 is usually good for big data but adjust it for intended resolution. 
+#### Just like a microscope, you need to zoom to see the intended amount of details. 
+#### Here we use a k of 100 or 110 but this might not be ideal for your data.
+#### example: # my.obj <- run.knetl(my.obj, dims = 1:20, k = 400)
+#### Because knetl has a very high resolution it's best to use a dim of 20 (this usually works best for most data)
+###################################################################################
+###################################################################################
+###################################################################################
+###################################################################################
+
+# diffusion map
+# this requires python packge phate or bioconductor R package destiny
+# How to install destiny
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+# BiocManager::install("destiny")
+# How to install phate
+# pip install --user phate
+# Install phateR version 2.9
+# wget https://cran.r-project.org/src/contrib/Archive/phateR/phateR_0.2.9.tar.gz
+# install.packages('phateR/', repos = NULL, type="source")
+# or 
+# library(devtools)
+# install_version("phateR", version = "0.2.9", repos = "http://cran.us.r-project.org")
+
+
+# optional 
+# library(destiny)
+# my.obj <- run.diffusion.map(my.obj, dims = 1:10)
+# or 
+# library(phateR)
+# my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
+```
+
+- Visualizing the results of dimensionality reductions before clustering (optional)
+
+```r
+A= cluster.plot(my.obj,plot.type = "pca",interactive = F)
+B= cluster.plot(my.obj,plot.type = "umap",interactive = F)
+C= cluster.plot(my.obj,plot.type = "tsne",interactive = F)
+D= cluster.plot(my.obj,plot.type = "knetl",interactive = F)
+
+library(gridExtra)
+grid.arrange(A,B,C,D)
+```
+
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/All.not.Clustered.png"/>   
+</p>
+
+
+### Clustering
+
+We provide three functions to run the clustering method of your choice:
+
+### 1- iclust (** recommended): 
+Faster and optimized for iCellR. This function takes PCA, UMAP or tSNE as input, however we recommend using the PCA data as in default. This function is using Louvain algorithm for clustering a graph made using KNN. Similar to PhenoGraph (Levine et al., Cell, 2015) however instead of Jaccard similarity values we use distance (euclidean by default) values for the weights.
+
+##### 2- run.phenograph: 
+R implementation of the PhenoGraph algorithm. [Rphenograph](https://github.com/JinmiaoChenLab/Rphenograph) wrapper (Levine et al., Cell, 2015). 
+
+##### 3- run.clustering: 
+In this function we provide a variety of many other options for you to explore the data with different flavours of clustering and indexing methods. Choose any combinations from the table below.
+
+| clustering methods | distance methods | indexing methods | 
+| ------------- | ------------- | ------------- |
+| ward.D, ward.D2, single, complete, average, mcquitty, median, centroid, kmeans| euclidean, maximum, manhattan, canberra, binary, minkowski or NULL | kl, ch, hartigan, ccc, scott, marriot, trcovw, tracew, friedman, rubin, cindex, db, silhouette, duda, pseudot2, beale, ratkowsky, ball, ptbiserial, gap, frey, mcclain, gamma, gplus, tau, dunn, hubert, sdindex, dindex, sdbw |
+
+### Conventionally people cluster based on PCA data however because KNetL map is more powerful we recommend clustering based on KNetL map.
+
+This is one of the harder parts of the analysis and sometimes you need to adjust your clustering based on marker genes. This means you might need to merge some clusters, gate (see our cell gating tools) or try different sensitivities to find more or less communities.
+
+```r
+# clustering based on KNetL
+
+my.obj <- iclust(my.obj, k = 150, data.type = "knetl") 
+
+# play with k to get the clusters right. Usually 150 is good.
+
+###### more examples 
+
+# clustering based on PCA
+
+# my.obj <- iclust(my.obj,
+#    dist.method = "euclidean",
+#    k = 100,
+#    dims = 1:10,
+#    data.type = "pca")
+
+# or
+# run.phenograph
+# my.obj <- run.phenograph(my.obj,k = 100,dims = 1:10)
 
 # or 
-
-library(Rphenograph)
-my.obj <- run.phenograph(my.obj,k = 100,dims = 1:10)
-
-
-# if Rphenograph not installed
-#devtools::install_github("JinmiaoChenLab/Rphenograph")
+# run.clustering
+# my.obj <- run.clustering(my.obj, 
+#	clust.method = "kmeans", 
+#	dist.method = "euclidean",
+#	index.method = "silhouette",
+#	max.clust = 25,
+#	min.clust = 2,
+#	dims = 1:10)
 
 # If you want to manually set the number of clusters, and not used the predicted optimal number, set the minimum and maximum to the number you want:
 #my.obj <- run.clustering(my.obj, 
@@ -460,211 +554,236 @@ my.obj <- run.phenograph(my.obj,k = 100,dims = 1:10)
 #	dims = 1:10)
 ```
 
-- Perform Dimensionality reduction
+- Visualize data clustering results 
 
 ```r
-# tSNE
-my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+# plot clusters (in the figures below clustering is done based on KNetL) 
+# example: # my.obj <- iclust(my.obj, k = 150, data.type = "knetl") 
 
-# UMAP
-my.obj <- run.umap(my.obj, dims = 1:10, method = "naive")
-# or 
-# my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
-
-# diffusion map
-# this requires python packge phate 
-# pip install --user phate
-# Install phateR version 2.9
-# wget https://cran.r-project.org/src/contrib/Archive/phateR/phateR_0.2.9.tar.gz
-# install.packages('phateR/', repos = NULL, type="source")
-
-# optional 
-# library(phateR)
-# my.obj <- run.diffusion.map(my.obj, dims = 1:10, method = "phate")
-```
-
-- Visualize data
-
-```r
-# clusters
-A= cluster.plot(my.obj,plot.type = "pca",interactive = F)
-B= cluster.plot(my.obj,plot.type = "umap",interactive = F)
-C= cluster.plot(my.obj,plot.type = "tsne",interactive = F) 
-D= cluster.plot(my.obj,plot.type = "diffusion",interactive = F)
+A <- cluster.plot(my.obj,plot.type = "pca",interactive = F,cell.size = 0.5,cell.transparency = 1, anno.clust=T)
+B <- cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+C <- cluster.plot(my.obj,plot.type = "tsne",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+D <- cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
 
 library(gridExtra)
 grid.arrange(A,B,C,D)
+```
 
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Allclusts_not_in_order.png"/>   
+</p>
+
+
+- Re-numbering clusters based on their distances, this is so that the are more in consecutive order (optional)
+
+This is visually helpful to look at your heatmap after finding marker genes and can help you decide which clusters need to be merged and adjusted. 
+
+```r
+
+my.obj <- clust.ord(my.obj,top.rank = 500, how.to.order = "distance")
+#my.obj <- clust.ord(my.obj,top.rank = 500, how.to.order = "random")
+
+
+A= cluster.plot(my.obj,plot.type = "pca",interactive = F,cell.size = 0.5,cell.transparency = 1, anno.clust=T)
+B= cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+C= cluster.plot(my.obj,plot.type = "tsne",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+D= cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+
+library(gridExtra)
+grid.arrange(A,B,C,D)
+```
+
+<p align="center">
+    <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Allclusts.png"/>    
+</p>
+
+- Look at conditions
+
+```r
 # conditions 
-A= cluster.plot(my.obj,plot.type = "pca",col.by = "conditions",interactive = F)
-B= cluster.plot(my.obj,plot.type = "umap",col.by = "conditions",interactive = F)
-C= cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",interactive = F)
-D= cluster.plot(my.obj,plot.type = "diffusion",col.by = "conditions",interactive = F)
+A <- cluster.plot(my.obj,plot.type = "pca",col.by = "conditions",interactive = F,cell.size = 0.5)
+B <- cluster.plot(my.obj,plot.type = "umap",col.by = "conditions",interactive = F,cell.size = 0.5)
+C <- cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",interactive = F,cell.size = 0.5)
+D <- cluster.plot(my.obj,plot.type = "knetl",col.by = "conditions",interactive = F,cell.size = 0.5)
 
 library(gridExtra)
 grid.arrange(A,B,C,D)
+
+### or 
+
+cluster.plot(my.obj,
+              cell.size = 0.5,
+              plot.type = "knetl",
+              cell.color = "black",
+              back.col = "white",
+              col.by = "conditions",
+              cell.transparency = 1,
+              clust.dim = 2,
+              interactive = F,cond.facet = T)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/1_AllClusts.png"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/2_AllConds.png"/>      
+      <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Allconds.png"/> 
+	<img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Allconds_clusts.png"/> 
 </p>
 
-- 3D plots, density plots and intractive plots 
+- Pseudotime Abstract KNetL map (PAK map)
+
+This is very helpful to see the distances or similarities between different communities. The shorter and thicker the lines/links (rubber bands) are the more similar the communities. The nodes are the clusters and the edges or links are the distance between them. 
 
 ```r
-# 2D
-cluster.plot(my.obj,
-	cell.size = 1,
-	plot.type = "tsne",
-	cell.color = "black",
-	back.col = "white",
-	col.by = "clusters",
-	cell.transparency = 0.5,
-	clust.dim = 2,
-	interactive = F)
-	
-# intractive 2D
-cluster.plot(my.obj,
-	plot.type = "tsne",
-	col.by = "clusters",
-	clust.dim = 2,
-	interactive = T,
-	out.name = "tSNE_2D_clusters")
+pseudotime.knetl(my.obj,interactive = F,cluster.membership = F,conds.to.plot = NULL)
 
-# intractive 3D
-cluster.plot(my.obj,
-	plot.type = "tsne",
-	col.by = "clusters",
-	clust.dim = 3,
-	interactive = T,
-	out.name = "tSNE_3D_clusters")
+## with memberships 
+pseudotime.knetl(my.obj,interactive = F,cluster.membership = T,conds.to.plot = NULL)
 
-# Density plot for clusters 
-cluster.plot(my.obj,
-	plot.type = "pca",
-	col.by = "clusters",
-	interactive = F,
-	density=T)
 
-# Density plot for conditions 
-cluster.plot(my.obj,
-	plot.type = "pca",
-	col.by = "conditions",
-	interactive = F,
-	density=T)
-```
-## To see the above made interactive plots click on these links: [2Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_2D_clusters.html) and [3Dplot](https://rawgit.com/rezakj/scSeqR/dev/doc/tSNE_3D_clusters.html)
-        
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_conditions.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
-</p>
-
-- More plots
-
-```r
-# plot 
-cluster.plot(my.obj,
-	cell.size = 1,
-	plot.type = "diffusion",
-	cell.color = "black",
-	back.col = "white",
-	col.by = "clusters",
-	cell.transparency = 0.5,
-	clust.dim = 2,
-	interactive = F)
-	
-cluster.plot(my.obj,
-	cell.size = 1,
-	plot.type = "diffusion",
-	cell.color = "black",
-	back.col = "white",
-	col.by = "clusters",
-	cell.transparency = 0.5,
-	clust.dim = 3,
-	interactive = F)	
-	
+### intractive plot
+pseudotime.knetl(my.obj,interactive = T)
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Diffusion.png" width="400"/>
-	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/diffiusion3D.gif" width="400"/>
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/pseudotime.KNetL.png" width="400"/>
+	<img src="https://genome.med.nyu.edu/results/external/iCellR/example1/pseudotime.KNetL.membered.png" width="400"/>
 </p>
 
-- Plotting clusters and conditions at the same time
+- Average expression per cluster
 
 ```r
-cluster.plot(my.obj,
-	cell.size = 1,
-	plot.type = "umap",
-	cell.color = "black",
-	back.col = "white",
-	col.by = "clusters",
-	cell.transparency = 0.5,
-	clust.dim = 2,
-	cond.shape = T,
-	interactive = T,
-	out.name = "2d_UMAP_clusters_conds")
-```
+# for all cunditions
+my.obj <- clust.avg.exp(my.obj, conds.to.avg = NULL)
 
+# for one cundition
+#my.obj <- clust.avg.exp(my.obj, conds.to.avg = "WT")
 
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/Conds_clusts.gif"/>
-</p>
-
-
-- Normalized cell frequencies in clusters and conditions
-
-```r
-# If normalize.ncell = TRUE it would down sample the conditions randomly so all the conditions have equal number of cells, if FALSE it would output the raw cell counts.
-
-# bar plot
-clust.cond.info(my.obj, plot.type = "bar", normalize.ncell = FALSE, my.out.put = "plot")
-# Pie chart 
-clust.cond.info(my.obj, plot.type = "pie", normalize.ncell = FALSE, ,my.out.put = "plot")
-
-# data 
-my.obj <- clust.cond.info(my.obj, plot.type = "bar", normalize.ncell = F)
-#head(my.obj@my.freq)
-#  conditions clusters Freq
-#1       ctrl        1  199
-#2         KO        1  170
-#3         WT        1  182
-#4       ctrl        2  106
-#5         KO        2  116
-#6         WT        2  113
-```
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/3_clust_cond_freq_info_bar.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/4_clust_cond_freq_info_pie.png" width="400"/> 	
-</p>
-
-- Avrage expression per cluster
-
-```r
-# remember to run this command again if you recluster the data (change the number of clusters). 
-# This is because this data slot with avrage expressions per cluster is used for finding markers and downstream analysis. 
-
-my.obj <- clust.avg.exp(my.obj)
+# for two cundition
+#my.obj <- clust.avg.exp(my.obj, conds.to.avg = c("WT","KO"))
 
 head(my.obj@clust.avg)
-#      gene   cluster_1   cluster_2  cluster_3 cluster_4   cluster_5   cluster_6
-#1     A1BG 0.072214723 0.092648973 0.08258609         0 0.027183115 0.072291636
-#2 A1BG.AS1 0.014380756 0.003280237 0.01817982         0 0.000000000 0.011545546
-#3     A1CF 0.000000000 0.000000000 0.00000000         0 0.000000000 0.000000000
-#4      A2M 0.000000000 0.000000000 0.00000000         0 0.007004131 0.004672857
-#5  A2M.AS1 0.003520828 0.039985296 0.00876364         0 0.056596203 0.018445562
-#6    A2ML1 0.000000000 0.000000000 0.00000000         0 0.000000000 0.000000000
-#   cluster_7  cluster_8   cluster_9
-#1 0.09058946 0.04466827 0.027927923
-#2 0.00000000 0.01534541 0.005930566
-#3 0.00000000 0.00000000 0.000000000
-#4 0.00000000 0.00000000 0.003411938
-#5 0.00000000 0.00000000 0.000000000
-#6 0.00000000 0.00000000 0.000000000
+#      gene cluster_1   cluster_2   cluster_3   cluster_4   cluster_5
+#1     A1BG         0 0.034248447 0.029590643 0.076486590 0.090270833
+#2 A1BG.AS1         0 0.000000000 0.006274854 0.019724138 0.004700000
+#3     A1CF         0 0.000000000 0.000000000 0.000000000 0.000000000
+#4      A2M         0 0.006925466 0.003614035 0.000000000 0.000000000
+#5  A2M.AS1         0 0.056155280 0.000000000 0.005344828 0.006795833
+#6    A2ML1         0 0.000000000 0.000000000 0.000000000 0.000000000
+#    cluster_6  cluster_7  cluster_8   cluster_9  cluster_10
+#1 0.074360294 0.07623494 0.04522321 0.088735057 0.065292818
+#2 0.000000000 0.00000000 0.01553869 0.013072698 0.013550645
+#3 0.000000000 0.00000000 0.00000000 0.000000000 0.000000000
+#4 0.000000000 0.00000000 0.00000000 0.001810985 0.003200737
+#5 0.008191176 0.06227108 0.00000000 0.011621971 0.012837937
+#6 0.000000000 0.00000000 0.00000000 0.000000000 0.000000000
+```
+
+- Cell cycle prediction 
+
+Tirosh scoring method [Tirosh, et. al. 2016](https://science.sciencemag.org/content/352/6282/189) (default) or coverage is used to calculate G0, G1S, G2M, M, G1M and S phase score. The gene lists for G0, G1S, G2M, M, G1M and S phase are chosen from previously published article [Xue, et.al 2020](https://www.nature.com/articles/s41586-019-1884-x)
+
+```r
+# old method 
+# my.obj <- cc(my.obj, s.genes = s.phase, g2m.genes = g2m.phase)
+
+# new method 
+
+G0 <- readLines(system.file('extdata', 'G0.txt', package = 'iCellR'))
+G1S <- readLines(system.file('extdata', 'G1S.txt', package = 'iCellR'))
+G2M <- readLines(system.file('extdata', 'G2M.txt', package = 'iCellR'))
+M <- readLines(system.file('extdata', 'M.txt', package = 'iCellR'))
+MG1 <- readLines(system.file('extdata', 'MG1.txt', package = 'iCellR'))
+S <- readLines(system.file('extdata', 'S.txt', package = 'iCellR'))
+
+# Tirosh scoring method (recomanded)
+my.obj <- cell.cycle(my.obj, scoring.List = c("G0","G1S","G2M","M","MG1","S"), scoring.method = "tirosh")
+
+# Coverage scoring method (recomanded)
+# my.obj <- cell.cycle(my.obj, scoring.List = c("G0","G1S","G2M","M","MG1","S"), scoring.method = "coverage")
+
+# plot cell cycle
+
+A= cluster.plot(my.obj,plot.type = "pca",interactive = F,cell.size = 0.5,cell.transparency = 1, anno.clust=T,col.by = "cc")
+B= cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T, col.by = "cc")
+C= cluster.plot(my.obj,plot.type = "tsne",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T, col.by = "cc")
+D= cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T, col.by = "cc")
+
+library(gridExtra)
+grid.arrange(A,B,C,D)
+
+## or 
+cluster.plot(my.obj,
+              cell.size = 0.5,
+              plot.type = "knetl",
+              col.by = "cc",
+              cell.color = "black",
+              back.col = "white",
+              cell.transparency = 1,
+              clust.dim = 2,
+              interactive = F,cond.facet = T)
+
+# Pie
+clust.stats.plot(my.obj, plot.type = "pie.cc", interactive = F, conds.to.plot = NULL)
+dev.off()
+
+# bar
+clust.stats.plot(my.obj, plot.type = "bar.cc", interactive = F, conds.to.plot = NULL)
+dev.off()
+
+# or per condition
+# clust.stats.plot(my.obj, plot.type = "pie.cc", interactive = F, conds.to.plot = "WT")
+```
+
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/All_cellcycle.png" />
+	  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/AllConds_cellcycle.png" />
+	  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/cluster_cellcycle_pie.png" width="400"/>
+	  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/cluster_cellcycle_bar.png" width="400"/>
+</p>
+
+- Cell frequencies and proportions
+
+```r
+clust.cond.info(my.obj, plot.type = "pie", normalize.ncell = TRUE, my.out.put = "plot", normalize.by = "percentage")
+
+clust.cond.info(my.obj, plot.type = "bar", normalize.ncell = TRUE,my.out.put = "plot", normalize.by = "percentage")
+
+clust.cond.info(my.obj, plot.type = "pie.cond", normalize.ncell = T, my.out.put = "plot", normalize.by = "percentage")
+
+clust.cond.info(my.obj, plot.type = "bar.cond", normalize.ncell = T,my.out.put = "plot", normalize.by = "percentage")
+
+my.obj <- clust.cond.info(my.obj)
+head(my.obj@my.freq)
+#  conditions  TC    SF clusters Freq Norm.Freq percentage
+#1       Ctrl 491 1.265        1    4     3.162       0.81
+#2       Ctrl 491 1.265       11   32    25.296       6.52
+#3       Ctrl 491 1.265        8  114    90.119      23.22
+#4       Ctrl 491 1.265        5   43    33.992       8.76
+#5       Ctrl 491 1.265        2   33    26.087       6.72
+#6       Ctrl 491 1.265        9   86    67.984      17.52
+```
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Clust_cond_freq_pie.png" width="400"/>
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Clust_cond_freq_bar.png" width="400"/>
+	  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Clust_cond_freq_pie.cond.png" width="400"/>
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Clust_cond_freq_bar.cond.png" width="400"/> 
+</p>
+
+
+- Cluster QC
+
+```r
+clust.stats.plot(my.obj, plot.type = "box.mito", interactive = F)
+
+clust.stats.plot(my.obj, plot.type = "box.gene", interactive = F)
+```
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/cluster-mito_ratio.png" width="400"/>
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/cluster-gene_cov.png" width="400"/>
+</p>
+
+ - Run data imputation
+
+```r
+my.obj <- run.impute(my.obj, dims = 1:10, nn = 10, data.type = "pca")
 ```
 
 - Save your object
@@ -672,6 +791,54 @@ head(my.obj@clust.avg)
 ```r
 save(my.obj, file = "my.obj.Robj")
 ```        
+
+- gene gene correlation 
+
+```r
+# impute more cells by increasing nn for better resulst. 
+my.obj <- run.impute(my.obj,dims = 1:10,data.type = "pca", nn = 50)
+
+# main data
+A <- gg.cor(my.obj, 
+	interactive = F, 
+	gene1 = "GNLY",
+	gene2 = "NKG7", 
+	conds = NULL,
+	clusts = NULL,
+	data.type = "main")
+
+# imputed data 
+B <- gg.cor(my.obj, 
+	interactive = F, 
+	gene1 = "GNLY",
+	gene2 = "NKG7", 
+	conds = NULL,
+	clusts = NULL,
+	data.type = "imputed")
+
+C <- gg.cor(my.obj, 
+	interactive = F, 
+	gene1 = "GNLY",
+	gene2 = "NKG7", 
+	conds = NULL,
+	clusts = c(3,2),
+	data.type = "imputed")
+
+
+# imputed data 
+D <- gg.cor(my.obj, 
+	interactive = F, 
+	gene1 = "GNLY",
+	gene2 = "NKG7", 
+	conds = c("WT"),
+	clusts = NULL,
+	data.type = "imputed")
+
+grid.arrange(A,B,C,D)
+```
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/gene-gene.correlation.png"/>
+</p>
 
 - Find marker genes
 
@@ -684,34 +851,34 @@ dim(marker.genes)
 # [1] 1070   17
 
 head(marker.genes)
-#                row   baseMean    baseSD AvExpInCluster AvExpInOtherClusters
-#LRRN3         LRRN3 0.01428477 0.1282046     0.05537243          0.003437002
-#LINC00176 LINC00176 0.06757573 0.2949763     0.21404151          0.028906516
-#FHIT           FHIT 0.10195359 0.3885343     0.31404936          0.045957058
-#TSHZ2         TSHZ2 0.04831334 0.2628778     0.14300998          0.023311970
-#CCR7           CCR7 0.28132627 0.6847417     0.81386444          0.140728033
-#SCGB3A1     SCGB3A1 0.06319598 0.3554273     0.18130557          0.032013232
-#          foldChange log2FoldChange         pval         padj clusters
-#LRRN3      16.110677       4.009945 1.707232e-06 2.847662e-03        1
-#LINC00176   7.404611       2.888424 4.189197e-16 7.117446e-13        1
-#FHIT        6.833539       2.772633 1.576339e-19 2.681353e-16        1
-#TSHZ2       6.134616       2.616973 8.613622e-10 1.455702e-06        1
-#CCR7        5.783243       2.531879 1.994533e-42 3.400679e-39        1
-#SCGB3A1     5.663457       2.501683 2.578484e-07 4.313805e-04        1
-#               gene  cluster_1   cluster_2   cluster_3 cluster_4   cluster_5
-#LRRN3         LRRN3 0.05537243 0.004102916 0.002190847         0 0.010902326
-#LINC00176 LINC00176 0.21404151 0.016772401 0.005203161         0 0.009293024
-#FHIT           FHIT 0.31404936 0.008713243 0.022934924         0 0.035701186
-#TSHZ2         TSHZ2 0.14300998 0.008996236 0.009444180         0 0.000000000
-#CCR7           CCR7 0.81386444 0.075719109 0.034017494         0 0.021492756
-#SCGB3A1     SCGB3A1 0.18130557 0.039644151 0.001183264         0 0.000000000
-#            cluster_6  cluster_7   cluster_8   cluster_9
-#LRRN3     0.002087831 0.00000000 0.000000000 0.012113258
-#LINC00176 0.086762509 0.01198777 0.003501552 0.003560614
-#FHIT      0.104189143 0.04144293 0.041064681 0.007218861
-#TSHZ2     0.065509372 0.01690584 0.002352707 0.015350123
-#CCR7      0.272580821 0.06523324 0.257130255 0.031304151
-#SCGB3A1   0.078878071 0.01198777 0.000000000 0.043410608
+#      baseMean    baseSD AvExpInCluster AvExpInOtherClusters   foldChange
+#PPBP  0.8257760 12.144694       181.3945            0.1399852 1295.8120969
+#GPX1  1.3989591  4.344717        57.4034            1.1862571   48.3903523
+#CALM3 0.5469743  1.230942        10.7848            0.5080915   21.2260968
+#OAZ1  4.9077851  5.979586        46.7867            4.7487311    9.8524635
+#MYL6  3.0806167  3.562124        21.3690            3.0111584    7.0966045
+#CD74  8.5523704 13.359205         2.6120            8.5749316    0.3046088
+#      log2FoldChange         pval        padj clusters  gene cluster_1
+#PPBP       10.339641 1.586683e-06 0.014786300        1  PPBP  181.3945
+#GPX1        5.596648 1.107541e-07 0.001103775        1  GPX1   57.4034
+#CALM3       4.407767 2.098341e-06 0.019415953        1 CALM3   10.7848
+#OAZ1        3.300485 7.857814e-07 0.007464137        1  OAZ1   46.7867
+#MYL6        2.827129 1.296112e-06 0.012156230        1  MYL6   21.3690
+#CD74       -1.714970 9.505749e-06 0.083983296        1  CD74    2.6120
+#      cluster_2  cluster_3  cluster_4  cluster_5  cluster_6 cluster_7
+#PPBP  0.0000000  0.1444327  0.2282912  0.0640625 0.01739706 0.1541084
+#GPX1  0.2424969  1.2218772  3.9292720  4.4329583 0.25663235 0.2712831
+#CALM3 0.6537205  0.8149415  0.6071034  0.5245625 0.44687500 0.5081867
+#OAZ1  3.2077826 12.2072339  8.6080077 10.8738208 2.71288971 3.6402289
+#MYL6  4.9660870  5.7945673  4.2813218  4.3046458 2.42854412 3.9030542
+#CD74  2.9385839  8.9848538 15.7646245  5.9454250 2.19555882 3.8323072
+#        cluster_8 cluster_9 cluster_10
+#PPBP   0.02478274 0.3668433 0.01026335
+#GPX1   0.61210714 0.4635153 0.39311786
+#CALM3  0.22591369 0.5210339 0.48856538
+#OAZ1   3.67225595 2.3590420 2.53362063
+#MYL6   1.72344048 1.6460420 2.59901289
+#CD74  36.10877976 1.5638853 1.82587477
 
 # baseMean: average expression in all the cells
 # baseSD: Standard Deviation
@@ -726,10 +893,39 @@ head(marker.genes)
 # the rest are the average expression for each cluster
 ```
 
+- Heatmap
+
+```r
+# find top genes
+MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2,filt.ambig = F)
+MyGenes <- unique(MyGenes)
+
+# main data 
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", conds.to.plot = NULL)
+
+# imputed data 
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", data.type = "imputed", conds.to.plot = NULL)
+
+# sort cells and plot only one condition
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", data.type = "imputed", cell.sort = TRUE, conds.to.plot = c("WT"))
+
+# Pseudotime stile
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "none", data.type = "imputed", cell.sort = TRUE)
+
+# intractive 
+# heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "heatmap_gg", cluster.by = "clusters")
+````
+
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/heatmap.png" width="400"/>
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/heatmap_imputed.png" width="400"/>  
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/heatmap_imputed_sorted_WT.png" width="400"/>
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/heatmap_imputed_sudo.png" width="400"/> 
+</p>
+
 - Plot genes
 
 ```r
-# tSNE 2D
 A <- gene.plot(my.obj, gene = "MS4A1", 
 	plot.type = "scatterplot",
 	interactive = F,
@@ -739,7 +935,7 @@ B <- gene.plot(my.obj, gene = "MS4A1",
 	plot.type = "scatterplot",
 	interactive = F,
 	out.name = "scatter_plot",
-	plot.data.type = "pca")
+	plot.data.type = "umap")
 	
 # Box Plot
 C <- gene.plot(my.obj, gene = "MS4A1", 
@@ -758,94 +954,133 @@ D <- gene.plot(my.obj, gene = "MS4A1",
 	out.name = "bar_plot")
 	
 library(gridExtra)
+png('gene.plots.png', width = 8, height = 8, units = 'in', res = 300)
 grid.arrange(A,B,C,D)	
+dev.off()
+
+### same on imputed data 
+
+A <- gene.plot(my.obj, gene = "MS4A1", 
+	plot.type = "scatterplot",
+	interactive = F,
+	data.type = "imputed",
+	out.name = "scatter_plot")
+# PCA 2D	
+B <- gene.plot(my.obj, gene = "MS4A1", 
+	plot.type = "scatterplot",
+	interactive = F,
+	out.name = "scatter_plot",
+	data.type = "imputed",
+	plot.data.type = "umap")
+	
+# Box Plot
+C <- gene.plot(my.obj, gene = "MS4A1", 
+	box.to.test = 0, 
+	box.pval = "sig.signs",
+	col.by = "clusters",
+	plot.type = "boxplot",
+	interactive = F,
+	data.type = "imputed",
+	out.name = "box_plot")
+	
+# Bar plot (to visualize fold changes)	
+D <- gene.plot(my.obj, gene = "MS4A1", 
+	col.by = "clusters",
+	plot.type = "barplot",
+	interactive = F,
+	data.type = "imputed",
+	out.name = "bar_plot")
+	
+library(gridExtra)
+png('gene.plots_imputed.png', width = 8, height = 8, units = 'in', res = 300)
+grid.arrange(A,B,C,D)	
+dev.off()
+	
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/7_genePlots.png"/>
+	<img src="https://genome.med.nyu.edu/results/external/iCellR/example1/gene_plots.png" />
+	<img src="https://genome.med.nyu.edu/results/external/iCellR/example1/gene_plots_imputed.png" />
 </p>
-
 
 - Multiple plots
 
+Change the section in between #### signs for different plots (e.g. boxplot, bar, ...). 
+
 ```r
-genelist = c("PPBP","LYZ","MS4A1","GNLY","LTB","NKG7","IFITM2","CD14","S100A9")
-###
+genelist = c("MS4A1","GNLY","FCGR3A","NKG7","CD14","CD3E","CD8A","CD4","GZMH","CCR7","CD68")
+
+rm(list = ls(pattern="PL_"))
 for(i in genelist){
-	MyPlot <- gene.plot(my.obj, gene = i, 
-		interactive = F,
-		plot.data.type = "umap",
-		cell.transparency = 1)
-	NameCol=paste("PL",i,sep="_")
-	eval(call("<-", as.name(NameCol), MyPlot))
+####
+    MyPlot <- gene.plot(my.obj, gene = i,
+        interactive = F,
+        cell.size = 0.1,
+        plot.data.type = "knetl",
+        data.type = "main",
+        scaleValue = T,
+        min.scale = 0,max.scale = 2.0,
+        cell.transparency = 1)
+####
+    NameCol=paste("PL",i,sep="_")
+    eval(call("<-", as.name(NameCol), MyPlot))
 }
-###
+
 library(cowplot)
 filenames <- ls(pattern="PL_")
-plot_grid(plotlist=mget(filenames[1:9]))
+
+B <- cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.1,cell.transparency = 1,anno.clust=T)
+filenames <- c("B",filenames)
+
+png('genes_KNetL.png',width = 15, height = 12, units = 'in', res = 300)
+plot_grid(plotlist=mget(filenames))
+dev.off()
+
+# or heatmap 
+# heatmap.gg.plot(my.obj, gene = genelist, interactive = F, cluster.by = "clusters")
 ```
 
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/8_genePlots.png" />
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Genes.KNetL.png" />
+	  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Genes.heatmap.png" />
 </p>
 
-- Heatmap
+ - Annotating clusters 
+ 
+ ```r
+ ###### Labeling the clusters 
+#CD3E: only in T Cells
+#FCGR3A (CD16): in CD16+ monocytes and some expression NK cells
+#GNLY: NK cells
+#MS4A1: B cells
+#GZMH: in GZMH+ T8 cells and some expression NK cells
+#CD8A: in T8 cells
+#CD4: in T4 and some myeloid cells
+#CCR7: expressed more in memory cells 
+#CD14: in CD14+ monocytes
+#CD68: in monocytes/MF
 
-```r
-# find top genes
-MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2,filt.ambig = F)
-MyGenes <- unique(MyGenes)
-# plot
-heatmap.gg.plot(my.obj, gene = MyGenes, interactive = T, out.name = "plot", cluster.by = "clusters")
-# or 
-heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
-```
+my.obj <- change.clust(my.obj, change.clust = 1, to.clust = "001.MG")
+my.obj <- change.clust(my.obj, change.clust = 2, to.clust = "002.NK")
+my.obj <- change.clust(my.obj, change.clust = 3, to.clust = "003.CD16+.Mono")
+my.obj <- change.clust(my.obj, change.clust = 4, to.clust = "004.MF")
+my.obj <- change.clust(my.obj, change.clust = 5, to.clust = "005.CD14+.Mono")
+my.obj <- change.clust(my.obj, change.clust = 6, to.clust = "006.Naive.T8")
+my.obj <- change.clust(my.obj, change.clust = 7, to.clust = "007.GZMH+.T8")
+my.obj <- change.clust(my.obj, change.clust = 8, to.clust = "008.B")
+my.obj <- change.clust(my.obj, change.clust = 9, to.clust = "009.Memory.T4")
+my.obj <- change.clust(my.obj, change.clust = 10, to.clust = "010.Naive.T4")
 
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/9_heatmap_gg.png" />
-</p>
+A= cluster.plot(my.obj,plot.type = "pca",interactive = F,cell.size = 0.5,cell.transparency = 1, anno.clust=T)
+B= cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+C= cluster.plot(my.obj,plot.type = "tsne",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
+D= cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=T)
 
- - Run data imputation
-
-```r
-my.obj <- run.impute(my.obj, dims = 1:10, cell.ratio = 2, data.type = "pca")
-
-# more examples
-# my.obj <- run.impute(my.obj, cell.ratio = 2, data.type = "tsne")
-# my.obj <- run.impute(my.obj, cell.ratio = 2, data.type = "umap")
-
-# save after imputation 
-save(my.obj, file = "my.obj.Robj")
-
-# some more plots from another analysis 
-A=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", cell.sort = TRUE)
-B=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters", data.type = "imputed", cell.sort = TRUE)
-C=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "conditions", cell.sort = TRUE)
-D=heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "none", data.type = "imputed", cell.sort = TRUE)
-
-# If cluster.by = "none", your heamap would have like a Pseudotime effect.
-# It calculates the distance between the cells based on the genes in the heatmap. 
-
-library(gridExtra)
 grid.arrange(A,B,C,D)
-
-# main data 
-gene.plot(my.obj, gene = "MS4A1", 
-    plot.type = "scatterplot",
-    interactive = F,
-    data.type = "main")
-
-# imputed data 
-gene.plot(my.obj, gene = "MS4A1", 
-    plot.type = "scatterplot",
-    interactive = F,
-    data.type = "imputed")		
-```
+ ```
 
 <p align="center">
-	<img src="https://github.com/rezakj/scSeqR/blob/master/doc/heatmaps.png" />
-	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_dotPlot.png" />
-	<img src="https://github.com/rezakj/scSeqR/blob/dev/doc/imputed_BoxPlot.png" />
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example1/Allclusts.Annotated.png" />
 </p>
 
  - Plotting conditions and clusters for genes
@@ -891,69 +1126,109 @@ grid.arrange(A,B,C,D)
  ```
  
  <p align="center">
-	<img src="https://github.com/rezakj/scSeqR/blob/master/doc/Conds.png" />
+	<img src="https://genome.med.nyu.edu/results/external/iCellR/example1/genes.in_conditions_and_clusters.png" />
 </p>
- 
- 
- - Cell type prediction using ImmGen
- 
-Note that ImmGen is mouse genome data and the sample data here is human. For 157 ULI-RNA-Seq samples use this meta data: [metadata](https://github.com/rezakj/scSeqR/blob/dev/doc/uli_RNA_metadat.txt). 
+
+- Some example 2D and 3D plots and plotting clusters and conditions at the same time
 
 ```r
-Cluster = 8
-MyGenes <- top.markers(marker.genes, topde = 40, min.base.mean = 0.2, cluster = Cluster)
-# plot 
-cell.type.pred(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
-# and
-cell.type.pred(immgen.data = "uli.rna", gene = MyGenes, plot.type = "point.plot", top.cell.types = 50)
-# or 
-cell.type.pred(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
-# and
-cell.type.pred(immgen.data = "uli.rna", gene = MyGenes, plot.type = "heatmap")
+# example
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "umap",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	cond.shape = T,
+	interactive = T,
+	out.name = "2d_UMAP_clusters_conds")
 
-# And finally check the genes in the cells and find the common ones to predict
-# heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters")
+# 2D
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "tsne",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
+	
+# interactive 2D
+cluster.plot(my.obj,
+	plot.type = "tsne",
+	col.by = "clusters",
+	clust.dim = 2,
+	interactive = T,
+	out.name = "tSNE_2D_clusters")
 
-# As you can see cluster 8 is most likely to be B-cells.  
+# interactive 3D
+cluster.plot(my.obj,
+	plot.type = "tsne",
+	col.by = "clusters",
+	clust.dim = 3,
+	interactive = T,
+	out.name = "tSNE_3D_clusters")
 
-# for tissue type prediction use this:
-#cell.type.pred(immgen.data = "mca", gene = MyGenes, plot.type = "point.plot")
+# Density plot for clusters 
+cluster.plot(my.obj,
+	plot.type = "pca",
+	col.by = "clusters",
+	interactive = F,
+	density=T)
+
+# Density plot for conditions 
+cluster.plot(my.obj,
+	plot.type = "pca",
+	col.by = "conditions",
+	interactive = F,
+	density=T)
+	
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "diffusion",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 2,
+	interactive = F)
+	
+cluster.plot(my.obj,
+	cell.size = 1,
+	plot.type = "diffusion",
+	cell.color = "black",
+	back.col = "white",
+	col.by = "clusters",
+	cell.transparency = 0.5,
+	clust.dim = 3,
+	interactive = F)	
 ```
-
+## To see the above made interactive plots click on these links: [2Dplot](https://genome.med.nyu.edu/results/external/iCellR/example1/2d_tSNE_clusters.html) and [3Dplot](https://genome.med.nyu.edu/results/external/iCellR/example1/3d_tSNE_clusters.html)
+        
 <p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_RNA_Cluster_7.png" />
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_ULI-RNA_Cluster_7.png" /> 
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_RNA_Cluster_7.png" /> 
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_ULI-RNA_Cluster_7.png" />	
+	  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/Conds_clusts.gif"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_2D_clusters.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/tSNE_3D.png" width="400"/> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_conditions.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/density_clusters.png" width="400"/> 	
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/Diffusion.png" width="400"/>
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/diffiusion3D.gif" width="400"/>
 </p>
-
-
- - Pathway analysis
- 
-```r
-# Pathway  
-# pathways.kegg(my.obj, clust.num = 7) 
-# this function is being improved and soon will be available
-```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
-</p>
-
-- QC on clusters 
-
-```r
-clust.stats.plot(my.obj, plot.type = "box.mito", interactive = F)
-clust.stats.plot(my.obj, plot.type = "box.gene", interactive = F)
-```
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/6_cluster_mito_ratio.png" width="400"/>
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/5_cluster_gene_cov.png" width="400"/>      
-</p>
-
 
 - Differential Expression Analysis 
+
+The differential expression (DE) analysis function in iCellR allows the users to choose from any combinations of clusters and conditions. For example, a user with two samples (say WT and KO) has four different possible ways of comparisons:
+
+a-Comparing a cluster/clusters with different cluster/clusters (e.g. cluster 1 and 2 vs. 4)
+
+b-Comparing a cluster/clusters with different cluster/clusters only in one/more condition/conditions (e.g. cluster 1 vs cluster 2 but only the WT sample)
+
+c-Comparing a condition/conditions with different condition/conditions (e.g. WT vs KO)
+
+d-Comparing a condition/conditions with different condition/conditions only in one/more cluster/clusters (e.g. cluster 1 WT vs cluster 1 KO)
 
 ```r
 diff.res <- run.diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
@@ -976,10 +1251,18 @@ head(diff.res1)
 #AC092580.4 7.254675e-03
 
 # more examples 
-# diff.res <- run.diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
-# diff.res <- run.diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
-# diff.res <- run.diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
-# diff.res <- run.diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
+
+# Comparing a condition/conditions with different condition/conditions (e.g. WT vs KO)
+diff.res <- run.diff.exp(my.obj, de.by = "conditions", cond.1 = c("WT"), cond.2 = c("KO"))
+
+# Comparing a cluster/clusters with different cluster/clusters (e.g. cluster 1 and 2 vs. 4)
+diff.res <- run.diff.exp(my.obj, de.by = "clusters", cond.1 = c(1,4), cond.2 = c(2))
+
+# Comparing a condition/conditions with different condition/conditions only in one/more cluster/clusters (e.g. cluster 1 WT vs cluster 1 KO)
+diff.res <- run.diff.exp(my.obj, de.by = "clustBase.condComp", cond.1 = c("WT"), cond.2 = c("KO"), base.cond = 1)
+
+# Comparing a cluster/clusters with different cluster/clusters only in one/more condition/conditions (e.g. cluster 1 vs cluster 2 but only the WT sample)
+diff.res <- run.diff.exp(my.obj, de.by = "condBase.clustComp", cond.1 = c(1), cond.2 = c(2), base.cond = "WT")
 ```
 
 - Volcano and MA plots 
@@ -1054,7 +1337,7 @@ my.plot <- gene.plot(my.obj, gene = "GNLY",
 	clust.dim = 2,
 	interactive = F)
 
-cell.gating(my.obj, my.plot = my.plot)	
+cell.gating(my.obj, my.plot = my.plot, plot.type = "tsne")	
 
 # or 
 
@@ -1071,11 +1354,275 @@ cell.gating(my.obj, my.plot = my.plot)
 </p>
 
 
-After downloading the cell ids, use the following cammand to rename their cluster. 
+After downloading the cell ids, use the following command to rename their cluster. 
 
 ```r
 my.obj <- gate.to.clust(my.obj, my.gate = "cellGating.txt", to.clust = 10)
  ```
+ 
+# Batch correction (sample alignment) methods:
+1- CPCA (iCellR)** recommended (faster than CCCA)
+
+2- CCCA (iCellR)* recommended
+
+3- MNN (scran wraper) optional
+
+4- MultiCCA (Seurat wraper) optional
+
+5- CPCA + <img src="https://github.com/rezakj/scSeqR/blob/master/doc/logo.png" alt="drawing" width="30"/> KNetL based clustering (iCellR)*** recommended for best results!
+
+# 1- How to perform Combined Principal Component Alignment (CPCA)
+
+We analyzed nine PBMC sample datasets provided by the Broad Institute to detect batch
+differences. These datasets were generated using varying technologies, including 10x
+Chromium v2 (3 samples), 10x Chromium v3, CEL-Seq2, Drop-seq, inDrop, Seq-Well and
+SMART-Seq. For more info read:
+https://www.biorxiv.org/content/10.1101/2020.03.31.019109v1.full
+
+```r
+## download an object of 9 PBMC samples 
+sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/pbmc_data/my.obj.Robj"
+
+# download the file
+download.file(url = sample.file.url,
+     destfile = "my.obj.Robj",
+     method = "auto")
+     
+### load iCellR and the object 
+library(iCellR)
+load("my.obj.Robj")
+
+### run PCA on top 2000 genes 
+
+my.obj <- run.pca(my.obj, top.rank = 2000)
+
+### find best genes for second round PCA or batch alignment
+
+my.obj <- find.dim.genes(my.obj, dims = 1:30,top.pos = 20, top.neg = 20)
+length(my.obj@gene.model)
+
+########### Batch alignment (CPCA method)
+
+my.obj <- iba(my.obj,dims = 1:30, k = 10,ba.method = "CPCA", method = "gene.model", gene.list = my.obj@gene.model)
+
+### impute data 
+
+my.obj <- run.impute(my.obj,dims = 1:10,data.type = "pca", nn = 10)
+
+### tSNE and UMAP
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10)
+
+### save object 
+save(my.obj, file = "my.obj.Robj")
+
+### plot
+
+ library(gridExtra)
+A= cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.1)
+B= cluster.plot(my.obj,plot.type = "tsne",interactive = F,cell.size = 0.1) 
+C= cluster.plot(my.obj,plot.type = "umap",col.by = "conditions",interactive = F,cell.size = 0.1)
+D=cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",interactive = F,cell.size = 0.1)
+
+png('AllClusts.png', width = 12, height = 12, units = 'in', res = 300)
+grid.arrange(A,B,C,D)
+dev.off()
+
+png('AllConds_clusts.png', width = 15, height = 15, units = 'in', res = 300)
+cluster.plot(my.obj,
+              cell.size = 0.5,
+              plot.type = "umap",
+              cell.color = "black",
+              back.col = "white",
+              cell.transparency = 1,
+              clust.dim = 2,
+              interactive = F,cond.facet = T)
+dev.off()
+
+
+genelist = c("PPBP","LYZ","MS4A1","GNLY","FCGR3A","NKG7","CD14","S100A9","CD3E","CD8A","CD4","CD19","IL7R","FOXP3","EPCAM")
+
+for(i in genelist){
+	MyPlot <- gene.plot(my.obj, gene = i, 
+		interactive = F,
+		conds.to.plot = NULL,
+		cell.size = 0.1,
+		data.type = "main",
+		plot.data.type = "umap",
+		scaleValue = T,
+		min.scale = -2.5,max.scale = 2.0,
+		cell.transparency = 1)
+	NameCol=paste("PL",i,sep="_")
+	eval(call("<-", as.name(NameCol), MyPlot))
+}
+
+UMAP = cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.1, anno.size=5)
+library(cowplot)
+filenames <- ls(pattern="PL_")
+filenames <- c("UMAP", filenames)
+
+png('genes.png',width = 18, height = 15, units = 'in', res = 300)
+plot_grid(plotlist=mget(filenames))
+dev.off()
+
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/aCPCA.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/master/doc/aS3.png" />
+	<img src="https://github.com/rezakj/scSeqR/blob/master/doc/aS1.png" />
+</p>
+
+
+# 2- How to perform Combined Coverage Correction Alignment (CCCA)
+
+```r
+# same as above only change the option to CCCA
+
+my.obj <- iba(my.obj,dims = 1:30, k = 10,ba.method = "CCCA", method = "gene.model", gene.list = my.obj@gene.model)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/aCCCA.png" />
+</p>
+
+
+# 3- How to perform mutual nearest neighbor (MNN) sample alignment 
+
+```r
+# same as above only use run.mnn function instead of iba.
+###### Run MNN 
+# This would automatically run all the samples in your experiment 
+
+library(scran)
+my.obj <- run.mnn(my.obj, k=20, d=50, method = "gene.model", gene.list = my.obj@gene.model)
+
+# detach the scran pacakge after MNN as it masks some of the functions 
+detach("package:scran", unload=TRUE)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/aMNN.png" />
+</p>
+
+
+# 4- How to perform Seurat's MultiCCA sample alignment 
+
+```r
+# same as above only use run.anchor function instead of iba.
+###### Run Anchor 
+# This would automatically run all the samples in your experiment 
+
+library(Seurat)
+my.obj <- run.anchor(my.obj,
+    normalization.method = "SCT",
+    scale.factor = 10000,
+    selection.method = "vst",
+    nfeatures = 2000,
+    dims = 1:20)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/aSeurat.png" />
+</p>
+
+# 5- How to perform CPCA + KNetL based clustering for sample alignment/integration 
+
+```r
+## download an object of 9 PBMC samples 
+sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/example2/my.obj.Robj"
+
+# download the file
+download.file(url = sample.file.url,
+     destfile = "my.obj.Robj",
+     method = "auto")
+     
+### load iCellR and the object 
+library(iCellR)
+load("my.obj.Robj")
+
+### run PCA on top 2000 genes 
+
+my.obj <- run.pca(my.obj, top.rank = 2000)
+
+### find best genes for second round PCA or batch alignment
+
+my.obj <- find.dim.genes(my.obj, dims = 1:30,top.pos = 20, top.neg = 20)
+length(my.obj@gene.model)
+
+########### Batch alignment (CPCA method)
+
+my.obj <- iba(my.obj,dims = 1:30, k = 10,ba.method = "CPCA", method = "gene.model", gene.list = my.obj@gene.model)
+
+### impute data 
+
+my.obj <- run.impute(my.obj,dims = 1:10,data.type = "pca", nn = 10)
+
+### tSNE and UMAP
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10)
+### run KNetL 
+my.obj <- run.knetl(my.obj, dims = 1:20, k = 400)
+
+### cluster based on KNetL coordinates 
+# The object is already clustered but here is an example: 
+# my.obj <- iclust(my.obj, k = 300, data.type = "knetl")
+
+### save object 
+save(my.obj, file = "my.obj.Robj")
+
+### plot 1 
+A= cluster.plot(my.obj,plot.type = "pca",interactive = F,cell.size = 0.5,cell.transparency = 1, anno.clust=F)
+B= cluster.plot(my.obj,plot.type = "umap",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=F)
+C= cluster.plot(my.obj,plot.type = "tsne",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=F)
+D= cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.5,cell.transparency = 1,anno.clust=F)
+
+library(gridExtra)
+grid.arrange(A,B,C,D)
+
+### plot 2
+cluster.plot(my.obj,
+              cell.size = 0.5,
+              plot.type = "knetl",
+              cell.color = "black",
+              back.col = "white",
+              cell.transparency = 1,
+              clust.dim = 2,
+              interactive = F,cond.facet = T)
+	      
+### plot 3	      	      
+genelist = c("LYZ","MS4A1","GNLY","FCGR3A","NKG7","CD14","S100A9","CD3E","CD8A","CD4","CD19","KLRB1","LTB","IL7R","GZMH","CD68","CCR7","CD68","CD69","CXCR4","IFITM3","IL32","JCHAIN","VCAN","PPBP")	      
+
+
+rm(list = ls(pattern="PL_"))
+for(i in genelist){
+    MyPlot <- gene.plot(my.obj, gene = i,
+        interactive = F,
+        cell.size = 0.1,
+        plot.data.type = "knetl",
+        data.type = "main",
+        scaleValue = T,
+        min.scale = -2.5,max.scale = 2.0,
+        cell.transparency = 1)
+    NameCol=paste("PL",i,sep="_")
+    eval(call("<-", as.name(NameCol), MyPlot))
+}
+
+library(cowplot)
+filenames <- ls(pattern="PL_")
+
+B <- cluster.plot(my.obj,plot.type = "knetl",interactive = F,cell.size = 0.1,cell.transparency = 1,anno.clust=T)
+filenames <- c("B",filenames)
+
+plot_grid(plotlist=mget(filenames))	      
+```
+
+<p align="center">
+  <img src="https://genome.med.nyu.edu/results/external/iCellR/example2/AllClusters.png" />
+<img src="https://genome.med.nyu.edu/results/external/iCellR/example2/AllCondsClusts.png" />	
+<img src="https://genome.med.nyu.edu/results/external/iCellR/example2/genes_KNetL-plot.png" />	
+</p>
+
 
  - Pseudotime analysis
  
@@ -1095,7 +1642,10 @@ pseudotime.tree(my.obj,
 	type = "classic",
 	clust.method = "complete")
 	
-# New pseudotime maps coming soon see plots below
+pseudotime.tree(my.obj,
+	marker.genes = MyGenes,
+	type = "jitter",
+	clust.method = "complete")	
 
  ```
 <p align="center">
@@ -1104,7 +1654,6 @@ pseudotime.tree(my.obj,
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_unrooted.png" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_classic.png" width="400" />
   <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/pseudotime.tree_jitter.png" width="400"/>
-	  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/12_pseudotime.png"/>
 </p>
 
 
@@ -1170,202 +1719,6 @@ plot_pseudotime_heatmap(my.monoc.obj[MyGenes,],
   <img src="https://github.com/rezakj/scSeqR/blob/master/doc/13_monocol.png" />
 	  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/14_monocol.png" />
 </p>
-
-# How to perform canonical correlation analysis (CCA) for sample alignment 
-
-```r
-# this function runs Seurat in the background but only works best if you have 2 samples. 
-# If you have more than 2 samples it's best to run the commands explained in the next code block MNN.
-# After CCA just replace the pca.data slot of iCellR with CCA results from Seurat. 
-
-# We recommand running MNN alignment instead of CCA
-
-library(iCellR)
-library(Seurat)
-
-# download sample 1
-sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample1_for_CCA.tsv.gz"
-
-download.file(url = sample.file.url, 
-     destfile = "sample1_for_CCA.tsv.gz", 
-     method = "auto")  
-
-
-# download sample 2
-sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample2_for_CCA.tsv.gz"
-
-download.file(url = sample.file.url, 
-     destfile = "sample2_for_CCA.tsv.gz", 
-     method = "auto")  
-
-# Read both samples 
-S1 <- read.table("sample1_for_CCA.tsv.gz")
-head(S1)[1:5]
-
-S2 <- read.table("sample2_for_CCA.tsv.gz")
-head(S2)[1:5]
-
-# aggregate both samples  
-my.data <- data.aggregation(samples = c("S1","S2"), condition.names = c("S1","S2"))
-
-# make object
-my.obj <- make.obj(my.data)
-
-# QC
-my.obj <- qc.stats(my.obj,
-s.phase.genes = s.phase, 
-g2m.phase.genes = g2m.phase)
-
-# filter
-my.obj <- cell.filter(my.obj)
-
-## CCA 
-
-require(devtools)
-install_version("Seurat", version = "2.3.4", repos = "http://cran.us.r-project.org")
-library(Seurat)
-
-# this function runs Seurat in the background but only works best if you have 2 samples. 
-# If you have more than 2 samples it's best to run the commands explained in the next code block MNN.
-# After CCA just replace the pca.data slot of iCellR with CCA results from Seurat. 
-
-my.obj <- run.cca(my.obj,
-	top.vari.genes = 1000,
-	cc.number = 30,
-	dims.align = 1:20,
-	normalize.data = TRUE,
-	scale.data = TRUE,
-	normalization.method = "LogNormalize",
-	scale.factor = 10000,
-	display.progress = TRUE)
-
-################ Normalize, gene stats and gene model for PCA
-my.obj <- norm.data(my.obj, norm.method = "ranked.glsf", top.rank = 500) 
-my.obj <- gene.stats(my.obj, which.data = "main.data")
-my.obj <- make.gene.model(my.obj)
-
-###### See data without CCA
-my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main",batch.norm = F)
-
-my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
-
-UMAP_NoCCA <- cluster.plot(my.obj,plot.type = "umap",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
-
-PCA <- cluster.plot(my.obj,plot.type = "pca",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
-
-##### See data with CCA
-# replace PCA with CCA
-attributes(my.obj)$pca.data <- my.obj@cca.data
-
-my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
-
-UMAP_CCA <- cluster.plot(my.obj,plot.type = "umap",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
-
-Aligned_CCA <- cluster.plot(my.obj,plot.type = "pca",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
-
-# plot
-library(gridExtra)
-png('Compare.png', width = 8, height = 8, units = 'in', res = 300)
-grid.arrange(UMAP_NoCCA,PCA,UMAP_CCA,Aligned_CCA)
-dev.off()
-
-```
-Before and After CCA
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/Compare.png" />
-</p>
-
-
-# How to perform mutual nearest neighbor (MNN) sample alignment 
-
-```r
-library(iCellR)
-
-# download sample 1
-sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample1_for_CCA.tsv.gz"
-
-download.file(url = sample.file.url, 
-     destfile = "sample1_for_CCA.tsv.gz", 
-     method = "auto")  
-
-
-# download sample 2
-sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/sample2_for_CCA.tsv.gz"
-
-download.file(url = sample.file.url, 
-     destfile = "sample2_for_CCA.tsv.gz", 
-     method = "auto")  
-
-# Read both samples 
-S1 <- read.table("sample1_for_CCA.tsv.gz")
-head(S1)[1:5]
-
-S2 <- read.table("sample2_for_CCA.tsv.gz")
-head(S2)[1:5]
-
-# aggregate both samples  
-my.data <- data.aggregation(samples = c("S1","S2"), condition.names = c("S1","S2"))
-
-# make object
-my.obj <- make.obj(my.data)
-
-# QC
-my.obj <- qc.stats(my.obj,
-s.phase.genes = s.phase, 
-g2m.phase.genes = g2m.phase)
-
-# filter
-my.obj <- cell.filter(my.obj)
-my.obj <- gene.stats(my.obj, which.data = "main.data")
-
-my.obj <- make.gene.model(my.obj, my.out.put = "data",
-	dispersion.limit = 1.5,
-	base.mean.rank = 500,
-	no.mito.model = T,
-	mark.mito = T,
-	interactive = F,
-	no.cell.cycle = T,
-	out.name = "gene.model")
-	
-###### Run MNN 
-# This would automatically run all the samples in your experiment 
-
-library(scran)
-my.obj <- run.mnn(my.obj,
-    top.rank = 500,
-    k=20,
-    d=50)
-
-# or 
-#my.obj <- run.mnn(my.obj,
-#    method = "gene.model",
-#    gene.list = my.obj@gene.model,
-#    k=20,
-#    d=50)
-
-# By running MNN alignment you replace the PCA data slot and there is no need to run PCA. 
-# If you run PCA, MNN results will be replaced. (Do only if you want to see the results before and after MNN)
-
-
-# normaliza the main data for iCellR analyses
-my.obj <- norm.data(my.obj, norm.method = "ranked.glsf", top.rank = 500)
-
-## run tSNE 
-my.obj <- run.pc.tsne(my.obj, dims = 1:10)
-my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn")
-
-cluster.plot(my.obj,plot.type = "tsne",col.by = "conditions",interactive = F)
-
-cluster.plot(my.obj,plot.type = "umap",col.by = "conditions",interactive = F)
-```
-
-Before and After MNN analysis
-
-<p align="center">
-  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/MNN.png" />
-</p>
-
 
 # How to demultiplex with hashtag oligos (HTOs)
 
@@ -1671,14 +2024,14 @@ my.obj <- adt.rna.merge(my.obj, adt.data = "main")
 
 # run PCA and the rest is as above
 
-my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main",batch.norm = F)
+my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main")
 
 # 2 pass PCA 
 my.obj <- find.dim.genes(my.obj, dims = 1:20,top.pos = 20, top.neg = 20)
 # second round PC
-my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main",batch.norm = F)
+my.obj <- run.pca(my.obj, method = "gene.model", gene.list = my.obj@gene.model,data.type = "main")
 
-my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn")
+my.obj <- run.umap(my.obj, dims = 1:10)
 
 # check your object 
 my.obj
@@ -1757,6 +2110,104 @@ grid.arrange(A,B,C,D)
 Here is an example of how to add VDJ data.
 
  ```r
+ ###### an example file 
+ my.vdj <- read.csv(file = system.file('extdata', 'all_contig_annotations.csv',
+               package = 'iCellR'),
+               as.is = TRUE)
+	       
+###
+head(My.VDJ)
+#  raw_clonotype_id            barcode is_cell                   contig_id
+#1       clonotype1 ACGCCAGCAAGCGCTC.1    True ACGCCAGCAAGCGCTC-1_contig_2
+#2       clonotype1 AACGTTGAGTACGATA.1    True AACGTTGAGTACGATA-1_contig_2
+#3       clonotype1 AACTCTTGTCAAAGCG.1    True AACTCTTGTCAAAGCG-1_contig_1
+#4       clonotype1 AACGTTGAGTACGATA.1    True AACGTTGAGTACGATA-1_contig_1
+#5       clonotype1 ACGCCAGCAAGCGCTC.1    True ACGCCAGCAAGCGCTC-1_contig_1
+#6       clonotype1 ACGATGTTCTGGTATG.1    True ACGATGTTCTGGTATG-1_contig_2
+#  high_confidence length chain  v_gene d_gene  j_gene c_gene full_length
+#1            True    571   TRA  TRAV27   None  TRAJ37   TRAC        True
+#2            True    730   TRA  TRAV27   None  TRAJ37   TRAC        True
+#3            True    722   TRB TRBV6-3  TRBD2 TRBJ1-1  TRBC1        True
+#4            True    723   TRB TRBV6-3  TRBD2 TRBJ1-1  TRBC1        True
+#5            True    722   TRB TRBV6-3  TRBD2 TRBJ1-1  TRBC1        True
+#6            True    726   TRA  TRAV27   None  TRAJ37   TRAC        True
+#  productive           cdr3                                    cdr3_nt reads
+#1       True CAGGRSSNTGKLIF TGTGCAGGAGGACGCTCTAGCAACACAGGCAAACTAATCTTT 14241
+#2       True CAGGRSSNTGKLIF TGTGCAGGAGGACGCTCTAGCAACACAGGCAAACTAATCTTT 27679
+#3       True CASRTGAGATEAFF TGTGCCAGCAGGACCGGGGCGGGAGCCACTGAAGCTTTCTTT 51844
+#4       True CASRTGAGATEAFF TGTGCCAGCAGGACCGGGGCGGGAGCCACTGAAGCTTTCTTT 38120
+#5       True CASRTGAGATEAFF TGTGCCAGCAGGACCGGGGCGGGAGCCACTGAAGCTTTCTTT 24635
+#6       True CAGGRSSNTGKLIF TGTGCAGGAGGACGCTCTAGCAACACAGGCAAACTAATCTTT 13720
+#  umis       raw_consensus_id my.raw_clonotype_id clonotype.Freq proportion
+#1    8 clonotype1_consensus_2          clonotype1             43  0.1572212
+#2   10 clonotype1_consensus_2          clonotype1             43  0.1572212
+#3   24 clonotype1_consensus_1          clonotype1             43  0.1572212
+#4   23 clonotype1_consensus_1          clonotype1             43  0.1572212
+#5   11 clonotype1_consensus_1          clonotype1             43  0.1572212
+#6    7 clonotype1_consensus_2          clonotype1             43  0.1572212
+#  total.colonotype
+#1              109
+#2              109
+#3              109
+#4              109
+#5              109
+#6              109
+
+#### Prepare the vdj file
+     My.VDJ <- prep.vdj(vdj.data = my.vdj, cond.name = "NULL")
+###
+head(My.VDJ)
+#  raw_clonotype_id            barcode is_cell                   contig_id
+#1       clonotype1 ACGCCAGCAAGCGCTC.1    True ACGCCAGCAAGCGCTC-1_contig_2
+#2       clonotype1 AACGTTGAGTACGATA.1    True AACGTTGAGTACGATA-1_contig_2
+#3       clonotype1 AACTCTTGTCAAAGCG.1    True AACTCTTGTCAAAGCG-1_contig_1
+#4       clonotype1 AACGTTGAGTACGATA.1    True AACGTTGAGTACGATA-1_contig_1
+#5       clonotype1 ACGCCAGCAAGCGCTC.1    True ACGCCAGCAAGCGCTC-1_contig_1
+#6       clonotype1 ACGATGTTCTGGTATG.1    True ACGATGTTCTGGTATG-1_contig_2
+#  high_confidence length chain  v_gene d_gene  j_gene c_gene full_length
+#1            True    571   TRA  TRAV27   None  TRAJ37   TRAC        True
+#2            True    730   TRA  TRAV27   None  TRAJ37   TRAC        True
+#3            True    722   TRB TRBV6-3  TRBD2 TRBJ1-1  TRBC1        True
+#4            True    723   TRB TRBV6-3  TRBD2 TRBJ1-1  TRBC1        True
+#5            True    722   TRB TRBV6-3  TRBD2 TRBJ1-1  TRBC1        True
+#6            True    726   TRA  TRAV27   None  TRAJ37   TRAC        True
+#  productive           cdr3                                    cdr3_nt reads
+#1       True CAGGRSSNTGKLIF TGTGCAGGAGGACGCTCTAGCAACACAGGCAAACTAATCTTT 14241
+#2       True CAGGRSSNTGKLIF TGTGCAGGAGGACGCTCTAGCAACACAGGCAAACTAATCTTT 27679
+#3       True CASRTGAGATEAFF TGTGCCAGCAGGACCGGGGCGGGAGCCACTGAAGCTTTCTTT 51844
+#4       True CASRTGAGATEAFF TGTGCCAGCAGGACCGGGGCGGGAGCCACTGAAGCTTTCTTT 38120
+#5       True CASRTGAGATEAFF TGTGCCAGCAGGACCGGGGCGGGAGCCACTGAAGCTTTCTTT 24635
+#6       True CAGGRSSNTGKLIF TGTGCAGGAGGACGCTCTAGCAACACAGGCAAACTAATCTTT 13720
+#  umis       raw_consensus_id my.raw_clonotype_id clonotype.Freq proportion
+#1    8 clonotype1_consensus_2          clonotype1             43  0.1572212
+#2   10 clonotype1_consensus_2          clonotype1             43  0.1572212
+#3   24 clonotype1_consensus_1          clonotype1             43  0.1572212
+#4   23 clonotype1_consensus_1          clonotype1             43  0.1572212
+#5   11 clonotype1_consensus_1          clonotype1             43  0.1572212
+#6    7 clonotype1_consensus_2          clonotype1             43  0.1572212
+#  total.colonotype
+#1              109
+#2              109
+#3              109
+#4              109
+#5              109
+#6              109
+
+####
+png('vdj.stats.png',width = 16, height = 8, units = 'in', res = 300)
+vdj.stats(My.VDJ)
+dev.off()
+
+### add vdj data to you object 
+my.obj <- add.vdj(demo.obj, vdj.data = My.VDJ)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/vdj.stats.png" />
+</p>
+
+Another example with multiple files 
+```r
 # first prepare the files. 
 # this function would filter the files, calculate clonotype frequencies and proportions and add conditions to the cell ids.
 my.vdj.1 <- prep.vdj(vdj.data = "all_contig_annotations.csv", cond.name = "WT")
@@ -1807,10 +2258,223 @@ head(my.vdj.data)
 # add it to iCellR object
 add.vdj(my.obj, vdj.data = my.vdj.data)
  ```
+ How to plot colonotypes
+ 
+ ```r
+# Plot colonotype 1
+clono.plot(my.obj, plot.data.type = "umap", 
+	clono = 1,
+	cell.transparency = 1,
+	clust.dim = 2,
+	interactive = F)
+	
+# plot multiple
+
+clono.list = c(1:12)
+
+for(i in clono.list){
+MyPlot <- clono.plot(my.obj, plot.data.type = "umap", 
+	clono = i,
+	cell.transparency = 1,
+	clust.dim = 2,
+	interactive = F)
+	NameCol=paste("PL",i,sep="_")
+	eval(call("<-", as.name(NameCol), MyPlot))
+}
+
+library(cowplot)
+filenames <- ls(pattern="PL_")
+
+plot_grid(plotlist=mget(filenames))
+ ```
+
+# How to analyze large bulk RNA-Seq data (TCGA)
+
+In this example the samples are normalized using DESeq2 so no normalization is needed.
+
+```r
+sample.file.url = "https://genome.med.nyu.edu/results/external/iCellR/data/TCGA_sample_Normalized_data.tsv.gz"
+
+download.file(url = sample.file.url, 
+     destfile = "TCGA_sample_Normalized_data.tsv.gz", 
+     method = "auto")  
+
+TCGA.data <- read.table("TCGA_sample_Normalized_data.tsv.gz")
+head(TCGA.data)[1:3]
+#         Basal_TCGA.A1.A0SK.txt Basal_TCGA.A1.A0SP.txt Basal_TCGA.A2.A04P.txt
+#TSPAN6                5823.4300            4318.034382            5265.733258
+#TNMD                     0.0000               6.049079               6.763079
+#DPM1                  3248.1536            2528.515113            1183.538813
+#SCYL3                 1059.7135             965.836315            1109.144945
+#C1orf112              1251.3155            1070.687022             485.589067
+#FGR                    106.2438             933.574559             512.641383
+
+library(iCellR)
+my.obj <- make.obj(TCGA.data)
+
+my.obj@main.data <- my.obj@raw.data
+
+my.obj
+###################################
+,--. ,-----.       ,--.,--.,------.
+`--''  .--./ ,---. |  ||  ||  .--. '
+,--.|  |    | .-. :|  ||  ||  '--'.'
+|  |'  '--'\   --. |  ||  ||  |
+`--' `-----' `----'`--'`--'`--' '--'
+###################################
+An object of class iCellR version: 1.2.4
+Raw/original data dimentions (rows,columns): 69797,882
+Data conditions in raw data: Basal,Her2,LumA,LumB,Normal (131,64,404,170,113)
+Row names: TSPAN6,TNMD,DPM1 ...
+Columns names: Basal_TCGA.A1.A0SK.txt,Basal_TCGA.A1.A0SP.txt,Basal_TCGA.A2.A04P.txt ...
+###################################
+   QC stats performed:FALSE, PCA performed:FALSE, CCA performed:FALSE
+   Clustering performed:FALSE, Number of clusters:0
+   tSNE performed:FALSE, UMAP performed:FALSE, DiffMap performed:FALSE
+   Main data dimentions (rows,columns):69797,882
+   Normalization factors:,...
+   Imputed data dimentions (rows,columns):0,0
+############## scVDJ-Seq ###########
+VDJ data dimentions (rows,columns):0,0
+############## CITE-Seq ############
+   ADT raw data dimentions (rows,columns):0,0
+   ADT main data dimentions (rows,columns):0,0
+   ADT columns names:...
+   ADT row names:...
+########### iCellR object ##########
+
+
+my.obj <- run.pca(my.obj)
+
+my.obj <- run.clustering(my.obj, 
+	clust.method = "kmeans", 
+	dist.method = "euclidean",
+	index.method = "silhouette",
+	max.clust =25,
+	min.clust = 2,
+	dims = 1:10)
+
+my.obj <- run.pc.tsne(my.obj, dims = 1:10)
+my.obj <- run.umap(my.obj, dims = 1:10, method = "umap-learn") 
+
+cluster.plot(my.obj,plot.type = "pca",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
+cluster.plot(my.obj,plot.type = "umap",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
+cluster.plot(my.obj,plot.type = "tsne",cell.color = "black",col.by = "conditions",cell.transparency = 0.5,interactive = F)
+cluster.plot(my.obj,plot.type = "umap",cell.color = "black",cell.transparency = 1,interactive = F)
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/master/doc/TCGA.png" />
+</p>
+
+ # Cell type prediction using ImmGen, Mouse and Human Cell Atlas 
+ 
+To do this you need to download the following databse files from our iCellR data link (more data to come soon). 
+ 
+ ```r
+# download the .rda files from here: https://genome.med.nyu.edu/results/external/iCellR/data/ 
+# Load the .rda files as below
+
+load("Immgen.GSE109125.205.rda")
+load("Immgen.GSE122108.412.rda")
+load("Immgen.GSE122597.83.rda")
+load("Immgen.GSE124829.190.rda")
+load("Immgen.microarray.GSE15907.653.rda")
+load("Immgen.microarray.GSE37448.189.rda")
+load("immgen.rna.rda")
+load("immgen.uli.rna.rda")
+load("mouse.cell.atlas.rda") 
+ ```
+ 
+ 
+| Key        | Source          | Samples  | Description  | Cell Types |
+| ------------- |:-------------:| :-----:| :----- | -----|
+| [GSE109125](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE109125) | ImmGen | 205 | 83 populations representing all lineages and several differentiation cascades prepared from unchallenged mice and after LPS, anti-CD3, viral infection cell activation. | B Cells, Stromal Cells, Dendritic Cells, Granulocytes, Innate Lymphocytes, Stem Cells, Macrophages, ab T Cells, gd T Cells |
+| [GSE122108](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE122108) | ImmGen | 412 | 130 populations comprising progenitors, residents, and stimulated (C.alb, LPS, injury, APAP+ starved overnight and pIC) mononuclear phagocytes for OpenSource MNP Project. | Macrophages, Kupffer Cell/Macrophages, Dendritic Cells, Microglia, Monocytes. |
+| [GSE122597](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE122597) | ImmGen | 83 | Five highly purified immunocyte populations profiled to unusual depth as multiple replicates (8 to 16). Suitable for exploration of genes expressed at very low levels. | NK Cells, Follicular B, Naive CD4+ abT, gdT cells and peritoneal macrophages. |
+| [GSE124829](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE124829) | ImmGen | 190 | 11 diverse immunocyte populations from male and female mice of varying ages stimulated with different dose of IFN to understand the immune system's sexual differences. | B Cells, Dendritic Cells, Neutrophils, Macrophages, Natural Killer T Cells, ab T Cells, gd T Cells, Microglia, Regulatory T Cells. |
+| [GSE15907](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15907) | ImmGen | 653 | 178 populations compromiing of gene-expression microarray datasets ("version1" labeling) from primary cells from multiple immune lineages are isolated ex-vivo, primarily from 6weeks B6 male mice. | gd T Cells, ab T Cells, Dendritic Cells, Macrophages, Stem Cells, B Cells, Stromal Cells, Neutrophils, Fibroblast, NK Cells, NK T Cells, Monocytes, CD4 Naive T Cell. |
+| [GSE37448](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE37448) | ImmGen | 189 | 80 populations compromising of gene-expression microarray datasets ("version2" labeling) from primary cells from multiple immune lineages are isolated ex-vivo, primarily from 6weeks B6 male mice. Complements the V1 compendium with additional cells. Unfortunately, the version change in the labeling process, while more efficient, introduced some biases such that the two sections of the data can be compared grossly, but not at fine resolution (we tried...). | gd T Cells, ab T Cells, Dendritic Cells, Macrophages, Stem Cells, B Cells, Stromal Cells, Neutrophils, Fibroblast, NK Cells, NK T Cells, Monocytes, CD4 Naive T Cell. |
+| [rna](https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=281360) | ImmGen | 23 | Full depth directional RNA sequencing was performed on the core ImmGen populations to generate reference datasets for the tissues from 5 week-old C57BL/6J (Jackson Laboratory) males and females, double-sorted by flow cytometry, per ImmGen cell preparation SOP.  | B, CD4T, CD8T, DC, MQ,NK, NKT, Treg |
+| [uli.rna](https://github.com/rezakj/scSeqR/blob/dev/doc/uli_RNA_metadat.txt) | ImmGen | 157 | | |
+| [mca](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE108097) | Mouse Cell Atlas | 43 tissues | Constructed as a basic scheme for the Mouse Cell Atlas using Microwell-seq. | Uterus, TrophoblastStemCells, Thymus, Testis, Stomach, Spleen, SmallIntestine, Prostate, Placenta, PeripheralBlood, Pancreas, Ovary, NeontalBrain, NeonatalSkin, NeonatalRib, NeonatalMuscle, NeonatalHeart, NeonatalCalvaria, Muscle, Mouse3T3, MesenchymalStemCellsPrimary, MesenchymalStemCells, MammaryGland.Virgin, MammaryGland.Pregnancy, MammaryGland.Lactation, MammaryGland.Involution, Male.fetal.Gonad, Lung, Liver, Kidney, FetalStomach, FetalLung, FetalLiver, FetalKidney, FetalIntestine, FetalBrain, Female.fetal.Gonad, EmbryonicStemCells, EmbryonicMesenchyme, Brain, BoneMarrowcKit, BoneMarrow, Bladder |
+ 
+Choose a cluster and take for example top 10 genes for that cluster and then choose one of the databases that is best for you from the above list and predict your cell type. Note that if you have B cells for example and the database of your choice dose not have B cells, it would predict the closest looking cells to B cells. So it's important to use the right database for the right type of data. 
 
 
 ```r
-sessionInfo()
+# Choose top 40 genes for cluster 8 for example
+MyGenes <- top.markers(marker.genes, topde = 40, min.base.mean = 0.2, cluster = 8)
+
+####### predict
+# plot 
+cell.type.pred(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot")
+
+cell.type.pred(immgen.data = "uli.rna", gene = MyGenes, plot.type = "point.plot", top.cell.types = 50)
+ 
+cell.type.pred(immgen.data = "rna", gene = MyGenes, plot.type = "heatmap")
+ 
+cell.type.pred(immgen.data = "uli.rna", gene = MyGenes, plot.type = "heatmap")
+
+# As you can see cluster 8 is most likely to be B-cells. 
+
+# more examples
+cell.type.pred(immgen.data = "GSE109125", gene = MyGenes, plot.type = "point.plot", top.cell.types = 50)
+
+cell.type.pred(immgen.data = "GSE37448", gene = MyGenes, plot.type = "heatmap", top.cell.types = 50)
+
+# for tissue type prediction use this:
+cell.type.pred(immgen.data = "mca", gene = MyGenes, plot.type = "point.plot")
+
+# And finally check the genes in the cells and find the common ones to predict
+heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters") 
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_RNA_Cluster_7.png" />
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_pointPlot_ULI-RNA_Cluster_7.png" /> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_RNA_Cluster_7.png" /> 
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/ImmGen_heatmap_ULI-RNA_Cluster_7.png" />	
+</p>
+
+
+You can automate this for all the clusters as below. Add as many plot as you wish. 
+
+```r
+Clusters = sort(unique(my.obj@best.clust$clusters))
+
+
+for(i in Clusters){
+	Cluster = i
+	MyGenes <- top.markers(marker.genes, topde = 10, min.base.mean = 0.2, cluster = Cluster)
+# first plot
+Name <- paste("ImmGen_Cluster_",Cluster,"_pointPlot_RNA.pdf",sep="")
+pdf(Name, width = 10, height = 10)
+print(cell.type.pred(immgen.data = "rna", gene = MyGenes, plot.type = "point.plot"))
+dev.off()
+# second plot
+Name <- paste("ImmGen_Cluster_",Cluster,"_check.pdf",sep="")
+pdf(Name, width = 10, height = 10)
+print(heatmap.gg.plot(my.obj, gene = MyGenes, interactive = F, cluster.by = "clusters"))
+dev.off()
+}
+```
+
+ - Pathway analysis
+ 
+```r
+# Pathway  
+# pathways.kegg(my.obj, clust.num = 7) 
+# this function is being improved and soon will be available
+```
+
+<p align="center">
+  <img src="https://github.com/rezakj/scSeqR/blob/dev/doc/7_cluster_KEGGpathways.png" />    
+</p>
+
+
+```r
+> sessionInfo()
 R version 3.5.1 (2018-07-02)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Red Hat Enterprise Linux
@@ -1831,34 +2495,42 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base
 
 other attached packages:
-[1] iCellR_1.2.2  plotly_4.9.0  ggplot2_3.2.1
+[1] iCellR_1.5.5   plotly_4.9.2.1 ggplot2_3.3.2
 
 loaded via a namespace (and not attached):
- [1] ggrepel_0.8.1        Rcpp_1.0.2           ape_5.3
- [4] lattice_0.20-38      tidyr_1.0.0          assertthat_0.2.1
- [7] zeallot_0.1.0        digest_0.6.22        mime_0.7
-[10] R6_2.4.0             plyr_1.8.4           backports_1.1.5
-[13] acepack_1.4.1        httr_1.4.1           pillar_1.4.2
-[16] rlang_0.4.0          lazyeval_0.2.2       rstudioapi_0.10
-[19] data.table_1.12.6    rpart_4.1-15         Matrix_1.2-17
-[22] checkmate_1.9.4      reticulate_1.13      splines_3.5.1
-[25] Rtsne_0.15           stringr_1.4.0        foreign_0.8-72
-[28] htmlwidgets_1.5.1    pheatmap_1.0.12      munsell_0.5.0
-[31] umap_0.2.3.1         shiny_1.4.0          compiler_3.5.1
-[34] httpuv_1.5.2         xfun_0.10            pkgconfig_2.0.3
-[37] askpass_1.1          base64enc_0.1-3      htmltools_0.4.0
-[40] nnet_7.3-12          openssl_1.4.1        tidyselect_0.2.5
-[43] htmlTable_1.13.2     tibble_2.1.3         gridExtra_2.3
-[46] Hmisc_4.2-0          reshape_0.8.8        viridisLite_0.3.0
-[49] ggpubr_0.2.3         crayon_1.3.4         dplyr_0.8.3
-[52] withr_2.1.2          later_1.0.0          MASS_7.3-51.4
-[55] grid_3.5.1           NbClust_3.0          nlme_3.1-141
-[58] jsonlite_1.6         xtable_1.8-4         gtable_0.3.0
-[61] lifecycle_0.1.0      magrittr_1.5         scales_1.0.0
-[64] stringi_1.4.3        ggsignif_0.6.0       promises_1.1.0
-[67] scatterplot3d_0.3-41 latticeExtra_0.6-28  ggdendro_0.1-20
-[70] vctrs_0.2.0          Formula_1.2-3        RColorBrewer_1.1-2
-[73] tools_3.5.1          glue_1.3.1           purrr_0.3.3
-[76] parallel_3.5.1       fastmap_1.0.1        survival_2.44-1.1
-[79] colorspace_1.4-1     cluster_2.1.0        knitr_1.25
+  [1] nlme_3.1-148         bit64_0.9-7.1        RcppAnnoy_0.0.16
+  [4] RColorBrewer_1.1-2   progress_1.2.2       httr_1.4.1
+  [7] tools_3.5.1          backports_1.1.8      R6_2.4.1
+ [10] rpart_4.1-15         Hmisc_4.4-0          uwot_0.1.8
+ [13] lazyeval_0.2.2       colorspace_1.4-1     nnet_7.3-14
+ [16] withr_2.2.0          tidyselect_1.1.0     prettyunits_1.1.1
+ [19] bit_1.1-15.2         curl_4.3             compiler_3.5.1
+ [22] htmlTable_2.0.1      Cairo_1.5-12         hdf5r_1.3.2
+ [25] ggdendro_0.1-20      labeling_0.3         scales_1.1.1
+ [28] checkmate_2.0.0      stringr_1.4.0        digest_0.6.25
+ [31] foreign_0.8-76       rio_0.5.16           base64enc_0.1-3
+ [34] pkgconfig_2.0.3      htmltools_0.5.0      fastmap_1.0.1
+ [37] htmlwidgets_1.5.1    rlang_0.4.7          readxl_1.3.1
+ [40] rstudioapi_0.11      shiny_1.5.0          farver_2.0.3
+ [43] generics_0.0.2       jsonlite_1.7.0       crosstalk_1.1.0.1
+ [46] acepack_1.4.1        dplyr_1.0.0          zip_2.0.4
+ [49] car_3.0-8            magrittr_1.5         Formula_1.2-3
+ [52] NbClust_3.0          Matrix_1.2-18        Rcpp_1.0.5
+ [55] munsell_0.5.0        ape_5.4              abind_1.4-5
+ [58] lifecycle_0.2.0      yaml_2.2.1           scatterplot3d_0.3-41
+ [61] stringi_1.4.6        carData_3.0-4        MASS_7.3-51.6
+ [64] Rtsne_0.15           plyr_1.8.6           grid_3.5.1
+ [67] parallel_3.5.1       promises_1.1.1       ggrepel_0.8.2
+ [70] forcats_0.5.0        crayon_1.3.4         lattice_0.20-41
+ [73] haven_2.3.1          splines_3.5.1        hms_0.5.3
+ [76] knitr_1.29           pillar_1.4.6         igraph_1.2.5
+ [79] ggpubr_0.4.0         ggsignif_0.6.0       codetools_0.2-16
+ [82] glue_1.4.1           latticeExtra_0.6-28  data.table_1.12.8
+ [85] vctrs_0.3.2          httpuv_1.5.4         cellranger_1.1.0
+ [88] gtable_0.3.0         RANN_2.6.1           purrr_0.3.4
+ [91] tidyr_1.1.0          reshape_0.8.8        xfun_0.15
+ [94] openxlsx_4.1.5       mime_0.9             xtable_1.8-4
+ [97] broom_0.7.0          rstatix_0.6.0        later_1.1.0.1
+[100] survival_3.2-3       viridisLite_0.3.0    tibble_3.0.3
+[103] pheatmap_1.0.12      cluster_2.1.0        ellipsis_0.3.1
 ```
